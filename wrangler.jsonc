@@ -8,10 +8,6 @@
 	"name": "sterlingdev-website",
 	"compatibility_date": "2025-06-14",
 	"compatibility_flags": ["nodejs_compat"],
-	"assets": {
-		"binding": "ASSETS",
-		"directory": "./dist/assets"
-	},
 	"observability": {
 		"enabled": true
 	}
