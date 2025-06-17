@@ -1,0 +1,24 @@
+{
+	"name": "sterlingdev-website",
+	"type": "module",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"wr-dev": "wrangler dev",
+		"start": "astro dev",
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"devDependencies": {
+		"astro": "^5.9.3",
+		"wrangler": "^4.20.0"
+	},
+	"dependencies": {
+		"@astrojs/cloudflare": "^12.5.4",
+		"@tailwindcss/vite": "^4.1.10",
+		"tailwindcss": "^4.1.10"
+	}
+}

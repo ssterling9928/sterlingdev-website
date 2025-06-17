@@ -1,0 +1,50 @@
+
+---
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+		<title>{title || 'Stephen Sterling - Portfolio'}</title>
+	</head>
+
+	
+	<body class="bg-stone-950 text-zinc-100 font-sans antialiased leading-relaxed">
+    	<!-- Header/Navigation from your original HTML -->
+		<header class="py-5 px-6 md:px-16 bg-gray-900 bg-opacity-70 backdrop-blur-md sticky top-0 z-50 rounded-b-xl">
+			<nav class="container mx-auto flex justify-between items-center">
+				<a href="/" class="text-3xl font-extrabold bg-gradient-to-r from-amber-300 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
+					[Sterling Development]
+				</a>
+				<div class="space-x-8">
+					<a href="#about" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">About</a>
+					<a href="#skills" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">Skills</a>
+					<a href="#work" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">Work</a>
+					<a href="#contact" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">Contact</a>
+				</div>
+			</nav>
+		</header>
+
+    	<slot /> {/* This is where the content of each page will go */}
+
+    	<!-- Footer from your original HTML -->
+		<footer class="py-8 px-6 bg-black text-white text-center rounded-t-xl mt-16">
+			<div class="container mx-auto">
+				<p>&copy; 2025 Stephen Sterling. All rights reserved.</p>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
