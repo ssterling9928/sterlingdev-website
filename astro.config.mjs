@@ -10,6 +10,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  output: 'hybrid',
+  output: 'server',
   adapter: cloudflare()
 });
