@@ -1,24 +1,35 @@
 
 ---
 const { title } = Astro.props;
+import '../styles/global.css'; // Import global styles
 ---
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
 		<title>{title || 'Stephen Sterling - Portfolio'}</title>
 	</head>
 
 	
-	<body class="bg-stone-950 text-zinc-100 font-sans antialiased leading-relaxed">
+	<body>
     	<!-- Header/Navigation from your original HTML -->
-		<header class="py-5 px-6 md:px-16 bg-gray-900 bg-opacity-70 backdrop-blur-md sticky top-0 z-50 rounded-b-xl">
+		<header class="py-5 px-6 md:px-16 bg-gray-900 bg-opacity-70 backdrop-blur-md sticky top-0 z-50 rounded-b-xl shadow-2xl shadow-orange-800">
+			
+			
+			
 			<nav class="container mx-auto flex justify-between items-center">
-				<a href="/" class="text-3xl font-extrabold bg-gradient-to-r from-amber-300 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
-					[Sterling Development]
-				</a>
+				<div>
+					<a href="/index.html" class=""> 
+						<img src="/assets/images/sterlingdevlogo.png" alt="Sterling Development Logo" class="size-auto"/> 
+					</a>
+				</div>
+				<div>
+					<h2 class="text-3xl font-extrabold bg-gradient-to-r from-amber-300 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
+						Stephen Sterling
+					</h2>
+				</div>
 				<div class="space-x-8">
 					<a href="#about" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">About</a>
 					<a href="#skills" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">Skills</a>

@@ -17,8 +17,6 @@
 		"wrangler": "^4.20.0"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^12.5.4",
-		"@tailwindcss/vite": "^4.1.10",
-		"tailwindcss": "^4.1.10"
+		"@astrojs/tailwind": "^6.0.2"
 	}
 }
