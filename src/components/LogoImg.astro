@@ -1,0 +1,41 @@
+--- 
+// src/components/LogoImg.astro
+//
+// This component is responsible for rendering your website's logo image.
+// It automatically links the logo back to the homepage for easy navigation.
+//
+// Props:
+//   src: string         - The source URL of the logo image.
+//                        (When importing from `src/assets`, use `importedImage.src`)
+//   alt: string         - The alternative text for the image, crucial for accessibility.
+//   width?: string      - Optional Tailwind CSS class for image width (e.g., "w-10"). Defaults to "w-10".
+//   height?: string     - Optional Tailwind CSS class for image height (e.g., "h-10"). Defaults to "h-10".
+//   className?: string  - Optional additional Tailwind CSS classes to apply to the <a> tag.
+
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: string;
+  height?: string;
+  className?: string;
+}
+
+// Destructure props, providing default values for optional props.
+const { src, alt, width = 'w-10', height = 'h-10', className = '' } = Astro.props;
+---
+
+<!-- Anchor tag makes the logo clickable and navigates to the homepage. -->
+<!-- 'flex-shrink-0' prevents the logo from shrinking in a flex container. -->
+<!-- 'mr-4' adds a margin to the right, separating it from the next element (site title). -->
+<!-- The `className` prop allows external styling to be passed directly to the <a> tag. -->
+<a href="/" class={`flex-shrink-0 mr-4 ${className}`}>
+  <!-- The image tag. 'object-contain' ensures the image scales within its bounds without cropping. -->
+  <!-- 'loading="lazy"' is a performance optimization for images. -->
+  <img
+    src={src}
+    alt={alt}
+    class={`${width} ${height} object-contain`}
+    loading="lazy"
+  />
+</a>
