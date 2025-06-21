@@ -1,10 +1,11 @@
 ---
-import Welcome from '../components/Welcome.astro';
+
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';// Import Astro's image component for optimized image handling
+
+import PortraitImage from '../assets/images/portrait.png'; // Import your portrait imag
 
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout title="Stephen Sterling - Portfolio">
@@ -18,10 +19,10 @@ import Layout from '../layouts/Layout.astro';
             <div class="max-w-2xl md:text-left text-center">
                 <p class="text-xl md:text-2xl text-orange-400 mb-3 font-medium">Hello, I'm</p>
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-                    <span class="gradient-text-orange">Your Name</span>.
+                    <span class="gradient-text-orange">Stephen Sterling</span>
                 </h1>
                 <p class="text-2xl md:text-3xl text-gray-300 mb-8 font-light">
-                    A <span class="font-semibold text-orange-300">Full-Stack Developer</span> crafting performant and intuitive web experiences.
+                    A <span class="font-semibold text-orange-300">Full-Stack Developer</span> Creating a diversified array[ ] of &#123;software solutions&#125;.
                 </p>
                 <!-- Call to Action Button -->
                 <a href="#projects" class="cta-button inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full shadow-lg text-xl transition-all duration-300 ease-in-out">
@@ -32,8 +33,11 @@ import Layout from '../layouts/Layout.astro';
             <div class="flex-shrink-0 relative">
                 <!-- Outer glow/pulse effect - can be animated with custom CSS later -->
                 <div class="absolute inset-0 rounded-full bg-gradient-to-br from-orange-400/30 to-purple-500/30 blur-xl opacity-75 animate-pulse-slow"></div>
-                <img src="https://placehold.co/300x300/1e293b/f97316?text=</Code>" alt="Developer Avatar"
-                    class="relative rounded-full shadow-2xl border-4 border-orange-500 object-cover w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 transform rotate-6 hover:rotate-0 transition-transform duration-500 ease-in-out">
+                <Image 
+                    src={PortraitImage}
+                    alt={"Stephen Sterling's Portrait"} 
+                    width="1920" height="1080"
+                    class='relative rounded-full shadow-2xl border-4 border-orange-500 object-cover md:w-80 md:h-80 lg:w-96 lg:h-96 transform rotate-6 hover:rotate-0 transition-transform duration-500 ease-in-out' />
             </div>
         </div>
     </section>
