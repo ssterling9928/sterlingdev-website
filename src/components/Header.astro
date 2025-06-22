@@ -33,7 +33,7 @@ const { siteTitle, logoAlt } = Astro.props;
 <!-- `bg-gray-900 bg-opacity-70 backdrop-blur-md`: Dark, slightly transparent background with blur effect. -->
 <!-- `sticky top-0 z-50`: Makes the header stick to the top when scrolling, ensuring it's always on top. -->
 <!-- `rounded-b-xl`: Rounded corners at the bottom. -->
-<header class="py-5 px-6 md:px-16 bg-gray-900 bg-opacity-70 backdrop-blur-md sticky top-0 z-50 rounded-b-xl">
+<header class="py-6 px-6 md:px-16 bg-[#1C1C1C] sticky top-0 z-50 rounded-b-xl backdrop-blur-md bg-gray-900 bg-opacity-70 shadow-orange-500 shadow-md">
   <!-- Navigation Content Wrapper: -->
   <!-- `container mx-auto`: Centers the content and applies max-width constraints. -->
   <!-- `flex items-center`: Makes it a flex container, aligning items vertically in the center. -->
@@ -42,23 +42,24 @@ const { siteTitle, logoAlt } = Astro.props;
     <!-- `logoSrc={siteLogo.src}`: Pass the processed source of the imported image. -->
     <!-- `logoAlt={logoAlt}`: Pass the alt text prop. -->
     <!-- `className="w-12 h-12"`: Example Tailwind classes for the logo's size. Adjust as needed. -->
-    <LogoImg src={siteLogo.src} alt={logoAlt} className="w-12 h-12" />
+    <LogoImg src={siteLogo.src} alt={logoAlt} className="max-w-20 overflow-hidden outline rounded-full mr-16" />
 
     <!-- Site Title: -->
     <!-- `text-2xl font-semibold text-white`: Styles for the title text. -->
     <!-- `mr-auto`: This is the key! It consumes all available margin space to its right, -->
     <!--            effectively pushing the navigation links (the next sibling) to the far right. -->
-    <h1 class="text-2xl font-semibold text-white mr-auto">
+    <h1 class="text-3xl font-semibold text-white mr-auto">
       {siteTitle}
     </h1>
 
     <!-- Navigation Links: -->
-    <!-- `space-x-8`: Adds horizontal spacing between the navigation links. -->
-    <div class="space-x-8">
-      <a href="#about" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">About</a>
-      <a href="#skills" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">Skills</a>
-      <a href="#work" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">Work</a>
-      <a href="#contact" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">Contact</a>
+    <!-- `space-x-8`: Adds horizontal spacing between the navigation links. --> 
+    <div class="space-x-10">
+      <a href="#about" class="text-gray-300 text-lg font-semibold hover:text-orange-500 transition-colors duration-200">About Me</a>
+      <a href="#skills" class="text-gray-300 text-lg font-semibold hover:text-orange-500 transition-colors duration-200">My Skills</a>
+      <a href="#work" class="text-gray-300 text-lg font-semibold hover:text-orange-500 transition-colors duration-200">My Work</a>
+      <!-- Todo: Turn this contact link into a button that will open a contact form. -->
+      <a href="#contact" class="text-gray-300 text-lg font-semibold hover:text-orange-500 transition-colors duration-200">Contact Me</a>
     </div>
   </nav>
 </header>

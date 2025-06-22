@@ -35,7 +35,9 @@ const { src, alt, width = 'w-10', height = 'h-10', className = '' } = Astro.prop
   <img
     src={src}
     alt={alt}
-    class={`${width} ${height} object-contain`}
+    width={width}
+    height={height}
+    class={`object-contain`}
     loading="lazy"
   />
 </a>
