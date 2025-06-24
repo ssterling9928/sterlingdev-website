@@ -10,37 +10,50 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
+
     .container {
         max-width: 1280px;
     }
+
     /* Custom styles for subtle animations and effects */
     .gradient-text-orange {
         background: linear-gradient(45deg, #fb923c, #f97316, #ea580c); /* Orange 400 to Orange 700 */
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
-    .nav-link:hover {
-        color: #fbbf24; /* Amber 400 */
-        transform: translateY(-2px);
-        transition: all 0.2s ease-in-out;
+
+    .nav-link {
+        color: (87.2% 0.01 258.338); /* Light gray text */
+        font-size: medium;
+        font-weight: bold;
     }
+
+    .nav-link:hover {
+        color: #f97316; /* Orange 500 */
+        font-weight: 600;
+        transition: color 0.3s ease-in-out;
+    }
+
     .cta-button:hover {
         transform: translateY(-2px) scale(1.02);
         box-shadow: 0 10px 25px rgba(251, 146, 60, 0.4); /* Orange shadow */
         transition: all 0.3s ease-in-out;
     }
+
     .skill-card:hover {
         transform: scale(1.05);
         box-shadow: 0 15px 30px rgba(251, 146, 60, 0.3); /* Orange shadow */
         border-color: #f97316; /* Orange 500 */
         transition: all 0.3s ease-in-out;
     }
+
     .project-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* Deeper shadow */
         border-color: #f97316; /* Orange 500 */
         transition: all 0.4s ease-in-out;
     }
+
     /* Abstract pattern for Hero section background (subtle dots) */
     .hero-pattern {
         background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23262626' fill-opacity='0.7'%3E%3Cpath d='M36 34.25L30.75 29 25.5 34.25 30.75 39.5zM29 25.5l5.25-5.25 5.25 5.25-5.25 5.25zM19.25 25.5L24.5 20.25 29.75 25.5 24.5 30.75zM19.25 34.25L24.5 29 29.75 34.25 24.5 39.5zM48.75 25.5L54 20.25 59.25 25.5 54 30.75zM48.75 34.25L54 29 59.25 34.25 54 39.5zM9.5 25.5L14.75 20.25 20 25.5 14.75 30.75zM9.5 34.25L14.75 29 20 34.25 14.75 39.5zM40.25 2.5L45.5 8 50.75 2.75 45.5-2.5zM40.25 11.25L45.5 6 50.75 11.25 45.5 16.5zM40.25 20L45.5 14.75 50.75 20 45.5 25.25zM40.25 28.75L45.5 23.5 50.75 28.75 45.5 34zM40.25 37.5L45.5 32.25 50.75 37.5 45.5 42.75zM40.25 46.25L45.5 41 50.75 46.25 45.5 51.5zM40.25 55L45.5 49.75 50.75 55 45.5 60.25zM2.5 2.5L7.75 8 13 2.75 7.75-2.5zM2.5 11.25L7.75 6 13 11.25 7.75 16.5zM2.5 20L7.75 14.75 13 20 7.75 25.25zM2.5 28.75L7.75 23.5 13 28.75 7.75 34zM2.5 37.5L7.75 32.25 13 37.5 7.75 42.75zM2.5 46.25L7.75 41 13 46.25 7.75 51.5zM2.5 55L7.75 49.75 13 55 7.75 60.25zM21.25 2.5L26.5 8 31.75 2.75 26.5-2.5zM21.25 11.25L26.5 6 31.75 11.25 26.5 16.5zM21.25 20L26.5 14.75 31.75 20 26.5 25.25zM21.25 28.75L26.5 23.5 31.75 28.75 26.5 34zM21.25 37.5L26.5 32.25 31.75 37.5 26.5 42.75zM21.25 46.25L26.5 41 31.75 46.25 26.5 51.5zM21.25 55L26.5 49.75 31.75 55 26.5 60.25zM-17 2.5L-11.75 8-6.5 2.75-11.75-2.5zM-17 11.25L-11.75 6-6.5 11.25-11.75 16.5zM-17 20L-11.75 14.75-6.5 20-11.75 25.25zM-17 28.75L-11.75 23.5-6.5 28.75-11.75 34zM-17 37.5L-11.75 32.25-6.5 37.5-11.75 42.75zM-17 46.25L-11.75 41-6.5 46.25-11.75 51.5zM-17 55L-11.75 49.75-6.5 55-11.75 60.25z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
