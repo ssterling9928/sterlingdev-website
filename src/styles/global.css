@@ -60,3 +60,20 @@
         background-size: 60px 60px;
         background-repeat: repeat;
     }
+
+    .glass-pane {
+    background: rgba(28, 28, 31, 0.6); /* Slightly darker, more opaque for better readability */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Use your existing font-heading or cta-button classes if you have them globally */
+  .font-heading {
+    /* Example: Make sure your header font is defined */
+    font-family: 'Poppins', sans-serif;
+  }
+  .cta-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3); /* Orange shadow */
+  }
