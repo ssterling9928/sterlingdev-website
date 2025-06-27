@@ -17,4 +17,174 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
+
+    <!-- Section 1: Introduction -->
+        <section class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- Text Content -->
+                    <div class="text-center lg:text-left">
+                        <p class="font-semibold text-orange-400">MY STORY</p>
+                        <h1 class="font-poppins text-4xl md:text-6xl font-bold text-white mt-4 leading-tight">From Curiosity to Creation.</h1>
+                        <p class="mt-6 text-lg text-gray-400 max-w-xl mx-auto lg:mx-0">
+                            I'm a developer, a problem-solver, and a lifelong learner based in Southside, Arkansas. My journey has always been about understanding how things work, then using that knowledge to build something new.
+                        </p>
+                    </div>
+                    <!-- Animated Code Snippet -->
+                    <div class="font-source-code text-sm rounded-lg shadow-2xl overflow-hidden min-h-[350px]">
+                        <div class="code-block-header flex items-center p-3">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <p class="ml-4 text-gray-400">Developer.cpp</p>
+                        </div>
+                        <div id="code-block" class="code-block-body p-5">
+                           <!-- JS will populate this -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: My Journey (Timeline Format) -->
+        <section class="py-20 md:py-24 bg-black/20">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center">
+                        <h2 class="font-poppins text-3xl md:text-4xl font-bold text-white">My Journey into Development</h2>
+                        <div class="w-24 h-1 bg-orange-500 mx-auto mt-4 rounded"></div>
+                    </div>
+                    
+                    <div class="mt-16 relative border-l-2 border-gray-700 ml-6">
+                        <!-- Timeline Item 1: Upbringing -->
+                        <div class="timeline-item mb-12 ml-12">
+                            <h3 class="font-poppins text-2xl font-bold text-orange-400">An Inquisitive Upbringing</h3>
+                            <p class="mt-2 text-lg">Growing up in Southside, Arkansas, I was always the kid taking things apart just to see how they ticked. That innate curiosity about the 'why' and 'how' behind everything naturally led me from tinkering with hardware to the limitless world of building with software.</p>
+                        </div>
+                        
+                        <!-- Timeline Item 2: Self-Taught Path -->
+                        <div class="timeline-item mb-12 ml-12">
+                            <h3 class="font-poppins text-2xl font-bold text-orange-400">Forging My Own Path</h3>
+                            <p class="mt-2 text-lg">My path wasn't a straight line through formal computer science classrooms. It was forged in the late hours on platforms like Udemy, driven by a desire to build the things I imagined. Whether it was complex game mechanics in Unreal Engine or a sleek, user-friendly mobile app, I taught myself the skills needed to bring my visions to life.</p>
+                        </div>
+
+                        <!-- Timeline Item 3: Philosophy -->
+                        <div class="timeline-item ml-12">
+                            <h3 class="font-poppins text-2xl font-bold text-orange-400">My Learning Philosophy</h3>
+                             <p class="mt-2 text-lg">I believe the ability to learn efficiently and apply new knowledge effectively is the most powerful tool a developer can possess. Technology is always evolving, and my passion for self-directed learning ensures that I not only keep pace but stay ahead of the curve, ready for any challenge a project presents.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: My Goals -->
+        <section class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="font-poppins text-3xl md:text-4xl font-bold text-white">My Mission & Goals</h2>
+                     <p class="mt-4 text-lg text-gray-400">What drives me forward.</p>
+                    <div class="mt-8 text-left grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-gray-900 p-6 rounded-lg">
+                             <h3 class="font-semibold text-xl text-orange-400">Solve Meaningful Problems</h3>
+                            <p class="mt-2">My primary goal is to apply my skills to projects that have a real, positive impact. I'm driven by the challenge of creating software that is not only technically excellent but also intuitive and valuable to the end-user.</p>
+                        </div>
+                         <div class="bg-gray-900 p-6 rounded-lg">
+                             <h3 class="font-semibold text-xl text-orange-400">Never Stop Growing</h3>
+                            <p class="mt-2">I am committed to a career of continuous growth. My goal is to collaborate with talented teams on challenging projects that push my abilities and force me to learn new ways of thinking and building.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="py-20 md:py-24 bg-black/20">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="font-poppins text-3xl md:text-4xl font-bold text-white max-w-2xl mx-auto">Sound like a good fit?</h2>
+                 <p class="mt-4 text-lg text-gray-400">I'm always ready for the next challenge.</p>
+                 <a href="#contact" class="cta-button mt-8 inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full shadow-lg text-lg transition-all duration-300 ease-in-out">
+                    Let's Get In Touch
+                </a>
+            </div>
+        </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const codeBlock = document.getElementById('code-block');
+            const code = [
+                { text: 'struct', type: 'keyword' },
+                { text: ' Developer {\n', type: 'default' },
+                { text: '    std::string ', type: 'default' },
+                { text: 'name ', type: 'default' },
+                { text: '= ', type: 'punctuation' },
+                { text: '"Stephen Sterling"', type: 'string' },
+                { text: ';\n\n', type: 'punctuation' },
+                { text: '    std::vector<', type: 'default' },
+                { text: 'std::string', type: 'default' },
+                { text: '> ', type: 'default' },
+                { text: 'passions ', type: 'default' },
+                { text: '= {\n', type: 'punctuation' },
+                { text: '        ', type: 'default' },
+                { text: '"Game Development"', type: 'string' },
+                { text: ',\n', type: 'punctuation' },
+                { text: '        ', type: 'default' },
+                { text: '"Creative Problem-Solving"', type: 'string' },
+                { text: ',\n', type: 'punctuation' },
+                { text: '        ', type: 'default' },
+                { text: '"Lifelong Learning"', type: 'string' },
+                { text: '\n    };\n\n', type: 'punctuation' },
+                { text: '    ', type: 'comment' },
+                { text: 'void ', type: 'keyword' },
+                { text: 'buildAwesomeThings', type: 'function' },
+                { text: '() {\n', type: 'punctuation' },
+                { text: '        ', type: 'default' },
+                { text: '// The magic happens here.', type: 'comment' },
+                { text: '\n    }\n};', type: 'punctuation' }
+            ];
+
+            let i = 0;
+            let currentLine = '';
+
+            function type() {
+                if (i < code.length) {
+                    const segment = code[i];
+                    let charIndex = 0;
+
+                    function typeChar() {
+                        if (charIndex < segment.text.length) {
+                            if (charIndex === 0) {
+                                currentLine += `<span class="token ${segment.type}">`;
+                            }
+                            currentLine += segment.text[charIndex];
+                            codeBlock.innerHTML = currentLine.replace(/\n/g, '<br/>') + '<span class="typing-cursor">&nbsp;</span>';
+                            charIndex++;
+                            setTimeout(typeChar, 20 + Math.random() * 30);
+                        } else {
+                            currentLine += '</span>';
+                            i++;
+                            type();
+                        }
+                    }
+                    typeChar();
+                } else {
+                    // Remove cursor after finishing
+                    codeBlock.innerHTML = codeBlock.innerHTML.replace('<span class="typing-cursor">&nbsp;</span>', '');
+                }
+            }
+
+            // Use Intersection Observer to start typing only when visible
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    type();
+                    observer.disconnect(); // Stop observing after it starts
+                }
+            }, { threshold: 0.5 });
+
+            observer.observe(codeBlock);
+        });
+    </script>
+
 </Layout>
