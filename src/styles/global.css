@@ -2,126 +2,275 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: #0c0a09; /* Near-black for deeper dark theme */
-        color: #d1d5db; /* Light gray text */
-        line-height: 1.6;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0c0a09;
+    /* Near-black for deeper dark theme */
+    color: #d1d5db;
+    /* Light gray text */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-    .container {
-        max-width: 1280px;
-    }
+.container {
+    max-width: 1280px;
+}
 
-    /* Custom styles for subtle animations and effects */
-    .gradient-text-orange {
-        background: linear-gradient(45deg, #fb923c, #f97316, #ea580c); /* Orange 400 to Orange 700 */
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+/* Custom styles for subtle animations and effects */
+.gradient-text-orange {
+    background: linear-gradient(45deg, #fb923c, #f97316, #ea580c);
+    /* Orange 400 to Orange 700 */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-    .nav-link {
-        color: (87.2% 0.01 258.338); /* Light gray text */
-        font-size: medium;
-        font-weight: bold;
-    }
+.nav-link {
+    color: (87.2% 0.01 258.338);
+    /* Light gray text */
+    font-size: medium;
+    font-weight: bold;
+}
 
-    .nav-link:hover {
-        color: #f97316; /* Orange 500 */
-        font-weight: 600;
-        transition: color 0.3s ease-in-out;
-    }
+.nav-link:hover {
+    color: #f97316;
+    /* Orange 500 */
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+}
 
-    .cta-button:hover {
-        transform: translateY(-2px) scale(1.02);
-        box-shadow: 0 10px 25px rgba(251, 146, 60, 0.4); /* Orange shadow */
-        transition: all 0.3s ease-in-out;
-    }
+.cta-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(251, 146, 60, 0.4);
+    /* Orange shadow */
+    transition: all 0.3s ease-in-out;
+}
 
-    .skill-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 15px 30px rgba(251, 146, 60, 0.3); /* Orange shadow */
-        border-color: #f97316; /* Orange 500 */
-        transition: all 0.3s ease-in-out;
-    }
+.skill-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(251, 146, 60, 0.3);
+    /* Orange shadow */
+    border-color: #f97316;
+    /* Orange 500 */
+    transition: all 0.3s ease-in-out;
+}
 
-    .project-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* Deeper shadow */
-        border-color: #f97316; /* Orange 500 */
-        transition: all 0.4s ease-in-out;
-    }
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    /* Deeper shadow */
+    border-color: #f97316;
+    /* Orange 500 */
+    transition: all 0.4s ease-in-out;
+}
 
-    /* Abstract pattern for Hero section background (subtle dots) */
-    .hero-pattern {
-        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23262626' fill-opacity='0.7'%3E%3Cpath d='M36 34.25L30.75 29 25.5 34.25 30.75 39.5zM29 25.5l5.25-5.25 5.25 5.25-5.25 5.25zM19.25 25.5L24.5 20.25 29.75 25.5 24.5 30.75zM19.25 34.25L24.5 29 29.75 34.25 24.5 39.5zM48.75 25.5L54 20.25 59.25 25.5 54 30.75zM48.75 34.25L54 29 59.25 34.25 54 39.5zM9.5 25.5L14.75 20.25 20 25.5 14.75 30.75zM9.5 34.25L14.75 29 20 34.25 14.75 39.5zM40.25 2.5L45.5 8 50.75 2.75 45.5-2.5zM40.25 11.25L45.5 6 50.75 11.25 45.5 16.5zM40.25 20L45.5 14.75 50.75 20 45.5 25.25zM40.25 28.75L45.5 23.5 50.75 28.75 45.5 34zM40.25 37.5L45.5 32.25 50.75 37.5 45.5 42.75zM40.25 46.25L45.5 41 50.75 46.25 45.5 51.5zM40.25 55L45.5 49.75 50.75 55 45.5 60.25zM2.5 2.5L7.75 8 13 2.75 7.75-2.5zM2.5 11.25L7.75 6 13 11.25 7.75 16.5zM2.5 20L7.75 14.75 13 20 7.75 25.25zM2.5 28.75L7.75 23.5 13 28.75 7.75 34zM2.5 37.5L7.75 32.25 13 37.5 7.75 42.75zM2.5 46.25L7.75 41 13 46.25 7.75 51.5zM2.5 55L7.75 49.75 13 55 7.75 60.25zM21.25 2.5L26.5 8 31.75 2.75 26.5-2.5zM21.25 11.25L26.5 6 31.75 11.25 26.5 16.5zM21.25 20L26.5 14.75 31.75 20 26.5 25.25zM21.25 28.75L26.5 23.5 31.75 28.75 26.5 34zM21.25 37.5L26.5 32.25 31.75 37.5 26.5 42.75zM21.25 46.25L26.5 41 31.75 46.25 26.5 51.5zM21.25 55L26.5 49.75 31.75 55 26.5 60.25zM-17 2.5L-11.75 8-6.5 2.75-11.75-2.5zM-17 11.25L-11.75 6-6.5 11.25-11.75 16.5zM-17 20L-11.75 14.75-6.5 20-11.75 25.25zM-17 28.75L-11.75 23.5-6.5 28.75-11.75 34zM-17 37.5L-11.75 32.25-6.5 37.5-11.75 42.75zM-17 46.25L-11.75 41-6.5 46.25-11.75 51.5zM-17 55L-11.75 49.75-6.5 55-11.75 60.25z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        background-size: 60px 60px;
-        background-repeat: repeat;
-    }
+/* Abstract pattern for Hero section background (subtle dots) */
+.hero-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23262626' fill-opacity='0.7'%3E%3Cpath d='M36 34.25L30.75 29 25.5 34.25 30.75 39.5zM29 25.5l5.25-5.25 5.25 5.25-5.25 5.25zM19.25 25.5L24.5 20.25 29.75 25.5 24.5 30.75zM19.25 34.25L24.5 29 29.75 34.25 24.5 39.5zM48.75 25.5L54 20.25 59.25 25.5 54 30.75zM48.75 34.25L54 29 59.25 34.25 54 39.5zM9.5 25.5L14.75 20.25 20 25.5 14.75 30.75zM9.5 34.25L14.75 29 20 34.25 14.75 39.5zM40.25 2.5L45.5 8 50.75 2.75 45.5-2.5zM40.25 11.25L45.5 6 50.75 11.25 45.5 16.5zM40.25 20L45.5 14.75 50.75 20 45.5 25.25zM40.25 28.75L45.5 23.5 50.75 28.75 45.5 34zM40.25 37.5L45.5 32.25 50.75 37.5 45.5 42.75zM40.25 46.25L45.5 41 50.75 46.25 45.5 51.5zM40.25 55L45.5 49.75 50.75 55 45.5 60.25zM2.5 2.5L7.75 8 13 2.75 7.75-2.5zM2.5 11.25L7.75 6 13 11.25 7.75 16.5zM2.5 20L7.75 14.75 13 20 7.75 25.25zM2.5 28.75L7.75 23.5 13 28.75 7.75 34zM2.5 37.5L7.75 32.25 13 37.5 7.75 42.75zM2.5 46.25L7.75 41 13 46.25 7.75 51.5zM2.5 55L7.75 49.75 13 55 7.75 60.25zM21.25 2.5L26.5 8 31.75 2.75 26.5-2.5zM21.25 11.25L26.5 6 31.75 11.25 26.5 16.5zM21.25 20L26.5 14.75 31.75 20 26.5 25.25zM21.25 28.75L26.5 23.5 31.75 28.75 26.5 34zM21.25 37.5L26.5 32.25 31.75 37.5 26.5 42.75zM21.25 46.25L26.5 41 31.75 46.25 26.5 51.5zM21.25 55L26.5 49.75 31.75 55 26.5 60.25zM-17 2.5L-11.75 8-6.5 2.75-11.75-2.5zM-17 11.25L-11.75 6-6.5 11.25-11.75 16.5zM-17 20L-11.75 14.75-6.5 20-11.75 25.25zM-17 28.75L-11.75 23.5-6.5 28.75-11.75 34zM-17 37.5L-11.75 32.25-6.5 37.5-11.75 42.75zM-17 46.25L-11.75 41-6.5 46.25-11.75 51.5zM-17 55L-11.75 49.75-6.5 55-11.75 60.25z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: 60px 60px;
+    background-repeat: repeat;
+}
 
-    .glass-pane {
-    background: rgba(28, 28, 31, 0.6); /* Slightly darker, more opaque for better readability */
+.glass-pane {
+    background: rgba(28, 28, 31, 0.6);
+    /* Slightly darker, more opaque for better readability */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  /* Use your existing font-heading or cta-button classes if you have them globally */
-  .font-heading {
+}
+
+/* Use your existing font-heading or cta-button classes if you have them globally */
+.font-heading {
     /* Example: Make sure your header font is defined */
     font-family: 'Poppins', sans-serif;
-  }
-  .cta-button:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3); /* Orange shadow */
-  }
+}
 
-  .font-poppins { font-family: 'Poppins', sans-serif; }
-        .font-inter { font-family: 'Inter', sans-serif; }
-        .font-source-code { font-family: 'Source Code Pro', monospace; }
-        .gradient-text-orange {
-            background: linear-gradient(45deg, #fb923c, #f97316, #ea580c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-        }
-        .cta-button:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 1rem;
-            left: -1.8rem;
-            width: 1.25rem;
-            height: 1.25rem;
-            border-radius: 9999px;
-            background-color: #f97316; /* Orange-500 */
-            border: 4px solid #1f2937; /* Gray-800 */
-        }
-        /* Styles for the code block */
-        .code-block-header {
-            background-color: #2d3748; /* gray-800 */
-        }
-        .code-block-body {
-            background-color: #1a202c; /* gray-900 */
-        }
-        .code-block-body .token.keyword { color: #c026d3; } /* fuchsia-600 */
-        .code-block-body .token.string { color: #fb923c; } /* orange-400 */
-        .code-block-body .token.function { color: #2563eb; } /* blue-600 */
-        .code-block-body .token.comment { color: #6b7280; } /* gray-500 */
-        .code-block-body .token.punctuation { color: #a1a1aa; } /* zinc-400 */
-        .typing-cursor {
-            background-color: #f97316;
-            width: 10px;
-            display: inline-block;
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            from, to { background-color: transparent }
-            50% { background-color: #f97316; }
-        }
+.cta-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+    /* Orange shadow */
+}
+
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}
+
+.font-source-code {
+    font-family: 'Source Code Pro', monospace;
+}
+
+.drop-cap::first-letter {
+    color: #fb923c; /* orange-400 */
+    font-size: 3em;
+    font-weight: bold;
+    float: left;
+    line-height: 0.8;
+    margin-right: 0.1em;
+    padding-top: 0.1em;
+}
+
+.gradient-text-orange {
+    background: linear-gradient(45deg, #fb923c, #f97316, #ea580c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    left: -1.8rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+    background-color: #f97316;
+    /* Orange-500 */
+    border: 4px solid #1f2937;
+    /* Gray-800 */
+}
+
+/* Styles for the code block */
+.code-block-header {
+    background-color: #2d3748;
+    /* gray-800 */
+}
+
+.code-block-body {
+    background-color: rgb(2, 2, 2);
+    /* gray-900 */
+}
+
+.code-block-body .token.keyword {
+    color: #c026d3;
+}
+
+/* fuchsia-600 */
+.code-block-body .token.string {
+    color: #fb923c;
+}
+
+/* orange-400 */
+.code-block-body .token.function {
+    color: #2563eb;
+}
+
+/* blue-600 */
+.code-block-body .token.comment {
+    color: #6b7280;
+}
+
+/* gray-500 */
+.code-block-body .token.punctuation {
+    color: #a1a1aa;
+}
+
+/* zinc-400 */
+.typing-cursor {
+    background-color: #f97316;
+    width: 10px;
+    display: inline-block;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    from,
+    to {
+        background-color: transparent
+    }
+
+    50% {
+        background-color: #f97316;
+    }
+}
+
+
+/* ======================================================================
+    AURORA BACKGROUND EFFECT
+    ======================================================================
+  */
+
+/* * 1. The main container for the effect.
+        * - `position: relative`: Required so the ::before pseudo-element is positioned relative to this container.
+        * - `overflow: hidden`: Clips the giant rotating gradient so it stays within the container's bounds.
+        * - `background-color`: A dark fallback color for the base layer.
+    */
+.aurora-bg {
+    position: relative;
+    background-color: #030712;
+    overflow: hidden;
+    /* A dark base color, like Tailwind's gray-950 */
+}
+
+.aurora-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px; /* Adjust height of the fade effect */
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #0c0a09 75% /* Match your background color */
+  );
+  z-index: 1; /* Ensure it's above the aurora but below content */
+}
+
+/*
+        * 2. The pseudo-element that IS the aurora.
+        * - It's a giant, blurred, semi-transparent gradient that sits behind the content.
+    */
+.aurora-bg::before {
+    content: '';
+    position: absolute;
+    /* Center the gradient element, making it twice the size of the container */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+
+    /* The conic-gradient creates the color wheel. You can change these colors. */
+    background: conic-gradient(from 0deg,
+            #f97316,
+            /* orange-500 */
+            #4f46e5,
+            /* indigo-600 */
+            #6e047c,
+            #f97316
+            /* Loop back to the start color for a seamless rotation */
+        );
+
+    /* A large blur value makes the color transitions soft and smooth. */
+    filter: blur(120px);
+
+    /* Low opacity keeps the effect subtle. */
+    opacity: 0.12;
+
+    /* The animation that makes it rotate. */
+    animation: rotate 20s linear infinite;
+}
+
+/* * 3. The rotation animation.
+    */
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
