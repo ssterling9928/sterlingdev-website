@@ -3,135 +3,259 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Stephen Sterling - About Me">
+    
+    <!-- Page Title -->
     <section>
 
+        <h2
+            class="font-poppins text-5xl md:text-6xl text-white font-bold text-center pt-16"
+        >
+            About Me
+        </h2>
 
-        <!-- <div class="absolute inset-0 w-full h-full">
-            <div
-                class="absolute top-0 left-0 w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-orange-500 to-red-600 opacity-30 filter blur-3xl animate-pulse"
-            >
-            </div>
-            <div
-                class="absolute bottom-0 right-0 w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 opacity-30 filter blur-3xl animate-pulse [animation-delay:-2s]"
-            >
+        <div class="w-24 h-1 bg-orange-500 mx-auto mt-4 rounded"></div>
+
+    </section>
+
+
+        <!-- Section: My Goals -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2
+                    class="font-poppins text-3xl md:text-4xl font-bold text-white"
+                >
+                    My Mission & Goals
+                </h2>
+                <p class="mt-4 text-lg text-gray-400">
+                    What drives me forward.
+                </p>
+                <div
+                    class="mt-8 text-left grid grid-cols-1 md:grid-cols-2 gap-8"
+                >
+                    <div class="bg-gray-900 p-6 rounded-lg">
+                        <h3 class="font-semibold text-xl text-orange-400">
+                            Solve Meaningful Problems
+                        </h3>
+                        <p class="mt-2">
+                            My primary goal is to apply my skills to projects
+                            that have a real, positive impact. I'm driven by the
+                            challenge of creating software that is not only
+                            technically excellent but also intuitive and
+                            valuable to the end-user.
+                        </p>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-lg">
+                        <h3 class="font-semibold text-xl text-orange-400">
+                            Never Stop Growing
+                        </h3>
+                        <p class="mt-2">
+                            I am committed to a career of continuous growth. My
+                            goal is to collaborate with talented teams on
+                            challenging projects that push my abilities and
+                            force me to learn new ways of thinking and building.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+    
 
-        <div class="absolute inset-0 w-full h-full">
-            <div
-                class="absolute top-0 left-0 w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-orange-500 to-red-600 opacity-30 filter blur-3xl animate-pulse"
-            >
-            </div>
-            <div
-                class="absolute bottom-0 right-0 w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 opacity-30 filter blur-3xl animate-pulse [animation-delay:-2s]"
-            >
-            </div>
-        </div> --> 
+    <!-- Section: Narrative -->
+    <section>
 
-
+        <!-- Section Background -->
         <div
             class="aurora-bg w-full min-h-screen flex items-center justify-center p-8 bg-black/20"
         >
-            <div class="pb-32 pt-16 container mx-auto">
-                <div class="text-center mb-16">
-                    
-                    
-                    <h2
-                        class="font-poppins text-5xl md:text-6xl text-white font-bold"
-                    >
-                        My Story
-                    </h2>
-                    <div class="w-24 h-1 bg-orange-500 mx-auto mt-4 rounded">
-                    </div>
-                    <h2
-                        class="my-8 font-poppins text-5xl md:text-6xl text-white font-bold"
-                    >
-                        From Curiosity to Creation.
-                    </h2>
-                    
-                </div>
 
-                <div class="pt-8 grid grid-cols-1 lg:grid-cols-2 gap-32 items-start">
-                    
-                    <!-- Left Column: Animated Code Snippet -->
-                    <div
-                        class="font-source-code text-sm rounded-lg shadow-2xl overflow-hidden min-h-[400px] lg:mt-4"
-                    >
-                        <div class="code-block-header flex items-center p-3">
-                            <div class="flex space-x-2">
-                                <div class="w-3 h-3 rounded-full bg-red-500">  
-                                </div>
-                                <div class="w-3 h-3 rounded-full bg-yellow-500">
-                                </div>
-                                <div class="w-3 h-3 rounded-full bg-green-500">
-                                </div>
-                            </div>
-                            <p class="ml-4 text-gray-400">
-                                StephenSterling.dev
-                            </p>
-                        </div>
-                        <div id="code-block" class="code-block-body p-5">
-                            <!-- JS will populate this -->
-                        </div>
-                    </div>
-                    
-                    <!-- Right Column: The Narrative -->
-                    <div
-                        class="space-y-6 text-lg leading-relaxed text-gray-300"
-                    >
+            <!-- Content Container -->
+            <div class="pb-32 container mx-auto">
+                
+                <!-- Main Heading -->
+                <h2
+                    class="my-8 font-poppins text-5xl md:text-6xl text-white font-bold text-left pb-4"
+                >
+                    From Curiosity to Creation.
+                </h2>
+                
+
+                <!-- Two-Column Layout (On Larger Screens) --> 
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-[0.9fr_0.1fr] gap-8">
+
+                    <!-- Left Column: The Narrative -->
+                    <div class="space-y-6 text-lg leading-relaxed text-gray-300">
                         <p class="drop-cap">
                             My journey into technology didn’t start with a
                             formal lesson, but with a simple, irresistible
                             curiosity. From a young age, I was fascinated by
-                            computers and video games, and I spent a lot of my 
-                            childhood tweaking settings and taking things apart 
-                            just to understand the logic behind them. This desire 
-                            to understand has never stopped growing inside me.
+                            computers and video games, and I spent a lot of my
+                            childhood tweaking settings and taking things apart
+                            just to understand the logic behind them. This
+                            desire to understand has never stopped growing
+                            inside me.
                         </p>
                         <p>
-                            During my elementary and high school years, mathematics 
-                            and computer related courses quickly became my favorite. 
-                            My enthusiasm for the material helped me pick up on new ideas 
-                            quickly.  It was during my college courses that everything
-                            really came together. I discovered programming, and for the first
-                            time, I wasn't just exploring systems—I was building
-                            them. That feeling of writing a line of code and
-                            seeing an application respond exactly as intended
-                            was empowering, which ended up guiding my focus towards
-                            C++, C#, and game development.
+                            During my elementary and high school years,
+                            mathematics and computer related courses quickly
+                            became my favorite. My enthusiasm for the material
+                            helped me pick up on new ideas quickly. It was
+                            during my college courses that everything really
+                            came together. I discovered programming, and for the
+                            first time, I wasn't just exploring systems—I was
+                            building them. That feeling of writing a line of
+                            code and seeing an application respond exactly as
+                            intended was empowering, which ended up guiding my
+                            focus towards C++, C#, and game development.
                         </p>
                         <p>
                             This initial spark ignited a passion for continuous,
-                            self-directed growth. My evenings were often spent immersed 
-                            in online courses on platforms like Udemy, learning Game Engines
-                            like Unity and Unreal Engine, and diving into the intricacies of
-                            not just to learn a new language, but to master the
-                            entire ecosystem around it. This process of constant
-                            learning isn't just a hobby; it’s the core of my
-                            development philosophy.
+                            self-directed growth. My evenings were often spent
+                            immersed in online courses on platforms like Udemy,
+                            learning Game Engines like Unity and Unreal Engine,
+                            and diving into the intricacies of not just learning
+                            a new language, but to master the entire ecosystem
+                            around it. This process of constant learning isn't
+                            just a hobby; it’s the core of my development
+                            philosophy.
                         </p>
                         <p>
-                            I have learned technology moves fast, and it's not going to slow down or wait for anyone. 
-                            A developer not only needs to be adaptable, but also
-                            to be able to master new technologies quickly. The ability to learn
-                            new frameworks, languages, and tools is essential to staying relevant
-                            in our modern technology field.  I feel that this is my greatest strength
-                            as a developer. I thrive on the challenge of learning, and I am always 
-                            able to pick up new skills extremely quickly. This has allowed me to
-                            expand to a wide range of projects types, from Game development, mobile and computer applications, and even 
-                            web development. 
+                            I have learned technology moves fast, and it's not
+                            going to slow down or wait for anyone. A developer
+                            not only needs to be adaptable, but also be able to
+                            master new technologies quickly. The ability to
+                            learn new frameworks, languages, and tools is
+                            essential to staying relevant in our modern
+                            technology field. I strongly feel that this is my
+                            greatest strength as a developer. I thrive on the
+                            challenge of learning, and I am always able to pick
+                            up new skills extremely quickly. This has allowed me
+                            to expand to a wide range of projects types, from
+                            Game development, mobile and computer applications,
+                            and even web development.
                         </p>
                         <p>
-                            This mindset is carried into every project I take on. I feel technology 
-                            should make things easier and enjoyable for people. Whether I'm building an immersive 3D world or a simple web page, 
-                            my goal is always to create something that is reliable, runs well, and just makes sense to the person using it.
+                            This mindset is carried into every project I take
+                            on. I feel technology should make things easier and
+                            enjoyable for people. Whether I'm building an
+                            immersive 3D world or a simple web page, my goal is
+                            always to create something that is reliable, runs
+                            well, and just makes sense to the person using it.
                         </p>
                     </div>
 
+                    <!-- Right Column: Subtle Divider with Icons (On Larger Screens) -->
+                    <div class="hidden md:flex flex-col h-full justify-center items-end pt-12">
+                        <div class="relative h-full w-px bg-gray-700">
+                            <!-- Icon 1: Gaming -->
+                            <div
+                                class="absolute top-1/4 left-1/2 -translate-x-1/2 p-3 bg-gray-800 rounded-full"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-orange-400"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
+                                    ></path></svg
+                                >
+                            </div>
+                            <!-- Icon 2: Coding -->
+                            <div
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 bg-gray-800 rounded-full"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-orange-400"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"
+                                    ></path></svg
+                                >
+                            </div>
+                            <!-- Icon 3: Learning -->
+                            <div
+                                class="absolute top-3/4 left-1/2 -translate-x-1/2 p-3 bg-gray-800 rounded-full"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-orange-400"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M12 18v-5.25m0 5.25a7.5 7.5 0 001.5-14.95A7.5 7.5 0 0010.5 18M12 18v-5.25"
+                                    ></path></svg
+                                >
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <script>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-20 md:py-24 bg-black/20">
+        <div class="container mx-auto px-6 text-center">
+            <h2
+                class="font-poppins text-3xl md:text-4xl font-bold text-white max-w-2xl mx-auto"
+            >
+                Sound like a good fit?
+            </h2>
+            <p class="mt-4 text-lg text-gray-400">
+                I'm always ready for the next challenge.
+            </p>
+            <a
+                href="#contact"
+                class="cta-button mt-8 inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full shadow-lg text-lg transition-all duration-300 ease-in-out"
+            >
+                Let's Get In Touch
+            </a>
+        </div>
+    </section>
+</Layout>
+
+
+<!-- 
+
+ KEEP FOR LATER: Animated Code Snippet
+    <div
+        class="font-source-code text-sm rounded-lg shadow-2xl overflow-hidden min-h-[400px] lg:mt-4"
+    >
+        <div class="code-block-header flex items-center p-3">
+            <div class="flex space-x-2">
+                <div class="w-3 h-3 rounded-full bg-red-500">
+                </div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500">
+                </div>
+                <div class="w-3 h-3 rounded-full bg-green-500">
+                </div>
+            </div>
+            <p class="ml-4 text-gray-400">
+                StephenSterling.dev
+            </p>
+        </div>
+        <div id="code-block" class="code-block-body p-5">
+                JS will populate this 
+        </div>
+    </div> 
+
+    <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const codeBlock = document.getElementById("code-block");
                 if (!codeBlock) return;
@@ -231,68 +355,5 @@ import Layout from "../layouts/Layout.astro";
                 observer.observe(codeBlock);
             });
         </script>
-    </section>
-
-    <!-- Section 3: My Goals -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2
-                    class="font-poppins text-3xl md:text-4xl font-bold text-white"
-                >
-                    My Mission & Goals
-                </h2>
-                <p class="mt-4 text-lg text-gray-400">
-                    What drives me forward.
-                </p>
-                <div
-                    class="mt-8 text-left grid grid-cols-1 md:grid-cols-2 gap-8"
-                >
-                    <div class="bg-gray-900 p-6 rounded-lg">
-                        <h3 class="font-semibold text-xl text-orange-400">
-                            Solve Meaningful Problems
-                        </h3>
-                        <p class="mt-2">
-                            My primary goal is to apply my skills to projects
-                            that have a real, positive impact. I'm driven by the
-                            challenge of creating software that is not only
-                            technically excellent but also intuitive and
-                            valuable to the end-user.
-                        </p>
-                    </div>
-                    <div class="bg-gray-900 p-6 rounded-lg">
-                        <h3 class="font-semibold text-xl text-orange-400">
-                            Never Stop Growing
-                        </h3>
-                        <p class="mt-2">
-                            I am committed to a career of continuous growth. My
-                            goal is to collaborate with talented teams on
-                            challenging projects that push my abilities and
-                            force me to learn new ways of thinking and building.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="py-20 md:py-24 bg-black/20">
-        <div class="container mx-auto px-6 text-center">
-            <h2
-                class="font-poppins text-3xl md:text-4xl font-bold text-white max-w-2xl mx-auto"
-            >
-                Sound like a good fit?
-            </h2>
-            <p class="mt-4 text-lg text-gray-400">
-                I'm always ready for the next challenge.
-            </p>
-            <a
-                href="#contact"
-                class="cta-button mt-8 inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full shadow-lg text-lg transition-all duration-300 ease-in-out"
-            >
-                Let's Get In Touch
-            </a>
-        </div>
-    </section>
-</Layout>
+                    
+-->
