@@ -3,89 +3,125 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Stephen Sterling - About Me">
-    
-    <!-- Page Title -->
+    <!-- Section: About Me Hero -->
+    <div
+        id="about-hero"
+        class="aurora-bg w-full flex flex-col items-center justify-center text-center"
+    >
+        <div class="max-w-4xl">
+            <h1
+                class="font-poppins text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-tight fade-in-up"
+            >
+                Hello.
+            </h1>
+            <p
+                class="mt-6 text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto fade-in"
+            >
+                Behind every line of code is a story. This is mine.
+            </p>
+        </div>
+        <div class="absolute bottom-10">
+            <svg
+                class="w-8 h-8 text-gray-600 animate-bounce-slow"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"></path></svg
+            >
+        </div>
+    </div>
+
+    <!-- Section: My Goals -->
     <section>
-
-        <h2
-            class="font-poppins text-5xl md:text-6xl text-white font-bold text-center pt-16"
+        <div
+            class="w-full flex items-center justify-center p-24"
+            style="background-image: radial-gradient(ellipse at top, rgba(249, 115, 22, 0.1), transparent 70%);"
         >
-            About Me
-        </h2>
-
-        <div class="w-24 h-1 bg-orange-500 mx-auto mt-4 rounded"></div>
-
-    </section>
-
-
-        <!-- Section: My Goals -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2
-                    class="font-poppins text-3xl md:text-4xl font-bold text-white"
-                >
-                    My Mission & Goals
-                </h2>
-                <p class="mt-4 text-lg text-gray-400">
-                    What drives me forward.
-                </p>
+            <div class="container mx-auto">
+                <div class="text-center mb-24">
+                    <h2 class="font-poppins text-5xl text-white font-bold">
+                        My Mission & Goals
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-400">
+                        What drives me forward.
+                    </p>
+                </div>
                 <div
-                    class="mt-8 text-left grid grid-cols-1 md:grid-cols-2 gap-8"
+                    class="relative flex justify-center items-center flex-col lg:flex-row max-w-5xl mx-auto"
                 >
-                    <div class="bg-gray-900 p-6 rounded-lg">
-                        <h3 class="font-semibold text-xl text-orange-400">
-                            Solve Meaningful Problems
+                    <!-- Card 1 (Back) -->
+                    <div
+                        class="glass-pane back-card w-full lg:w-3/5 p-8 lg:p-12 rounded-2xl shadow-2xl transform lg:-rotate-3 blur-sm hover:blur-0 hover:z-20 hover:scale-105 hover:border-orange-500/50"
+                    >
+                        <h3 class="font-poppins text-2xl text-orange-400">
+                            Be a Part of Something Bigger
                         </h3>
-                        <p class="mt-2">
-                            My primary goal is to apply my skills to projects
-                            that have a real, positive impact. I'm driven by the
-                            challenge of creating software that is not only
-                            technically excellent but also intuitive and
-                            valuable to the end-user.
+                        <div class="w-16 h-1 bg-orange-500 mt-3 mb-4 rounded">
+                        </div>
+                        <p class="mt-2 text-base">
+                            My goal as a developer is to be part of something
+                            bigger. I'm driven to apply my skills to large-scale
+                            projects, whether it's an expansive game, robust
+                            software, or a user-friendly website. I want to
+                            build applications that are valuable, intuitive, and
+                            integrate seamlessly into people's daily lives,
+                            leaving a lasting and positive impact.
                         </p>
                     </div>
-                    <div class="bg-gray-900 p-6 rounded-lg">
-                        <h3 class="font-semibold text-xl text-orange-400">
+
+                    <!-- Card 2 (Front) -->
+                    <div
+                        class="glass-pane w-full lg:w-3/5 p-8 lg:p-12 rounded-2xl shadow-2xl mt-[-2rem] lg:mt-0 lg:ml-[-10rem] transform lg:rotate-2 relative z-10 hover:scale-105 hover:border-orange-500/50"
+                    >
+                        <h3 class="font-poppins text-2xl text-orange-400">
                             Never Stop Growing
                         </h3>
-                        <p class="mt-2">
-                            I am committed to a career of continuous growth. My
-                            goal is to collaborate with talented teams on
-                            challenging projects that push my abilities and
-                            force me to learn new ways of thinking and building.
+                        <div class="w-16 h-1 bg-orange-500 mt-3 mb-4 rounded">
+                        </div>
+                        <p class="mt-2 text-base">
+                            I am committed to a career of continuous growth. I
+                            love diving into new concepts, mastering different
+                            languages, and exploring the latest software tools.
+                            This passion for learning is fueled by my goal to
+                            collaborate with talented teams on challenging
+                            projects that push my abilities and force me to
+                            discover new ways of thinking and building.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
 
     <!-- Section: Narrative -->
     <section>
-
         <!-- Section Background -->
         <div
-            class="aurora-bg w-full min-h-screen flex items-center justify-center p-8 bg-black/20"
+            class="gradient-effect-bg w-full min-h-screen flex items-center justify-center p-8 bg-black/20"
         >
-
             <!-- Content Container -->
             <div class="pb-32 container mx-auto">
-                
                 <!-- Main Heading -->
                 <h2
                     class="my-8 font-poppins text-5xl md:text-6xl text-white font-bold text-left pb-4"
                 >
                     From Curiosity to Creation.
                 </h2>
-                
 
-                <!-- Two-Column Layout (On Larger Screens) --> 
-                <div class="mt-12 grid grid-cols-1 md:grid-cols-[0.9fr_0.1fr] gap-8">
-
+                <!-- Two-Column Layout (On Larger Screens) -->
+                <div
+                    class="mt-12 grid grid-cols-1 md:grid-cols-[0.9fr_0.1fr] gap-8"
+                >
                     <!-- Left Column: The Narrative -->
-                    <div class="space-y-6 text-lg leading-relaxed text-gray-300">
+                    <div
+                        class="space-y-6 text-lg leading-relaxed text-gray-300"
+                    >
                         <p class="drop-cap">
                             My journey into technology didn’t start with a
                             formal lesson, but with a simple, irresistible
@@ -146,7 +182,9 @@ import Layout from "../layouts/Layout.astro";
                     </div>
 
                     <!-- Right Column: Subtle Divider with Icons (On Larger Screens) -->
-                    <div class="hidden md:flex flex-col h-full justify-center items-end pt-12">
+                    <div
+                        class="hidden md:flex flex-col h-full justify-center items-end pt-12"
+                    >
                         <div class="relative h-full w-px bg-gray-700">
                             <!-- Icon 1: Gaming -->
                             <div
@@ -230,6 +268,26 @@ import Layout from "../layouts/Layout.astro";
     </section>
 </Layout>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const header = document.getElementById("header");
+        const aboutHero = document.getElementById("about-hero");
+
+        function calculateHeroHeight() {
+            if (!header || !aboutHero) {
+                console.error("Header or About Hero not found.");
+                return;
+            }
+
+            const headerHeight = header.offsetHeight;
+            aboutHero.style.minHeight = `calc(100vh - ${headerHeight}px)`;
+        }
+
+        calculateHeroHeight();
+
+        window.addEventListener("resize", calculateHeroHeight);
+    });
+</script>
 
 <!-- 
 

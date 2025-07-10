@@ -19,6 +19,9 @@ import LogoImg from './LogoImg.astro';
 
 import siteLogo from '../assets/images/sterlingdevlogo.png'; 
 
+const { pathname } = Astro.url;
+const activeClass = "text-orange-500";
+
 interface Props {
   siteTitle: string;
   logoAlt: string; // The alt text for the logo will be passed down to LogoImg.
@@ -33,7 +36,7 @@ const { siteTitle, logoAlt } = Astro.props;
 <!-- `bg-gray-900 bg-opacity-70 backdrop-blur-md`: Dark, slightly transparent background with blur effect. -->
 <!-- `sticky top-0 z-50`: Makes the header stick to the top when scrolling, ensuring it's always on top. -->
 <!-- `rounded-b-xl`: Rounded corners at the bottom. -->
-<header class= "bg-[#1C1C1C] shadow-md shadow-orange-500 rounded-b-xl backdrop-blur-md bg-gray-900 bg-opacity-70 sm:sticky top-0 z-50">
+<header id="header" class="bg-[#1C1C1C] shadow-md shadow-orange-500 rounded-b-xl backdrop-blur-md bg-gray-900 bg-opacity-70 sm:sticky top-0 z-50">
   <!-- Navigation Content Wrapper: -->
   <!-- `container mx-auto`: Centers the content and applies max-width constraints. -->
   <!-- `flex items-center`: Makes it a flex container, aligning items vertically in the center. -->
@@ -59,12 +62,27 @@ const { siteTitle, logoAlt } = Astro.props;
       <!-- Navigation Links: -->
       <!-- `space-x-8`: Adds horizontal spacing between the navigation links. -->
       <nav class="flex items-center justify-around w-full lg:w-auto lg:justify-end lg:mr-4 space-x-6">
-        <a href="/about/" class="text-sm sm:text-md md:text-lg nav-link">About Me</a>
-        <a href="/skills/" class="text-sm sm:text-md md:text-lg nav-link">My Skills</a>
-        <a href="/myWork/" class="text-sm sm:text-md md:text-lg nav-link">My Work</a>
+        <a href="/about/" class:list={["text-sm sm:text-md md:text-lg nav-link", {[activeClass]: pathname === "/about/"} ]}>About Me</a>
+        <a href="/skills/" class:list={["text-sm sm:text-md md:text-lg nav-link", {[activeClass]: pathname === "/skills/"} ]}>My Skills</a>
+        <a href="/myWork/" class:list={["text-sm sm:text-md md:text-lg nav-link", {[activeClass]: pathname === "/myWork/"} ]}>My Work</a>
         <!-- Todo: Turn this contact link into a button that will open a contact form. -->
         <a href="#contact" class="text-sm sm:text-md md:text-lg nav-link">Contact Me</a>
       </nav>
         
     </div>
 </header>
+<script>
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll(".nav-link");
+    navLinks.forEach(link => {
+      link.addEventListener("click", function() {
+        navLinks.forEach(other => {
+          other.classList.remove("active");
+        })
+        link.classList.add("active");
+      });
+    });
+  });
+
+</script>
