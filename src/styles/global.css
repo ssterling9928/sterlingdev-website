@@ -26,7 +26,7 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-.underline-title {  
+.underline-title {
     width: 40px;
     height: 4px;
     background-color: #f97316;
@@ -112,7 +112,8 @@ body {
 }
 
 .drop-cap::first-letter {
-    color: #fb923c; /* orange-400 */
+    color: #fb923c;
+    /* orange-400 */
     font-size: 3em;
     font-weight: bold;
     float: left;
@@ -135,6 +136,14 @@ body {
     /* Gray-800 */
 }
 
+.code-pattern-bg {
+    background-color: #111827;
+    /* gray-900 */
+    background-image:
+        radial-gradient(ellipse at top, rgba(249, 115, 22, 0.1), transparent 70%),
+        url(/assets/images/code-background.svg)
+}
+
 
 /* ======================================================================
     GLASS PANE EFFECT
@@ -148,9 +157,11 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
 /* Added a separate class for the back card for more specific control */
 .back-card {
-    transition: all 0.2s ease-in-out; /* Faster transition for a more immediate feel */
+    transition: all 0.2s ease-in-out;
+    /* Faster transition for a more immediate feel */
 }
 
 
@@ -163,15 +174,22 @@ body {
 }
 
 @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
-            transform: translateY(0);
-        }
-        40% {
-            transform: translateY(-15px);
-        }
-        60% {
-            transform: translateY(-5px);
-        }
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-15px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
 }
 
 
@@ -252,18 +270,20 @@ body {
 }
 
 .aurora-bg::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 0px; /* Adjust height of the fade effect */
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    #0c0a09 75% /* Match your background color */
-  );
-  z-index: 1; /* Ensure it's above the aurora but below content */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0px;
+    /* Adjust height of the fade effect */
+    background: linear-gradient(to bottom,
+            transparent,
+            #0c0a09 75%
+            /* Match your background color */
+        );
+    z-index: 1;
+    /* Ensure it's above the aurora but below content */
 }
 
 /*
@@ -321,30 +341,101 @@ body {
     GRADIENT BACKGROUND EFFECT
     ======================================================================
   */
-        .gradient-effect-bg {
-            position: relative;
-            background-color: #030712; /* A dark base color */
-            /* THE CHANGE: Added subtle radial gradients for depth */
-            background-image: 
-                radial-gradient(ellipse at top, rgba(249, 115, 22, 0.1), transparent 60%),
-                radial-gradient(ellipse at bottom, rgba(79, 70, 229, 0.1), transparent 60%);
-            overflow: hidden;
-        }
-       
-        /* Animation for the text */
-        .fade-in-up {
-            animation: fadeInUp 1.2s ease-out forwards;
-            opacity: 0;
-        }
-        .fade-in {
-            animation: fadeIn 1.2s 0.5s ease-out forwards;
-            opacity: 0;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+.gradient-effect-bg {
+    position: relative;
+    background-color: #030712;
+    /* A dark base color */
+    /* THE CHANGE: Added subtle radial gradients for depth */
+    background-image:
+        radial-gradient(ellipse at top, rgba(249, 115, 22, 0.1), transparent 60%),
+        radial-gradient(ellipse at bottom, rgba(79, 70, 229, 0.1), transparent 60%);
+    overflow: hidden;
+}
+
+/* Animation for the text */
+.fade-in-up {
+    animation: fadeInUp 1.2s ease-out forwards;
+    opacity: 0;
+}
+
+.fade-in {
+    animation: fadeIn 1.2s 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+
+/* ======================================================================
+    CAROUSEL EFFECT FOR UDEMY CERTIFICATES
+    ======================================================================
+    */
+.featured-cert {
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #374151;
+    /* gray-700 */
+}
+
+.featured-cert:hover {
+    transform: translateY(-5px);
+    border-color: #f97316;
+    /* orange-500 */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Hides the scrollbar for the carousel */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+
+
+/* ======================================================================
+    BLUEPRINT BACKGROUND EFFECT
+    ======================================================================
+    */
+.blueprint-bg {
+    background-color: #0D1117;
+    /* Dark base color */
+    /* This creates a grid of dots */
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 2rem 2rem;
+    position: relative;
+}
+
+/* This adds a soft glow from the top */
+.blueprint-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(ellipse at top, rgba(249, 115, 22, 0.15), transparent 70%);
+}

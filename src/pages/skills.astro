@@ -3,15 +3,384 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Stephen Sterling - My Skills">
-  <!-- My Work Section -->
-  <section id="skills" class="py-20 px-6 bg-gray-900 rounded-3xl shadow-2xl my-16 mx-auto container">
-    <div class="text-center">
-      <h2 class="text-4xl font-bold gradient-text-orange mb-8">My Skills</h2>
-      <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-6">
-        Here are some of the projects I've worked on, showcasing my skills in web development and design.
-      </p>
-      <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto">
-        Each project reflects my commitment to quality and innovation, utilizing modern technologies to deliver exceptional user experiences.
-      </p>
-    </div>
-  </section>
+
+
+    <!-- Skills Hero Section -->
+    <section
+        class="blueprint-bg w-full flex items-center justify-center p-8 py-64 text-center overflow-hidden"
+    >
+        <!-- Content -->
+        <div class="z-10">
+            <h1
+                class="font-poppins text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-tight"
+            >
+                The Toolkit<span class="gradient-text-orange">.</span>
+            </h1>
+            <p class="mt-6 text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto">
+                Here you'll find the skills, credentials, and technologies I use
+                to bring ideas to life.
+            </p>
+        </div>
+    </section>
+
+
+
+    <!-- Certificates Section -->
+    <section class="mx-auto container">
+        <div class="code-pattern-bg w-full min-h-screen p-8">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-poppins text-5xl text-white font-bold">
+                        Education & Certifications
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-400">
+                        My formal education and commitment to continuous
+                        learning.
+                    </p>
+                </div>
+
+                <!-- Tier 1: Degree -->
+                <div
+                    class="bg-gradient-to-r from-orange-500/20 to-gray-900/0 p-8 rounded-2xl border border-orange-500/30"
+                >
+                    <div
+                        class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left"
+                    >
+                        <svg
+                            class="w-16 h-16 text-orange-400 flex-shrink-0"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0l-2.072-1.036A48.426 48.426 0 0112 4.5c5.052 0 9.842 1.353 13.5 3.675l-2.072 1.036m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                            ></path></svg
+                        >
+                        <div>
+                            <h3 class="font-poppins text-3xl text-white">
+                                Bachelor of Science in Information Technology
+                            </h3>
+                            <p class="text-lg text-gray-400">
+                                University of Massuchussets Lowell - Graduated
+                                2024
+                            </p>
+                        </div>
+                        <a
+                            href="/assets/certs/pdf/sterling-bachelors.pdf"
+                            target="_blank"
+                            class="ml-auto flex-shrink-0 bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-5 rounded-lg transition-colors"
+                            >View</a
+                        >
+                    </div>
+                </div>
+
+                <!-- Tier 2: Featured Certificates Carousel -->
+                <div class="mt-16">
+                    <h3
+                        class="font-poppins text-3xl text-white text-center mb-10"
+                    >
+                        Featured Certificates
+                    </h3>
+                    <div class="relative max-w-6xl mx-auto">
+                        <!-- Carousel Wrapper -->
+                        <div
+                            id="carousel-container"
+                            class="no-scrollbar flex overflow-x-scroll snap-x snap-mandatory scroll-smooth py-4"
+                        >
+                            <div
+                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                            >
+                                <div
+                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                >
+                                    <img
+                                        src="/assets/certs/png/completeUnity2D-1.png"
+                                        alt="Complete Unity 2D Certificate"
+                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                    />
+                                    <div class="flex-grow">
+                                        <h4
+                                            class="font-poppins text-xl text-white"
+                                        >
+                                            C# Unity Developer
+                                        </h4>
+                                        <p class="text-gray-500">Udemy</p>
+                                    </div>
+                                    <a
+                                        href="/assets/certs/pdf/completeUnity2D.pdf"
+                                        target="_blank"
+                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        >View Certificate</a
+                                    >
+                                </div>
+                            </div>
+                            <div
+                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                            >
+                                <div
+                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                >
+                                    <img
+                                        src="/assets/certs/png/unrealBlueprints-1.png"
+                                        alt="Unreal Engine Blueprints Certificate"
+                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                    />
+                                    <div class="flex-grow">
+                                        <h4
+                                            class="font-poppins text-xl text-white"
+                                        >
+                                            Unreal Engine 5 Blueprints FPS
+                                        </h4>
+                                        <p class="text-gray-500">Udemy</p>
+                                    </div>
+                                    <a
+                                        href="/assets/certs/pdf/unrealBlueprints.pdf"
+                                        target="_blank"
+                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        >View Certificate</a
+                                    >
+                                </div>
+                            </div>
+                            <div
+                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                            >
+                                <div
+                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                >
+                                    <img
+                                        src="/assets/certs/png/intermediatecsharp-1.png"
+                                        alt="Intermediate C# Certificate"
+                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                    />
+                                    <div class="flex-grow">
+                                        <h4
+                                            class="font-poppins text-xl text-white"
+                                        >
+                                            Intermediate C#
+                                        </h4>
+                                        <p class="text-gray-500">Udemy</p>
+                                    </div>
+                                    <a
+                                        href="/assets/certs/pdf/intermediatecsharp.pdf"
+                                        target="_blank"
+                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        >View Certificate</a
+                                    >
+                                </div>
+                            </div>
+                            <div
+                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                            >
+                                <div
+                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                >
+                                    <img
+                                        src="/assets/certs/png/photoshop-1.png"
+                                        alt="Photoshop Certificate"
+                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                    />
+                                    <div class="flex-grow">
+                                        <h4
+                                            class="font-poppins text-xl text-white"
+                                        >
+                                            Adobe Photoshop
+                                        </h4>
+                                        <p class="text-gray-500">Udemy</p>
+                                    </div>
+                                    <a
+                                        href="/assets/certs/pdf/photoshop.pdf"
+                                        target="_blank"
+                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        >View Certificate</a
+                                    >
+                                </div>
+                            </div>
+                            <div
+                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                            >
+                                <div
+                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                >
+                                    <img
+                                        src="/assets/certs/png/gitUnreal-1.png"
+                                        alt="Git with Unreal Engine Certificate"
+                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                    />
+                                    <div class="flex-grow">
+                                        <h4
+                                            class="font-poppins text-xl text-white"
+                                        >
+                                            Git with Applications for Unreal
+                                            Engine
+                                        </h4>
+                                        <p class="text-gray-500">Udemy</p>
+                                    </div>
+                                    <a
+                                        href="/assets/certs/pdf/gitUnreal.pdf"
+                                        target="_blank"
+                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        >View Certificate</a
+                                    >
+                                </div>
+                            </div>
+                            <div
+                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                            >
+                                <div
+                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                >
+                                    <img
+                                        src="/assets/certs/png/wordpress-1.png"
+                                        alt="Wordpress Certificate"
+                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                    />
+                                    <div class="flex-grow">
+                                        <h4
+                                            class="font-poppins text-xl text-white"
+                                        >
+                                            Wordpress Development
+                                        </h4>
+                                        <p class="text-gray-500">Udemy</p>
+                                    </div>
+                                    <a
+                                        href="/assets/certs/pdf/wordpress.pdf"
+                                        target="_blank"
+                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        >View Certificate</a
+                                    >
+                                </div>
+                            </div>
+                            <div
+                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                            >
+                                <div
+                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                >
+                                    <img
+                                        src="/assets/certs/png/unityMobile-1.png"
+                                        alt="Unity Mobile Certificate"
+                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                    />
+                                    <div class="flex-grow">
+                                        <h4
+                                            class="font-poppins text-xl text-white"
+                                        >
+                                            C# Unity Mobile
+                                        </h4>
+                                        <p class="text-gray-500">Udemy</p>
+                                    </div>
+                                    <a
+                                        href="/assets/certs/pdf/unityMobile.pdf"
+                                        target="_blank"
+                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        >View Certificate</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carousel Buttons -->
+                        <button
+                            id="prev-btn"
+                            class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-800/50 hover:bg-gray-800 p-2 rounded-full text-white transition-colors"
+                        >
+                            <img
+                                src="/assets/icons/arrow-left-icon.svg"
+                                alt="Previous Button Icon"
+                                class="w-6 h-6"
+                            />
+                        </button>
+                        <button
+                            id="next-btn"
+                            class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-800/50 hover:bg-gray-800 p-2 rounded-full text-white transition-colors"
+                        >
+                            <img
+                                src="/assets/icons/arrow-right-icon.svg"
+                                alt="Next Button Icon"
+                                class="w-6 h-6"
+                            />
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tier 3: Other Certificates -->
+                <div class="mt-16">
+                    <h3
+                        class="font-poppins text-3xl text-white text-center mb-10"
+                    >
+                        Additional and Ongoing Courses
+                    </h3>
+                    <div
+                        class="max-w-4xl mx-auto bg-gray-900/50 p-6 rounded-lg"
+                    >
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4"
+                        >
+                            <p class="text-gray-300">
+                                Unreal Engine 5: Intermediate
+                            </p>
+                            <p class="text-gray-300">
+                                Unreal Engine 5: Dedicated Servers with AWS
+                            </p>
+                            <p class="text-gray-300">
+                                Complete Full-Stack Web Developer
+                            </p>
+                            <p class="text-gray-300">
+                                Unreal Engine 5: Gameplay Ability System
+                            </p>
+                            <p class="text-gray-300">Modern React</p>
+                            <p class="text-gray-300">
+                                JavaScript Algorithms and Data Structures
+                            </p>
+                            <p class="text-gray-300">
+                                Creating 3D Environments in Blender
+                            </p>
+                            <p class="text-gray-300">
+                                Creating 3D Environments in Blender
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const carousel = document.getElementById("carousel-container");
+                const prevBtn = document.getElementById("prev-btn");
+                const nextBtn = document.getElementById("next-btn");
+
+                if (carousel && prevBtn && nextBtn) {
+                    const handleNextClick = () => {
+                        const firstCard = carousel.querySelector(
+                            ".flex-shrink-0",
+                        ) as HTMLElement;
+                        if (firstCard) {
+                            const scrollAmount = firstCard.offsetWidth;
+                            carousel.scrollBy({
+                                left: scrollAmount,
+                                behavior: "smooth",
+                            });
+                        }
+                    };
+
+                    const handlePrevClick = () => {
+                        const firstCard = carousel.querySelector(
+                            ".flex-shrink-0",
+                        ) as HTMLElement;
+                        if (firstCard) {
+                            const scrollAmount = firstCard.offsetWidth;
+                            carousel.scrollBy({
+                                left: -scrollAmount,
+                                behavior: "smooth",
+                            });
+                        }
+                    };
+
+                    nextBtn.addEventListener("click", handleNextClick);
+                    prevBtn.addEventListener("click", handlePrevClick);
+                }
+            });
+        </script>
+    </section></Layout
+>
