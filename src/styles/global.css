@@ -1,6 +1,6 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 body {
     font-family: 'Inter', sans-serif;
@@ -58,7 +58,6 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-
 .skill-card:hover {
     transform: scale(1.05);
     box-shadow: 0 15px 30px rgba(251, 146, 60, 0.3);
@@ -97,7 +96,6 @@ body {
     /* Example: Make sure your header font is defined */
     font-family: 'Poppins', sans-serif;
 }
-
 
 .font-poppins {
     font-family: 'Poppins', sans-serif;
@@ -140,10 +138,13 @@ body {
     background-color: #111827;
     /* gray-900 */
     background-image:
-        radial-gradient(ellipse at top, rgba(249, 115, 22, 0.1), transparent 70%),
-        url(/assets/images/code-background.svg)
+        radial-gradient(
+            ellipse at top,
+            rgba(249, 115, 22, 0.1),
+            transparent 70%
+        ),
+        url(/assets/images/code-background.svg);
 }
-
 
 /* ======================================================================
     GLASS PANE EFFECT
@@ -164,7 +165,6 @@ body {
     /* Faster transition for a more immediate feel */
 }
 
-
 /* ======================================================================
     ANIMATE BOUNCE SLOW
     ======================================================================
@@ -174,7 +174,6 @@ body {
 }
 
 @keyframes bounce {
-
     0%,
     20%,
     50%,
@@ -191,7 +190,6 @@ body {
         transform: translateY(-5px);
     }
 }
-
 
 /* ======================================================================
     STYLES FOR CODE BLOCK
@@ -240,17 +238,15 @@ body {
 }
 
 @keyframes blink {
-
     from,
     to {
-        background-color: transparent
+        background-color: transparent;
     }
 
     50% {
         background-color: #f97316;
     }
 }
-
 
 /* ======================================================================
     AURORA BACKGROUND EFFECT
@@ -277,11 +273,11 @@ body {
     right: 0;
     height: 0px;
     /* Adjust height of the fade effect */
-    background: linear-gradient(to bottom,
-            transparent,
-            #0c0a09 75%
-            /* Match your background color */
-        );
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        #0c0a09 75% /* Match your background color */
+    );
     z-index: 1;
     /* Ensure it's above the aurora but below content */
 }
@@ -301,15 +297,13 @@ body {
     height: 200%;
 
     /* The conic-gradient creates the color wheel. You can change these colors. */
-    background: conic-gradient(from 0deg,
-            #f97316,
-            /* orange-500 */
-            #4f46e5,
-            /* indigo-600 */
-            #6e047c,
-            #f97316
-            /* Loop back to the start color for a seamless rotation */
-        );
+    background: conic-gradient(
+        from 0deg,
+        #f97316,
+        /* orange-500 */ #4f46e5,
+        /* indigo-600 */ #6e047c,
+        #f97316 /* Loop back to the start color for a seamless rotation */
+    );
 
     /* A large blur value makes the color transitions soft and smooth. */
     filter: blur(120px);
@@ -333,10 +327,6 @@ body {
     }
 }
 
-
-
-
-
 /* ======================================================================
     GRADIENT BACKGROUND EFFECT
     ======================================================================
@@ -347,8 +337,16 @@ body {
     /* A dark base color */
     /* THE CHANGE: Added subtle radial gradients for depth */
     background-image:
-        radial-gradient(ellipse at top, rgba(249, 115, 22, 0.1), transparent 60%),
-        radial-gradient(ellipse at bottom, rgba(79, 70, 229, 0.1), transparent 60%);
+        radial-gradient(
+            ellipse at top,
+            rgba(249, 115, 22, 0.1),
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse at bottom,
+            rgba(79, 70, 229, 0.1),
+            transparent 60%
+        );
     overflow: hidden;
 }
 
@@ -385,9 +383,6 @@ body {
     }
 }
 
-
-
-
 /* ======================================================================
     CAROUSEL EFFECT FOR UDEMY CERTIFICATES
     ======================================================================
@@ -415,19 +410,18 @@ body {
     scrollbar-width: none;
 }
 
-
-
-
 /* ======================================================================
     BLUEPRINT BACKGROUND EFFECT
     ======================================================================
     */
 .blueprint-bg {
-    background-color: #0D1117;
+    background-color: #0d1117;
     /* Dark base color */
     /* This creates a grid of dots */
-    background-image:
-        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+    );
     background-size: 2rem 2rem;
     position: relative;
 }
@@ -437,5 +431,9 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(ellipse at top, rgba(249, 115, 22, 0.15), transparent 70%);
+    background-image: radial-gradient(
+        ellipse at top,
+        rgba(249, 115, 22, 0.15),
+        transparent 70%
+    );
 }

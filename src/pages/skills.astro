@@ -1,36 +1,32 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Stephen Sterling - My Skills">
-
-
     <!-- Skills Hero Section -->
     <section
-        class="blueprint-bg w-full flex items-center justify-center p-8 py-64 text-center overflow-hidden"
+        class="blueprint-bg flex w-full items-center justify-center overflow-hidden p-8 py-64 text-center"
     >
         <!-- Content -->
         <div class="z-10">
             <h1
-                class="font-poppins text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-tight"
+                class="font-poppins text-6xl font-bold leading-tight text-white md:text-8xl lg:text-9xl"
             >
                 The Toolkit<span class="gradient-text-orange">.</span>
             </h1>
-            <p class="mt-6 text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto">
+            <p class="mx-auto mt-6 max-w-3xl text-xl text-gray-400 md:text-2xl">
                 Here you'll find the skills, credentials, and technologies I use
                 to bring ideas to life.
             </p>
         </div>
     </section>
 
-
-
     <!-- Certificates Section -->
-    <section class="mx-auto container">
-        <div class="code-pattern-bg w-full min-h-screen p-8">
+    <section class="code-pattern-bg mx-auto">
+        <div class="min-h-screen w-full p-8">
             <div class="container mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="font-poppins text-5xl text-white font-bold">
+                <div class="mb-16 text-center">
+                    <h2 class="font-poppins text-5xl font-bold text-white">
                         Education & Certifications
                     </h2>
                     <p class="mt-4 text-lg text-gray-400">
@@ -41,13 +37,13 @@ import Layout from "../layouts/Layout.astro";
 
                 <!-- Tier 1: Degree -->
                 <div
-                    class="bg-gradient-to-r from-orange-500/20 to-gray-900/0 p-8 rounded-2xl border border-orange-500/30"
+                    class="rounded-2xl border border-orange-500/30 bg-gradient-to-r from-orange-500/20 to-gray-900/0 p-8"
                 >
                     <div
-                        class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left"
+                        class="flex flex-col items-center gap-6 text-center md:flex-row md:text-left"
                     >
                         <svg
-                            class="w-16 h-16 text-orange-400 flex-shrink-0"
+                            class="h-16 w-16 flex-shrink-0 text-orange-400"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
@@ -70,7 +66,7 @@ import Layout from "../layouts/Layout.astro";
                         <a
                             href="/assets/certs/pdf/sterling-bachelors.pdf"
                             target="_blank"
-                            class="ml-auto flex-shrink-0 bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-5 rounded-lg transition-colors"
+                            class="ml-auto flex-shrink-0 rounded-lg bg-orange-600 px-5 py-2 font-semibold text-white transition-colors hover:bg-orange-700"
                             >View</a
                         >
                     </div>
@@ -79,26 +75,26 @@ import Layout from "../layouts/Layout.astro";
                 <!-- Tier 2: Featured Certificates Carousel -->
                 <div class="mt-16">
                     <h3
-                        class="font-poppins text-3xl text-white text-center mb-10"
+                        class="font-poppins mb-10 text-center text-3xl text-white"
                     >
                         Featured Certificates
                     </h3>
-                    <div class="relative max-w-6xl mx-auto">
+                    <div class="relative mx-auto max-w-6xl">
                         <!-- Carousel Wrapper -->
                         <div
                             id="carousel-container"
-                            class="no-scrollbar flex overflow-x-scroll snap-x snap-mandatory scroll-smooth py-4"
+                            class="no-scrollbar flex snap-x snap-mandatory overflow-x-scroll scroll-smooth py-4"
                         >
                             <div
-                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
                             >
                                 <div
-                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                    class="featured-cert flex h-full flex-col rounded-xl bg-gray-900 p-6"
                                 >
                                     <img
                                         src="/assets/certs/png/completeUnity2D-1.png"
                                         alt="Complete Unity 2D Certificate"
-                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                        class="mb-4 h-48 w-full rounded-lg object-cover"
                                     />
                                     <div class="flex-grow">
                                         <h4
@@ -111,21 +107,21 @@ import Layout from "../layouts/Layout.astro";
                                     <a
                                         href="/assets/certs/pdf/completeUnity2D.pdf"
                                         target="_blank"
-                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        class="mt-4 block w-full rounded-lg bg-orange-600/80 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-orange-600"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
                             <div
-                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
                             >
                                 <div
-                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                    class="featured-cert flex h-full flex-col rounded-xl bg-gray-900 p-6"
                                 >
                                     <img
                                         src="/assets/certs/png/unrealBlueprints-1.png"
                                         alt="Unreal Engine Blueprints Certificate"
-                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                        class="mb-4 h-48 w-full rounded-lg object-cover"
                                     />
                                     <div class="flex-grow">
                                         <h4
@@ -138,21 +134,21 @@ import Layout from "../layouts/Layout.astro";
                                     <a
                                         href="/assets/certs/pdf/unrealBlueprints.pdf"
                                         target="_blank"
-                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        class="mt-4 block w-full rounded-lg bg-orange-600/80 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-orange-600"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
                             <div
-                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
                             >
                                 <div
-                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                    class="featured-cert flex h-full flex-col rounded-xl bg-gray-900 p-6"
                                 >
                                     <img
                                         src="/assets/certs/png/intermediatecsharp-1.png"
                                         alt="Intermediate C# Certificate"
-                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                        class="mb-4 h-48 w-full rounded-lg object-cover"
                                     />
                                     <div class="flex-grow">
                                         <h4
@@ -165,21 +161,21 @@ import Layout from "../layouts/Layout.astro";
                                     <a
                                         href="/assets/certs/pdf/intermediatecsharp.pdf"
                                         target="_blank"
-                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        class="mt-4 block w-full rounded-lg bg-orange-600/80 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-orange-600"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
                             <div
-                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
                             >
                                 <div
-                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                    class="featured-cert flex h-full flex-col rounded-xl bg-gray-900 p-6"
                                 >
                                     <img
                                         src="/assets/certs/png/photoshop-1.png"
                                         alt="Photoshop Certificate"
-                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                        class="mb-4 h-48 w-full rounded-lg object-cover"
                                     />
                                     <div class="flex-grow">
                                         <h4
@@ -192,21 +188,21 @@ import Layout from "../layouts/Layout.astro";
                                     <a
                                         href="/assets/certs/pdf/photoshop.pdf"
                                         target="_blank"
-                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        class="mt-4 block w-full rounded-lg bg-orange-600/80 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-orange-600"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
                             <div
-                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
                             >
                                 <div
-                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                    class="featured-cert flex h-full flex-col rounded-xl bg-gray-900 p-6"
                                 >
                                     <img
                                         src="/assets/certs/png/gitUnreal-1.png"
                                         alt="Git with Unreal Engine Certificate"
-                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                        class="mb-4 h-48 w-full rounded-lg object-cover"
                                     />
                                     <div class="flex-grow">
                                         <h4
@@ -220,21 +216,21 @@ import Layout from "../layouts/Layout.astro";
                                     <a
                                         href="/assets/certs/pdf/gitUnreal.pdf"
                                         target="_blank"
-                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        class="mt-4 block w-full rounded-lg bg-orange-600/80 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-orange-600"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
                             <div
-                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
                             >
                                 <div
-                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                    class="featured-cert flex h-full flex-col rounded-xl bg-gray-900 p-6"
                                 >
                                     <img
                                         src="/assets/certs/png/wordpress-1.png"
                                         alt="Wordpress Certificate"
-                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                        class="mb-4 h-48 w-full rounded-lg object-cover"
                                     />
                                     <div class="flex-grow">
                                         <h4
@@ -247,21 +243,21 @@ import Layout from "../layouts/Layout.astro";
                                     <a
                                         href="/assets/certs/pdf/wordpress.pdf"
                                         target="_blank"
-                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        class="mt-4 block w-full rounded-lg bg-orange-600/80 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-orange-600"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
                             <div
-                                class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center px-4"
+                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
                             >
                                 <div
-                                    class="featured-cert bg-gray-900 rounded-xl p-6 flex flex-col h-full"
+                                    class="featured-cert flex h-full flex-col rounded-xl bg-gray-900 p-6"
                                 >
                                     <img
                                         src="/assets/certs/png/unityMobile-1.png"
                                         alt="Unity Mobile Certificate"
-                                        class="w-full h-48 object-cover rounded-lg mb-4"
+                                        class="mb-4 h-48 w-full rounded-lg object-cover"
                                     />
                                     <div class="flex-grow">
                                         <h4
@@ -274,7 +270,7 @@ import Layout from "../layouts/Layout.astro";
                                     <a
                                         href="/assets/certs/pdf/unityMobile.pdf"
                                         target="_blank"
-                                        class="mt-4 block text-center bg-orange-600/80 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full"
+                                        class="mt-4 block w-full rounded-lg bg-orange-600/80 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-orange-600"
                                         >View Certificate</a
                                     >
                                 </div>
@@ -283,23 +279,39 @@ import Layout from "../layouts/Layout.astro";
                         <!-- Carousel Buttons -->
                         <button
                             id="prev-btn"
-                            class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-800/50 hover:bg-gray-800 p-2 rounded-full text-white transition-colors"
+                            class="group absolute left-[-2rem] top-1/2 -translate-y-1/2 rounded-full bg-gray-800/50 p-2 transition-colors hover:bg-gray-800"
                         >
-                            <img
-                                src="/assets/icons/arrow-left-icon.svg"
-                                alt="Previous Button Icon"
-                                class="w-6 h-6"
-                            />
+                            <svg
+                                class="h-6 w-6 text-gray-400 group-hover:text-orange-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M15 19l-7-7 7-7"></path>
+                            </svg>
                         </button>
                         <button
                             id="next-btn"
-                            class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-800/50 hover:bg-gray-800 p-2 rounded-full text-white transition-colors"
+                            class="group absolute right-[-2rem] top-1/2 -translate-y-1/2 rounded-full bg-gray-800/50 p-2 text-white transition-colors hover:bg-gray-800"
                         >
-                            <img
-                                src="/assets/icons/arrow-right-icon.svg"
-                                alt="Next Button Icon"
-                                class="w-6 h-6"
-                            />
+                            <svg
+                                class="h-6 w-6 text-gray-400 group-hover:text-orange-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5l7 7-7 7"></path>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -307,15 +319,15 @@ import Layout from "../layouts/Layout.astro";
                 <!-- Tier 3: Other Certificates -->
                 <div class="mt-16">
                     <h3
-                        class="font-poppins text-3xl text-white text-center mb-10"
+                        class="font-poppins mb-10 text-center text-3xl text-white"
                     >
                         Additional and Ongoing Courses
                     </h3>
                     <div
-                        class="max-w-4xl mx-auto bg-gray-900/50 p-6 rounded-lg"
+                        class="mx-auto max-w-4xl rounded-lg bg-gray-900/50 p-6"
                     >
                         <div
-                            class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4"
+                            class="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2"
                         >
                             <p class="text-gray-300">
                                 Unreal Engine 5: Intermediate
@@ -345,42 +357,42 @@ import Layout from "../layouts/Layout.astro";
             </div>
         </div>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const carousel = document.getElementById("carousel-container");
-                const prevBtn = document.getElementById("prev-btn");
-                const nextBtn = document.getElementById("next-btn");
+            document.addEventListener('DOMContentLoaded', function () {
+                const carousel = document.getElementById('carousel-container')
+                const prevBtn = document.getElementById('prev-btn')
+                const nextBtn = document.getElementById('next-btn')
 
                 if (carousel && prevBtn && nextBtn) {
                     const handleNextClick = () => {
                         const firstCard = carousel.querySelector(
-                            ".flex-shrink-0",
-                        ) as HTMLElement;
+                            '.flex-shrink-0'
+                        ) as HTMLElement
                         if (firstCard) {
-                            const scrollAmount = firstCard.offsetWidth;
+                            const scrollAmount = firstCard.offsetWidth
                             carousel.scrollBy({
                                 left: scrollAmount,
-                                behavior: "smooth",
-                            });
+                                behavior: 'smooth',
+                            })
                         }
-                    };
+                    }
 
                     const handlePrevClick = () => {
                         const firstCard = carousel.querySelector(
-                            ".flex-shrink-0",
-                        ) as HTMLElement;
+                            '.flex-shrink-0'
+                        ) as HTMLElement
                         if (firstCard) {
-                            const scrollAmount = firstCard.offsetWidth;
+                            const scrollAmount = firstCard.offsetWidth
                             carousel.scrollBy({
                                 left: -scrollAmount,
-                                behavior: "smooth",
-                            });
+                                behavior: 'smooth',
+                            })
                         }
-                    };
+                    }
 
-                    nextBtn.addEventListener("click", handleNextClick);
-                    prevBtn.addEventListener("click", handlePrevClick);
+                    nextBtn.addEventListener('click', handleNextClick)
+                    prevBtn.addEventListener('click', handlePrevClick)
                 }
-            });
+            })
         </script>
     </section></Layout
 >
