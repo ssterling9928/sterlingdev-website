@@ -1,50 +1,54 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Stephen Sterling - About Me">
     <!-- Section: About Me Hero -->
     <div
         id="about-hero"
-        class="aurora-bg w-full flex flex-col items-center justify-center text-center"
+        class="aurora-bg flex w-full flex-col items-center justify-center text-center"
     >
         <div class="max-w-4xl">
             <h1
-                class="font-poppins text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-tight fade-in-up"
+                class="font-poppins fade-in-up text-6xl font-bold leading-tight text-white md:text-8xl lg:text-9xl"
             >
                 Hello.
             </h1>
             <p
-                class="mt-6 text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto fade-in"
+                class="fade-in mx-auto mt-6 max-w-2xl px-1 text-xl text-gray-400 md:text-2xl"
             >
-                Behind every line of code is a story. This is mine.
+                Behind every line of code is a story. <br /> This is mine.
             </p>
         </div>
         <div class="absolute bottom-24">
-            <svg
-                class="w-8 h-8 text-gray-600 animate-bounce-slow"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                ><path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"></path></svg
-            >
+            <a href="#my-goals" aria-label="Scroll to next section">
+                <svg
+                    class="animate-bounce-slow h-8 w-8 text-gray-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"></path></svg
+                >
+            </a>
         </div>
     </div>
 
     <!-- Section: My Goals -->
-    <section>
+    <section id="my-goals">
         <div
-            class="w-full flex items-center justify-center p-24"
+            class="flex w-full items-center justify-center px-4 py-24"
             style="background-image: radial-gradient(ellipse at top, rgba(249, 115, 22, 0.1), transparent 70%);"
         >
             <div class="container mx-auto">
-                <div class="text-center mb-24">
-                    <h2 class="font-poppins text-5xl text-white font-bold">
+                <div class="mb-24 text-center">
+                    <h2
+                        class="font-poppins text-3xl font-bold text-white md:text-5xl"
+                    >
                         My Mission & Goals
                     </h2>
                     <p class="mt-4 text-lg text-gray-400">
@@ -52,16 +56,16 @@ import Layout from "../layouts/Layout.astro";
                     </p>
                 </div>
                 <div
-                    class="relative flex justify-center items-center flex-col lg:flex-row max-w-5xl mx-auto gap-8 lg:gap-0"
+                    class="relative mx-auto flex max-w-5xl flex-col items-center justify-center gap-8 lg:flex-row lg:gap-0"
                 >
                     <!-- Card 1 (Back) -->
                     <div
-                        class="glass-pane w-full lg:w-3/5 p-8 lg:p-12 rounded-2xl shadow-2xl transform lg:-rotate-3 lg:blur-sm hover:lg:blur-0 hover:lg:z-20 hover:lg:scale-105 hover:border-orange-500/50"
+                        class="glass-pane w-full transform rounded-2xl p-8 shadow-2xl hover:border-orange-500/50 lg:w-3/5 lg:-rotate-3 lg:p-12 lg:blur-sm hover:lg:z-20 hover:lg:scale-105 hover:lg:blur-0"
                     >
                         <h3 class="font-poppins text-2xl text-orange-400">
                             Be a Part of Something Bigger
                         </h3>
-                        <div class="w-16 h-1 bg-orange-500 mt-3 mb-4 rounded">
+                        <div class="mb-4 mt-3 h-1 w-16 rounded bg-orange-500">
                         </div>
                         <p class="mt-2 text-base">
                             My goal as a developer is to be part of something
@@ -76,12 +80,12 @@ import Layout from "../layouts/Layout.astro";
 
                     <!-- Card 2 (Front) -->
                     <div
-                        class="glass-pane w-full lg:w-3/5 p-8 lg:p-12 rounded-2xl shadow-2xl lg:ml-[-10rem] transform lg:rotate-2 relative z-10 hover:lg:scale-105 hover:border-orange-500/50"
+                        class="glass-pane relative z-10 w-full transform rounded-2xl p-8 shadow-2xl hover:border-orange-500/50 lg:ml-[-10rem] lg:w-3/5 lg:rotate-2 lg:p-12 hover:lg:scale-105"
                     >
                         <h3 class="font-poppins text-2xl text-orange-400">
                             Never Stop Growing
                         </h3>
-                        <div class="w-16 h-1 bg-orange-500 mt-3 mb-4 rounded">
+                        <div class="mb-4 mt-3 h-1 w-16 rounded bg-orange-500">
                         </div>
                         <p class="mt-2 text-base">
                             I am committed to a career of continuous growth. I
@@ -102,24 +106,24 @@ import Layout from "../layouts/Layout.astro";
     <section>
         <!-- Section Background -->
         <div
-            class="gradient-effect-bg w-full min-h-screen flex items-center justify-center p-8 bg-black/20"
+            class="gradient-effect-bg flex min-h-screen w-full items-center justify-center bg-black/20 p-8"
         >
             <!-- Content Container -->
-            <div class="pb-32 container mx-auto">
+            <div class="container mx-auto pb-32">
                 <!-- Main Heading -->
                 <h2
-                    class="my-8 font-poppins text-5xl md:text-6xl text-white font-bold text-left pb-4"
+                    class="font-poppins my-8 pb-4 text-left text-3xl font-bold text-white md:text-6xl"
                 >
                     From Curiosity to Creation.
                 </h2>
 
                 <!-- Two-Column Layout (On Larger Screens) -->
                 <div
-                    class="mt-12 grid grid-cols-1 md:grid-cols-[0.9fr_0.1fr] gap-8"
+                    class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-[0.9fr_0.1fr]"
                 >
                     <!-- Left Column: The Narrative -->
                     <div
-                        class="space-y-6 text-lg leading-relaxed text-gray-300"
+                        class="text-md space-y-6 leading-relaxed text-gray-300 md:text-lg"
                     >
                         <p class="drop-cap">
                             My journey into technology didn’t start with a
@@ -182,15 +186,15 @@ import Layout from "../layouts/Layout.astro";
 
                     <!-- Right Column: Subtle Divider with Icons (On Larger Screens) -->
                     <div
-                        class="hidden md:flex flex-col h-full justify-center items-end pt-12"
+                        class="hidden h-full flex-col items-end justify-center pt-12 md:flex"
                     >
                         <div class="relative h-full w-px bg-gray-700">
                             <!-- Icon 1: Gaming -->
                             <div
-                                class="absolute top-1/4 left-1/2 -translate-x-1/2 p-3 bg-gray-800 rounded-full"
+                                class="absolute left-1/2 top-1/4 -translate-x-1/2 rounded-full bg-gray-800 p-3"
                             >
                                 <svg
-                                    class="w-6 h-6 text-orange-400"
+                                    class="h-6 w-6 text-orange-400"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -205,10 +209,10 @@ import Layout from "../layouts/Layout.astro";
                             </div>
                             <!-- Icon 2: Coding -->
                             <div
-                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 bg-gray-800 rounded-full"
+                                class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gray-800 p-3"
                             >
                                 <svg
-                                    class="w-6 h-6 text-orange-400"
+                                    class="h-6 w-6 text-orange-400"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -223,10 +227,10 @@ import Layout from "../layouts/Layout.astro";
                             </div>
                             <!-- Icon 3: Learning -->
                             <div
-                                class="absolute top-3/4 left-1/2 -translate-x-1/2 p-3 bg-gray-800 rounded-full"
+                                class="absolute left-1/2 top-3/4 -translate-x-1/2 rounded-full bg-gray-800 p-3"
                             >
                                 <svg
-                                    class="w-6 h-6 text-orange-400"
+                                    class="h-6 w-6 text-orange-400"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -247,10 +251,10 @@ import Layout from "../layouts/Layout.astro";
     </section>
 
     <!-- Final CTA -->
-    <section class="py-20 md:py-24 bg-black/20">
+    <section class="bg-black/20 py-20 md:py-24">
         <div class="container mx-auto px-6 text-center">
             <h2
-                class="font-poppins text-3xl md:text-4xl font-bold text-white max-w-2xl mx-auto"
+                class="font-poppins mx-auto max-w-2xl text-3xl font-bold text-white md:text-4xl"
             >
                 Sound like a good fit?
             </h2>
@@ -259,7 +263,7 @@ import Layout from "../layouts/Layout.astro";
             </p>
             <a
                 href="#contact"
-                class="cta-button mt-8 inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full shadow-lg text-lg transition-all duration-300 ease-in-out"
+                class="cta-button mt-8 inline-block rounded-full bg-orange-600 px-8 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:bg-orange-700"
             >
                 Let's Get In Touch
             </a>
@@ -268,24 +272,41 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const header = document.getElementById("header");
-        const aboutHero = document.getElementById("about-hero");
+    document.addEventListener('DOMContentLoaded', function () {
+        const header = document.getElementById('header')
+        const aboutHero = document.getElementById('about-hero')
 
         function calculateHeroHeight() {
             if (!header || !aboutHero) {
-                console.error("Header or About Hero not found.");
-                return;
+                console.error('Header or About Hero not found.')
+                return
             }
 
-            const headerHeight = header.offsetHeight;
-            aboutHero.style.minHeight = `calc(100vh - ${headerHeight}px)`;
+            const headerHeight = header.offsetHeight
+            aboutHero.style.minHeight = `calc(100vh - ${headerHeight}px)`
         }
 
-        calculateHeroHeight();
+        calculateHeroHeight()
 
-        window.addEventListener("resize", calculateHeroHeight);
-    });
+        window.addEventListener('resize', calculateHeroHeight)
+    })
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault()
+
+            const targetId = anchor.getAttribute('href')
+            if (!targetId) return
+            const targetElement = document.querySelector(targetId)
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                })
+            }
+        })
+    })
 </script>
 
 <!-- 

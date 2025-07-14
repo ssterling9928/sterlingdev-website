@@ -1,49 +1,49 @@
-
 ---
-
 interface Props {
-	title?: string; // Optional title prop for the document, defaults to 'Stephen Sterling - Portfolio'
+    title?: string // Optional title prop for the document, defaults to 'Stephen Sterling - Portfolio'
 }
 
-const { title } = Astro.props;
+const { title } = Astro.props
 
-import '../styles/global.css'; // Import global styles
-import Header from '../components/Header.astro';
-
+import '../styles/global.css' // Import global styles
+import Header from '../components/Header.astro'
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
-		<title>{title || 'Stephen Sterling - Portfolio'}</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/assets/images/favicon.svg"
+        />
+        <title>{title || 'Stephen Sterling - Portfolio'}</title>
 
-		<!-- Google Font -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <!-- Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
 
-	</head>
+    <body>
+        <Header
+            siteTitle="Stephen Sterling"
+            logoAlt="Stephen Sterling's Logo"
+        />
 
-	
-	<body>
-    	
-		<Header 
-			siteTitle = "Stephen Sterling" 
-			logoAlt = "Stephen Sterling's Logo" 
-		/>
-		
+        <slot />
+        {/* This is where the content of each page will go */}
 
-    	<slot /> {/* This is where the content of each page will go */}
-
-    	<!-- Footer -->
-		<footer class="py-8 px-6 bg-[#1C1C1C] text-white text-center rounded-t-xl mt-16">
-			<div class="container mx-auto">
-				<p>&copy; 2025 Stephen Sterling. All rights reserved.</p>
-			</div>
-		</footer>
-	</body>
+        <!-- Footer -->
+        <footer class="bg-[#1C1C1C] px-6 py-8 text-center text-white">
+            <div class="container mx-auto">
+                <p>&copy; 2025 Stephen Sterling. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
 </html>
-

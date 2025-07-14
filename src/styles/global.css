@@ -38,10 +38,7 @@ body {
 }
 
 .nav-link {
-    color: (87.2% 0.01 258.338);
-    /* Light gray text */
-    font-size: medium;
-    font-weight: bold;
+    @apply text-sm font-bold text-gray-300 md:text-lg;
 }
 
 .nav-link:hover {
@@ -144,6 +141,33 @@ body {
             transparent 70%
         ),
         url(/assets/images/code-background.svg);
+}
+
+.enhanced-bg {
+    background-color: #111827;
+    background-image:
+        radial-gradient(
+            ellipse at top,
+            rgba(249, 115, 22, 0.1),
+            transparent 70%
+        ),
+        url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%231f2937' fill-opacity='0.4'%3E%3Ctext x='10' y='30' font-family='monospace' font-size='20px'%3E%7B%7D%3C/text%3E%3Ctext x='70' y='50' font-family='monospace' font-size='20px'%3E%3C/%3E%3C/text%3E%3Ctext x='20' y='90' font-family='monospace' font-size='20px'%3E%7B%7D%3C/text%3E%3Ctext x='80' y='110' font-family='monospace' font-size='20px'%3E%3C/%3E%3C/text%3E%3C/g%3E%3C/svg%3E");
+}
+
+.header-glow {
+    position: relative;
+}
+
+.header-glow::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0; /* Position at the bottom of the header */
+    height: 4px; /* Height of the glow effect */
+    background: #f97316;
+    filter: blur(1px); /* This creates the soft glow effect */
+    z-index: -1; /* Puts the glow behind the header content */
 }
 
 /* ======================================================================
@@ -322,6 +346,41 @@ body {
         transform: translate(-50%, -50%) rotate(0deg);
     }
 
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Different color palette for aurora effect */
+.aurora-bg-cool {
+    position: relative;
+    overflow: hidden;
+    background-color: #030712; /* Very dark base */
+}
+.aurora-bg-cool::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+    /* THE CHANGE: New contrasting color palette */
+    background: conic-gradient(
+        from 0deg,
+        #14b8a6,
+        /* Teal-500 */ #1d4ed8,
+        /* Blue-700 */ #7c3aed,
+        /* Violet-600 */ #14b8a6 /* Loop back to teal */
+    );
+    filter: blur(120px);
+    opacity: 0.15;
+    animation: rotate 25s linear infinite;
+}
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
     to {
         transform: translate(-50%, -50%) rotate(360deg);
     }
