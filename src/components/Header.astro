@@ -1,0 +1,101 @@
+---
+// Import the LogoImg component
+import LogoImg from './LogoImg.astro'
+
+// Import the image file directly from `src/assets`. Astro will process this.
+import siteLogo from '../assets/images/sterlingdevlogo.png'
+
+// Import Astro's URL utility to get the current pathname.
+const { pathname } = Astro.url
+
+// Define a class for the active navigation link color.
+const activeClass = 'text-orange-500'
+
+interface Props {
+    siteTitle: string
+    logoAlt: string // The alt text for the logo will be passed down to LogoImg.
+}
+
+// Destructure props received by this component.
+const { siteTitle, logoAlt } = Astro.props
+---
+
+<!-- Header/Navigation Section -->
+<header
+    id="header"
+    class="header-glow top-0 z-50 rounded-b-xl bg-gray-900 bg-opacity-70 backdrop-blur-md sm:sticky"
+>
+    <!-- Navigation Content Wrapper: -->
+    <div
+        class="container mx-auto flex flex-wrap items-center justify-around gap-y-6 py-4 lg:flex-nowrap lg:justify-between"
+    >
+        <!-- Logo and Site Title: -->
+        <div
+            class="flex w-full items-center justify-around lg:ml-16 lg:w-auto lg:justify-self-start"
+        >
+            <!-- Logo Image: -->
+            <LogoImg
+                src={siteLogo.src}
+                alt={logoAlt}
+                className="max-w-16 overflow-hidden rounded-full outline lg:mr-24"
+            />
+
+            <!-- Site Title: -->
+            <h1 class="font-heading text-xl text-white md:text-3xl">
+                {siteTitle}
+            </h1>
+
+            <p class="px-4 text-[10px] text-gray-400">
+                Currently Under Development: July 2025
+            </p>
+        </div>
+
+        <!-- Navigation Links: -->
+        <nav
+            class="flex w-full items-center justify-around space-x-5 lg:mr-4 lg:w-auto lg:justify-end"
+        >
+            <a
+                href="/about/"
+                class:list={[
+                    'nav-link',
+                    { [activeClass]: pathname === '/about/' },
+                ]}>About Me</a
+            >
+            <a
+                href="/skills/"
+                class:list={[
+                    'nav-link',
+                    { [activeClass]: pathname === '/skills/' },
+                ]}>My Skills</a
+            >
+            <a
+                href="/myWork/"
+                class:list={[
+                    'nav-link',
+                    { [activeClass]: pathname === '/myWork/' },
+                ]}>My Work</a
+            >
+        </nav>
+        <button
+            id="open-contact-modal"
+            class="rounded-full bg-orange-600 px-8 py-3 text-xl font-bold text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-orange-700"
+        >
+            Contact Me
+        </button>
+    </div>
+</header>
+<script>
+    /* JavaScript to handle active link highlighting
+   This script adds an 'active' class to the clicked link, which can be styled in CSS. */
+    document.addEventListener('DOMContentLoaded', function () {
+        const navLinks = document.querySelectorAll('.nav-link')
+        navLinks.forEach((link) => {
+            link.addEventListener('click', function () {
+                navLinks.forEach((other) => {
+                    other.classList.remove('active')
+                })
+                link.classList.add('active')
+            })
+        })
+    })
+</script>

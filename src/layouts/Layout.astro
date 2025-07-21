@@ -1,61 +1,160 @@
+---
+interface Props {
+    title?: string // Optional title prop for the document, defaults to 'Stephen Sterling - Portfolio'
+}
 
+const { title } = Astro.props
+
+import '../styles/global.css' // Import global styles
+import Header from '../components/Header.astro'
 ---
-const { title } = Astro.props;
-import '../styles/global.css'; // Import global styles
----
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
-		<title>{title || 'Stephen Sterling - Portfolio'}</title>
-	</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/assets/images/favicon.svg"
+        />
+        <title>{title || 'Stephen Sterling - Portfolio'}</title>
 
-	
-	<body>
-    	<!-- Header/Navigation from your original HTML -->
-		<header class="py-5 px-6 md:px-16 bg-gray-900 bg-opacity-70 backdrop-blur-md sticky top-0 z-50 rounded-b-xl shadow-2xl shadow-orange-800">
-			
-			
-			
-			<nav class="container mx-auto flex justify-between items-center">
-				<div>
-					<a href="/index.html" class=""> 
-						<img src="/assets/images/sterlingdevlogo.png" alt="Sterling Development Logo" class="size-auto"/> 
-					</a>
-				</div>
-				<div>
-					<h2 class="text-3xl font-extrabold bg-gradient-to-r from-amber-300 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
-						Stephen Sterling
-					</h2>
-				</div>
-				<div class="space-x-8">
-					<a href="#about" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">About</a>
-					<a href="#skills" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">Skills</a>
-					<a href="#work" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">Work</a>
-					<a href="#contact" class="text-gray-300 text-lg font-semibold hover:text-yellow-500 transition-colors duration-200">Contact</a>
-				</div>
-			</nav>
-		</header>
+        <!-- Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
 
-    	<slot /> {/* This is where the content of each page will go */}
+    <body>
+        <Header
+            siteTitle="Stephen Sterling"
+            logoAlt="Stephen Sterling's Logo"
+        />
 
-    	<!-- Footer from your original HTML -->
-		<footer class="py-8 px-6 bg-black text-white text-center rounded-t-xl mt-16">
-			<div class="container mx-auto">
-				<p>&copy; 2025 Stephen Sterling. All rights reserved.</p>
-			</div>
-		</footer>
-	</body>
+        <slot />
+        {/* This is where the content of each page will go */}
+
+        <!-- Footer -->
+        <footer class="bg-[#1C1C1C] px-6 py-8 text-center text-white">
+            <div class="container mx-auto">
+                <p>&copy; 2025 Stephen Sterling. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- CONTACT MODAL -->
+        <div
+            id="contact-modal"
+            class="modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+        >
+            <!-- Modal Overlay -->
+            <div
+                id="modal-overlay"
+                class="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            >
+            </div>
+
+            <!-- Modal Content -->
+            <div
+                class="relative z-10 w-full max-w-md rounded-2xl border border-gray-800 bg-gray-900 p-8 text-center shadow-2xl"
+            >
+                <!-- Close Button -->
+                <button
+                    id="close-contact-modal"
+                    class="absolute right-4 top-4 text-gray-500 transition-colors hover:text-white"
+                >
+                    <svg
+                        class="h-6 w-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path></svg
+                    >
+                </button>
+
+                <h2 class="font-poppins text-4xl font-bold text-white">
+                    Get In Touch
+                </h2>
+                <p class="mt-2 text-gray-400">
+                    I'm always open to new opportunities and collaborations.
+                </p>
+
+                <div class="mt-8 space-y-4">
+                    <!-- Email Button -->
+                    <a
+                        href="mailto:stephen@sterling-dev.com"
+                        class="block w-full rounded-lg bg-orange-600 px-6 py-3 text-center text-lg font-bold text-white transition-transform duration-200 hover:scale-105 hover:bg-orange-700"
+                    >
+                        Send an Email
+                    </a>
+
+                    <!-- Download Resume Button -->
+                    <a
+                        href="/assets/resume/Sterling-Resume.pdf"
+                        download="Stephen_Sterling_Resume.pdf"
+                        class="block w-full rounded-lg bg-gray-700 px-6 py-3 text-center text-lg font-bold text-white transition-transform duration-200 hover:scale-105 hover:bg-gray-600"
+                    >
+                        Download My Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const openModalBtn =
+                    document.getElementById('open-contact-modal')
+
+                const closeModalBtn = document.getElementById(
+                    'close-contact-modal'
+                )
+
+                const modal = document.getElementById('contact-modal')
+                const overlay = document.getElementById('modal-overlay')
+
+                const openModal = () => {
+                    if (modal) {
+                        modal.classList.remove('modal-hidden')
+                    }
+                }
+
+                const closeModal = () => {
+                    if (modal) {
+                        modal.classList.add('modal-hidden')
+                    }
+                }
+
+                if (openModalBtn) {
+                    openModalBtn.addEventListener('click', openModal)
+                }
+
+                if (closeModalBtn) {
+                    closeModalBtn.addEventListener('click', closeModal)
+                }
+
+                if (overlay) {
+                    overlay.addEventListener('click', closeModal)
+                }
+
+                // Also close with the Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (
+                        e.key === 'Escape' &&
+                        modal &&
+                        !modal.classList.contains('modal-hidden')
+                    ) {
+                        closeModal()
+                    }
+                })
+            })
+        </script>
+    </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
-

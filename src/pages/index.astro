@@ -1,12 +1,220 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro'
+import { Image } from 'astro:assets' // Import Astro's image component for optimized image handling
 
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import PortraitImage from '../assets/images/portrait.jpg' // Import my portrait image
 ---
 
 <Layout title="Stephen Sterling - Portfolio">
-	<Welcome />
+    <!-- 
+  ======================================================================
+  HERO SECTION
+  ======================================================================
+  This section is designed as a first introduction to me on the homepage.
+-->
+    <section
+        class="relative flex items-center justify-center overflow-hidden bg-[#08090C] px-6 pb-32 pt-24 text-center md:pb-64 md:pt-32"
+    >
+        <div class="hero-pattern absolute inset-0 opacity-10"></div>
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-gray-900/0 to-orange-900/10"
+        >
+        </div>
+        <!-- Subtle overlay gradient -->
+
+        <div
+            class="container relative z-10 mx-auto flex flex-col items-center justify-center gap-16 md:flex-row"
+        >
+            <!-- Text Content -->
+            <div class="max-w-2xl text-center md:text-left">
+                <p class="mb-3 text-xl font-medium text-orange-400 md:text-2xl">
+                    Hello, I'm
+                </p>
+                <h1
+                    class="mb-6 text-5xl font-extrabold leading-tight text-white md:text-6xl lg:text-7xl"
+                >
+                    <span class="gradient-text-orange">Stephen Sterling</span>
+                </h1>
+                <p class="mb-8 text-2xl font-light text-gray-300 md:text-3xl">
+                    A <span class="font-semibold text-orange-300"
+                        >Full-Stack Developer</span
+                    > Creating a diversified array[ ] of &#123;software solutions&#125;.
+                </p>
+                <!-- Call to Action Button -->
+                <a
+                    href="#projects"
+                    class="cta-button inline-block rounded-full bg-orange-600 px-8 py-3 text-xl font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:bg-orange-700"
+                >
+                    View My Work &rarr;
+                </a>
+            </div>
+            <!-- Developer Avatar/Illustration (Placeholder) -->
+            <div class="relative flex-shrink-0">
+                <!-- Outer glow/pulse effect - can be animated with custom CSS later -->
+                <div
+                    class="animate-pulse-fast absolute inset-0 rounded-full bg-gradient-to-br from-orange-400/30 to-purple-500/30 opacity-75 blur-xl"
+                >
+                </div>
+                <Image
+                    src={PortraitImage}
+                    alt={"Stephen Sterling's Portrait"}
+                    width="1920"
+                    height="1080"
+                    class="relative size-64 rotate-6 transform rounded-full border-4 border-orange-500 object-cover shadow-2xl transition-transform duration-500 ease-in-out hover:rotate-0 md:size-80 lg:size-96"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+  ======================================================================
+  SKILLS SECTION
+  ======================================================================
+  This section is designed as a quick look at my skills on the homepage.
+-->
+    <section
+        id="skills"
+        class="relative z-10 w-full overflow-hidden bg-transparent py-24 md:py-32"
+    >
+        <!-- 
+            -------------------------------
+            Background Blobs Container:
+            - These are purely decorative.
+            - They are positioned absolutely behind the main content.
+            - The `animate-pulse` class gives them a slow, subtle breathing effect.
+            - filter and blur create the soft, gradient look.
+        -->
+
+        <div class="absolute inset-0 h-full w-full">
+            <div
+                class="absolute left-0 top-0 h-72 w-72 animate-pulse rounded-full bg-gradient-to-br from-orange-500 to-red-600 opacity-30 blur-3xl filter md:h-96 md:w-96"
+            >
+            </div>
+            <div
+                class="absolute bottom-0 right-0 h-72 w-72 animate-pulse rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 opacity-30 blur-3xl filter [animation-delay:-2s] md:h-96 md:w-96"
+            >
+            </div>
+        </div>
+        <!-- ------------------------------ -->
+
+        <!-- 
+            Main Content Container:
+            - Positioned relatively to sit on top of the background blobs.
+            - `container mx-auto` centers it and applies a max-width.
+            -->
+        <div class="container relative z-10 mx-auto px-6 text-center">
+            <!-- Section Header -->
+            <h2
+                class="mb-4 font-heading text-4xl font-bold text-white md:text-5xl"
+            >
+                My Creative Toolkit
+            </h2>
+            <p class="mx-auto mb-16 max-w-2xl text-lg text-gray-400">
+                A blend of technical expertise and creative problem-solving to
+                build robust and beautiful applications.
+            </p>
+
+            <!-- Grid for the glass panes -->
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Card 1: Game & 3D Worlds -->
+                <div
+                    class="glass-pane transform rounded-2xl p-8 text-left transition-transform duration-300 hover:-translate-y-2"
+                >
+                    <h3
+                        class="mb-4 font-heading text-2xl font-semibold text-orange-400"
+                    >
+                        Games & 3D Worlds
+                    </h3>
+                    <p class="leading-relaxed text-gray-300">
+                        Building immersive experiences from the ground up using
+                        industry-standard tools like Unreal Engine, Unity, C++,
+                        and C#.
+                    </p>
+                </div>
+
+                <!-- Card 2: Web & App Ecosystems -->
+                <div
+                    class="glass-pane transform rounded-2xl p-8 text-left transition-transform duration-300 hover:-translate-y-2"
+                >
+                    <h3
+                        class="mb-4 font-heading text-2xl font-semibold text-orange-400"
+                    >
+                        Web & App Ecosystems
+                    </h3>
+                    <p class="leading-relaxed text-gray-300">
+                        Crafting high-performance websites and native
+                        applications with modern frameworks like Astro, Swift,
+                        and .NET.
+                    </p>
+                </div>
+
+                <!-- Card 3: Foundational Strengths (Added) -->
+                <div
+                    class="glass-pane transform rounded-2xl p-8 text-left transition-transform duration-300 hover:-translate-y-2 md:col-span-2 lg:col-span-1"
+                >
+                    <h3
+                        class="mb-4 font-heading text-2xl font-semibold text-orange-400"
+                    >
+                        Foundational Strengths
+                    </h3>
+                    <p class="leading-relaxed text-gray-300">
+                        Driven by a passion for rapid and self learning,
+                        grounded in advanced mathematics, and streamlined with
+                        tools like Git.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Call to Action Button -->
+            <div class="mt-16">
+                <a
+                    href="/skills"
+                    class="cta-button inline-block rounded-full bg-orange-600 px-8 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:bg-orange-700"
+                >
+                    Explore All Skills
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+  ======================================================================
+  CONTACT SECTION
+  ======================================================================
+  This section is designed as a final call-to-action on the homepage.
+-->
+    <section id="contact" class="w-full py-24 md:py-32">
+        <div class="container mx-auto px-6">
+            <!-- Main Invitation-Style Card -->
+            <div
+                class="mx-auto max-w-3xl rounded-2xl border border-gray-800 bg-gray-900/50 p-8 text-center shadow-2xl md:p-12"
+            >
+                <h2
+                    class="mt-6 font-heading text-4xl font-bold leading-tight text-white md:text-5xl"
+                >
+                    Have a project in mind? <br />
+                    <span class="gradient-text-orange">Let's build it.</span>
+                </h2>
+
+                <p
+                    class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-gray-300"
+                >
+                    I'm currently available for freelance and career
+                    opportunities. If you're looking for a developer who is
+                    passionate about bringing new ideas to life, I'm ready to
+                    connect.
+                </p>
+
+                <div class="mt-10">
+                    <button
+                        type="button"
+                        id="contact-popup-button"
+                        class="cta-button rounded-md px-10 py-3 text-lg font-bold text-orange-400"
+                    >
+                        Let's Connect
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 </Layout>

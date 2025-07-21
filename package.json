@@ -1,22 +1,25 @@
 {
-	"name": "sterlingdev-website",
-	"type": "module",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"deploy": "wrangler deploy",
-		"wr-dev": "wrangler dev",
-		"start": "astro dev",
-		"dev": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"devDependencies": {
-		"astro": "^5.9.3",
-		"wrangler": "^4.20.0"
-	},
-	"dependencies": {
-		"@astrojs/tailwind": "^6.0.2"
-	}
+    "name": "sterlingdev-website",
+    "type": "module",
+    "version": "0.0.4",
+    "private": true,
+    "scripts": {
+        "deploy": "wrangler deploy",
+        "wr-dev": "wrangler dev",
+        "start": "astro dev",
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "devDependencies": {
+        "astro": "^5.9.3",
+        "prettier": "^3.6.2",
+        "prettier-plugin-astro": "^0.14.1",
+        "prettier-plugin-tailwindcss": "^0.6.14",
+        "wrangler": "^4.20.0"
+    },
+    "dependencies": {
+        "@astrojs/tailwind": "^6.0.2"
+    }
 }
