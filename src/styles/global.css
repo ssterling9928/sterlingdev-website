@@ -17,6 +17,10 @@ body {
     max-width: 1280px;
 }
 
+.modal-hidden {
+    display: none;
+}
+
 /* Custom styles for subtle animations and effects */
 .gradient-text-orange {
     background: linear-gradient(45deg, #fb923c, #f97316, #ea580c);
@@ -48,11 +52,32 @@ body {
     transition: color 0.3s ease-in-out;
 }
 
+.nav-link.active {
+    color: currentColor;
+    /* Orange 500 */
+}
+
 .cta-button:hover {
     transform: translateY(-2px) scale(1.02);
     box-shadow: 0 10px 25px rgba(251, 146, 60, 0.4);
     /* Orange shadow */
     transition: all 0.3s ease-in-out;
+}
+
+.button {
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #5c6672;
+    background-color: transparent;
+    font-weight: bold;
+    color: #d1d5db;
+    padding: 12px 20px;
+}
+
+.button:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border-color: #f97316;
 }
 
 .skill-card:hover {
@@ -64,12 +89,15 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
+.project-card {
+    background: #18181b;
+    border: 1px solid #27272a;
+    transition: all 0.3s ease-in-out;
+}
+
 .project-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    /* Deeper shadow */
-    border-color: #f97316;
-    /* Orange 500 */
     transition: all 0.4s ease-in-out;
 }
 
@@ -168,6 +196,14 @@ body {
     background: #f97316;
     filter: blur(1px); /* This creates the soft glow effect */
     z-index: -1; /* Puts the glow behind the header content */
+}
+
+.grid-pattern-bg {
+    background-color: #111827;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 4rem 4rem;
 }
 
 /* ======================================================================
@@ -381,6 +417,42 @@ body {
     from {
         transform: translate(-50%, -50%) rotate(0deg);
     }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.aurora-work-bg {
+    position: relative;
+    overflow: hidden;
+    background-color: #030712;
+}
+
+.aurora-work-bg::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    height: 150%;
+    background: conic-gradient(
+        from 90deg,
+        #f59e0b,
+        /* amber-500 */ #ec4899,
+        /* pink-500 */ #8b5cf6,
+        /* violet-500 */ #f59e0b
+    );
+    filter: blur(100px);
+    opacity: 0.25;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
     to {
         transform: translate(-50%, -50%) rotate(360deg);
     }

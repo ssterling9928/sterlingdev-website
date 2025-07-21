@@ -1,17 +1,214 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro'
+import { Image } from 'astro:assets' // Import Astro's image component for optimized image handling
+
+import websiteThumbnail from '../assets/images/website-screenshot.png' // Import thumbnail image for astro website project
 ---
 
 <Layout title="Stephen Sterling - My Work">
-  <!-- My Work Section -->
-  <section id="work" class="py-20 px-6 bg-gray-900 rounded-3xl shadow-2xl my-16 mx-auto container">
-    <div class="text-center">
-      <h2 class="text-4xl font-bold gradient-text-orange mb-8">My Work</h2>
-      <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-6">
-        Here are some of the projects I've worked on, showcasing my skills in web development and design.
-      </p>
-      <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto">
-        Each project reflects my commitment to quality, user experience, and innovative solutions.
-      </p>
-    </div>
-  </section>
+    <!-- Work-Hero Section -->
+    <section class="aurora-work-bg py-20 text-center md:py-32">
+        <!-- Content Container -->
+        <div class="container relative z-10 mx-auto px-6">
+            <!-- Page Title -->
+            <h1 class="font-poppins text-5xl font-bold text-white md:text-7xl">
+                My Work
+            </h1>
+            <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-400 md:text-xl">
+                A selection of projects I've built, from game prototypes to
+                modern web applications.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Projects Grid Section -->
+    <section class="grid-pattern-bg py-16 md:py-24">
+        <!-- Content Container -->
+        <div class="container mx-auto px-6">
+            <!-- Project Cards -->
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Project Card 1 -->
+                <div
+                    class="project-card flex flex-col overflow-hidden rounded-2xl"
+                >
+                    <div class="relative">
+                        <Image
+                            src={websiteThumbnail}
+                            alt="Astro Website Thumbnail"
+                            class="h-56 w-full object-cover opacity-5"
+                            loading="lazy"
+                        />
+                        <h2
+                            class="absolute top-0 h-56 w-full justify-center bg-transparent p-6 pt-16 text-3xl font-bold text-orange-500 md:text-4xl lg:text-5xl"
+                        >
+                            Astro Website
+                        </h2>
+                    </div>
+
+                    <div class="flex flex-grow flex-col px-6 pb-6">
+                        <h3 class="font-poppins pb-2 text-2xl text-white">
+                            Portfolio Website
+                        </h3>
+                        <p class="mt-2 flex-grow pb-2 text-gray-400">
+                            A showcase of modern web development in action. This
+                            portfolio was built from the ground up with Astro
+                            for maximum performance and a seamless user
+                            experience, styled with Tailwind CSS. It features a
+                            fully automated CI/CD pipeline, deploying directly
+                            from GitHub to Cloudflare's edge network.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span
+                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
+                                >Astro</span
+                            ><span
+                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
+                                >HTML</span
+                            ><span
+                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
+                                >Tailwind CSS</span
+                            ><span
+                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
+                                >Javascript</span
+                            >
+                        </div>
+                        <div class="mt-6 flex items-center space-x-4">
+                            <a
+                                href="https://github.com/ssterling9928/sterlingdev-website"
+                                class="button"
+                                target="_blank"
+                            >
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div
+                    class="project-card flex flex-col overflow-hidden rounded-2xl"
+                >
+                    <div class="flex flex-grow flex-col p-6">
+                        <h3 class="font-poppins text-2xl text-white">
+                            iOS App
+                        </h3>
+                        <p class="mt-2 flex-grow text-gray-400">
+                            Coming Very Soon! Check back in a few days!
+                        </p>
+
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span
+                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
+                                >Swift</span
+                            ><span
+                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
+                                >Xcode</span
+                            >
+                        </div>
+                        <div class="mt-6 flex items-center space-x-4">
+                            <a
+                                href="#"
+                                class="w-full rounded-lg bg-orange-600 px-5 py-2 text-center font-semibold text-white hover:bg-orange-700"
+                                >App Store</a
+                            ><a
+                                href="#"
+                                class="w-full rounded-lg border border-gray-600 px-5 py-2 text-center font-semibold text-gray-300 hover:border-gray-400"
+                                >Source Code</a
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div
+                    class="project-card flex flex-col overflow-hidden rounded-2xl"
+                >
+                    <div class="flex flex-grow flex-col p-6">
+                        <h3 class="font-poppins text-2xl text-white">
+                            Unreal Project
+                        </h3>
+                        <p class="mt-2 flex-grow text-gray-400">
+                            Coming Very Soon! Check back in a few days!
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span
+                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
+                                >Unreal Engine 5</span
+                            ><span
+                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
+                                >C++</span
+                            >
+                        </div>
+                        <div class="mt-6 flex items-center space-x-4">
+                            <a
+                                href="#"
+                                class="w-full rounded-lg bg-orange-600 px-5 py-2 text-center font-semibold text-white hover:bg-orange-700"
+                                >Live Demo</a
+                            ><a
+                                href="#"
+                                class="w-full rounded-lg border border-gray-600 px-5 py-2 text-center font-semibold text-gray-300 hover:border-gray-400"
+                                >Source Code</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="py-16 md:py-24" style="background-color: #0D1117;">
+        <div class="container mx-auto px-6">
+            <div class="mb-16 text-center">
+                <!-- THE CHANGE: Revamped title -->
+                <h2 class="font-poppins text-5xl font-bold text-white">
+                    <span class="gradient-text-orange"
+                        >Primary Technologies</span
+                    >
+                </h2>
+                <p class="mt-4 text-lg text-gray-500">
+                    The core technologies I enjoy working with most.
+                </p>
+            </div>
+            <!-- THE CHANGE: Revamped logo cards -->
+            <div
+                class="flex flex-wrap items-center justify-center gap-8 md:gap-12"
+            >
+                <div class="tech-logo-card rounded-full p-4">
+                    <img
+                        src="https://placehold.co/80x80/ffffff/000000?text=UE5"
+                        alt="Unreal Engine 5"
+                        class="h-16 w-16 md:h-20 md:w-20"
+                    />
+                </div>
+                <div class="tech-logo-card rounded-full p-4">
+                    <img
+                        src="https://placehold.co/80x80/ffffff/000000?text=C%2B%2B"
+                        alt="C++"
+                        class="h-16 w-16 md:h-20 md:w-20"
+                    />
+                </div>
+                <div class="tech-logo-card rounded-full p-4">
+                    <img
+                        src="https://placehold.co/80x80/ffffff/000000?text=C%23"
+                        alt="C#"
+                        class="h-16 w-16 md:h-20 md:w-20"
+                    />
+                </div>
+                <div class="tech-logo-card rounded-full p-4">
+                    <img
+                        src="https://placehold.co/80x80/ffffff/000000?text=Git"
+                        alt="Git"
+                        class="h-16 w-16 md:h-20 md:w-20"
+                    />
+                </div>
+                <div class="tech-logo-card rounded-full p-4">
+                    <img
+                        src="https://placehold.co/80x80/ffffff/000000?text=Unity"
+                        alt="Unity"
+                        class="h-16 w-16 md:h-20 md:w-20"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>

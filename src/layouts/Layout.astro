@@ -45,5 +45,116 @@ import Header from '../components/Header.astro'
                 <p>&copy; 2025 Stephen Sterling. All rights reserved.</p>
             </div>
         </footer>
+
+        <!-- CONTACT MODAL -->
+        <div
+            id="contact-modal"
+            class="modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+        >
+            <!-- Modal Overlay -->
+            <div
+                id="modal-overlay"
+                class="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            >
+            </div>
+
+            <!-- Modal Content -->
+            <div
+                class="relative z-10 w-full max-w-md rounded-2xl border border-gray-800 bg-gray-900 p-8 text-center shadow-2xl"
+            >
+                <!-- Close Button -->
+                <button
+                    id="close-contact-modal"
+                    class="absolute right-4 top-4 text-gray-500 transition-colors hover:text-white"
+                >
+                    <svg
+                        class="h-6 w-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path></svg
+                    >
+                </button>
+
+                <h2 class="font-poppins text-4xl font-bold text-white">
+                    Get In Touch
+                </h2>
+                <p class="mt-2 text-gray-400">
+                    I'm always open to new opportunities and collaborations.
+                </p>
+
+                <div class="mt-8 space-y-4">
+                    <!-- Email Button -->
+                    <a
+                        href="mailto:stephen@sterling-dev.com"
+                        class="block w-full rounded-lg bg-orange-600 px-6 py-3 text-center text-lg font-bold text-white transition-transform duration-200 hover:scale-105 hover:bg-orange-700"
+                    >
+                        Send an Email
+                    </a>
+
+                    <!-- Download Resume Button -->
+                    <a
+                        href="/assets/resume/Sterling-Resume.pdf"
+                        download="Stephen_Sterling_Resume.pdf"
+                        class="block w-full rounded-lg bg-gray-700 px-6 py-3 text-center text-lg font-bold text-white transition-transform duration-200 hover:scale-105 hover:bg-gray-600"
+                    >
+                        Download My Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const openModalBtn =
+                    document.getElementById('open-contact-modal')
+
+                const closeModalBtn = document.getElementById(
+                    'close-contact-modal'
+                )
+
+                const modal = document.getElementById('contact-modal')
+                const overlay = document.getElementById('modal-overlay')
+
+                const openModal = () => {
+                    if (modal) {
+                        modal.classList.remove('modal-hidden')
+                    }
+                }
+
+                const closeModal = () => {
+                    if (modal) {
+                        modal.classList.add('modal-hidden')
+                    }
+                }
+
+                if (openModalBtn) {
+                    openModalBtn.addEventListener('click', openModal)
+                }
+
+                if (closeModalBtn) {
+                    closeModalBtn.addEventListener('click', closeModal)
+                }
+
+                if (overlay) {
+                    overlay.addEventListener('click', closeModal)
+                }
+
+                // Also close with the Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (
+                        e.key === 'Escape' &&
+                        modal &&
+                        !modal.classList.contains('modal-hidden')
+                    ) {
+                        closeModal()
+                    }
+                })
+            })
+        </script>
     </body>
 </html>
