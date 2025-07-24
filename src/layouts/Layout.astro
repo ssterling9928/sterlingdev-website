@@ -28,6 +28,10 @@ import Header from '../components/Header.astro'
             href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
             rel="stylesheet"
         />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
     </head>
 
     <body>
@@ -60,8 +64,12 @@ import Header from '../components/Header.astro'
 
             <!-- Modal Content -->
             <div
-                class="relative z-10 w-full max-w-md rounded-2xl border border-gray-800 bg-gray-900 p-8 text-center shadow-2xl"
+                class="relative z-10 w-full max-w-md overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 p-8 text-center shadow-2xl"
             >
+                <!-- A subtle orange accent border -->
+                <div class="absolute left-0 right-0 top-0 h-1 bg-orange-500">
+                </div>
+
                 <!-- Close Button -->
                 <button
                     id="close-contact-modal"
@@ -80,21 +88,71 @@ import Header from '../components/Header.astro'
                     >
                 </button>
 
-                <h2 class="font-poppins text-4xl font-bold text-white">
-                    Get In Touch
+                <!-- Modal Title -->
+                <h2 class="font-fira gradient-text-orange text-4xl font-bold">
+                    Connect With Me
                 </h2>
                 <p class="mt-2 text-gray-400">
-                    I'm always open to new opportunities and collaborations.
+                    Find me on these platforms or download my resume.
                 </p>
 
-                <div class="mt-8 space-y-4">
-                    <!-- Email Button -->
-                    <a
-                        href="mailto:stephen@sterling-dev.com"
-                        class="block w-full rounded-lg bg-orange-600 px-6 py-3 text-center text-lg font-bold text-white transition-transform duration-200 hover:scale-105 hover:bg-orange-700"
-                    >
-                        Send an Email
-                    </a>
+                <div class="mt-8">
+                    <!-- Social Icons Grid -->
+                    <div class="flex items-center justify-center space-x-6">
+                        <!-- GitHub -->
+                        <a
+                            href="https://github.com/ssterling9928"
+                            target="_blank"
+                            class="text-gray-400 transition-transform duration-200 hover:scale-110 hover:text-orange-400"
+                            aria-label="GitHub"
+                        >
+                            <svg
+                                class="h-10 w-10"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    fill-rule="evenodd"
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.47.087.67-.23.67-.483 0-.237-.008-.86-.013-1.688-2.782.603-3.369-1.34-3.369-1.34-.454-1.157-1.11-1.464-1.11-1.464-.908-.62.069-.607.069-.607 1.004.07 1.532 1.03 1.532 1.03.89 1.528 2.336 1.088 2.906.83.09-.645.35-1.088.636-1.338-2.22-.253-4.555-1.115-4.555-4.945 0-1.09.39-1.984 1.03-2.68a3.57 3.57 0 01.1-2.652s.836-.268 2.747 1.026c.79-.22 1.63-.33 2.47-.33.84 0 1.68.11 2.47.33 1.91-1.294 2.747-1.026 2.747-1.026.182.556.326 1.134.1 2.652.64.696 1.03 1.59 1.03 2.68 0 3.84-2.339 4.686-4.568 4.935.35.3.67.92.67 1.855 0 1.34-.012 2.427-.012 2.75 0 .25.197.575.676.474C20.137 20.217 23 16.46 23 12.017 23 6.484 18.522 2 12 2z"
+                                    clip-rule="evenodd"></path></svg
+                            >
+                        </a>
+                        <!-- LinkedIn -->
+                        <a
+                            href="https://linkedin.com/in/stephen-sterling-9514a41a2/"
+                            target="_blank"
+                            class="text-gray-400 transition-transform duration-200 hover:scale-110 hover:text-orange-400"
+                            aria-label="LinkedIn"
+                        >
+                            <svg
+                                class="h-10 w-10"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 006-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"
+                                ></path></svg
+                            >
+                        </a>
+                        <!-- Email -->
+                        <a
+                            href="mailto:stephen@sterling-dev.com"
+                            class="text-gray-400 transition-transform duration-200 hover:scale-110 hover:text-orange-400"
+                            aria-label="Email"
+                        >
+                            <svg
+                                class="h-10 w-10"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                                ><path
+                                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                                ></path><path
+                                    d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                                ></path></svg
+                            >
+                        </a>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="my-6 border-t border-gray-700"></div>
 
                     <!-- Download Resume Button -->
                     <a
@@ -110,8 +168,9 @@ import Header from '../components/Header.astro'
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                const openModalBtn =
-                    document.getElementById('open-contact-modal')
+                const openModalBtns = document.querySelectorAll(
+                    '.open-contact-modal'
+                )
 
                 const closeModalBtn = document.getElementById(
                     'close-contact-modal'
@@ -132,8 +191,13 @@ import Header from '../components/Header.astro'
                     }
                 }
 
-                if (openModalBtn) {
-                    openModalBtn.addEventListener('click', openModal)
+                if (openModalBtns) {
+                    openModalBtns.forEach((btn) => {
+                        btn.addEventListener('click', (e) => {
+                            e.preventDefault() // prevents the link from navigating
+                            openModal()
+                        })
+                    })
                 }
 
                 if (closeModalBtn) {

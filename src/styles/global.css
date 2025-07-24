@@ -43,25 +43,35 @@ body {
 
 .nav-link {
     @apply text-sm font-bold text-gray-300 md:text-lg;
+    transition: color 0.3s ease-in-out;
 }
 
 .nav-link:hover {
     color: #f97316;
     /* Orange 500 */
     font-weight: 600;
-    transition: color 0.3s ease-in-out;
 }
 
 .nav-link.active {
-    color: currentColor;
+    color: #fb923c;
     /* Orange 500 */
 }
 
+.cta-button {
+    color: #d1d5db;
+    padding: 15px 30px;
+    font-weight: bolder;
+    font-size: larger;
+    border-radius: 100px;
+    background-color: #ea580c;
+}
+
 .cta-button:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 10px 25px rgba(251, 146, 60, 0.4);
+    transform: scale(1.05);
+    box-shadow: 0 5px 25px rgba(249, 115, 22, 0.8);
     /* Orange shadow */
     transition: all 0.3s ease-in-out;
+    background-color: rgb(194, 65, 12);
 }
 
 .button {
@@ -114,24 +124,6 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Use your existing font-heading or cta-button classes if you have them globally */
-.font-heading {
-    /* Example: Make sure your header font is defined */
-    font-family: 'Poppins', sans-serif;
-}
-
-.font-poppins {
-    font-family: 'Poppins', sans-serif;
-}
-
-.font-inter {
-    font-family: 'Inter', sans-serif;
-}
-
-.font-source-code {
-    font-family: 'Source Code Pro', monospace;
 }
 
 .drop-cap::first-letter {
@@ -343,9 +335,9 @@ body {
 }
 
 /*
-        * 2. The pseudo-element that IS the aurora.
-        * - It's a giant, blurred, semi-transparent gradient that sits behind the content.
-    */
+    * 2. The pseudo-element that IS the aurora.
+    * - It's a giant, blurred, semi-transparent gradient that sits behind the content.
+        */
 .aurora-bg::before {
     content: '';
     position: absolute;
