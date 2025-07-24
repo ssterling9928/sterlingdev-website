@@ -9,11 +9,8 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
-
-                heading: [
-                    'Fira Sans Condensed',
-                    ...defaultTheme.fontFamily.sans,
-                ],
+                fira: ['Fira Sans Condensed', ...defaultTheme.fontFamily.sans],
+                mono: ['Source Code Pro', ...defaultTheme.fontFamily.mono],
             },
         },
     },

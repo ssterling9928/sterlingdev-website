@@ -9,7 +9,7 @@ import siteLogo from '../assets/images/sterlingdevlogo.png'
 const { pathname } = Astro.url
 
 // Define a class for the active navigation link color.
-const activeClass = 'text-orange-500'
+const activeClass = 'active'
 
 interface Props {
     siteTitle: string
@@ -23,7 +23,7 @@ const { siteTitle, logoAlt } = Astro.props
 <!-- Header/Navigation Section -->
 <header
     id="header"
-    class="header-glow top-0 z-50 rounded-b-xl bg-gray-900 bg-opacity-70 backdrop-blur-md sm:sticky"
+    class="font-fira header-glow top-0 z-50 rounded-b-xl bg-gray-900 bg-opacity-70 backdrop-blur-md sm:sticky"
 >
     <!-- Navigation Content Wrapper: -->
     <div
@@ -41,7 +41,7 @@ const { siteTitle, logoAlt } = Astro.props
             />
 
             <!-- Site Title: -->
-            <h1 class="font-heading text-xl text-white md:text-3xl">
+            <h1 class="text-xl text-white md:text-3xl">
                 {siteTitle}
             </h1>
 
@@ -77,8 +77,7 @@ const { siteTitle, logoAlt } = Astro.props
             >
         </nav>
         <button
-            id="open-contact-modal"
-            class="rounded-full bg-orange-600 px-8 py-3 text-xl font-bold text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-orange-700"
+            class="open-contact-modal rounded-full bg-orange-600 px-8 py-3 text-xl font-bold text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-orange-700"
         >
             Contact Me
         </button>
