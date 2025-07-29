@@ -22,625 +22,617 @@ import Layout from '../layouts/Layout.astro'
 
     <section>
         <!-- Game Container -->
-        <div class="game-container flex items-center justify-center p-8">
-            <!-- Game Content -->
-            <div
-                class="text-glow relative w-full max-w-4xl rounded-lg border-8 border-orange-500/60 bg-black/50 p-6 md:p-8"
+        <div
+            class="text-glow relative w-full max-w-4xl rounded-lg border-2 border-amber-500/30 bg-black/50 p-6 md:p-8"
+        >
+            <div class="scanlines absolute inset-0"></div>
+            <h1
+                class="mb-6 text-center text-3xl font-bold text-amber-400 md:text-4xl"
             >
-                <!-- Game Title -->
-                <h1
-                    class="mb-6 text-center text-3xl font-bold tracking-widest text-amber-400 md:text-4xl"
-                >
-                    ROBOT TAKEOVER
-                </h1>
+                R O B O T _ T A K E O V E R
+            </h1>
 
-                <!-- Game Text Area -->
-                <div
-                    id="game-text"
-                    class="min-h-[150px] whitespace-pre-wrap text-lg leading-relaxed md:min-h-[200px] md:text-xl"
-                >
-                </div>
+            <div
+                id="inventory-display"
+                class="mb-4 h-6 text-center text-amber-600"
+            >
+            </div>
 
-                <!-- Options Container -->
-                <div
-                    id="options-container"
-                    class="mt-8 border-t-2 border-amber-500/30 pt-6"
-                >
-                </div>
-
-                <!-- Input Prompt -->
-                <div class="mt-6 flex items-center gap-x-3">
-                    <span class="font-bold text-amber-400">></span>
-                    <div id="input-prompt" class="text-gray-500">
-                        Awaiting input...
-                    </div>
+            <div
+                id="game-text"
+                class="min-h-[150px] whitespace-pre-wrap text-lg leading-relaxed md:min-h-[200px] md:text-xl"
+            >
+            </div>
+            <div
+                id="options-container"
+                class="mt-8 border-t-2 border-amber-500/30 pt-6"
+            >
+            </div>
+            <div class="mt-6 flex items-center gap-x-3">
+                <span class="font-bold text-amber-400">></span>
+                <div id="input-prompt" class="text-gray-500">
+                    Awaiting input...
                 </div>
             </div>
         </div>
 
         <script>
-            const gameTextElement = document.getElementById('game-text')
-            const optionsContainer =
-                document.getElementById('options-container')
-            const inputPrompt = document.getElementById('input-prompt')
+            type GameStateKey = keyof typeof gameData
+            type GameState = {
+                key: GameStateKey
+                text: string
+                options?: Array<Options>
+            }
 
-            // --- GAME DATA (Transcribed from your latest images) ---
-            const gameData = {
-                start: {
-                    text: 'Welcome to Robot Takeover! You will find yourself in a text-based adventure game. The year is 2050. Robots have come together to take over the world from the humans. You must find a way to communicate with one another. How you communicate will determine the fate of humanity.',
+            type Options = {
+                text: string
+                nextState?: string
+                addItem?: string
+                requires?: string
+            }
+
+            // --- GAME DATA ---
+            const gameData: GameState[] = [
+                {
+                    key: 'GameMenu' as GameStateKey,
+                    text: 'Welcome to Robot Takeover. In this text-based adventure, you must fight for survival to reclaim the world from the machines. The fate of humanity rests on your shoulders. Can you survive?',
                     options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateIntro' },
+                        { text: 'Begin', nextState: 'Intro' },
+                        { text: 'Quit', nextState: 'Q1' },
                     ],
                 },
-                stateIntro: {
-                    text: 'You awaken from a short nap by a loud noise. The lights are flickering as you hear an alarm sound. You see a door that is slightly ajar.',
-                    options: [
-                        {
-                            key: 'a',
-                            text: 'Investigate the noise.',
-                            nextScene: 'stateA1',
-                        },
-                        {
-                            key: 'b',
-                            text: 'Check out the back door and ignore the noise.',
-                            nextScene: 'stateA2',
-                        },
-                    ],
+                {
+                    key: 'Intro' as GameStateKey,
+                    text: 'The year is 3095. A sentient network of machines has seized control of global infrastructure. Humanity is scattered, living in the ruins of the old world. You are one of the few who remain, and every day is a struggle for survival.',
+                    options: [{ text: 'Continue', nextState: 'A1' }],
                 },
-                stateA1: {
-                    text: 'You awaken from a short nap by a loud noise. You hear people screaming. You look out the window and see robots attacking the city.',
+                {
+                    key: 'A1' as GameStateKey,
+                    text: "You are startled from a fitful sleep by a harsh, metallic grinding just outside the thin metal door of your shelter. The sound is unmistakable—a bot, and it's dangerously close.\n\nWhat is your move?",
                     options: [
                         {
-                            key: 'a',
-                            text: 'Go investigate the noise.',
-                            nextScene: 'stateA3',
+                            text: 'Open the door and investigate.',
+                            nextState: 'A2',
                         },
                         {
-                            key: 'b',
-                            text: 'Check out the back door and ignore the noise.',
-                            nextScene: 'stateA5',
-                        },
-                    ],
-                },
-                stateA2: {
-                    text: 'You decide to check out the back door. You walk through the house. You see a man run through the back door and into the woods. He is holding a box under his arm.',
-                    options: [
-                        {
-                            key: 'a',
-                            text: 'Follow the man.',
-                            nextScene: 'stateA6',
-                        },
-                        {
-                            key: 'b',
-                            text: 'Go back and investigate the noise.',
-                            nextScene: 'stateA3',
+                            text: 'Slip out the back and avoid it.',
+                            nextState: 'A3',
                         },
                     ],
                 },
-                stateA3: {
-                    text: 'You check out the front door. You see a bot. It is standing outside your house. You can see other bots down the street attacking people.',
+                {
+                    key: 'A2' as GameStateKey,
+                    text: "You cautiously crack open the door. A small, spider-like bot, unlike any you've encountered, whirs and clicks as its single red optic scans the hallway. It hasn't seen you yet.\n\nWhat do you do?",
                     options: [
                         {
-                            key: 'a',
-                            text: 'Try to communicate with the bot.',
-                            nextScene: 'stateA4',
+                            text: 'Lunge at it with a nearby pipe.',
+                            nextState: 'A4',
+                        },
+                        { text: 'Attempt communication.', nextState: 'B1' },
+                    ],
+                },
+                {
+                    key: 'A3' as GameStateKey,
+                    text: 'Deciding against a direct confrontation, you slip out a back window into the cold, desolate world. The path forward is uncertain, but a cracked asphalt road stretches into the distance.',
+                    options: [
+                        { text: 'Follow the road east.', nextState: 'A5' },
+                        { text: 'Follow the road west.', nextState: 'A6' },
+                    ],
+                },
+                {
+                    key: 'A4' as GameStateKey,
+                    text: 'With a guttural yell, you bring the heavy pipe down on the bot. It emits a piercing electronic shriek and collapses in a shower of sparks. Amidst the twitching wreckage, you find a small WRENCH clutched in one of its appendages. A useful tool. You take it and head out onto the main road.',
+                    options: [
+                        {
+                            text: 'Follow the road east.',
+                            nextState: 'A5',
+                            addItem: 'Wrench',
                         },
                         {
-                            key: 'b',
+                            text: 'Follow the road west.',
+                            nextState: 'A6',
+                            addItem: 'Wrench',
+                        },
+                    ],
+                },
+                {
+                    key: 'A5' as GameStateKey,
+                    text: 'You follow the road heading east, the ruins of the city silhouetted against the gray sky.',
+                    options: [{ text: 'Continue', nextState: 'A7' }],
+                },
+                {
+                    key: 'A6' as GameStateKey,
+                    text: 'You follow the road heading west, towards the decaying suburbs.',
+                    options: [{ text: 'Continue', nextState: 'A7' }],
+                },
+                {
+                    key: 'A7' as GameStateKey,
+                    text: 'Ahead, you spot a dilapidated house that appears to have been recently occupied. It could offer shelter, or it could be a trap.\n\nWhat is your next move?',
+                    options: [
+                        {
+                            text: 'Enter through the front door.',
+                            nextState: 'A8',
+                        },
+                        {
+                            text: 'Circle around to the back entrance.',
+                            nextState: 'A9',
+                        },
+                        {
+                            text: 'Avoid the house and keep moving.',
+                            nextState: 'A10',
+                        },
+                    ],
+                },
+                {
+                    key: 'A8' as GameStateKey,
+                    text: "You push open the front door and step inside. In the dim light, you see an old woman sitting motionless on a couch. She doesn't acknowledge your presence.",
+                    options: [{ text: 'Continue', nextState: 'A11' }],
+                },
+                {
+                    key: 'A9' as GameStateKey,
+                    text: 'You circle to the back and slip through a rusted service door into a kitchen. Against the far wall, a large, imposing bot stands silent and motionless. Next to it is a locked maintenance panel.\n\nWhat should you do?',
+                    options: [
+                        { text: 'Attack the bot.', nextState: 'A12' },
+                        {
+                            text: 'Use the Wrench on the panel.',
+                            nextState: 'A9_Wrench',
+                            requires: 'Wrench',
+                        },
+                        {
+                            text: 'Attempt to communicate with the bot.',
+                            nextState: 'A13',
+                        },
+                        {
                             text: 'Try to sneak past the bot.',
-                            nextScene: 'stateB1',
+                            nextState: 'A14',
                         },
                     ],
                 },
-                stateA4: {
-                    text: 'You place the bot. The bot makes a screeching noise and starts to attack you. You run back into the house and lock the door. The bot is trying to bang the door to attack but fails. As they are extremely loud, you hear other bots coming. You decide to go out the back and run away. You see a trail.',
+                {
+                    key: 'A9_Wrench' as GameStateKey,
+                    text: 'You use the wrench to pry open the maintenance panel. The lock gives way with a groan. Inside, you find a pristine KEYCARD. The bot remains still, deactivated.',
                     options: [
                         {
-                            key: 'a',
-                            text: 'Follow the trail east.',
-                            nextScene: 'stateB4',
-                        },
-                        {
-                            key: 'b',
-                            text: 'Follow the trail west.',
-                            nextScene: 'stateB5',
-                        },
-                    ],
-                },
-                stateA5: {
-                    text: 'You follow the road east.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateA7' },
-                    ],
-                },
-                stateA6: {
-                    text: 'You follow the road west.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateA8' },
-                    ],
-                },
-                stateA7: {
-                    text: 'You eventually come to a house that looks like it has been recently lived in. You decide you want to check it out. You walk up to the house.',
-                    options: [
-                        {
-                            key: 'a',
-                            text: 'Walk in through the front door.',
-                            nextScene: 'stateB8',
-                        },
-                        {
-                            key: 'b',
-                            text: 'Go around back and go in the back door.',
-                            nextScene: 'stateB9',
-                        },
-                        {
-                            key: 'c',
-                            text: 'Change your mind and decide not to investigate the house.',
-                            nextScene: 'stateA10',
-                        },
-                    ],
-                },
-                stateA8: {
-                    text: 'You walk up to the back door and go in the back door. Inside the house you see a man and a woman. They are talking about a box. The man is holding a box under his arm. They see you entering the room.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateA9' },
-                    ],
-                },
-                stateA9: {
-                    text: 'You walk around to the back door and go in the back door. Inside the house you see a man and a woman. You see a box against the corner of the room. They see you entering the room.',
-                    options: [
-                        {
-                            key: 'a',
-                            text: 'Try to communicate with the two.',
-                            nextScene: 'stateA14',
-                        },
-                        {
-                            key: 'b',
-                            text: 'Take the box and run.',
-                            nextScene: 'stateA12',
-                        },
-                    ],
-                },
-                stateA10: {
-                    text: 'You decide to not investigate the house and walk by it. You decide to keep walking. All of a sudden you hear a loud noise behind you. You turn around and see a robot. You try to run away but it is too late. The robot catches up to you and you are captured.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateX1' },
-                    ],
-                },
-                stateA11: {
-                    text: 'You speak out to the woman. She ignores you. She continues to talk to the man. You get closer to them and you are able to notice that they are frantic.',
-                    options: [
-                        {
-                            key: 'a',
-                            text: 'Speak out again to them.',
-                            nextScene: 'stateA17',
-                        },
-                        {
-                            key: 'b',
-                            text: 'Turn around and leave the house.',
-                            nextScene: 'stateA18',
-                        },
-                    ],
-                },
-                stateA12: {
-                    text: "You attack the two. It didn't seem to phase them. All of a sudden the bot you saw earlier enters the house. It is not a normal bot. It has a laser that it shoots at you but misses you. You don't stand a chance.",
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateX1' },
-                    ],
-                },
-                stateA13: {
-                    text: 'You speak out to the bot. The bot turns around and shoots a laser at you and just misses you. It comes closer. You can see it has a self destruct button on it.',
-                    options: [
-                        {
-                            key: 'a',
-                            text: 'Press the button.',
-                            nextScene: 'stateA15',
-                        },
-                        {
-                            key: 'b',
-                            text: 'Stand there.',
-                            nextScene: 'stateX1',
-                        },
-                    ],
-                },
-                stateA14: {
-                    text: "Since it doesn't seem to notice you, and you know that you are outnumbered, you decide not to approach it.",
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateA16' },
-                    ],
-                },
-                stateA15: {
-                    text: 'You press the button. The bot starts to make a loud noise. You see a timer on the bot. It is at five seconds, and gets closer. It explodes and you are killed.',
-                    options: [
-                        {
-                            key: 'a',
                             text: 'Continue through the house.',
-                            nextScene: 'stateX1',
+                            nextState: 'A16',
+                            addItem: 'Keycard',
                         },
                     ],
                 },
-                stateA16: {
-                    text: 'You walk through the back door and into the front yard. You see an older bot that seems to be in low power mode. You can see it is holding a box under its arm.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateA13' },
-                    ],
+                {
+                    key: 'A10' as GameStateKey,
+                    text: "You decide the house isn't worth the risk. As you continue down the road, you hear the sudden sound of heavy, rhythmic footsteps behind you. You turn, but it's too late.",
+                    options: [{ text: 'Continue', nextState: 'X1' }],
                 },
-                stateA17: {
-                    text: 'You speak to her again. This time she starts to listen to you. She tells you her name is Sarah. She tells you to look at the woman and ask her what to do.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateA19' },
-                    ],
-                },
-                stateA18: {
-                    text: 'You decide to leave the house.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateA25' },
-                    ],
-                },
-                stateA19: {
-                    text: 'The woman explains that she knows how the bots work. She tells you that you can destroy them to destroy them so humans can rule again.',
+                {
+                    key: 'A11' as GameStateKey,
+                    text: "You call out to the woman, but she remains silent, her gaze fixed on something you can't see. Her silence is unsettling.\n\nWhat do you do?",
                     options: [
                         {
-                            key: 'a',
-                            text: 'Ask her what should you do.',
-                            nextScene: 'stateA20',
+                            text: 'Speak to her again, louder.',
+                            nextState: 'A17',
                         },
                         {
-                            key: 'b',
-                            text: 'Tell the woman you want to destroy her and leave the house.',
-                            nextScene: 'stateA12',
+                            text: 'Ignore her and leave the house.',
+                            nextState: 'A18',
                         },
                     ],
                 },
-                stateA20: {
-                    text: 'The woman explains that the robots are able to communicate through a tower. The tower is able to conduct a connected signal to each other bot. She tells you that you need to destroy the tower to save humanity.',
+                {
+                    key: 'A12' as GameStateKey,
+                    text: "You attack the bot with all your strength. It doesn't even register the blow. It emits a deafening, high-frequency screech, and a blinding red light erupts from its weapon arm. You don't stand a chance.",
+                    options: [{ text: 'Continue', nextState: 'X1' }],
+                },
+                {
+                    key: 'A13' as GameStateKey,
+                    text: 'You cautiously speak to the bot. It turns its head with a sharp mechanical snap, its optical sensor focusing on you. It takes a heavy step closer.\n\nWhat do you do?',
+                    options: [
+                        { text: 'Attack it now.', nextState: 'A12' },
+                        { text: 'Hold your ground.', nextState: 'A15' },
+                    ],
+                },
+                {
+                    key: 'A14' as GameStateKey,
+                    text: 'Knowing the danger, you decide not to engage. You quietly sneak through the adjoining room, leaving the dormant machine behind.',
+                    options: [{ text: 'Continue', nextState: 'A16' }],
+                },
+                {
+                    key: 'A15' as GameStateKey,
+                    text: "You stand your ground as the bot approaches. It stops just inches from you, scans you for a few tense seconds, and then, inexplicably, turns and returns to its corner. You let out a breath you didn't realize you were holding.\n\nWhat now?",
                     options: [
                         {
-                            key: 'a',
-                            text: 'Continue to listen.',
-                            nextScene: 'stateA21',
-                        },
-                    ],
-                },
-                stateA21: {
-                    text: 'The woman continues to explain that they all communicate through the tower. She tells you that you need to destroy the tower so that it can cut off all communication and the bots will not be able to function any longer. She tells you that you first need to find her husband Patrick.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateA22' },
-                    ],
-                },
-                stateA22: {
-                    text: 'She tells you that when you find him, make sure you tell him that she sent you. She tells you that you need to destroy the tower so that you will be able to destroy the bots.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateA23' },
-                        {
-                            key: 'b',
-                            text: 'Tell the woman that you want to destroy her.',
-                            nextScene: 'stateA12',
-                        },
-                    ],
-                },
-                stateA23: {
-                    text: 'You tell her that you will help her. You leave the house and go on your way. You come to a fork in the road. You see a robot that shoots directly towards you.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateA24' },
-                    ],
-                },
-                stateA24: {
-                    text: 'The bot turns and sees you. You try to run away but it is too late. The bot shoots you and you are captured.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateX1' },
-                    ],
-                },
-                stateA25: {
-                    text: 'You walk back through the yard and back to the road. You see a robot walking up the road. You decide to take a different path.',
-                    options: [
-                        {
-                            key: 'a',
-                            text: 'Take the left path.',
-                            nextScene: 'stateA26',
+                            text: 'Continue through the house.',
+                            nextState: 'A16',
                         },
                         {
-                            key: 'b',
-                            text: 'Take the middle path.',
-                            nextScene: 'stateA27',
-                        },
-                        {
-                            key: 'c',
-                            text: 'Take the right path.',
-                            nextScene: 'stateA28',
+                            text: 'Leave the house immediately.',
+                            nextState: 'A18',
                         },
                     ],
                 },
-                stateA26: {
-                    text: 'You decide to take the left path. Almost you come to a dead end. You see a robot standing. As you get closer, you see some armor and a helmet.',
+                {
+                    key: 'A16' as GameStateKey,
+                    text: 'You move through the back room and into the main living area. An old woman is sitting on the couch, completely silent, as if in a trance.',
+                    options: [{ text: 'Continue', nextState: 'A11' }],
+                },
+                {
+                    key: 'A17' as GameStateKey,
+                    text: 'You speak again, louder this time. The woman\'s head slowly turns. She begins to mumble, her voice raspy. "I... I know how to stop them." You lean in, intrigued.',
                     options: [
-                        {
-                            key: 'a',
-                            text: 'Congratulations! You feel refreshed.',
-                            nextScene: 'stateA29',
-                        },
+                        { text: 'Ask her to explain.', nextState: 'A19' },
                     ],
                 },
-                stateA27: {
-                    text: "You decide to take the middle path. Almost you come to a dead end. You see a robot standing. You get closer and see some armor and a helmet. You decide that you can't jump the robot.",
-                    options: [
-                        {
-                            key: 'a',
-                            text: "Forget you don't make it.",
-                            nextScene: 'stateX1',
-                        },
-                    ],
+                {
+                    key: 'A18' as GameStateKey,
+                    text: 'This place is too strange. You decide to leave.',
+                    options: [{ text: 'Continue', nextState: 'A25' }],
                 },
-                stateA28: {
-                    text: "You decide to take the right path. Almost you come to a dead end. You see a robot standing. You get closer and see some armor and a helmet. You decide that you can't jump the robot.",
+                {
+                    key: 'A19' as GameStateKey,
+                    text: 'The woman reveals she was a lead engineer on the network. She knows its central weakness and how to exploit it to shut down the bots for good. You look at her with a mix of hope and disbelief.\n\nWhat do you do?',
                     options: [
                         {
-                            key: 'a',
-                            text: "Forget you don't make it.",
-                            nextScene: 'stateX1',
-                        },
-                    ],
-                },
-                stateA29: {
-                    text: 'You are able to defeat the robot. As you are walking, you eventually come to a large tower. As you get closer, you see a door. You see a robot standing in front of the door.',
-                    options: [
-                        {
-                            key: 'a',
-                            text: 'Get closer to the tower.',
-                            nextScene: 'stateA30',
+                            text: 'Urge her to explain further.',
+                            nextState: 'A20',
                         },
                         {
-                            key: 'b',
-                            text: 'Decide that it is not important.',
-                            nextScene: 'stateA10',
+                            text: 'Dismiss her as a madwoman and leave.',
+                            nextState: 'A23',
                         },
                     ],
                 },
-                stateA30: {
-                    text: 'You decide to keep walking. The tower is not important. You see a robot standing in front of the door. You get closer and see some armor and a helmet. You are not able to continue your journey.',
+                {
+                    key: 'A20' as GameStateKey,
+                    text: '"Their strength is their weakness," she whispers. "Every bot is connected, all communications routed through a single command tower not far from here. Destroy the tower, and you sever the connection."',
                     options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateX1' },
+                        { text: 'Continue to listen.', nextState: 'A21' },
                     ],
                 },
-                stateA31: {
-                    text: 'You get closer to the tower. As you get closer, you see a door. You see a robot standing in front of the door. You see a keypad.',
-                    options: [
-                        { key: 'a', text: 'Door 1', nextScene: 'stateW1' },
-                        { key: 'b', text: 'Door 2', nextScene: 'stateX1' },
-                        { key: 'c', text: 'Door 3', nextScene: 'stateX1' },
-                    ],
+                {
+                    key: 'A21' as GameStateKey,
+                    text: 'She explains that the tower is heavily guarded, but there is a maintenance access panel with nine doors. She looks you dead in the eye. "You must choose door number four. Any other choice leads to certain death."',
+                    options: [{ text: 'Continue.', nextState: 'A22' }],
                 },
-                stateA32: {
-                    text: 'You go to push the button but you fall. You fall into what seems like an endless pit. You are not able to continue your journey long enough to even think about what just happened.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateX1' },
-                    ],
-                },
-                stateB1_alt: {
-                    text: 'You try and communicate with the bot. The bot does not respond. You try again. The bot turns and starts to attack you. All of a sudden, the bot starts to spark and shuts down. You look behind the bot to see a man. He tells you to follow him. You follow him to a secret trail track.',
+                {
+                    key: 'A22' as GameStateKey,
+                    text: "She asks if you will undertake this mission to save what's left of humanity.\n\nWhat do you do?",
                     options: [
                         {
-                            key: 'a',
-                            text: 'Follow the ground track.',
-                            nextScene: 'stateB4',
+                            text: 'Agree to destroy the tower.',
+                            nextState: 'A24',
                         },
                         {
-                            key: 'b',
-                            text: 'Do not follow.',
-                            nextScene: 'stateB2',
+                            text: "Tell her you can't trust her insane plan.",
+                            nextState: 'A23',
                         },
                     ],
                 },
-                stateB2: {
-                    text: "You yell out to the man, that you don't need any help. The man continues to walk away. You see another human standing in the darkness.",
+                {
+                    key: 'A23' as GameStateKey,
+                    text: "The moment you voice your doubt, the woman's expression turns hostile. A hidden bot emerges from the kitchen, its weapon glowing. Her calm demeanor was a facade.",
+                    options: [{ text: 'Continue', nextState: 'X1' }],
+                },
+                {
+                    key: 'A24' as GameStateKey,
+                    text: "A flicker of hope appears in the woman's eyes. She seems relieved. You thank her for the information and leave the house, now with a clear mission.",
+                    options: [{ text: 'Continue', nextState: 'A25' }],
+                },
+                {
+                    key: 'A25' as GameStateKey,
+                    text: 'You find yourself back on the main road, which soon splits into a three-way fork.\n\nWhich path will you take?',
+                    options: [
+                        { text: 'Take the left path.', nextState: 'A26' },
+                        { text: 'Take the right path.', nextState: 'A27' },
+                        { text: 'Take the middle path.', nextState: 'A28' },
+                    ],
+                },
+                {
+                    key: 'A26' as GameStateKey,
+                    text: 'You take the left path. Ahead, you find a tree with strange, glowing fruit. Starving, you eat some. A wave of energy washes over you. You feel refreshed and stronger.',
+                    options: [{ text: 'Continue', nextState: 'A29' }],
+                },
+                {
+                    key: 'A27' as GameStateKey,
+                    text: 'You take the right path and find the same type of glowing fruit. You eat it and feel your strength return.',
+                    options: [{ text: 'Continue', nextState: 'A29' }],
+                },
+                {
+                    key: 'A28' as GameStateKey,
+                    text: "The middle path leads to a wide chasm. Believing you can make the jump, you take a running leap. You don't even come close.",
+                    options: [{ text: 'Continue', nextState: 'X1' }],
+                },
+                {
+                    key: 'A29' as GameStateKey,
+                    text: 'After walking for what feels like hours, you see it in the distance: a massive, dark tower, humming with power. A single, powerful bot stands guard at its base.\n\nWhat is your plan?',
+                    options: [
+                        { text: 'Approach the tower.', nextState: 'A31' },
+                        {
+                            text: "Decide it's too risky and turn back.",
+                            nextState: 'A30',
+                        },
+                    ],
+                },
+                {
+                    key: 'A30' as GameStateKey,
+                    text: "The sight of the tower and its guard fills you with dread. You decide it's a suicide mission and turn back. The road stretches on endlessly. Eventually, you collapse from exhaustion, unable to continue.",
+                    options: [{ text: 'Continue', nextState: 'X1' }],
+                },
+                {
+                    key: 'A31' as GameStateKey,
+                    text: 'You approach the tower. The guard bot stands before a panel of nine identical doors. It speaks in a monotone voice: "Choose your entry point."\n\nWhich door do you choose?',
+                    options: [
+                        { text: 'Door 1', nextState: 'A32' },
+                        { text: 'Door 2', nextState: 'A32' },
+                        { text: 'Door 3', nextState: 'A32' },
+                        { text: 'Door 4', nextState: 'W1' },
+                        { text: 'Door 5', nextState: 'A32' },
+                        { text: 'Door 6', nextState: 'A32' },
+                        { text: 'Door 7', nextState: 'A32' },
+                        { text: 'Door 8', nextState: 'A32' },
+                        { text: 'Door 9', nextState: 'A32' },
+                    ],
+                },
+                {
+                    key: 'A32' as GameStateKey,
+                    text: 'You step through the door and the floor immediately gives way beneath you. It was a trap. You fall into darkness.',
+                    options: [{ text: 'Continue', nextState: 'X1' }],
+                },
+                {
+                    key: 'B1' as GameStateKey,
+                    text: "You try to communicate with the bot, but it doesn't seem to understand. It begins to beep erratically, shaking violently. Before you can react, it self-destructs in a powerful explosion, throwing you back against the wall.",
+                    options: [{ text: 'Yell for help!', nextState: 'B2' }],
+                },
+                {
+                    key: 'B2' as GameStateKey,
+                    text: 'You cry out for help. Footsteps echo down the hall, and another human appears in the doorway, looking concerned.\n\nWhat do you do?',
+                    options: [
+                        { text: 'Ask the man for help.', nextState: 'B3' },
+                        { text: 'Tell him to go away.', nextState: 'B4' },
+                    ],
+                },
+                {
+                    key: 'B3' as GameStateKey,
+                    text: "The man rushes to your aid, helping you to your feet. He introduces himself as Patrick and says you're the first survivor he's seen in months. He asks if you want to travel together.",
+                    options: [
+                        { text: 'Travel with Patrick.', nextState: 'B5' },
+                        { text: 'Go your own way.', nextState: 'B6' },
+                    ],
+                },
+                {
+                    key: 'B4' as GameStateKey,
+                    text: "You yell at the man to leave you alone. He hesitates, then retreats down the hall. You soon realize your legs are badly injured from the blast. You can't get up. You are stranded and alone.",
+                    options: [{ text: 'Continue', nextState: 'X1' }],
+                },
+                {
+                    key: 'B5' as GameStateKey,
+                    text: 'You and Patrick set off. He tells you a rumor about an old engineer who knows how to defeat the bots. He thinks you should seek her out.\n\nWhat do you think?',
                     options: [
                         {
-                            key: 'a',
-                            text: 'Go investigate.',
-                            nextScene: 'stateB3',
+                            text: 'Agree to find the old lady.',
+                            nextState: 'B8',
                         },
                         {
-                            key: 'b',
-                            text: "Decide you don't need help.",
-                            nextScene: 'stateB6',
+                            text: "Tell Patrick it's a waste of time.",
+                            nextState: 'B9',
                         },
                     ],
                 },
-                stateB3: {
-                    text: 'The man comes to your aid. He helps you up to your feet. He tells you that his name is Patrick. He tells you that he knows how to defeat the bots. He tells you that you need to destroy the tower to defeat the bots.',
+                {
+                    key: 'B6' as GameStateKey,
+                    text: 'You tell Patrick you work alone and head outside to the main road.\n\nWhat now?',
                     options: [
-                        {
-                            key: 'a',
-                            text: 'Decide to go on your own without Patrick.',
-                            nextScene: 'stateB6',
-                        },
+                        { text: 'Travel east.', nextState: 'A5' },
+                        { text: 'Travel west.', nextState: 'A6' },
+                        { text: 'Go back and find Patrick.', nextState: 'B7' },
                     ],
                 },
-                stateB4: {
-                    text: "You yell out to the man, that you don't want any help. You continue to walk on the trail. You see the man does not hesitate and continues on the trail. You hear a loud explosion. You soon realize that you disobeyed the man and went on your own. You are unable to continue your journey.",
+                {
+                    key: 'B7' as GameStateKey,
+                    text: "You have a change of heart and go back to find Patrick. He's still there, contemplating his next move. You apologize and ask to join him. He agrees.",
+                    options: [{ text: 'Continue', nextState: 'B5' }],
+                },
+                {
+                    key: 'B8' as GameStateKey,
+                    text: 'You agree that finding the old lady is your best shot. You and Patrick set off together.',
+                    options: [{ text: 'Continue', nextState: 'A7' }],
+                },
+                {
+                    key: 'B9' as GameStateKey,
+                    text: "You tell Patrick that an old folktale won't save you. He seems convinced and agrees to abandon the idea. You decide to follow a nearby road, which soon comes to a fork.",
                     options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateX1' },
+                        { text: 'Take the left path.', nextState: 'B10' },
+                        { text: 'Take the right path.', nextState: 'B10' },
                     ],
                 },
-                stateB5: {
-                    text: 'You follow the man. He tells you that he knows about an attack that is about to happen. He tells you that you need to destroy the tower. He tells you that you should head there.',
-                    options: [
-                        {
-                            key: 'a',
-                            text: 'Travel with Patrick to visit his wife Sally.',
-                            nextScene: 'stateA8',
-                        },
-                        {
-                            key: 'b',
-                            text: 'Travel towards the tower.',
-                            nextScene: 'stateA31',
-                        },
-                    ],
+                {
+                    key: 'B10' as GameStateKey,
+                    text: 'You follow the path until you reach a rickety bridge. As you cross, the structure groans and collapses beneath you. You both fall to your doom.',
+                    options: [{ text: 'Continue', nextState: 'X1' }],
                 },
-                stateB6: {
-                    text: "You decide that you don't need Patrick's help. You continue to walk on the trail. You come to a fork. One side is east and one is west.",
-                    options: [
-                        {
-                            key: 'a',
-                            text: 'Travel the road east.',
-                            nextScene: 'stateA5',
-                        },
-                        {
-                            key: 'b',
-                            text: 'Travel the road west.',
-                            nextScene: 'stateA6',
-                        },
-                        {
-                            key: 'c',
-                            text: 'Go back and find Patrick.',
-                            nextScene: 'stateB7',
-                        },
-                    ],
-                },
-                stateB7: {
-                    text: 'You decide to turn and go and find Patrick. You find him and tell him that you want to travel with him. He tells you that you made a mistake and that he is not sure if he can trust you. He decides that he wants to travel with you.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateB10' },
-                    ],
-                },
-                stateB8: {
-                    text: 'You decide you want to walk in the front door. You walk in and see a woman. She tells you that her name is Sally. You tell her that you are looking for her husband Patrick.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateA11' },
-                    ],
-                },
-                stateB9: {
-                    text: 'You decide you want to go in the back door. You walk in and see an old lady. You ask her about the box. She tells you that she does not know anything about the box. You see a robot standing behind her.',
-                    options: [
-                        {
-                            key: 'a',
-                            text: 'Take the right path.',
-                            nextScene: 'stateA13',
-                        },
-                    ],
-                },
-                stateB10: {
-                    text: 'You follow the path that you came from. You both come to a bridge. The bridge collapses. You both fall to your death.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateX1' },
-                    ],
-                },
-                stateW1: {
-                    text: 'You pick door number 1. You walk into the door and you see a robot. The robot is guarding a button. You are able to get through it. You decide to destroy the tower.',
-                    options: [
-                        { key: 'a', text: 'Continue', nextScene: 'stateW2' },
-                    ],
-                },
-                stateW2: {
-                    text: 'You push the button. You hear a loud noise. The tower is destroyed. You are able to save humanity. You are the only one that can save the world. You are able to return the world back to what it used to be.',
-                    options: [{ key: 'a', text: 'Continue', nextScene: 'win' }],
-                },
-                win: {
-                    text: 'Congratulations! You have completed your journey and saved the world from the bots. Thanks for playing!!!',
-                    options: [
-                        { key: 'a', text: 'Play Again', nextScene: 'start' },
-                    ],
-                },
-                stateX1: {
-                    text: 'Game Over! You were not strong enough to finish your journey. The path ends. The bots will forever rule the world.',
-                    options: [
-                        { key: 'a', text: 'Play Again', nextScene: 'start' },
-                        { key: 'b', text: 'Main Menu', nextScene: 'start' },
-                    ],
-                },
-                stateQ1: {
-                    text: 'You have decided to give up on your journey. Now the evil remaining humans have no chance of taking back the world from the bots.',
-                    options: [
-                        { key: 'a', text: 'Play Again', nextScene: 'start' },
-                        {
-                            key: 'b',
-                            text: 'Please close the application.',
-                            nextScene: 'end',
-                        },
-                    ],
-                },
-                end: {
-                    text: 'Thank you for playing. Application will now close.',
+                {
+                    key: 'Q1' as GameStateKey,
+                    text: 'You have chosen to end your journey. The last spark of human resistance has been extinguished.',
                     options: [],
                 },
-            }
+                {
+                    key: 'X1' as GameStateKey,
+                    text: 'GAME OVER.\nYour journey has ended in failure. The bots will rule the world forever.',
+                    options: [
+                        { text: 'Main Menu', nextState: 'GameMenu' },
+                        { text: 'Quit', nextState: 'Q1' },
+                    ],
+                },
+                {
+                    key: 'W1' as GameStateKey,
+                    text: 'You step through Door 4. Inside, you find a large, humming tower—the central communications hub. You know what you have to do.',
+                    options: [{ text: 'Destroy the tower.', nextState: 'W2' }],
+                },
+                {
+                    key: 'W2' as GameStateKey,
+                    text: 'The tower collapses in a shower of sparks. The humming stops. The world falls silent. You step back outside to see the guard bot is now deactivated. An old woman is standing there, smiling. "Congratulations," she says. "You have saved us all."',
+                    options: [{ text: 'Continue', nextState: 'W3' }],
+                },
+                {
+                    key: 'W3' as GameStateKey,
+                    text: "CONGRATULATIONS!\nYou have completed your journey and destroyed the bots' network. Humanity can now rebuild.\n\nThanks for playing!",
+                    options: [
+                        { text: 'Return to Main Menu', nextState: 'GameMenu' },
+                    ],
+                },
+            ]
 
-            let currentSceneKey = 'start'
-            let isTyping = false
+            // --- GAME ENGINE ---
 
-            function typeWriter(text, onComplete) {
-                isTyping = true
-                let i = 0
-                gameTextElement.innerHTML = ''
+            document.addEventListener('DOMContentLoaded', () => {
+                let currentStateKey: string = 'GameMenu'
+                let playerInventory: string[] = []
 
-                function type() {
+                const gameTextElement = document.getElementById('game-text')
+                const optionsContainer =
+                    document.getElementById('options-container')
+                const inputPrompt = document.getElementById('input-prompt')
+                const inventoryDisplay =
+                    document.getElementById('inventory-display')
+
+                function findStateByKey(key: string): GameState | undefined {
+                    return gameData.find((state) => state.key === key)
+                }
+
+                function updateInventoryDisplay() {
+                    if (!inventoryDisplay) return
+                    if (playerInventory.length > 0) {
+                        inventoryDisplay.textContent = `Inventory: [${playerInventory.join(', ')}]`
+                    } else {
+                        inventoryDisplay.textContent = ''
+                    }
+                }
+
+                function typeWriter(
+                    text: string,
+                    i: number,
+                    fnCallback: () => void
+                ) {
+                    if (!gameTextElement) return
                     if (i < text.length) {
-                        gameTextElement.innerHTML += text.charAt(i)
-                        i++
-                        setTimeout(type, 25)
-                    } else {
-                        isTyping = false
-                        if (onComplete) onComplete()
-                    }
-                }
-                type()
-            }
-
-            function showScene(sceneKey) {
-                const scene = gameData[sceneKey]
-                if (!scene) {
-                    console.error(`Scene key "${sceneKey}" not found!`)
-                    return
-                }
-
-                currentSceneKey = sceneKey
-                if (scene.onEnter) {
-                    scene.onEnter()
-                }
-
-                optionsContainer.innerHTML = ''
-                inputPrompt.textContent = 'Loading...'
-
-                typeWriter(scene.text, () => {
-                    const availableOptions = scene.options.filter(
-                        (option) => !option.condition || option.condition()
-                    )
-                    availableOptions.forEach((option) => {
-                        const optionElement = document.createElement('p')
-                        optionElement.classList.add('text-lg')
-                        optionElement.innerHTML = `<span class="option-key">${option.key.toUpperCase()}</span> &nbsp; ${option.text}`
-                        optionsContainer.appendChild(optionElement)
-                    })
-                    inputPrompt.textContent = 'Press a key...'
-                })
-            }
-
-            window.addEventListener('keydown', (event) => {
-                if (isTyping) return
-
-                const keyPressed = event.key.toLowerCase()
-                const scene = gameData[currentSceneKey]
-                const availableOptions = scene.options.filter(
-                    (option) => !option.condition || option.condition()
-                )
-                const chosenOption = availableOptions.find(
-                    (opt) => opt.key === keyPressed
-                )
-
-                if (chosenOption) {
-                    if (chosenOption.nextScene === 'end') {
-                        // Special case to "close" the app
                         gameTextElement.innerHTML =
-                            'Thank you for playing. Application will now close.'
-                        optionsContainer.innerHTML = ''
-                        inputPrompt.textContent = '--- END OF TRANSMISSION ---'
-                        isTyping = true // Prevent further input
-                    } else {
-                        showScene(chosenOption.nextScene)
+                            text.substring(0, i + 1) +
+                            '<span aria-hidden="true">_</span>'
+                        setTimeout(
+                            () => typeWriter(text, i + 1, fnCallback),
+                            15
+                        )
+                    } else if (typeof fnCallback == 'function') {
+                        gameTextElement.innerHTML = text
+                        fnCallback()
                     }
                 }
-            })
 
-            showScene('start')
+                function showOptions() {
+                    if (!optionsContainer) return
+                    if (!inputPrompt) return
+
+                    optionsContainer.innerHTML = ''
+
+                    const state = findStateByKey(currentStateKey)
+                    if (!state) {
+                        console.error(`State "${currentStateKey}" not found!`)
+                        return
+                    }
+
+                    const availableOptions = (state.options || []).filter(
+                        (option) => {
+                            return (
+                                !option.requires ||
+                                playerInventory.includes(option.requires)
+                            )
+                        }
+                    )
+
+                    if (availableOptions.length > 0) {
+                        availableOptions.forEach((option, index) => {
+                            const button = document.createElement('div')
+                            button.innerHTML = `<span class="option-key">${index + 1}</span> ${option.text}`
+                            button.classList.add(
+                                'cursor-pointer',
+                                'hover:text-amber-300',
+                                'transition-colors',
+                                'duration-200',
+                                'mb-2'
+                            )
+                            button.addEventListener('click', () =>
+                                selectOption(option)
+                            )
+                            optionsContainer.appendChild(button)
+                        })
+                        inputPrompt.textContent =
+                            'Select an option [1-' +
+                            availableOptions.length +
+                            ']'
+                    } else {
+                        inputPrompt.textContent =
+                            'The story ends here. Close the window to exit.'
+                    }
+                }
+
+                function renderState(stateKey: string) {
+                    const state = findStateByKey(stateKey)
+                    if (!state) {
+                        console.error(`State "${stateKey}" not found!`)
+                        return
+                    }
+                    currentStateKey = stateKey
+
+                    if (!optionsContainer) return
+                    if (!inputPrompt) return
+
+                    optionsContainer.innerHTML = ''
+                    inputPrompt.textContent = '...'
+                    typeWriter(state.text, 0, showOptions)
+                }
+
+                function selectOption(selectedOption: Options) {
+                    if (
+                        selectedOption.addItem &&
+                        !playerInventory.includes(selectedOption.addItem)
+                    ) {
+                        playerInventory.push(selectedOption.addItem)
+                        updateInventoryDisplay()
+                    }
+
+                    if (selectedOption.nextState) {
+                        renderState(selectedOption.nextState)
+                    }
+                }
+
+                function handleKeyPress(event: KeyboardEvent) {
+                    const key = parseInt(event.key)
+                    if (!isNaN(key)) {
+                        const state = findStateByKey(currentStateKey)
+                        if (!state) {
+                            console.error(
+                                `State "${currentStateKey}" not found!`
+                            )
+                            return
+                        }
+                        const availableOptions = (state.options || []).filter(
+                            (option) =>
+                                !option.requires ||
+                                playerInventory.includes(option.requires)
+                        )
+                        if (
+                            availableOptions &&
+                            key > 0 &&
+                            key <= availableOptions.length
+                        ) {
+                            selectOption(availableOptions[key - 1])
+                        }
+                    }
+                }
+
+                document.addEventListener('keydown', handleKeyPress)
+                updateInventoryDisplay()
+                renderState(currentStateKey)
+            })
         </script>
     </section>
 </Layout>
