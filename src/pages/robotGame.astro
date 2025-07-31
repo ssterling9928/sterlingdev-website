@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Robot Takeover Web Game">
+    <!-- Hero Section -->
     <section
         class="robot-game-hero flex flex-wrap items-center justify-center bg-gray-900 text-white"
     >
@@ -20,38 +21,42 @@ import Layout from '../layouts/Layout.astro'
         </div>
     </section>
 
+    <!-- Game Section -->
     <section>
-        <!-- Game Container -->
-        <div
-            class="text-glow relative w-full max-w-4xl rounded-lg border-2 border-amber-500/30 bg-black/50 p-6 md:p-8"
-        >
-            <div class="scanlines absolute inset-0"></div>
-            <h1
-                class="mb-6 text-center text-3xl font-bold text-amber-400 md:text-4xl"
+        <!-- Section Background and Container Positioning-->
+        <div class="my-24 flex items-center justify-center">
+            <!-- Game Container -->
+            <div
+                class="text-glow game-container rounded-lg border-4 border-orange-500/60 bg-black/50 p-6 md:p-8"
             >
-                R O B O T _ T A K E O V E R
-            </h1>
+                <div class="scanlines absolute inset-0"></div>
+                <h1
+                    class="mb-6 text-center text-3xl font-bold text-amber-400 md:text-4xl"
+                >
+                    R O B O T _ T A K E O V E R
+                </h1>
 
-            <div
-                id="inventory-display"
-                class="mb-4 h-6 text-center text-amber-600"
-            >
-            </div>
+                <div
+                    id="inventory-display"
+                    class="mb-4 h-6 text-center text-amber-600"
+                >
+                </div>
 
-            <div
-                id="game-text"
-                class="min-h-[150px] whitespace-pre-wrap text-lg leading-relaxed md:min-h-[200px] md:text-xl"
-            >
-            </div>
-            <div
-                id="options-container"
-                class="mt-8 border-t-2 border-amber-500/30 pt-6"
-            >
-            </div>
-            <div class="mt-6 flex items-center gap-x-3">
-                <span class="font-bold text-amber-400">></span>
-                <div id="input-prompt" class="text-gray-500">
-                    Awaiting input...
+                <div
+                    id="game-text"
+                    class="min-h-[150px] whitespace-pre-wrap text-lg leading-relaxed md:min-h-[200px] md:text-xl"
+                >
+                </div>
+                <div
+                    id="options-container"
+                    class="mt-8 border-t-2 border-amber-500/30 pt-6"
+                >
+                </div>
+                <div class="mt-6 flex items-center gap-x-3">
+                    <span class="font-bold text-amber-400">></span>
+                    <div id="input-prompt" class="text-gray-500">
+                        Awaiting input...
+                    </div>
                 </div>
             </div>
         </div>
@@ -510,16 +515,16 @@ import Layout from '../layouts/Layout.astro'
                 function typeWriter(
                     text: string,
                     i: number,
-                    fnCallback: () => void
-                ) {
+                    fnCallback?: () => void
+                ): void {
                     if (!gameTextElement) return
                     if (i < text.length) {
                         gameTextElement.innerHTML =
                             text.substring(0, i + 1) +
-                            '<span aria-hidden="true">_</span>'
+                            '<span class="typing-cursor" aria-hidden="true">&nbsp;</span>'
                         setTimeout(
                             () => typeWriter(text, i + 1, fnCallback),
-                            15
+                            25
                         )
                     } else if (typeof fnCallback == 'function') {
                         gameTextElement.innerHTML = text
@@ -582,11 +587,14 @@ import Layout from '../layouts/Layout.astro'
                     }
                     currentStateKey = stateKey
 
+                    if (!gameTextElement) return
                     if (!optionsContainer) return
                     if (!inputPrompt) return
 
                     optionsContainer.innerHTML = ''
                     inputPrompt.textContent = '...'
+
+                    gameTextElement.innerHTML = ''
                     typeWriter(state.text, 0, showOptions)
                 }
 
@@ -646,16 +654,15 @@ import Layout from '../layouts/Layout.astro'
 
     .game-container {
         position: relative;
-        padding: 20px;
-        width: 100%;
+        width: 50%;
         height: 100%;
         pointer-events: none;
         background-image: linear-gradient(
             rgba(0, 0, 0, 0.3) 50%,
             transparent 50%
         );
-        background-size: 100% 3px;
-        animation: scan 10s linear infinite;
+        background-size: 100% 4px;
+        animation: scan 2s linear infinite;
     }
     @keyframes scan {
         from {

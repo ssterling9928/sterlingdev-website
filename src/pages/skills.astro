@@ -14,7 +14,8 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
 <Layout title="Stephen Sterling - My Skills">
     <!-- Skills Hero Section -->
     <section
-        class="aurora-bg-cool flex w-full items-center justify-center overflow-hidden p-8 py-64 text-center"
+        id="hero-section"
+        class="aurora-bg aurora-teal flex w-full items-center justify-center overflow-hidden py-48 text-center md:py-72"
     >
         <!-- Content -->
         <div class="content-layer z-10">
@@ -571,7 +572,10 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
     </script>
 </Layout>
 <style>
-    /* Background Gradient for Skills Section */
+    /*  ======================================================================
+        BACKGROUND GRADIENT FOR EDUCATION SECTION
+        ======================================================================
+    */
     .mesh-gradient-bg {
         position: relative;
         background-color: #030712; /* A very dark blue base */
@@ -608,7 +612,63 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
         z-index: 2;
     }
 
+    /*  ======================================================================
+        CAROUSEL EFFECT FOR UDEMY CERTIFICATES
+        ======================================================================
+    */
+
     #carousel-container {
         scroll-behavior: smooth;
+    }
+
+    .featured-cert {
+        transition: all 0.3s ease-in-out;
+        border: 1px solid #374151;
+        /* gray-700 */
+    }
+
+    .featured-cert:hover {
+        transform: translateY(-5px);
+        border-color: #f97316;
+        /* orange-500 */
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Hides the scrollbar for the carousel */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /*  ======================================================================
+        BLUEPRINT BACKGROUND EFFECT FOR SKILLS SECTION
+        ======================================================================
+    */
+    .blueprint-bg {
+        background-color: #0d1117;
+        /* Dark base color */
+        /* This creates a grid of dots */
+        background-image: radial-gradient(
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+        );
+        background-size: 2rem 2rem;
+        position: relative;
+    }
+
+    /* This adds a soft glow from the top */
+    .blueprint-bg::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+            ellipse at top,
+            rgba(249, 115, 22, 0.15),
+            transparent 70%
+        );
     }
 </style>
