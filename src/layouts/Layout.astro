@@ -89,7 +89,7 @@ import Header from '../components/Header.astro'
                 </button>
 
                 <!-- Modal Title -->
-                <h2 class="font-fira gradient-text-orange text-4xl font-bold">
+                <h2 class="gradient-text-orange font-fira text-4xl font-bold">
                     Connect With Me
                 </h2>
                 <p class="mt-2 text-gray-400">
@@ -168,6 +168,27 @@ import Header from '../components/Header.astro'
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
+                // Calculate and set the height of the -- Hero section
+                const header = document.getElementById('header')
+                const heroSection = document.getElementById('hero-section')
+
+                function calculateHeroHeight() {
+                    if (!header || !heroSection) {
+                        console.error('Header or Hero Section not found.')
+                        return
+                    }
+
+                    const headerHeight = header.offsetHeight
+                    heroSection.style.minHeight = `calc(100vh - ${headerHeight}px)`
+                }
+
+                calculateHeroHeight()
+
+                window.addEventListener('resize', calculateHeroHeight)
+
+                // Contact Modal functionality
+                // Open and close modal functionality
+
                 const openModalBtns = document.querySelectorAll(
                     '.open-contact-modal'
                 )
@@ -219,6 +240,8 @@ import Header from '../components/Header.astro'
                     }
                 })
             })
+
+            document.addEventListener('DOMContentLoaded', function () {})
         </script>
     </body>
 </html>

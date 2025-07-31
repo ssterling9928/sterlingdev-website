@@ -5,14 +5,14 @@ import Layout from '../layouts/Layout.astro'
 <Layout title="Stephen Sterling - About Me">
     <!-- Section: About Me Hero -->
     <div
-        id="about-hero"
-        class="aurora-bg flex w-full flex-col items-center justify-center text-center"
+        id="hero-section"
+        class="aurora-bg aurora-orange flex w-full flex-col items-center justify-center text-center"
     >
         <div class="max-w-4xl">
             <h1
                 class="font-poppins fade-in-up text-6xl font-bold leading-tight text-white md:text-8xl lg:text-9xl"
             >
-                Hello.
+                Hello<span class="gradient-text-orange">.</span>
             </h1>
             <p
                 class="fade-in mx-auto mt-6 max-w-2xl px-1 text-xl text-gray-400 md:text-2xl"
@@ -268,45 +268,85 @@ import Layout from '../layouts/Layout.astro'
             </button>
         </div>
     </section>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault()
+
+                const targetId = anchor.getAttribute('href')
+                if (!targetId) return
+                const targetElement = document.querySelector(targetId)
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                    })
+                }
+            })
+        })
+    </script>
 </Layout>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const header = document.getElementById('header')
-        const aboutHero = document.getElementById('about-hero')
+<style>
+    /* ======================================================================
+       GRADIENT BACKGROUND EFFECT
+       ======================================================================
+    */
+    .gradient-effect-bg {
+        position: relative;
+        background-color: #030712;
+        /* A dark base color */
+        /* THE CHANGE: Added subtle radial gradients for depth */
+        background-image:
+            radial-gradient(
+                ellipse at top,
+                rgba(249, 115, 22, 0.1),
+                transparent 60%
+            ),
+            radial-gradient(
+                ellipse at bottom,
+                rgba(79, 70, 229, 0.1),
+                transparent 60%
+            );
+        overflow: hidden;
+    }
 
-        function calculateHeroHeight() {
-            if (!header || !aboutHero) {
-                console.error('Header or About Hero not found.')
-                return
-            }
+    /* ======================================================================
+       HERO TEXT EFFECTS
+       ======================================================================
+    */
+    .fade-in-up {
+        animation: fadeInUp 1.2s ease-out forwards;
+        opacity: 0;
+    }
 
-            const headerHeight = header.offsetHeight
-            aboutHero.style.minHeight = `calc(100vh - ${headerHeight}px)`
+    .fade-in {
+        animation: fadeIn 1.2s 0.5s ease-out forwards;
+        opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
         }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
-        calculateHeroHeight()
-
-        window.addEventListener('resize', calculateHeroHeight)
-    })
-
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault()
-
-            const targetId = anchor.getAttribute('href')
-            if (!targetId) return
-            const targetElement = document.querySelector(targetId)
-
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                })
-            }
-        })
-    })
-</script>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
 
 <!-- 
 

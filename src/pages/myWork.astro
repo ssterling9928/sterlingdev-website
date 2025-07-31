@@ -3,16 +3,21 @@ import Layout from '../layouts/Layout.astro'
 import { Image } from 'astro:assets' // Import Astro's image component for optimized image handling
 
 import websiteThumbnail from '../assets/images/website-screenshot.png' // Import thumbnail image for astro website project
+import iosAppThumbnail from '../assets/images/hp.png' // Import thumbnail image for iOS app project
+import robotThumbnail from '../assets/images/robot.png' // Import thumbnail image for Unreal Engine project
 ---
 
 <Layout title="Stephen Sterling - My Work">
     <!-- Work-Hero Section -->
-    <section class="aurora-work-bg py-20 text-center md:py-32">
+    <section
+        id="hero-section"
+        class="aurora-bg aurora-purple py-48 text-center md:py-72"
+    >
         <!-- Content Container -->
         <div class="container relative z-10 mx-auto px-6">
             <!-- Page Title -->
             <h1 class="font-poppins text-5xl font-bold text-white md:text-7xl">
-                My Work
+                My Work<span class="gradient-text-orange">.</span>
             </h1>
             <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-400 md:text-xl">
                 A selection of projects I've built, from game prototypes to
@@ -39,7 +44,7 @@ import websiteThumbnail from '../assets/images/website-screenshot.png' // Import
                             loading="lazy"
                         />
                         <h2
-                            class="absolute top-0 h-56 w-full justify-center bg-transparent p-6 pt-16 text-3xl font-bold text-orange-500 md:text-4xl lg:text-5xl"
+                            class="absolute top-0 w-full bg-transparent p-6 pt-16 text-4xl font-bold text-orange-500"
                         >
                             Astro Website
                         </h2>
@@ -75,7 +80,7 @@ import websiteThumbnail from '../assets/images/website-screenshot.png' // Import
                         <div class="mt-6 flex items-center space-x-4">
                             <a
                                 href="https://github.com/ssterling9928/sterlingdev-website"
-                                class="button"
+                                class="button hover:border-gray-400"
                                 target="_blank"
                             >
                                 Source Code
@@ -87,12 +92,29 @@ import websiteThumbnail from '../assets/images/website-screenshot.png' // Import
                 <div
                     class="project-card flex flex-col overflow-hidden rounded-2xl"
                 >
+                    <div class="relative">
+                        <Image
+                            src={iosAppThumbnail}
+                            alt="iOS App Thumbnail"
+                            class="h-56 w-full object-cover opacity-5"
+                            loading="lazy"
+                        />
+                        <h2
+                            class="absolute top-0 w-full bg-transparent p-6 pt-16 text-4xl font-bold text-orange-500"
+                        >
+                            iOS App
+                        </h2>
+                    </div>
                     <div class="flex flex-grow flex-col p-6">
                         <h3 class="font-poppins text-2xl text-white">
-                            iOS App
+                            Wizard's Quiz
                         </h3>
                         <p class="mt-2 flex-grow text-gray-400">
-                            Coming Very Soon! Check back in a few days!
+                            A native iOS trivia application built entirely in
+                            Swift using Xcode and the UIKit framework, which is
+                            currently published on the App Store. This project
+                            demonstrates core iOS development principles,
+                            including programmatic UI and state management.
                         </p>
 
                         <div class="mt-4 flex flex-wrap gap-2">
@@ -102,15 +124,20 @@ import websiteThumbnail from '../assets/images/website-screenshot.png' // Import
                             ><span
                                 class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
                                 >Xcode</span
+                            ><span
+                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
+                                >UIKit</span
                             >
                         </div>
                         <div class="mt-6 flex items-center space-x-4">
                             <a
-                                href="#"
+                                href="https://apps.apple.com/us/app/wizards-quiz/id1502868673"
+                                target="_blank"
                                 class="w-full rounded-lg bg-orange-600 px-5 py-2 text-center font-semibold text-white hover:bg-orange-700"
                                 >App Store</a
                             ><a
-                                href="#"
+                                href="https://github.com/ssterling9928/HarryPotterTriviaQuiz"
+                                target="_blank"
                                 class="w-full rounded-lg border border-gray-600 px-5 py-2 text-center font-semibold text-gray-300 hover:border-gray-400"
                                 >Source Code</a
                             >
@@ -122,31 +149,48 @@ import websiteThumbnail from '../assets/images/website-screenshot.png' // Import
                 <div
                     class="project-card flex flex-col overflow-hidden rounded-2xl"
                 >
+                    <div class="relative">
+                        <Image
+                            src={robotThumbnail}
+                            alt="Robot Takeover Thumbnail"
+                            class="h-56 w-full object-cover opacity-5"
+                            loading="lazy"
+                        />
+                        <h2
+                            class="absolute top-0 w-full bg-transparent p-6 pt-16 text-4xl font-bold text-orange-500"
+                        >
+                            Web Game
+                        </h2>
+                    </div>
                     <div class="flex flex-grow flex-col p-6">
                         <h3 class="font-poppins text-2xl text-white">
-                            Unreal Project
+                            Robot Takeover
                         </h3>
                         <p class="mt-2 flex-grow text-gray-400">
-                            Coming Very Soon! Check back in a few days!
+                            This project is a complete JavaScript rewrite of an
+                            original text-based adventure game I built in Unity.
+                            The goal was to modernize the gameplay experience by
+                            creating a fast, responsive, and immersive web
+                            application with a stylized terminal interface,
+                            bringing a classic game format to the browser.
                         </p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <span
                                 class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >Unreal Engine 5</span
+                                >Unity</span
                             ><span
                                 class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >C++</span
+                                >C#</span
+                            ><span
+                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
+                                >Javascript</span
                             >
                         </div>
                         <div class="mt-6 flex items-center space-x-4">
                             <a
-                                href="#"
+                                href="/robotGame/"
                                 class="w-full rounded-lg bg-orange-600 px-5 py-2 text-center font-semibold text-white hover:bg-orange-700"
                                 >Live Demo</a
-                            ><a
-                                href="#"
-                                class="w-full rounded-lg border border-gray-600 px-5 py-2 text-center font-semibold text-gray-300 hover:border-gray-400"
-                                >Source Code</a
                             >
                         </div>
                     </div>
@@ -212,3 +256,16 @@ import websiteThumbnail from '../assets/images/website-screenshot.png' // Import
         </div>
     </section>
 </Layout>
+<style>
+    .grid-pattern-bg {
+        background-color: #111827;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.05) 1px,
+                transparent 1px
+            );
+        background-size: 4rem 4rem;
+    }
+</style>

@@ -190,14 +190,6 @@ body {
     z-index: -1; /* Puts the glow behind the header content */
 }
 
-.grid-pattern-bg {
-    background-color: #111827;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 4rem 4rem;
-}
-
 /* ======================================================================
     GLASS PANE EFFECT
     ======================================================================
@@ -301,262 +293,96 @@ body {
 }
 
 /* ======================================================================
-    AURORA BACKGROUND EFFECT
-    ======================================================================
-  */
+    AURORA GRADIENT BACKGROUND EFFECT
+   ======================================================================
+*/
 
-/* * 1. The main container for the effect.
-        * - `position: relative`: Required so the ::before pseudo-element is positioned relative to this container.
-        * - `overflow: hidden`: Clips the giant rotating gradient so it stays within the container's bounds.
-        * - `background-color`: A dark fallback color for the base layer.
-    */
 .aurora-bg {
     position: relative;
     background-color: #030712;
     overflow: hidden;
-    /* A dark base color, like Tailwind's gray-950 */
 }
 
-.aurora-bg::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 0px;
-    /* Adjust height of the fade effect */
-    background: linear-gradient(
-        to bottom,
-        transparent,
-        #0c0a09 75% /* Match your background color */
-    );
-    z-index: 1;
-    /* Ensure it's above the aurora but below content */
-}
-
-/*
-    * 2. The pseudo-element that IS the aurora.
-    * - It's a giant, blurred, semi-transparent gradient that sits behind the content.
-        */
 .aurora-bg::before {
     content: '';
     position: absolute;
-    /* Center the gradient element, making it twice the size of the container */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 200%;
     height: 200%;
+    filter: blur(120px);
+    opacity: 0.12;
+    animation: rotate 25s linear infinite;
+}
 
-    /* The conic-gradient creates the color wheel. You can change these colors. */
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Specific color variations for the aurora effect */
+.aurora-bg.aurora-orange::before {
     background: conic-gradient(
         from 0deg,
         #f97316,
-        /* orange-500 */ #4f46e5,
-        /* indigo-600 */ #6e047c,
+        #4f46e5,
+        #6e047c,
         #f97316 /* Loop back to the start color for a seamless rotation */
     );
-
-    /* A large blur value makes the color transitions soft and smooth. */
-    filter: blur(120px);
-
-    /* Low opacity keeps the effect subtle. */
-    opacity: 0.12;
-
-    /* The animation that makes it rotate. */
-    animation: rotate 20s linear infinite;
 }
 
-/* * 3. The rotation animation.
-    */
-@keyframes rotate {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-/* Different color palette for aurora effect */
-.aurora-bg-cool {
-    position: relative;
-    overflow: hidden;
-    background-color: #030712; /* Very dark base */
-}
-.aurora-bg-cool::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200%;
-    height: 200%;
-    /* THE CHANGE: New contrasting color palette */
+.aurora-bg.aurora-teal::before {
     background: conic-gradient(
         from 0deg,
         #14b8a6,
-        /* Teal-500 */ #1d4ed8,
-        /* Blue-700 */ #7c3aed,
-        /* Violet-600 */ #14b8a6 /* Loop back to teal */
+        #1d4ed8,
+        #7c3aed,
+        #14b8a6 /* Loop back to teal */
     );
-    filter: blur(120px);
-    opacity: 0.15;
-    animation: rotate 25s linear infinite;
-}
-@keyframes rotate {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
 }
 
-.aurora-work-bg {
-    position: relative;
-    overflow: hidden;
-    background-color: #030712;
-}
-
-.aurora-work-bg::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 150%;
-    height: 150%;
+.aurora-bg.aurora-purple::before {
     background: conic-gradient(
-        from 90deg,
+        from 0deg,
+        #a855f7,
+        #8b5cf6,
+        #ec4899,
+        #a855f7 /* Loop back to purple */
+    );
+}
+
+.aurora-bg.aurora-flare::before {
+    background-image: conic-gradient(
+        from 0deg,
+        #ef4444,
         #f59e0b,
-        /* amber-500 */ #ec4899,
-        /* pink-500 */ #8b5cf6,
-        /* violet-500 */ #f59e0b
+        #ec4899,
+        #ef4444
     );
-    filter: blur(100px);
-    opacity: 0.25;
-    animation: rotate 20s linear infinite;
 }
 
-@keyframes rotate {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-/* ======================================================================
-    GRADIENT BACKGROUND EFFECT
-    ======================================================================
-  */
-.gradient-effect-bg {
-    position: relative;
-    background-color: #030712;
-    /* A dark base color */
-    /* THE CHANGE: Added subtle radial gradients for depth */
-    background-image:
-        radial-gradient(
-            ellipse at top,
-            rgba(249, 115, 22, 0.1),
-            transparent 60%
-        ),
-        radial-gradient(
-            ellipse at bottom,
-            rgba(79, 70, 229, 0.1),
-            transparent 60%
-        );
-    overflow: hidden;
-}
-
-/* Animation for the text */
-.fade-in-up {
-    animation: fadeInUp 1.2s ease-out forwards;
-    opacity: 0;
-}
-
-.fade-in {
-    animation: fadeIn 1.2s 0.5s ease-out forwards;
-    opacity: 0;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* ======================================================================
-    CAROUSEL EFFECT FOR UDEMY CERTIFICATES
-    ======================================================================
-    */
-.featured-cert {
-    transition: all 0.3s ease-in-out;
-    border: 1px solid #374151;
-    /* gray-700 */
-}
-
-.featured-cert:hover {
-    transform: translateY(-5px);
-    border-color: #f97316;
-    /* orange-500 */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-}
-
-/* Hides the scrollbar for the carousel */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-.no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-/* ======================================================================
-    BLUEPRINT BACKGROUND EFFECT
-    ======================================================================
-    */
-.blueprint-bg {
-    background-color: #0d1117;
-    /* Dark base color */
-    /* This creates a grid of dots */
-    background-image: radial-gradient(
-        rgba(255, 255, 255, 0.05) 1px,
-        transparent 1px
+.aurora-bg.aurora-cyberpunk::before {
+    background-image: conic-gradient(
+        from 0deg,
+        #d946ef,
+        #22d3ee,
+        #6366f1,
+        #d946ef
     );
-    background-size: 2rem 2rem;
-    position: relative;
 }
 
-/* This adds a soft glow from the top */
-.blueprint-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(
-        ellipse at top,
-        rgba(249, 115, 22, 0.15),
-        transparent 70%
+.aurora-bg.aurora-forest::before {
+    background-image: conic-gradient(
+        from 0deg,
+        #059669,
+        #14b8a6,
+        #f59e0b,
+        #059669
     );
 }
