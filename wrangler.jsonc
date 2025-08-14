@@ -19,7 +19,15 @@
             "custom_domain": true,
         },
         {
-            "pattern": "*.sterling-dev.com",
+            "pattern": "vault.sterling-dev.com",
+            "custom_domain": true,
+        },
+        {
+            "pattern": "plex.sterling-dev.com",
+            "custom_domain": true,
+        },
+        {
+            "pattern": "grafana.sterling-dev.com",
             "custom_domain": true,
         },
     ],
