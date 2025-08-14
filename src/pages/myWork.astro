@@ -16,7 +16,9 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
         <!-- Content Container -->
         <div class="container relative z-10 mx-auto px-6">
             <!-- Page Title -->
-            <h1 class="font-poppins text-5xl font-bold text-white md:text-7xl">
+            <h1
+                class="font-inter fade-in-up text-6xl font-bold leading-tight text-white md:text-8xl lg:text-9xl"
+            >
                 My Work<span class="gradient-text-orange">.</span>
             </h1>
             <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-400 md:text-xl">
@@ -82,6 +84,7 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
                                 href="https://github.com/ssterling9928/sterlingdev-website"
                                 class="button hover:border-gray-400"
                                 target="_blank"
+                                data-metric-id="view-website-source-code"
                             >
                                 Source Code
                             </a>
@@ -134,11 +137,12 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
                                 href="https://apps.apple.com/us/app/wizards-quiz/id1502868673"
                                 target="_blank"
                                 class="w-full rounded-lg bg-orange-600 px-5 py-2 text-center font-semibold text-white hover:bg-orange-700"
-                                >App Store</a
+                                data-metric-id="view-ios-appstore">App Store</a
                             ><a
                                 href="https://github.com/ssterling9928/HarryPotterTriviaQuiz"
                                 target="_blank"
                                 class="w-full rounded-lg border border-gray-600 px-5 py-2 text-center font-semibold text-gray-300 hover:border-gray-400"
+                                data-metric-id="view-ios-source-code"
                                 >Source Code</a
                             >
                         </div>
@@ -190,7 +194,7 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
                             <a
                                 href="/robotGame/"
                                 class="w-full rounded-lg bg-orange-600 px-5 py-2 text-center font-semibold text-white hover:bg-orange-700"
-                                >Live Demo</a
+                                data-metric-id="view-robot-game">Live Demo</a
                             >
                         </div>
                     </div>

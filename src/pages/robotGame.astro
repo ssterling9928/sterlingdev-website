@@ -1,17 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import { getImage } from 'astro:assets'
+import backgroundImage from '../assets/images/robot.png'
+
+// Optimize the background image for hero section
+const optimizedBackgroundImage = await getImage({ src: backgroundImage })
 ---
 
 <Layout title="Robot Takeover Web Game">
     <!-- Hero Section -->
     <section
-        class="robot-game-hero flex flex-wrap items-center justify-center bg-gray-900 text-white"
+        class="robot-game-hero bg-image-container flex flex-wrap items-center justify-center bg-gray-900 text-white"
+        style={`--optimizedBackgroundImage: url(${optimizedBackgroundImage.src})`}
     >
         <div class="container">
-            <h1 class="my-8 justify-self-center text-4xl font-bold">
-                Robot Game
+            <h1
+                class="font-inter fade-in-up text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
+            >
+                Robot Takeover<span class="gradient-text-orange">.</span>
             </h1>
-            <p class="mb-12 justify-self-center px-32 text-center">
+            <p class="px-auto my-12 justify-self-center text-center">
                 Welcome to the Robot Takeover text adventure game! This is a fun
                 and interactive game where you must find a way to defeat the
                 robots and save humanity. This game was originally created in
@@ -27,11 +35,10 @@ import Layout from '../layouts/Layout.astro'
         <div class="my-24 flex items-center justify-center">
             <!-- Game Container -->
             <div
-                class="text-glow game-container rounded-lg border-4 border-orange-500/60 bg-black/50 p-6 md:p-8"
+                class="text-glow game-container w-[100%] rounded-lg border-4 border-orange-500/60 bg-black/50 p-6 sm:w-[95%] md:w-[85%] md:p-8 lg:w-[50%]"
             >
-                <div class="scanlines absolute inset-0"></div>
                 <h1
-                    class="mb-6 text-center text-3xl font-bold text-amber-400 md:text-4xl"
+                    class="mb-6 text-center text-xl font-bold text-amber-400 md:text-2xl lg:text-3xl"
                 >
                     R O B O T _ T A K E O V E R
                 </h1>
@@ -164,7 +171,7 @@ import Layout from '../layouts/Layout.astro'
                         },
                         {
                             text: 'Avoid the house and keep moving.',
-                            nextState: 'A10',
+                            nextState: 'A10', //  Game Over
                         },
                     ],
                 },
@@ -232,7 +239,7 @@ import Layout from '../layouts/Layout.astro'
                     key: 'A13' as GameStateKey,
                     text: 'You cautiously speak to the bot. It turns its head with a sharp mechanical snap, its optical sensor focusing on you. It takes a heavy step closer.\n\nWhat do you do?',
                     options: [
-                        { text: 'Attack it now.', nextState: 'A12' },
+                        { text: 'Attack it now.', nextState: 'A12' }, // Game Over
                         { text: 'Hold your ground.', nextState: 'A15' },
                     ],
                 },
@@ -555,15 +562,11 @@ import Layout from '../layouts/Layout.astro'
 
                     if (availableOptions.length > 0) {
                         availableOptions.forEach((option, index) => {
-                            const button = document.createElement('div')
-                            button.innerHTML = `<span class="option-key">${index + 1}</span> ${option.text}`
-                            button.classList.add(
-                                'cursor-pointer',
-                                'hover:text-amber-300',
-                                'transition-colors',
-                                'duration-200',
-                                'mb-2'
-                            )
+                            const button = document.createElement('button')
+                            button.type = 'button'
+                            button.className =
+                                'cursor-pointer hover:text-amber-300 transition-colors duration-200 mb-2'
+                            button.innerHTML = `<span class="option-key">${index + 1}.</span> ${option.text}`
                             button.addEventListener('click', () =>
                                 selectOption(option)
                             )
@@ -646,6 +649,41 @@ import Layout from '../layouts/Layout.astro'
 </Layout>
 
 <style>
+    #options-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .bg-image-container {
+        position: relative;
+        z-index: 1;
+        min-height: 420px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4rem 1rem;
+        text-align: center;
+        color: #fff;
+        overflow: hidden;
+    }
+    .bg-image-container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: var(--optimizedBackgroundImage);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: blur(1px);
+        opacity: 0.3;
+        z-index: -1;
+    }
+    .robot-game-hero {
+        background-repeat: no-repeat;
+        background-position: top;
+        width: auto;
+        min-height: 400px;
+    }
     .text-glow {
         text-shadow:
             0 0 5px rgba(245, 158, 11, 0.5),
@@ -654,9 +692,7 @@ import Layout from '../layouts/Layout.astro'
 
     .game-container {
         position: relative;
-        width: 50%;
         height: 100%;
-        pointer-events: none;
         background-image: linear-gradient(
             rgba(0, 0, 0, 0.3) 50%,
             transparent 50%

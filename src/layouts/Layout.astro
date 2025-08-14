@@ -20,6 +20,9 @@ import Header from '../components/Header.astro'
             href="/assets/images/favicon.svg"
         />
         <title>{title || 'Stephen Sterling - Portfolio'}</title>
+        <script type="module">
+            import '/src/scripts/metrics.ts'
+        </script>
 
         <!-- Google Font -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -105,6 +108,7 @@ import Header from '../components/Header.astro'
                             target="_blank"
                             class="text-gray-400 transition-transform duration-200 hover:scale-110 hover:text-orange-400"
                             aria-label="GitHub"
+                            data-metric-id="open-github"
                         >
                             <svg
                                 class="h-10 w-10"
@@ -122,6 +126,7 @@ import Header from '../components/Header.astro'
                             target="_blank"
                             class="text-gray-400 transition-transform duration-200 hover:scale-110 hover:text-orange-400"
                             aria-label="LinkedIn"
+                            data-metric-id="open-linkedin"
                         >
                             <svg
                                 class="h-10 w-10"
@@ -137,6 +142,7 @@ import Header from '../components/Header.astro'
                             href="mailto:stephen@sterling-dev.com"
                             class="text-gray-400 transition-transform duration-200 hover:scale-110 hover:text-orange-400"
                             aria-label="Email"
+                            data-metric-id="open-email"
                         >
                             <svg
                                 class="h-10 w-10"
@@ -159,6 +165,7 @@ import Header from '../components/Header.astro'
                         href="/assets/resume/Sterling-Resume.pdf"
                         download="Stephen_Sterling_Resume.pdf"
                         class="block w-full rounded-lg bg-gray-700 px-6 py-3 text-center text-lg font-bold text-white transition-transform duration-200 hover:scale-105 hover:bg-gray-600"
+                        data-metric-id="resume-download"
                     >
                         Download My Resume
                     </a>
