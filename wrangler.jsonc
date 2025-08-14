@@ -1,6 +1,6 @@
 {
     // "$schema": "node_modules/wrangler/config-schema.json",
-    "main": "worker.ts",
+    "main": "src/worker.ts",
     "name": "sterlingdev-website",
     "compatibility_date": "2025-06-14",
     "compatibility_flags": ["nodejs_compat"],
