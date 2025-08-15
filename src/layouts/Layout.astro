@@ -7,7 +7,6 @@ const { title } = Astro.props
 
 import '../styles/global.css' // Import global styles
 import Header from '../components/Header.astro'
-import '../scripts/metrics.ts' // Import the metrics script for performance tracking
 ---
 
 <!doctype html>
@@ -17,6 +16,7 @@ import '../scripts/metrics.ts' // Import the metrics script for performance trac
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <title>{title || 'Stephen Sterling - Portfolio'}</title>
+        <script defer src="/scripts/metrics.js"></script>
 
         <!-- Google Font -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
