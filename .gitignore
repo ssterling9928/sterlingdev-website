@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+public/assets/@eaDir/.DS_Store@SynoResource
+@eaDir/.DS_Store@SynoResource
+public/@eaDir/.DS_Store@SynoResource
+public/@eaDir/favicon.ico@SynoEAStream
