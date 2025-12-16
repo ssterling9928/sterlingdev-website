@@ -7,6 +7,7 @@ const { title } = Astro.props
 
 import '../styles/global.css' // Import global styles
 import Header from '../components/Header.astro'
+import CommandMenu from '../components/react/command/commandmenu.tsx';
 ---
 
 <!doctype html>
@@ -40,6 +41,9 @@ import Header from '../components/Header.astro'
         <slot />
         {/* This is where the content of each page will go */}
 
+
+        <!-- Command Menu -->
+        <CommandMenu client:idle />
         <!-- Footer -->
         <footer class="bg-[#1C1C1C] px-6 py-8 text-center text-white">
             <div class="container mx-auto">

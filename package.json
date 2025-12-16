@@ -21,7 +21,12 @@
         "wrangler": "^4.20.0"
     },
     "dependencies": {
+        "@astrojs/react": "^4.4.2",
         "@astrojs/tailwind": "^6.0.2",
-        "cloudflare": "^4.5.0"
+        "@types/react": "^19.2.7",
+        "@types/react-dom": "^19.2.3",
+        "cloudflare": "^4.5.0",
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3"
     }
 }

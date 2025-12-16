@@ -1,8 +1,18 @@
 {
-    "extends": "astro/tsconfigs/strict",
-    "include": [".astro/types.d.ts", "**/*", ".prettierrc.cjs"],
-    "exclude": ["dist"],
-    "compilerOptions": {
-        "types": ["@cloudflare/workers-types"]
-    }
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*",
+    ".prettierrc.cjs"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "compilerOptions": {
+    "types": [
+      "@cloudflare/workers-types"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }
