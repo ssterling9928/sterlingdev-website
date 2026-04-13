@@ -2,11 +2,28 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+:root {
+  --bg: #0F172A;
+  --surface: #1E293B;
+  --surface-2: #0B1120;
+  --text: #F8FAFC;
+  --text-muted: #94A3B8;
+  --border: #334155;
+  --border-muted: #273449;
+  --accent: #22D3EE;
+  --accent-hover: #06B6D4;
+  --accent-active: #0891B2;
+  --accent-soft: #67E8F9;
+  --focus: #A5F3FC;
+  --success: #22C55E;
+  --error: #F87171;
+}
+
 body {
     font-family: 'Inter', sans-serif;
-    background-color: oklch(13% 0.028 261.692);
+    background-color: var(--bg);
     /* Near-black for deeper dark theme */
-    color: #d1d5db;
+    color: var(--text);
     /* Light gray text */
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -21,20 +38,10 @@ body {
     display: none;
 }
 
-/* Custom styles for subtle animations and effects */
-.gradient-text-orange {
-    background: linear-gradient(45deg, #fb923c, #f97316, #ea580c);
-    /* Orange 400 to Orange 700 */
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 .underline-title {
     width: 40px;
     height: 4px;
-    background-color: #f97316;
-    /* Orange 500 */
+    background-color: var(--accent-soft);
     margin: 0 auto;
     margin-top: 8px;
     margin-bottom: 16px;
@@ -42,53 +49,54 @@ body {
 }
 
 .nav-link {
-    @apply text-sm font-bold text-gray-300 md:text-lg;
-    transition: color 0.3s ease-in-out;
+    @apply text-sm font-bold md:text-lg;
+    color: var(--accent)
 }
 
 .nav-link:hover {
-    color: #f97316;
-    /* Orange 500 */
-    font-weight: 600;
+    color: var(--accent-hover);
 }
 
 .nav-link.active {
-    color: #fb923c;
-    /* Orange 500 */
+    color: var(--accent-active);
 }
 
 .cta-button {
-    color: #d1d5db;
+    color: var(--text);
     padding: 15px 30px;
     font-weight: bolder;
     font-size: larger;
     border-radius: 100px;
-    background-color: #ea580c;
+    background-color: var(--surface-2);
 }
 
 .cta-button:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 25px rgba(249, 115, 22, 0.8);
+    box-shadow: 0 5px 25px var(--accent);
     /* Orange shadow */
     transition: all 0.3s ease-in-out;
-    background-color: rgb(194, 65, 12);
+    background-color: var(--surface);
 }
 
 .button {
     width: 100%;
     text-align: center;
     border-radius: 10px;
-    border: 1px solid #5c6672;
+    border: 1px solid var(--border);
     background-color: transparent;
     font-weight: bold;
-    color: #d1d5db;
+    color: var(--text);
     padding: 12px 20px;
 }
 
 .button:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    border-color: #f97316;
+    box-shadow: 0 5px 25px var(--accent);
+    border-color: var(--surface-2);
 }
+
+/* CSS COLOR CHANGES TO HERE */
+
+
 
 .skill-card:hover {
     transform: scale(1.05);
