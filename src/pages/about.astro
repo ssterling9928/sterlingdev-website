@@ -6,20 +6,22 @@ import Layout from '../layouts/Layout.astro'
     <!-- Section: About Me Hero -->
     <div
         id="hero-section"
-        class="aurora-bg aurora-orange flex w-full flex-col items-center justify-center text-center"
+        class="flex w-full flex-col items-center justify-center text-center"
     >
         <div class="max-w-4xl">
             <h1
-                class="font-inter fade-in-up text-6xl font-bold leading-tight text-white md:text-8xl lg:text-9xl"
+                class="font-inter fade-in-up text-6xl font-bold leading-tight text-text md:text-8xl lg:text-9xl"
             >
-                Hello<span class="gradient-text-orange">.</span>
+                Hello<span class="text-accent">.</span>
             </h1>
             <p
-                class="fade-in mx-auto mt-6 max-w-2xl px-1 text-xl text-gray-400 md:text-2xl"
+                class="fade-in mx-auto mt-6 max-w-2xl px-1 text-xl text-text md:text-2xl"
             >
                 Behind every line of code is a story. <br /> This is mine.
             </p>
         </div>
+
+        <!-- Downwards Arrow -->
         <div class="absolute bottom-24">
             <a href="#my-goals" aria-label="Scroll to next section">
                 <svg
@@ -42,16 +44,15 @@ import Layout from '../layouts/Layout.astro'
     <section id="my-goals">
         <div
             class="flex w-full items-center justify-center px-4 py-24"
-            style="background-image: radial-gradient(ellipse at top, rgba(249, 115, 22, 0.1), transparent 70%);"
         >
             <div class="container mx-auto">
                 <div class="mb-24 text-center">
                     <h2
-                        class="font-poppins text-3xl font-bold text-white md:text-5xl"
+                        class="text-3xl font-bold text-text md:text-5xl"
                     >
                         My Mission & Goals
                     </h2>
-                    <p class="mt-4 text-lg text-gray-400">
+                    <p class="mt-4 text-lg text-text">
                         What drives me forward.
                     </p>
                 </div>
@@ -60,14 +61,14 @@ import Layout from '../layouts/Layout.astro'
                 >
                     <!-- Card 1 (Back) -->
                     <div
-                        class="glass-pane w-full transform rounded-2xl p-8 shadow-2xl hover:border-orange-500/50 lg:w-3/5 lg:-rotate-3 lg:p-12 lg:blur-sm hover:lg:z-20 hover:lg:scale-105 hover:lg:blur-0"
+                        class="w-full rounded-2xl p-8 shadow-2xl"
                     >
-                        <h3 class="font-poppins text-2xl text-orange-400">
+                        <h3 class="text-2xl text-accent">
                             Be a Part of Something Bigger
                         </h3>
-                        <div class="mb-4 mt-3 h-1 w-16 rounded bg-orange-500">
+                        <div class="mb-4 mt-3 h-1 w-16 rounded bg-bg">
                         </div>
-                        <p class="mt-2 text-base">
+                        <p class="mt-2 text-text">
                             My goal as a developer is to be part of something
                             bigger. I'm driven to apply my skills to large-scale
                             projects, whether it's an expansive game, robust
@@ -80,14 +81,14 @@ import Layout from '../layouts/Layout.astro'
 
                     <!-- Card 2 (Front) -->
                     <div
-                        class="glass-pane relative z-10 w-full transform rounded-2xl p-8 shadow-2xl hover:border-orange-500/50 lg:ml-[-10rem] lg:w-3/5 lg:rotate-2 lg:p-12 hover:lg:scale-105"
+                        class="w-full rounded-2xl p-8 shadow-2xl"
                     >
-                        <h3 class="font-poppins text-2xl text-orange-400">
+                        <h3 class="text-2xl text-accent">
                             Never Stop Growing
                         </h3>
-                        <div class="mb-4 mt-3 h-1 w-16 rounded bg-orange-500">
+                        <div class="mb-4 mt-3 h-1 w-16 rounded bg-bg">
                         </div>
-                        <p class="mt-2 text-base">
+                        <p class="mt-2 text-text">
                             I am committed to a career of continuous growth. I
                             love diving into new concepts, mastering different
                             languages, and exploring the latest software tools.
@@ -106,13 +107,13 @@ import Layout from '../layouts/Layout.astro'
     <section>
         <!-- Section Background -->
         <div
-            class="gradient-effect-bg flex min-h-screen w-full items-center justify-center bg-black/20 p-8"
+            class="flex min-h-screen w-full items-center justify-center bg-bg p-8"
         >
             <!-- Content Container -->
             <div class="container mx-auto pb-32">
                 <!-- Main Heading -->
                 <h2
-                    class="font-poppins my-8 pb-4 text-left text-3xl font-bold text-white md:text-6xl"
+                    class="my-8 pb-4 text-left text-3xl font-bold text-text md:text-6xl"
                 >
                     From Curiosity to Creation.
                 </h2>
@@ -123,7 +124,7 @@ import Layout from '../layouts/Layout.astro'
                 >
                     <!-- Left Column: The Narrative -->
                     <div
-                        class="text-md space-y-6 leading-relaxed text-gray-300 md:text-lg"
+                        class="text-md space-y-6 leading-relaxed text-text md:text-lg"
                     >
                         <p class="drop-cap">
                             My journey into technology didn’t start with a
@@ -254,22 +255,24 @@ import Layout from '../layouts/Layout.astro'
     <section class="bg-black/20 py-20 md:py-24">
         <div class="container mx-auto px-6 text-center">
             <h2
-                class="font-poppins mx-auto max-w-2xl text-3xl font-bold text-white md:text-4xl"
+                class="mx-auto max-w-2xl text-3xl font-bold text-text md:text-4xl"
             >
                 Sound like a good fit?
             </h2>
-            <p class="mt-4 text-lg text-gray-400">
+            <p class="mt-4 text-lg text-text">
                 I'm always ready for the next challenge.
             </p>
             <button
                 data-metric-id="open-contact-modal"
-                class="open-contact-modal cta-button mt-8 inline-block rounded-full bg-orange-600 px-8 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:bg-orange-700"
+                class="open-contact-modal cta-button mt-8"
             >
                 Let's Get In Touch
             </button>
         </div>
     </section>
 
+
+    <!-- SMOOTH SCROLL -->
     <script>
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener('click', function (e) {
@@ -289,65 +292,6 @@ import Layout from '../layouts/Layout.astro'
         })
     </script>
 </Layout>
-
-<style>
-    /* ======================================================================
-       GRADIENT BACKGROUND EFFECT
-       ======================================================================
-    */
-    .gradient-effect-bg {
-        position: relative;
-        background-color: #030712;
-        /* A dark base color */
-        /* THE CHANGE: Added subtle radial gradients for depth */
-        background-image:
-            radial-gradient(
-                ellipse at top,
-                rgba(249, 115, 22, 0.1),
-                transparent 60%
-            ),
-            radial-gradient(
-                ellipse at bottom,
-                rgba(79, 70, 229, 0.1),
-                transparent 60%
-            );
-        overflow: hidden;
-    }
-
-    /* ======================================================================
-       HERO TEXT EFFECTS
-       ======================================================================
-    */
-    .fade-in-up {
-        animation: fadeInUp 1.2s ease-out forwards;
-        opacity: 0;
-    }
-
-    .fade-in {
-        animation: fadeIn 1.2s 0.5s ease-out forwards;
-        opacity: 0;
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-</style>
 
 <!-- 
 
