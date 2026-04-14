@@ -14,41 +14,38 @@ import PortraitImage from '../assets/images/portrait.jpg' // Import my portrait 
 -->
     <section
         id="hero-section"
-        class="relative flex items-center justify-center overflow-hidden bg-[#08090C] text-center"
+        class="relative flex items-center justify-center overflow-hidden bg-bg text-center"
     >
-        <div class="hero-pattern absolute inset-0 opacity-10"></div>
-        <div
-            class="absolute inset-0 bg-gradient-to-br from-gray-900/0 to-orange-900/10"
-        >
-        </div>
-        <!-- Subtle overlay gradient -->
+        <div class="absolute inset-0 opacity-10"></div>
+        <div class="absolute inset-0"></div>
 
         <div
             class="container relative z-10 mx-auto flex flex-col items-center justify-center gap-16 md:flex-row"
         >
             <!-- Text Content -->
             <div class="max-w-2xl text-center md:text-left">
-                <p class="mb-3 text-xl font-medium text-orange-400 md:text-2xl">
+                <p class="mb-3 text-xl font-medium text-accent md:text-2xl">
                     Hello, I'm
                 </p>
                 <h1
                     class="mb-6 text-5xl font-extrabold leading-tight text-white md:text-6xl lg:text-7xl"
                 >
-                    <span class="gradient-text-orange">Stephen Sterling</span>
+                    <span class="">Stephen Sterling</span>
                 </h1>
-                <p class="mb-8 text-2xl font-light text-gray-300 md:text-3xl">
-                    A <span class="font-semibold text-orange-300"
+                <p class="mb-8 text-2xl font-light text-text md:text-3xl">
+                    A <span class="font-semibold text-text"
                         >Full-Stack Developer</span
-                    > Creating a diversified array[ ] of &#123;software solutions&#125;.
+                    > Creating a diversified array of software and web applications.
                 </p>
+
                 <!-- Call to Action Button -->
                 <a href="/myWork/" class="cta-button inline-block">
-                    View My Work &rarr;
+                    View My Work
                 </a>
             </div>
-            <!-- Developer Avatar/Illustration (Placeholder) -->
+
+            <!-- Picture -->
             <div class="relative flex-shrink-0">
-                <!-- Outer glow/pulse effect - can be animated with custom CSS later -->
                 <div
                     class="animate-pulse-fast absolute inset-0 rounded-full bg-gradient-to-br from-orange-400/30 to-purple-500/30 opacity-75 blur-xl"
                 >
@@ -64,114 +61,84 @@ import PortraitImage from '../assets/images/portrait.jpg' // Import my portrait 
         </div>
     </section>
 
-    <!-- 
+
+<!-- 
   ======================================================================
   SKILLS SECTION
   ======================================================================
   This section is designed as a quick look at my skills on the homepage.
 -->
-    <section
-        id="skills"
-        class="relative z-10 w-full overflow-hidden bg-transparent py-24 md:py-32"
-    >
-        <!-- 
-            -------------------------------
-            Background Blobs Container:
-            - These are purely decorative.
-            - They are positioned absolutely behind the main content.
-            - The `animate-pulse` class gives them a slow, subtle breathing effect.
-            - filter and blur create the soft, gradient look.
-        -->
 
-        <div class="absolute inset-0 h-full w-full">
+    <!-- Main Content Container:
+    - `container mx-auto` centers it and applies a max-width.
+    -->
+    <section class="container mx-auto px-6 text-center">
+        <!-- Section Header -->
+        <h2 class="font-heading mb-4 text-4xl font-bold text-text md:text-5xl">
+            My Creative Toolkit
+        </h2>
+        <p class="mx-auto mb-16 max-w-2xl text-lg text-gray-400">
+            A blend of technical expertise and creative problem-solving to build
+            robust and beautiful applications.
+        </p>
+
+        <!-- Grid for the glass panes -->
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Card 1: Game & 3D Worlds -->
             <div
-                class="absolute left-0 top-0 h-72 w-72 animate-pulse rounded-full bg-gradient-to-br from-orange-500 to-red-600 opacity-30 blur-3xl filter md:h-96 md:w-96"
+                class=""
             >
+                <h3
+                    class="skill-heading"
+                >
+                    Games & 3D Worlds
+                </h3>
+                <p class="leading-relaxed text-text">
+                    Building immersive experiences from the ground up using
+                    industry-standard tools like Unreal Engine, Unity, C++, and
+                    C#.
+                </p>
             </div>
+
+            <!-- Card 2: Web & App Ecosystems -->
             <div
-                class="absolute bottom-0 right-0 h-72 w-72 animate-pulse rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 opacity-30 blur-3xl filter [animation-delay:-2s] md:h-96 md:w-96"
+                class=""
             >
+                <h3
+                    class="skill-heading"
+                >
+                    Web & App Ecosystems
+                </h3>
+                <p class="leading-relaxed text-text">
+                    Crafting high-performance websites and native applications
+                    with modern frameworks like Astro, Swift, and .NET.
+                </p>
+            </div>
+
+            <!-- Card 3: Foundational Strengths (Added) -->
+            <div
+                class=""
+            >
+                <h3
+                    class="skill-heading"
+                >
+                    Foundational Strengths
+                </h3>
+                <p class="leading-relaxed text-text">
+                    Driven by a passion for rapid and self learning, grounded in
+                    advanced mathematics, and streamlined with tools like Git.
+                </p>
             </div>
         </div>
-        <!-- ------------------------------ -->
 
-        <!-- 
-            Main Content Container:
-            - Positioned relatively to sit on top of the background blobs.
-            - `container mx-auto` centers it and applies a max-width.
-            -->
-        <div class="container relative z-10 mx-auto px-6 text-center">
-            <!-- Section Header -->
-            <h2
-                class="font-heading mb-4 text-4xl font-bold text-white md:text-5xl"
+        <!-- Call to Action Button -->
+        <div class="mt-16">
+            <a
+                href="/skills/"
+                class="cta-button inline-block"
             >
-                My Creative Toolkit
-            </h2>
-            <p class="mx-auto mb-16 max-w-2xl text-lg text-gray-400">
-                A blend of technical expertise and creative problem-solving to
-                build robust and beautiful applications.
-            </p>
-
-            <!-- Grid for the glass panes -->
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Card 1: Game & 3D Worlds -->
-                <div
-                    class="glass-pane transform rounded-2xl p-8 text-left transition-transform duration-300 hover:-translate-y-2"
-                >
-                    <h3
-                        class="font-heading mb-4 text-2xl font-semibold text-orange-400"
-                    >
-                        Games & 3D Worlds
-                    </h3>
-                    <p class="leading-relaxed text-gray-300">
-                        Building immersive experiences from the ground up using
-                        industry-standard tools like Unreal Engine, Unity, C++,
-                        and C#.
-                    </p>
-                </div>
-
-                <!-- Card 2: Web & App Ecosystems -->
-                <div
-                    class="glass-pane transform rounded-2xl p-8 text-left transition-transform duration-300 hover:-translate-y-2"
-                >
-                    <h3
-                        class="font-heading mb-4 text-2xl font-semibold text-orange-400"
-                    >
-                        Web & App Ecosystems
-                    </h3>
-                    <p class="leading-relaxed text-gray-300">
-                        Crafting high-performance websites and native
-                        applications with modern frameworks like Astro, Swift,
-                        and .NET.
-                    </p>
-                </div>
-
-                <!-- Card 3: Foundational Strengths (Added) -->
-                <div
-                    class="glass-pane transform rounded-2xl p-8 text-left transition-transform duration-300 hover:-translate-y-2 md:col-span-2 lg:col-span-1"
-                >
-                    <h3
-                        class="font-heading mb-4 text-2xl font-semibold text-orange-400"
-                    >
-                        Foundational Strengths
-                    </h3>
-                    <p class="leading-relaxed text-gray-300">
-                        Driven by a passion for rapid and self learning,
-                        grounded in advanced mathematics, and streamlined with
-                        tools like Git.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Call to Action Button -->
-            <div class="mt-16">
-                <a
-                    href="/skills/"
-                    class="cta-button inline-block rounded-full bg-orange-600 px-8 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:bg-orange-700"
-                >
-                    Explore All Skills
-                </a>
-            </div>
+                Explore All Skills
+            </a>
         </div>
     </section>
 
@@ -188,14 +155,14 @@ import PortraitImage from '../assets/images/portrait.jpg' // Import my portrait 
                 class="mx-auto max-w-3xl rounded-2xl border border-gray-800 bg-gray-900/50 p-8 text-center shadow-2xl md:p-12"
             >
                 <h2
-                    class="font-heading mt-6 text-4xl font-bold leading-tight text-white md:text-5xl"
+                    class="font-heading mt-6 text-4xl font-bold leading-tight text-text md:text-5xl"
                 >
                     Have a project in mind? <br />
-                    <span class="gradient-text-orange">Let's build it.</span>
+                    <span class="">Let's build it.</span>
                 </h2>
 
                 <p
-                    class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-gray-300"
+                    class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-text"
                 >
                     I'm currently available for freelance and career
                     opportunities. If you're looking for a developer who is

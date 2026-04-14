@@ -119,6 +119,14 @@ body {
     padding-top: 0.1em;
 }
 
+.skill-heading {
+    color: var(--accent);
+    font-family: 'Source Code Pro', sans-serif;
+    font-weight: 600;
+    margin-bottom: -1rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
 
 /* ======================================================================
     AURORA GRADIENT BACKGROUND EFFECT
