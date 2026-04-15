@@ -139,12 +139,11 @@ body {
 .featured-cert {
     transition: all 0.3s ease-in-out;
     border: 1px solid #374151;
-    /* gray-700 */
 }
 
 .featured-cert:hover {
     transform: translateY(-5px);
-    border-color: #f97316;
+    border-color: var(--accent);
     /* orange-500 */
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
@@ -157,4 +156,15 @@ body {
 .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+
+/* My Work Page */
+
+.tech-tag {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
 }
