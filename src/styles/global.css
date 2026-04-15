@@ -3,20 +3,20 @@
 @import 'tailwindcss/utilities';
 
 :root {
-  --bg: #0F172A;
-  --surface: #1E293B;
-  --surface-2: #0B1120;
-  --text: #F8FAFC;
-  --text-muted: #94A3B8;
-  --border: #334155;
-  --border-muted: #273449;
-  --accent: #22D3EE;
-  --accent-hover: #06B6D4;
-  --accent-active: #0891B2;
-  --accent-soft: #67E8F9;
-  --focus: #A5F3FC;
-  --success: #22C55E;
-  --error: #F87171;
+    --bg: #0F172A;
+    --surface: #1E293B;
+    --surface-2: #0B1120;
+    --text: #F8FAFC;
+    --text-muted: #94A3B8;
+    --border: #334155;
+    --border-muted: #273449;
+    --accent: #22D3EE;
+    --accent-hover: #06B6D4;
+    --accent-active: #0891B2;
+    --accent-soft: #67E8F9;
+    --focus: #A5F3FC;
+    --success: #22C55E;
+    --error: #F87171;
 }
 
 body {
@@ -128,35 +128,33 @@ body {
     line-height: 2rem;
 }
 
-/* ======================================================================
-    AURORA GRADIENT BACKGROUND EFFECT
-   ======================================================================
-*/
-.aurora-bg {
-    position: relative;
-    background-color: #030712;
-    overflow: hidden;
+
+
+/* My skills page  Carousel id and classes*/
+
+#carousel-container {
+    scroll-behavior: smooth;
 }
 
-.aurora-bg::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200%;
-    height: 200%;
-    filter: blur(120px);
-    opacity: 0.12;
-    animation: rotate 25s linear infinite;
+.featured-cert {
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #374151;
+    /* gray-700 */
 }
 
-@keyframes rotate {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
+.featured-cert:hover {
+    transform: translateY(-5px);
+    border-color: #f97316;
+    /* orange-500 */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
 
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
+/* Hides the scrollbar for the carousel */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
