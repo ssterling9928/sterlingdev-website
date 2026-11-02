@@ -2,132 +2,167 @@
 import Layout from '../layouts/Layout.astro'
 import { Image } from 'astro:assets' // Import Astro's image component for optimized image handling
 
-import PortraitImage from '../assets/images/portrait.jpg' // Import my portrait image
+import PortraitImage from '../assets/images/portrait.jpg'
+import InteractiveTerminal from '../components/InteractiveTerminal.astro'
+import { projects } from '../data/projects'
 ---
 
 <Layout title="Stephen Sterling - Portfolio">
-    <!-- 
+    <!--
   ======================================================================
   HERO SECTION
   ======================================================================
-  This section is designed as a first introduction to me on the homepage.
+  A shell-style introduction: `$ whoami` followed by who I am.
 -->
-    <section id="hero-section" class="home-hero">
-        <div class="home-hero-inner container md:flex-row">
-            <!-- Text Content -->
-            <div class="home-hero-text md:text-left">
-                <p class="home-hero-greeting md:text-2xl">Hello, I'm</p>
-                <h1 class="home-hero-name md:text-6xl lg:text-7xl">
-                    <span>Stephen Sterling</span>
-                </h1>
-                <p class="home-hero-tagline md:text-3xl">
-                    A <span class="home-hero-role">Full-Stack Developer</span> Creating
-                    a diversified array of software and web applications.
+    <section class="home-hero">
+        <div
+            class="home-hero-inner container md:grid-cols-[1.4fr_1fr] md:px-12 md:py-24"
+        >
+            <div class="home-hero-text">
+                <p class="term-prompt">
+                    <span class="term-dollar">$</span> whoami
                 </p>
-
-                <!-- Call to Action Button -->
-                <a href="/myWork/" class="cta-button"> View My Work </a>
+                <h1 class="home-hero-name sm:text-5xl md:text-6xl lg:text-7xl">
+                    Stephen <span class="nowrap"
+                        >Sterling<span class="term-cursor" aria-hidden="true"
+                        ></span></span
+                    >
+                </h1>
+                <ul class="term-lines md:text-lg">
+                    <li>full-stack developer</li>
+                    <li>games · web · iOS</li>
+                    <li>Unreal, Unity, Swift, Astro, .NET</li>
+                </ul>
+                <div class="home-hero-actions">
+                    <a href="/myWork/" class="cta-button">./view-work</a>
+                    <button
+                        data-metric-id="open-contact-modal"
+                        class="open-contact-modal cta-button cta-button-ghost"
+                    >
+                        ./contact
+                    </button>
+                </div>
             </div>
 
-            <!-- Picture -->
-            <div class="home-portrait">
-                <div class="home-portrait-glow"></div>
+            <div class="home-portrait md:justify-self-center">
                 <Image
                     src={PortraitImage}
-                    alt={"Stephen Sterling's Portrait"}
-                    width="1920"
-                    height="1080"
-                    class="home-portrait-img md:size-80 lg:size-96"
+                    alt="Stephen Sterling"
+                    width={600}
+                    class="home-portrait-img md:size-72 lg:size-80"
+                    loading="eager"
                 />
+                <p class="status-badge md:-left-6">available for work</p>
             </div>
         </div>
     </section>
 
-    <!-- 
+    <!--
   ======================================================================
-  SKILLS SECTION
+  FEATURED PROJECTS
   ======================================================================
-  This section is designed as a quick look at my skills on the homepage.
+  Work comes first: three projects, each linking to where you can try it.
 -->
-
-    <!-- Main Content Container:
-    - `container mx-auto` centers it and applies a max-width.
-    -->
-    <section class="home-toolkit container">
-        <!-- Section Header -->
-        <h2 class="home-section-title md:text-5xl">My Creative Toolkit</h2>
-        <p class="home-section-subtitle">
-            A blend of technical expertise and creative problem-solving to build
-            robust and beautiful applications.
-        </p>
-
-        <!-- Grid for the glass panes -->
-        <div class="card-grid md:grid-cols-2 lg:grid-cols-3">
-            <!-- Card 1: Game & 3D Worlds -->
-            <div>
-                <h3 class="skill-heading">Games & 3D Worlds</h3>
-                <p class="skill-text">
-                    Building immersive experiences from the ground up using
-                    industry-standard tools like Unreal Engine, Unity, C++, and
-                    C#.
-                </p>
-            </div>
-
-            <!-- Card 2: Web & App Ecosystems -->
-            <div>
-                <h3 class="skill-heading">Web & App Ecosystems</h3>
-                <p class="skill-text">
-                    Crafting high-performance websites and native applications
-                    with modern frameworks like Astro, Swift, and .NET.
-                </p>
-            </div>
-
-            <!-- Card 3: Foundational Strengths (Added) -->
-            <div>
-                <h3 class="skill-heading">Foundational Strengths</h3>
-                <p class="skill-text">
-                    Driven by a passion for rapid and self learning, grounded in
-                    advanced mathematics, and streamlined with tools like Git.
-                </p>
-            </div>
+    <section class="home-section container md:px-12">
+        <div class="section-label-row">
+            <h2 class="section-label"><span>//</span> featured_projects</h2>
+            <a href="/myWork/" class="section-link">ls ~/work →</a>
         </div>
 
-        <!-- Call to Action Button -->
-        <div class="home-toolkit-cta">
-            <a href="/skills/" class="cta-button"> Explore All Skills </a>
+        <div class="feature-grid md:grid-cols-3">
+            {
+                projects.map((project) => (
+                    <a
+                        href={project.href}
+                        class="feature-card"
+                        data-metric-id={project.metricId}
+                        {...(project.external
+                            ? { target: '_blank', rel: 'noopener' }
+                            : {})}
+                    >
+                        <div
+                            class:list={[
+                                'feature-card-thumb',
+                                project.imageClass,
+                            ]}
+                        >
+                            <Image
+                                src={project.image}
+                                alt={project.imageAlt}
+                                width={640}
+                            />
+                        </div>
+                        <div class="feature-card-body">
+                            <span class="feature-card-file">
+                                {project.file}
+                            </span>
+                            <h3 class="feature-card-title">{project.title}</h3>
+                            <p class="feature-card-text">
+                                {project.description}
+                            </p>
+                            <div class="tag-list">
+                                {project.tags.map((tag) => (
+                                    <span class="term-tag">{tag}</span>
+                                ))}
+                            </div>
+                            <span class="feature-card-action">
+                                → {project.action}
+                            </span>
+                        </div>
+                    </a>
+                ))
+            }
         </div>
     </section>
 
-    <!-- 
+    <!--
+  ======================================================================
+  INTERACTIVE TERMINAL
+  ======================================================================
+  A small shell visitors can type commands into.
+-->
+    <section class="home-section container md:px-12">
+        <div class="section-label-row">
+            <h2 class="section-label"><span>//</span> terminal</h2>
+            <span class="section-hint">type <code>help</code> to explore</span>
+        </div>
+        <InteractiveTerminal />
+    </section>
+
+    <!--
   ======================================================================
   CONTACT SECTION
   ======================================================================
-  This section is designed as a final call-to-action on the homepage.
+  A final call-to-action, drawn as a terminal window.
 -->
-    <section id="contact" class="home-contact md:py-32">
-        <div class="container-padded container">
-            <!-- Main Invitation-Style Card -->
-            <div class="home-contact-card md:p-12">
+    <section id="contact" class="home-section container md:px-12 md:pb-32">
+        <div class="term-window">
+            <div class="term-window-bar">
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-title">contact.sh</span>
+            </div>
+            <div class="term-window-body md:p-12">
+                <p class="term-prompt">
+                    <span class="term-dollar">$</span> ./contact --new-project
+                </p>
                 <h2 class="home-contact-title md:text-5xl">
-                    Have a project in mind? <br />
+                    Have a project in mind?
                     <span>Let's build it.</span>
                 </h2>
-
                 <p class="home-contact-text">
                     I'm currently available for freelance and career
                     opportunities. If you're looking for a developer who is
                     passionate about bringing new ideas to life, I'm ready to
                     connect.
                 </p>
-
-                <div class="home-contact-actions">
-                    <button
-                        data-metric-id="open-contact-modal"
-                        class="open-contact-modal cta-button"
-                    >
-                        Let's Connect
-                    </button>
-                </div>
+                <button
+                    data-metric-id="open-contact-modal"
+                    class="open-contact-modal cta-button"
+                >
+                    ./connect
+                </button>
             </div>
         </div>
     </section>

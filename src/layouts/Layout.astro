@@ -17,7 +17,7 @@ import CommandMenu from '../components/react/command/commandmenu.tsx'
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <title>{title || 'Stephen Sterling - Portfolio'}</title>
-        <script defer src="/scripts/metrics.js"></script>
+        <script is:inline defer src="/scripts/metrics.js"></script>
 
         <!-- Google Font -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,10 +29,7 @@ import CommandMenu from '../components/react/command/commandmenu.tsx'
     </head>
 
     <body>
-        <Header
-            siteTitle="Stephen Sterling"
-            logoAlt="Stephen Sterling's Logo"
-        />
+        <Header siteTitle="Stephen Sterling" />
 
         <slot />
         {/* This is where the content of each page will go */}
