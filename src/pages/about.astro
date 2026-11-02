@@ -1,251 +1,283 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import { Image } from 'astro:assets'
+
+import PortraitImage from '../assets/images/portrait.jpg'
+
+// Syntax-highlighted JSON for the profile card. Kept here as a string
+// because Astro would otherwise read its { } braces as template expressions.
+const profileJson = `<span class="json-punct">{</span>
+  <span class="json-key">"location"</span><span class="json-punct">:</span> <span class="json-string">"Arkansas, USA"</span><span class="json-punct">,</span>
+  <span class="json-key">"passions"</span><span class="json-punct">: [</span>
+    <span class="json-string">"Game Development"</span><span class="json-punct">,</span>
+    <span class="json-string">"Problem-Solving"</span><span class="json-punct">,</span>
+    <span class="json-string">"Lifelong Learning"</span>
+  <span class="json-punct">],</span>
+  <span class="json-key">"available"</span><span class="json-punct">:</span> <span class="json-bool">true</span>
+<span class="json-punct">}</span>`
+
+// The three areas I work in (moved here from the home page).
+const toolkit = [
+    {
+        title: 'Games & 3D Worlds',
+        text: 'Building immersive experiences from the ground up using industry-standard tools like Unreal Engine, Unity, C++, and C#.',
+    },
+    {
+        title: 'Web & App Ecosystems',
+        text: 'Crafting high-performance websites and native applications with modern frameworks like React, Astro, Swift, and .NET.',
+    },
+    {
+        title: 'Foundational Strengths',
+        text: 'Driven by a passion for rapid and self learning, grounded in advanced mathematics, and streamlined with tools like Git.',
+    },
+    {
+        title: 'DevOps & Cloud',
+        text: 'Comfortable on the infrastructure side, from containerizing applications with Docker and orchestrating them with Kubernetes to setting up and managing servers, CI/CD pipelines, and cloud deployments.',
+    },
+]
 ---
 
 <Layout title="Stephen Sterling - About Me">
-    <!-- Section: About Me Hero -->
-    <div id="hero-section" class="about-hero">
-        <div class="about-hero-content">
-            <h1 class="page-hero-title md:text-8xl lg:text-9xl">
-                Hello<span class="hero-dot">.</span>
-            </h1>
-            <p class="about-hero-subtitle md:text-2xl">
-                Behind every line of code is a story. <br /> This is mine.
-            </p>
-        </div>
-
-        <!-- Downwards Arrow -->
-        <div class="scroll-hint">
-            <a href="#my-goals" aria-label="Scroll to next section">
-                <svg
-                    class="scroll-hint-icon"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    ><path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 9l-7 7-7-7"></path></svg
-                >
-            </a>
-        </div>
-    </div>
-
-    <!-- Section: My Goals -->
-    <section id="my-goals">
-        <div class="about-goals">
-            <div class="container">
-                <div class="about-section-header">
-                    <h2 class="about-section-title md:text-5xl">
-                        My Mission & Goals
-                    </h2>
-                    <p class="section-subtitle">What drives me forward.</p>
+    <!--
+  ======================================================================
+  ABOUT: profile card + README
+  ======================================================================
+  Left: who I am at a glance. Right: my story, laid out like a README.
+  On phones the profile card stacks above the README.
+-->
+    <section class="about-page container md:px-12 lg:grid-cols-[20rem_1fr]">
+        <!-- Profile card -->
+        <aside class="profile lg:sticky">
+            <div class="profile-card">
+                <Image
+                    src={PortraitImage}
+                    alt="Stephen Sterling"
+                    width={640}
+                    class="profile-photo"
+                    loading="eager"
+                />
+                <div class="profile-who">
+                    <h1 class="profile-name">Stephen Sterling</h1>
+                    <p class="profile-role">full-stack developer</p>
                 </div>
-                <div class="about-goals-grid lg:flex-row lg:gap-0">
-                    <!-- Card 1 (Back) -->
-                    <div class="goal-card">
-                        <h3 class="goal-title">
-                            Be a Part of Something Bigger
-                        </h3>
-                        <div class="goal-divider"></div>
-                        <p class="goal-text">
-                            My goal as a developer is to be part of something
-                            bigger. I'm driven to apply my skills to large-scale
-                            projects, whether it's an expansive game, robust
-                            software, or a user-friendly website. I want to
-                            build applications that are valuable, intuitive, and
-                            integrate seamlessly into people's daily lives,
-                            leaving a lasting and positive impact.
-                        </p>
-                    </div>
-
-                    <!-- Card 2 (Front) -->
-                    <div class="goal-card">
-                        <h3 class="goal-title">Never Stop Growing</h3>
-                        <div class="goal-divider"></div>
-                        <p class="goal-text">
-                            I am committed to a career of continuous growth. I
-                            love diving into new concepts, mastering different
-                            languages, and exploring the latest software tools.
-                            This passion for learning is fueled by my goal to
-                            collaborate with talented teams on challenging
-                            projects that push my abilities and force me to
-                            discover new ways of thinking and building.
-                        </p>
-                    </div>
-                </div>
+                <pre class="profile-json" set:html={profileJson} />
+                <p class="profile-status">open to work</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Section: Narrative -->
-    <section>
-        <!-- Section Background -->
-        <div class="about-story">
-            <!-- Content Container -->
-            <div class="about-story-inner container">
-                <!-- Main Heading -->
-                <h2 class="about-story-title md:text-6xl">
-                    From Curiosity to Creation.
-                </h2>
-
-                <!-- Two-Column Layout (On Larger Screens) -->
-                <div class="about-story-grid md:grid-cols-[0.9fr_0.1fr]">
-                    <!-- Left Column: The Narrative -->
-                    <div class="about-story-text md:text-lg">
-                        <p class="drop-cap">
-                            My journey into technology didn’t start with a
-                            formal lesson, but with a simple, irresistible
-                            curiosity. From a young age, I was fascinated by
-                            computers and video games, and I spent a lot of my
-                            childhood tweaking settings and taking things apart
-                            just to understand the logic behind them. This
-                            desire to understand has never stopped growing
-                            inside me.
-                        </p>
-                        <p>
-                            During my elementary and high school years,
-                            mathematics and computer related courses quickly
-                            became my favorite. My enthusiasm for the material
-                            helped me pick up on new ideas quickly. It was
-                            during my college courses that everything really
-                            came together. I discovered programming, and for the
-                            first time, I wasn't just exploring systems—I was
-                            building them. That feeling of writing a line of
-                            code and seeing an application respond exactly as
-                            intended was empowering, which ended up guiding my
-                            focus towards C++, C#, and game development.
-                        </p>
-                        <p>
-                            This initial spark ignited a passion for continuous,
-                            self-directed growth. My evenings were often spent
-                            immersed in online courses on platforms like Udemy,
-                            learning Game Engines like Unity and Unreal Engine,
-                            and diving into the intricacies of not just learning
-                            a new language, but to master the entire ecosystem
-                            around it. This process of constant learning isn't
-                            just a hobby; it’s the core of my development
-                            philosophy.
-                        </p>
-                        <p>
-                            I have learned technology moves fast, and it's not
-                            going to slow down or wait for anyone. A developer
-                            not only needs to be adaptable, but also be able to
-                            master new technologies quickly. The ability to
-                            learn new frameworks, languages, and tools is
-                            essential to staying relevant in our modern
-                            technology field. I strongly feel that this is my
-                            greatest strength as a developer. I thrive on the
-                            challenge of learning, and I am always able to pick
-                            up new skills extremely quickly. This has allowed me
-                            to expand to a wide range of projects types, from
-                            Game development, mobile and computer applications,
-                            and even web development.
-                        </p>
-                        <p>
-                            This mindset is carried into every project I take
-                            on. I feel technology should make things easier and
-                            enjoyable for people. Whether I'm building an
-                            immersive 3D world or a simple web page, my goal is
-                            always to create something that is reliable, runs
-                            well, and just makes sense to the person using it.
-                        </p>
-                    </div>
-
-                    <!-- Right Column: Subtle Divider with Icons (On Larger Screens) -->
-                    <div class="story-timeline md:flex">
-                        <div class="story-timeline-line">
-                            <!-- Icon 1: Gaming -->
-                            <div class="timeline-dot timeline-dot-top">
-                                <svg
-                                    class="timeline-icon"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    ><path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
-                                    ></path></svg
-                                >
-                            </div>
-                            <!-- Icon 2: Coding -->
-                            <div class="timeline-dot timeline-dot-middle">
-                                <svg
-                                    class="timeline-icon"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    ><path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"
-                                    ></path></svg
-                                >
-                            </div>
-                            <!-- Icon 3: Learning -->
-                            <div class="timeline-dot timeline-dot-bottom">
-                                <svg
-                                    class="timeline-icon"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    ><path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M12 18v-5.25m0 5.25a7.5 7.5 0 001.5-14.95A7.5 7.5 0 0010.5 18M12 18v-5.25"
-                                    ></path></svg
-                                >
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="about-cta md:py-24">
-        <div class="about-cta-inner container">
-            <h2 class="about-cta-title md:text-4xl">Sound like a good fit?</h2>
-            <p class="section-subtitle">
-                I'm always ready for the next challenge.
-            </p>
-            <button
-                data-metric-id="open-contact-modal"
-                class="open-contact-modal cta-button about-cta-button"
+            <a
+                href="/assets/resume/Sterling-Resume.pdf"
+                download="Stephen_Sterling_Resume.pdf"
+                class="cta-button cta-button-ghost"
+                data-metric-id="resume-download"
             >
-                Let's Get In Touch
-            </button>
+                ./resume.pdf
+            </a>
+        </aside>
+
+        <!-- README -->
+        <article class="readme">
+            <div class="readme-bar">
+                <span class="readme-file">README.md</span>
+                <span>about/</span>
+            </div>
+            <div class="readme-body md:px-10 md:py-9">
+                <h2 class="md-h1 md:text-5xl">Hello.</h2>
+                <p class="readme-lede">
+                    Behind every line of code is a story. This is mine.
+                </p>
+
+                <h2 class="md-h2">From Curiosity to Creation</h2>
+                <p>
+                    My journey into technology didn’t start with a formal
+                    lesson, but with a simple, irresistible curiosity. From a
+                    young age, I was fascinated by computers and video games,
+                    and I spent a lot of my childhood tweaking settings and
+                    taking things apart just to understand the logic behind
+                    them. This desire to understand has never stopped growing
+                    inside me.
+                </p>
+                <p>
+                    During my elementary and high school years, mathematics and
+                    computer related courses quickly became my favorite. My
+                    enthusiasm for the material helped me pick up on new ideas
+                    quickly. It was during my college courses that everything
+                    really came together. I discovered programming, and for the
+                    first time, I wasn't just exploring systems—I was building
+                    them. That feeling of writing a line of code and seeing an
+                    application respond exactly as intended was empowering,
+                    which ended up guiding my focus towards C++, C#, and game
+                    development.
+                </p>
+
+                <!-- The rest of the story, revealed by the button below.
+                     Without JavaScript it simply stays visible. -->
+                <div id="story-more" class="story-more" data-story-more>
+                    <p>
+                        This initial spark ignited a passion for continuous,
+                        self-directed growth. My evenings were often spent
+                        immersed in online courses on platforms like Udemy,
+                        learning Game Engines like Unity and Unreal Engine, and
+                        diving into the intricacies of not just learning a new
+                        language, but to master the entire ecosystem around it.
+                        This process of constant learning isn't just a hobby;
+                        it’s the core of my development philosophy.
+                    </p>
+                    <p>
+                        I have learned technology moves fast, and it's not going
+                        to slow down or wait for anyone. A developer not only
+                        needs to be adaptable, but also be able to master new
+                        technologies quickly. The ability to learn new
+                        frameworks, languages, and tools is essential to staying
+                        relevant in our modern technology field. I strongly feel
+                        that this is my greatest strength as a developer. I
+                        thrive on the challenge of learning, and I am always
+                        able to pick up new skills extremely quickly. This has
+                        allowed me to expand to a wide range of projects types,
+                        from Game development, mobile and computer applications,
+                        and even web development.
+                    </p>
+                    <p>
+                        This mindset is carried into every project I take on. I
+                        feel technology should make things easier and enjoyable
+                        for people. Whether I'm building an immersive 3D world
+                        or a simple web page, my goal is always to create
+                        something that is reliable, runs well, and just makes
+                        sense to the person using it.
+                    </p>
+                </div>
+                <button
+                    type="button"
+                    class="read-more"
+                    aria-controls="story-more"
+                    aria-expanded="true"
+                    data-story-toggle
+                    hidden
+                >
+                    ./read-more
+                </button>
+
+                <h2 class="md-h2">My Mission &amp; Goals</h2>
+                <ul class="checklist">
+                    <li class="checklist-item">
+                        <span class="checklist-box" aria-hidden="true">[ ]</span
+                        >
+                        <div>
+                            <h3 class="checklist-title">
+                                Be a Part of Something Bigger
+                            </h3>
+                            <p>
+                                My goal as a developer is to be part of
+                                something bigger. I'm driven to apply my skills
+                                to large-scale projects, whether it's an
+                                expansive game, robust software, or a
+                                user-friendly website. I want to build
+                                applications that are valuable, intuitive, and
+                                integrate seamlessly into people's daily lives,
+                                leaving a lasting and positive impact.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="checklist-item">
+                        <span class="checklist-box" aria-hidden="true">[~]</span
+                        >
+                        <div>
+                            <h3 class="checklist-title">Never Stop Growing</h3>
+                            <p>
+                                I am committed to a career of continuous growth.
+                                I love diving into new concepts, mastering
+                                different languages, and exploring the latest
+                                software tools. This passion for learning is
+                                fueled by my goal to collaborate with talented
+                                teams on challenging projects that push my
+                                abilities and force me to discover new ways of
+                                thinking and building.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+
+                <h2 class="md-h2">Toolkit</h2>
+                <div class="toolkit-list">
+                    {
+                        toolkit.map((item) => (
+                            <div class="toolkit-item">
+                                <h3 class="skill-heading">{item.title}</h3>
+                                <p class="skill-text">{item.text}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+                <a href="/skills/" class="section-link toolkit-more"
+                    >cat skills →</a
+                >
+            </div>
+        </article>
+    </section>
+
+    <!--
+  ======================================================================
+  CONTACT
+  ======================================================================
+-->
+    <section class="home-section container md:px-12 md:pb-32">
+        <div class="term-window">
+            <div class="term-window-bar">
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-title">contact.sh</span>
+            </div>
+            <div class="term-window-body md:p-12">
+                <p class="term-prompt">
+                    <span class="term-dollar">$</span> ./contact
+                </p>
+                <h2 class="home-contact-title md:text-5xl">
+                    Sound like a good fit?
+                    <span>Let's talk.</span>
+                </h2>
+                <p class="home-contact-text">
+                    I'm always ready for the next challenge.
+                </p>
+                <button
+                    data-metric-id="open-contact-modal"
+                    class="open-contact-modal cta-button"
+                >
+                    ./get-in-touch
+                </button>
+            </div>
         </div>
     </section>
 
-    <!-- SMOOTH SCROLL -->
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault()
+        // "Read more": collapse the rest of the story once JS is running,
+        // then let the button toggle it.
+        const more = document.querySelector<HTMLElement>('[data-story-more]')
+        const toggle = document.querySelector<HTMLButtonElement>(
+            '[data-story-toggle]'
+        )
 
-                const targetId = anchor.getAttribute('href')
-                if (!targetId) return
-                const targetElement = document.querySelector(targetId)
+        if (more && toggle) {
+            const setOpen = (open: boolean) => {
+                more.hidden = !open
+                toggle.setAttribute('aria-expanded', String(open))
+                toggle.textContent = open ? './read-less' : './read-more'
+            }
 
-                if (targetElement) {
-                    targetElement.scrollIntoView({
+            setOpen(false)
+            toggle.hidden = false
+
+            toggle.addEventListener('click', () => {
+                const opening = Boolean(more.hidden)
+                setOpen(opening)
+                // When collapsing, bring the button back into view so the
+                // reader isn't left further down the page.
+                if (!opening) {
+                    toggle.scrollIntoView({
+                        block: 'center',
                         behavior: 'smooth',
-                        block: 'start',
                     })
                 }
             })
-        })
+        }
     </script>
 </Layout>
 

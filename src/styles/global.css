@@ -162,15 +162,6 @@ body::before {
         margin-bottom: 16px;
         border-radius: 2px;
     }
-    .drop-cap::first-letter {
-        color: var(--accent);
-        font-size: 3em;
-        font-weight: bold;
-        float: left;
-        line-height: 0.8;
-        margin-right: 0.1em;
-        padding-top: 0.1em;
-    }
     .skill-heading {
         color: var(--accent);
         font-family: 'Source Code Pro', sans-serif;
@@ -658,92 +649,233 @@ body::before {
     }
 
     /* --- About page (about.astro) ------------------------------------------ */
-    .about-hero {
-        @apply flex w-full flex-col items-center justify-center text-center;
+    /* Profile card on the left, README on the right (stacked on phones) */
+    .about-page {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 2.5rem;
+        padding: 3rem 1.5rem 2rem;
     }
-    .about-hero-content {
-        @apply max-w-4xl;
+    .profile {
+        top: 6rem;
+        display: grid;
+        gap: 1rem;
     }
-    .about-hero-subtitle {
-        @apply mx-auto mt-6 max-w-2xl px-1 text-xl text-text;
+    .profile-card {
+        background-color: var(--surface-2);
+        border: 1px solid var(--border-muted);
+        border-radius: 14px;
+        overflow: hidden;
     }
-    .scroll-hint {
-        @apply absolute bottom-24;
+    .profile-photo {
+        width: 100%;
+        height: 18rem;
+        object-fit: cover;
+        object-position: 50% 18%;
     }
-    .scroll-hint-icon {
-        @apply h-8 w-8 text-gray-300;
+    .profile-who {
+        padding: 1rem 1.25rem;
     }
-    .about-goals {
-        @apply flex w-full items-center justify-center px-4 py-24;
+    .profile-name {
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--text);
     }
-    .about-section-header {
-        @apply mb-24 text-center;
+    .profile-role {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--accent);
     }
-    .about-section-title {
-        @apply text-3xl font-bold text-text;
+    .profile-json {
+        margin: 0;
+        padding: 0.9rem 1.25rem;
+        border-top: 1px solid var(--border-muted);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        line-height: 1.8;
+        color: #cbd5e1;
+        white-space: pre;
+        overflow-x: auto;
     }
-    .about-goals-grid {
-        @apply relative mx-auto flex max-w-5xl flex-col items-center justify-center gap-8;
+    .json-key {
+        color: #c084fc;
     }
-    .goal-card {
-        @apply w-full rounded-2xl p-8 shadow-2xl;
+    .json-string {
+        color: #86efac;
     }
-    .goal-title {
-        @apply text-2xl text-accent;
+    .json-punct {
+        color: var(--text-muted);
     }
-    .goal-divider {
-        @apply mb-4 mt-3 h-1 w-16 rounded bg-bg;
+    .json-bool {
+        color: #fda4af;
     }
-    .goal-text {
-        @apply mt-2 text-text;
+    .profile-status {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.75rem 1.25rem;
+        border-top: 1px solid var(--border-muted);
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--text-muted);
     }
-    .about-story {
-        @apply flex min-h-screen w-full items-center justify-center bg-bg p-8;
+    .profile-status::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--success);
+        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
     }
-    .about-story-inner {
-        @apply pb-32;
+    /* README panel */
+    .readme {
+        min-width: 0;
     }
-    .about-story-title {
-        @apply my-8 pb-4 text-left text-3xl font-bold text-text;
+    .readme-bar {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.65rem 1rem;
+        background-color: #111a2e;
+        border: 1px solid var(--border-muted);
+        border-bottom: 0;
+        border-radius: 12px 12px 0 0;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--text-muted);
     }
-    .about-story-grid {
-        @apply mt-12 grid grid-cols-1 gap-8;
+    .readme-file {
+        color: var(--text);
     }
-    .about-story-text {
-        @apply space-y-6 leading-relaxed text-text;
+    .readme-body {
+        padding: 1.75rem 1.25rem;
+        background-color: rgba(11, 17, 32, 0.7);
+        border: 1px solid var(--border-muted);
+        border-radius: 0 0 12px 12px;
     }
-    .story-timeline {
-        @apply hidden h-full flex-col items-end justify-center pt-12;
+    .readme-body p {
+        max-width: 68ch;
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: #cbd5e1;
     }
-    .story-timeline-line {
-        @apply relative h-full w-px bg-gray-700;
+    .readme-body p + p,
+    .story-more {
+        margin-top: 1rem;
     }
-    .timeline-dot {
-        @apply absolute left-1/2 -translate-x-1/2 rounded-full bg-gray-800 p-3;
+    .story-more p + p {
+        margin-top: 1rem;
     }
-    .timeline-dot-top {
-        @apply top-1/4;
+    /* Markdown-style headings: "#" and "##" drawn in the accent colour */
+    .md-h1,
+    .md-h2 {
+        display: flex;
+        align-items: baseline;
+        gap: 0.75rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--text);
     }
-    .timeline-dot-middle {
-        @apply top-1/2 -translate-y-1/2;
+    .md-h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
     }
-    .timeline-dot-bottom {
-        @apply top-3/4;
+    .md-h2 {
+        font-size: 1.5rem;
+        margin: 2.5rem 0 1rem;
+        padding-top: 1.75rem;
+        border-top: 1px solid var(--border-muted);
     }
-    .timeline-icon {
-        @apply h-6 w-6 text-orange-400;
+    .md-h1::before,
+    .md-h2::before {
+        font-family: var(--font-mono);
+        font-weight: 500;
+        font-size: 0.7em;
+        color: var(--accent);
     }
-    .about-cta {
-        @apply py-20;
+    .md-h1::before {
+        content: '#';
     }
-    .about-cta-inner {
-        @apply px-6 text-center;
+    .md-h2::before {
+        content: '##';
     }
-    .about-cta-title {
-        @apply mx-auto max-w-2xl text-3xl font-bold text-text;
+    .readme-body .readme-lede {
+        font-size: 1.25rem;
+        color: var(--text);
     }
-    .about-cta-button {
-        @apply mt-8;
+    /* "./read-more" toggle (no display rule, so [hidden] still works) */
+    .read-more {
+        margin-top: 1.25rem;
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+        color: var(--accent);
+        background-color: transparent;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 16px;
+        transition:
+            border-color 0.2s,
+            color 0.2s;
+    }
+    .read-more:hover {
+        color: var(--accent-soft);
+        border-color: var(--accent);
+    }
+    .read-more:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 3px;
+    }
+    /* Goals as a task list */
+    .checklist {
+        display: grid;
+        gap: 1.5rem;
+    }
+    .checklist-item {
+        display: grid;
+        grid-template-columns: 2rem 1fr;
+        gap: 0.5rem;
+    }
+    .checklist-box {
+        font-family: var(--font-mono);
+        color: var(--accent);
+        padding-top: 0.1rem;
+    }
+    .checklist-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 0.25rem;
+    }
+    .checklist-item p {
+        font-size: 1rem;
+        color: var(--text-muted);
+    }
+
+    /* Toolkit: three stacked cards with an accent edge */
+    .toolkit-list {
+        display: grid;
+        gap: 1rem;
+    }
+    .toolkit-item {
+        background-color: var(--surface-2);
+        border: 1px solid var(--border-muted);
+        border-left: 2px solid var(--accent);
+        border-radius: 10px;
+        padding: 1.25rem 1.5rem;
+    }
+    .toolkit-item .skill-heading {
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+        margin-bottom: 0.4rem;
+    }
+    .readme-body .toolkit-item .skill-text {
+        font-size: 1rem;
+        color: var(--text-muted);
+    }
+    .toolkit-more {
+        display: inline-block;
+        margin-top: 1.25rem;
     }
 
     /* --- Skills page (skills.astro) ---------------------------------------- */
