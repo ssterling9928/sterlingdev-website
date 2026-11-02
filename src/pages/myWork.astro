@@ -9,19 +9,14 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
 
 <Layout title="Stephen Sterling - My Work">
     <!-- Work-Hero Section -->
-    <section
-        id="hero-section"
-        class="py-48 text-center md:py-72"
-    >
+    <section id="hero-section" class="work-hero md:py-72">
         <!-- Content Container -->
-        <div class="container relative z-10 mx-auto px-6">
+        <div class="work-hero-inner container">
             <!-- Page Title -->
-            <h1
-                class="text-6xl font-bold leading-tight text-text md:text-8xl lg:text-9xl"
-            >
-                My Work<span class="text-accent">.</span>
+            <h1 class="page-hero-title md:text-8xl lg:text-9xl">
+                My Work<span class="hero-dot">.</span>
             </h1>
-            <p class="mx-auto mt-4 max-w-2xl text-lg text-text md:text-xl">
+            <p class="work-hero-subtitle md:text-xl">
                 A selection of projects I've built, from game prototypes to
                 modern web applications.
             </p>
@@ -29,34 +24,32 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
     </section>
 
     <!-- Main Projects Grid Section -->
-    <section class="py-16 md:py-24">
+    <section class="work-section md:py-24">
         <!-- Content Container -->
-        <div class="container mx-auto px-6">
+        <div class="container-padded container">
             <!-- Project Cards -->
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div class="card-grid md:grid-cols-2 lg:grid-cols-3">
                 <!-- Project Card 1 -->
-                <div
-                    class="project-card flex flex-col overflow-hidden rounded-2xl"
-                >
-                    <div class="relative">
+                <div class="project-card">
+                    <div class="project-media">
                         <Image
                             src={websiteThumbnail}
                             alt="Astro Website Thumbnail"
-                            class="h-56 w-full object-cover opacity-5"
+                            class="project-media-img"
                             loading="lazy"
                         />
                         <h2
-                            class="absolute top-0 w-full p-6 pt-16 text-4xl font-bold text-accent"
+                            class="project-overlay-title project-overlay-accent"
                         >
                             Astro Website
                         </h2>
                     </div>
 
-                    <div class="flex flex-grow flex-col px-6 pb-6">
-                        <h3 class="pb-2 text-2xl text-text">
+                    <div class="project-body project-body-flush-top">
+                        <h3 class="project-title project-title-padded">
                             Portfolio Website
                         </h3>
-                        <p class="mt-2 flex-grow pb-2 text-text">
+                        <p class="project-desc project-desc-padded">
                             A showcase of modern web development in action. This
                             portfolio was built from the ground up with Astro
                             for maximum performance and a seamless user
@@ -64,22 +57,14 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
                             fully automated CI/CD pipeline, deploying directly
                             from GitHub to Cloudflare's edge network.
                         </p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span
-                                class="tech-tag"
-                                >Astro</span
-                            ><span
-                                class="tech-tag"
-                                >HTML</span
-                            ><span
-                                class="tech-tag"
-                                >Tailwind CSS</span
-                            ><span
-                                class="tech-tag"
-                                >Javascript</span
+                        <div class="tech-tags">
+                            <span class="tech-tag">Astro</span><span
+                                class="tech-tag">HTML</span
+                            ><span class="tech-tag">Tailwind CSS</span><span
+                                class="tech-tag">Javascript</span
                             >
                         </div>
-                        <div class="mt-6 flex items-center space-x-4">
+                        <div class="project-actions">
                             <a
                                 href="https://github.com/ssterling9928/sterlingdev-website"
                                 class="button"
@@ -92,27 +77,19 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
                     </div>
                 </div>
                 <!-- Project Card 2 -->
-                <div
-                    class="project-card flex flex-col overflow-hidden rounded-2xl"
-                >
-                    <div class="relative">
+                <div class="project-card">
+                    <div class="project-media">
                         <Image
                             src={iosAppThumbnail}
                             alt="iOS App Thumbnail"
-                            class="h-56 w-full object-cover opacity-5"
+                            class="project-media-img"
                             loading="lazy"
                         />
-                        <h2
-                            class="absolute top-0 w-full p-6 pt-16 text-4xl font-bold"
-                        >
-                            iOS App
-                        </h2>
+                        <h2 class="project-overlay-title">iOS App</h2>
                     </div>
-                    <div class="flex flex-grow flex-col p-6">
-                        <h3 class="text-2xl text-text">
-                            Wizard's Quiz
-                        </h3>
-                        <p class="mt-2 flex-grow text-text">
+                    <div class="project-body">
+                        <h3 class="project-title">Wizard's Quiz</h3>
+                        <p class="project-desc">
                             A native iOS trivia application built entirely in
                             Swift using Xcode and the UIKit framework, which is
                             currently published on the App Store. This project
@@ -120,19 +97,12 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
                             including programmatic UI and state management.
                         </p>
 
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span
-                                class="tech-tag"
-                                >Swift</span
-                            ><span
-                                class="tech-tag"
-                                >Xcode</span
-                            ><span
-                                class="tech-tag"
-                                >UIKit</span
-                            >
+                        <div class="tech-tags">
+                            <span class="tech-tag">Swift</span><span
+                                class="tech-tag">Xcode</span
+                            ><span class="tech-tag">UIKit</span>
                         </div>
-                        <div class="mt-6 flex items-center space-x-4">
+                        <div class="project-actions">
                             <a
                                 href="https://apps.apple.com/us/app/wizards-quiz/id1502868673"
                                 target="_blank"
@@ -150,27 +120,23 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
                 </div>
 
                 <!-- Project Card 3 -->
-                <div
-                    class="project-card flex flex-col overflow-hidden rounded-2xl"
-                >
-                    <div class="relative">
+                <div class="project-card">
+                    <div class="project-media">
                         <Image
                             src={robotThumbnail}
                             alt="Robot Takeover Thumbnail"
-                            class="h-56 w-full object-cover opacity-5"
+                            class="project-media-img"
                             loading="lazy"
                         />
                         <h2
-                            class="absolute top-0 w-full p-6 pt-16 text-4xl font-bold text-accent"
+                            class="project-overlay-title project-overlay-accent"
                         >
                             Web Game
                         </h2>
                     </div>
-                    <div class="flex flex-grow flex-col p-6">
-                        <h3 class="text-2xl text-text">
-                            Robot Takeover
-                        </h3>
-                        <p class="mt-2 flex-grow text-text">
+                    <div class="project-body">
+                        <h3 class="project-title">Robot Takeover</h3>
+                        <p class="project-desc">
                             This project is a complete JavaScript rewrite of an
                             original text-based adventure game I built in Unity.
                             The goal was to modernize the gameplay experience by
@@ -178,19 +144,12 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
                             application with a stylized terminal interface,
                             bringing a classic game format to the browser.
                         </p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span
-                                class="tech-tag"
-                                >Unity</span
-                            ><span
-                                class="tech-tag"
-                                >C#</span
-                            ><span
-                                class="tech-tag"
-                                >Javascript</span
-                            >
+                        <div class="tech-tags">
+                            <span class="tech-tag">Unity</span><span
+                                class="tech-tag">C#</span
+                            ><span class="tech-tag">Javascript</span>
                         </div>
-                        <div class="mt-6 flex items-center space-x-4">
+                        <div class="project-actions">
                             <a
                                 href="/robotGame/"
                                 class="button"
@@ -204,56 +163,52 @@ import robotThumbnail from '../assets/images/robot.png' // Import thumbnail imag
     </section>
 
     <!-- Technologies Section -->
-    <section class="py-16 md:py-24">
-        <div class="container mx-auto px-6">
-            <div class="mb-16 text-center">
+    <section class="work-section md:py-24">
+        <div class="container-padded container">
+            <div class="work-tech-header">
                 <!-- THE CHANGE: Revamped title -->
-                <h2 class="text-5xl font-bold text-text">
-                    <span class="text-accent"
-                        >Primary Technologies</span
-                    >
+                <h2 class="work-tech-title">
+                    <span class="heading-accent">Primary Technologies</span>
                 </h2>
-                <p class="mt-4 text-lg text-text">
+                <p class="section-subtitle">
                     The core technologies I enjoy working with most.
                 </p>
             </div>
             <!-- THE CHANGE: Revamped logo cards -->
-            <div
-                class="flex flex-wrap items-center justify-center gap-8 md:gap-12"
-            >
-                <div class="rounded-full p-4">
+            <div class="tech-logos md:gap-12">
+                <div class="tech-logo">
                     <img
                         src="https://placehold.co/80x80/ffffff/000000?text=UE5"
                         alt="Unreal Engine 5"
-                        class="h-16 w-16 md:h-20 md:w-20"
+                        class="tech-logo-img md:h-20 md:w-20"
                     />
                 </div>
-                <div class="rounded-full p-4">
+                <div class="tech-logo">
                     <img
                         src="https://placehold.co/80x80/ffffff/000000?text=C%2B%2B"
                         alt="C++"
-                        class="h-16 w-16 md:h-20 md:w-20"
+                        class="tech-logo-img md:h-20 md:w-20"
                     />
                 </div>
-                <div class="rounded-full p-4">
+                <div class="tech-logo">
                     <img
                         src="https://placehold.co/80x80/ffffff/000000?text=C%23"
                         alt="C#"
-                        class="h-16 w-16 md:h-20 md:w-20"
+                        class="tech-logo-img md:h-20 md:w-20"
                     />
                 </div>
-                <div class="rounded-full p-4">
+                <div class="tech-logo">
                     <img
                         src="https://placehold.co/80x80/ffffff/000000?text=Git"
                         alt="Git"
-                        class="h-16 w-16 md:h-20 md:w-20"
+                        class="tech-logo-img md:h-20 md:w-20"
                     />
                 </div>
-                <div class="rounded-full p-4">
+                <div class="tech-logo">
                     <img
                         src="https://placehold.co/80x80/ffffff/000000?text=Unity"
                         alt="Unity"
-                        class="h-16 w-16 md:h-20 md:w-20"
+                        class="tech-logo-img md:h-20 md:w-20"
                     />
                 </div>
             </div>

@@ -4,28 +4,21 @@ import Layout from '../layouts/Layout.astro'
 
 <Layout title="Stephen Sterling - About Me">
     <!-- Section: About Me Hero -->
-    <div
-        id="hero-section"
-        class="flex w-full flex-col items-center justify-center text-center"
-    >
-        <div class="max-w-4xl">
-            <h1
-                class="font-inter fade-in-up text-6xl font-bold leading-tight text-text md:text-8xl lg:text-9xl"
-            >
-                Hello<span class="text-accent">.</span>
+    <div id="hero-section" class="about-hero">
+        <div class="about-hero-content">
+            <h1 class="page-hero-title md:text-8xl lg:text-9xl">
+                Hello<span class="hero-dot">.</span>
             </h1>
-            <p
-                class="fade-in mx-auto mt-6 max-w-2xl px-1 text-xl text-text md:text-2xl"
-            >
+            <p class="about-hero-subtitle md:text-2xl">
                 Behind every line of code is a story. <br /> This is mine.
             </p>
         </div>
 
         <!-- Downwards Arrow -->
-        <div class="absolute bottom-24">
+        <div class="scroll-hint">
             <a href="#my-goals" aria-label="Scroll to next section">
                 <svg
-                    class="animate-bounce-slow h-8 w-8 text-gray-300"
+                    class="scroll-hint-icon"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -42,33 +35,22 @@ import Layout from '../layouts/Layout.astro'
 
     <!-- Section: My Goals -->
     <section id="my-goals">
-        <div
-            class="flex w-full items-center justify-center px-4 py-24"
-        >
-            <div class="container mx-auto">
-                <div class="mb-24 text-center">
-                    <h2
-                        class="text-3xl font-bold text-text md:text-5xl"
-                    >
+        <div class="about-goals">
+            <div class="container">
+                <div class="about-section-header">
+                    <h2 class="about-section-title md:text-5xl">
                         My Mission & Goals
                     </h2>
-                    <p class="mt-4 text-lg text-text">
-                        What drives me forward.
-                    </p>
+                    <p class="section-subtitle">What drives me forward.</p>
                 </div>
-                <div
-                    class="relative mx-auto flex max-w-5xl flex-col items-center justify-center gap-8 lg:flex-row lg:gap-0"
-                >
+                <div class="about-goals-grid lg:flex-row lg:gap-0">
                     <!-- Card 1 (Back) -->
-                    <div
-                        class="w-full rounded-2xl p-8 shadow-2xl"
-                    >
-                        <h3 class="text-2xl text-accent">
+                    <div class="goal-card">
+                        <h3 class="goal-title">
                             Be a Part of Something Bigger
                         </h3>
-                        <div class="mb-4 mt-3 h-1 w-16 rounded bg-bg">
-                        </div>
-                        <p class="mt-2 text-text">
+                        <div class="goal-divider"></div>
+                        <p class="goal-text">
                             My goal as a developer is to be part of something
                             bigger. I'm driven to apply my skills to large-scale
                             projects, whether it's an expansive game, robust
@@ -80,15 +62,10 @@ import Layout from '../layouts/Layout.astro'
                     </div>
 
                     <!-- Card 2 (Front) -->
-                    <div
-                        class="w-full rounded-2xl p-8 shadow-2xl"
-                    >
-                        <h3 class="text-2xl text-accent">
-                            Never Stop Growing
-                        </h3>
-                        <div class="mb-4 mt-3 h-1 w-16 rounded bg-bg">
-                        </div>
-                        <p class="mt-2 text-text">
+                    <div class="goal-card">
+                        <h3 class="goal-title">Never Stop Growing</h3>
+                        <div class="goal-divider"></div>
+                        <p class="goal-text">
                             I am committed to a career of continuous growth. I
                             love diving into new concepts, mastering different
                             languages, and exploring the latest software tools.
@@ -106,26 +83,18 @@ import Layout from '../layouts/Layout.astro'
     <!-- Section: Narrative -->
     <section>
         <!-- Section Background -->
-        <div
-            class="flex min-h-screen w-full items-center justify-center bg-bg p-8"
-        >
+        <div class="about-story">
             <!-- Content Container -->
-            <div class="container mx-auto pb-32">
+            <div class="about-story-inner container">
                 <!-- Main Heading -->
-                <h2
-                    class="my-8 pb-4 text-left text-3xl font-bold text-text md:text-6xl"
-                >
+                <h2 class="about-story-title md:text-6xl">
                     From Curiosity to Creation.
                 </h2>
 
                 <!-- Two-Column Layout (On Larger Screens) -->
-                <div
-                    class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-[0.9fr_0.1fr]"
-                >
+                <div class="about-story-grid md:grid-cols-[0.9fr_0.1fr]">
                     <!-- Left Column: The Narrative -->
-                    <div
-                        class="text-md space-y-6 leading-relaxed text-text md:text-lg"
-                    >
+                    <div class="about-story-text md:text-lg">
                         <p class="drop-cap">
                             My journey into technology didn’t start with a
                             formal lesson, but with a simple, irresistible
@@ -186,16 +155,12 @@ import Layout from '../layouts/Layout.astro'
                     </div>
 
                     <!-- Right Column: Subtle Divider with Icons (On Larger Screens) -->
-                    <div
-                        class="hidden h-full flex-col items-end justify-center pt-12 md:flex"
-                    >
-                        <div class="relative h-full w-px bg-gray-700">
+                    <div class="story-timeline md:flex">
+                        <div class="story-timeline-line">
                             <!-- Icon 1: Gaming -->
-                            <div
-                                class="absolute left-1/2 top-1/4 -translate-x-1/2 rounded-full bg-gray-800 p-3"
-                            >
+                            <div class="timeline-dot timeline-dot-top">
                                 <svg
-                                    class="h-6 w-6 text-orange-400"
+                                    class="timeline-icon"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -209,11 +174,9 @@ import Layout from '../layouts/Layout.astro'
                                 >
                             </div>
                             <!-- Icon 2: Coding -->
-                            <div
-                                class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gray-800 p-3"
-                            >
+                            <div class="timeline-dot timeline-dot-middle">
                                 <svg
-                                    class="h-6 w-6 text-orange-400"
+                                    class="timeline-icon"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -227,11 +190,9 @@ import Layout from '../layouts/Layout.astro'
                                 >
                             </div>
                             <!-- Icon 3: Learning -->
-                            <div
-                                class="absolute left-1/2 top-3/4 -translate-x-1/2 rounded-full bg-gray-800 p-3"
-                            >
+                            <div class="timeline-dot timeline-dot-bottom">
                                 <svg
-                                    class="h-6 w-6 text-orange-400"
+                                    class="timeline-icon"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -252,25 +213,20 @@ import Layout from '../layouts/Layout.astro'
     </section>
 
     <!-- Final CTA -->
-    <section class="py-20 md:py-24">
-        <div class="container mx-auto px-6 text-center">
-            <h2
-                class="mx-auto max-w-2xl text-3xl font-bold text-text md:text-4xl"
-            >
-                Sound like a good fit?
-            </h2>
-            <p class="mt-4 text-lg text-text">
+    <section class="about-cta md:py-24">
+        <div class="about-cta-inner container">
+            <h2 class="about-cta-title md:text-4xl">Sound like a good fit?</h2>
+            <p class="section-subtitle">
                 I'm always ready for the next challenge.
             </p>
             <button
                 data-metric-id="open-contact-modal"
-                class="open-contact-modal cta-button mt-8"
+                class="open-contact-modal cta-button about-cta-button"
             >
                 Let's Get In Touch
             </button>
         </div>
     </section>
-
 
     <!-- SMOOTH SCROLL -->
     <script>

@@ -13,18 +13,13 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
 
 <Layout title="Stephen Sterling - My Skills">
     <!-- Skills Hero Section -->
-    <section
-        id="hero-section"
-        class="flex w-full items-center justify-center overflow-hidden py-48 text-center md:py-72"
-    >
+    <section id="hero-section" class="skills-hero md:py-72">
         <!-- Content -->
-        <div class="z-10">
-            <h1
-                class="text-6xl font-bold leading-tight text-text md:text-8xl lg:text-9xl"
-            >
-                The Toolkit<span class="text-accent">.</span>
+        <div class="skills-hero-content">
+            <h1 class="page-hero-title md:text-8xl lg:text-9xl">
+                The Toolkit<span class="hero-dot">.</span>
             </h1>
-            <p class="mx-auto mt-6 max-w-3xl text-xl text-text md:text-2xl">
+            <p class="skills-hero-subtitle md:text-2xl">
                 Here you'll find the skills, credentials, and technologies I use
                 to bring ideas to life.
             </p>
@@ -32,69 +27,42 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
     </section>
 
     <section>
-        <div class="w-full p-8 py-32">
+        <div class="skills-section">
             <!-- Soft Skills Section -->
-            <div class="container z-10 mx-auto">
-                <div class="mx-auto max-w-5xl text-center">
-                    <h3 class="text-5xl font-bold text-text">
-                        Core Strengths
-                    </h3>
+            <div class="skills-section-inner container">
+                <div class="skills-heading-group">
+                    <h3 class="skills-section-title">Core Strengths</h3>
                     <div class="underline-title"></div>
                 </div>
-                <p class="mt-4 pb-8 text-center text-lg text-text">
+                <p class="skills-section-subtitle">
                     My skillset beyond just coding.
                 </p>
 
-                <div class="mb-32 flex flex-wrap justify-center gap-4">
-                    <span
-                        class="rounded-full bg-surface px-5 py-2 text-lg font-medium text-text"
-                        >Team Collaboration</span
-                    >
-                    <span
-                        class="rounded-full bg-surface px-5 py-2 text-lg font-medium text-text"
-                        >Problem-Solving</span
-                    >
-                    <span
-                        class="rounded-full bg-surface px-5 py-2 text-lg font-medium text-text"
-                        >Adaptability</span
-                    >
-                    <span
-                        class="rounded-full bg-surface px-5 py-2 text-lg font-medium text-text"
-                        >Communication</span
-                    >
-                    <span
-                        class="rounded-full bg-surface px-5 py-2 text-lg font-medium text-text"
-                        >Rapid Learning</span
-                    >
+                <div class="strength-list">
+                    <span class="strength-pill">Team Collaboration</span>
+                    <span class="strength-pill">Problem-Solving</span>
+                    <span class="strength-pill">Adaptability</span>
+                    <span class="strength-pill">Communication</span>
+                    <span class="strength-pill">Rapid Learning</span>
                 </div>
             </div>
 
             <!-- Technical Skills Section -->
-            <div class="text-center">
-                <h2 class="text-5xl font-bold text-text">
-                    Technical Skills
-                </h2>
+            <div class="section-header-center">
+                <h2 class="skills-section-title">Technical Skills</h2>
                 <div class="underline-title"></div>
-                <p class="mt-4 pb-8 text-lg text-text">
+                <p class="skills-section-subtitle">
                     A comprehensive list of the technologies I've worked with.
                 </p>
             </div>
 
-            <div
-                class="mx-auto mb-32 max-w-5xl p-8 md:p-12"
-            >
-                <div
-                    class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3"
-                >
+            <div class="tech-panel md:p-12">
+                <div class="tech-grid md:grid-cols-2 lg:grid-cols-3">
                     <!-- Column 1: Game Development -->
-                    <div class="space-y-4">
-                        <h3
-                            class="border-b-2 pb-2 text-2xl text-accent"
-                        >
-                            Game Development
-                        </h3>
+                    <div class="tech-column">
+                        <h3 class="tech-column-title">Game Development</h3>
                         <ul
-                            class="grid grid-cols-2 pt-2 text-sm md:grid-cols-none md:space-y-2 md:text-lg"
+                            class="tech-list md:grid-cols-none md:space-y-2 md:text-lg"
                         >
                             <li>Unreal Engine</li>
                             <li>Unity Engine</li>
@@ -104,14 +72,10 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
                     </div>
 
                     <!-- Column 2: Web & Application -->
-                    <div class="space-y-4">
-                        <h3
-                            class="border-b-2 pb-2 text-2xl text-accent"
-                        >
-                            Web & Application
-                        </h3>
+                    <div class="tech-column">
+                        <h3 class="tech-column-title">Web & Application</h3>
                         <ul
-                            class="grid grid-cols-2 pt-2 text-sm md:grid-cols-none md:space-y-2 md:text-lg"
+                            class="tech-list md:grid-cols-none md:space-y-2 md:text-lg"
                         >
                             <li>Astro</li>
                             <li>HTML & CSS</li>
@@ -123,14 +87,10 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
                     </div>
 
                     <!-- Column 3: Tools & Platforms -->
-                    <div class="space-y-4">
-                        <h3
-                            class="border-b-2 pb-2 text-2xl text-accent"
-                        >
-                            Tools & Platforms
-                        </h3>
+                    <div class="tech-column">
+                        <h3 class="tech-column-title">Tools & Platforms</h3>
                         <ul
-                            class="grid grid-cols-2 pt-2 text-sm md:grid-cols-none md:space-y-2 md:text-lg"
+                            class="tech-list md:grid-cols-none md:space-y-2 md:text-lg"
                         >
                             <li>Git & GitHub</li>
                             <li>Visual Studio</li>
@@ -142,46 +102,32 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
                     </div>
                 </div>
             </div>
-            <div class="mx-auto max-w-5xl text-center">
-                <h3 class="text-5xl font-bold text-text">
-                    Development Philosophy
-                </h3>
+            <div class="skills-heading-group">
+                <h3 class="skills-section-title">Development Philosophy</h3>
                 <div class="underline-title"></div>
-                <p class="mt-4 pb-8 text-lg text-text">
+                <p class="skills-section-subtitle">
                     The principles that guide my work.
                 </p>
-                <div class="grid grid-cols-1 gap-8 text-left md:grid-cols-3">
-                    <div
-                        class="rounded-lg p-6"
-                    >
-                        <h4 class="text-xl font-semibold text-accent">
-                            Performance First
-                        </h4>
-                        <p class="mt-2 text-text">
+                <div class="philosophy-grid md:grid-cols-3">
+                    <div class="philosophy-card">
+                        <h4 class="philosophy-title">Performance First</h4>
+                        <p class="philosophy-text">
                             I build applications to be as fast and efficient as
                             possible, because speed is a critical feature for a
                             great user experience.
                         </p>
                     </div>
-                    <div
-                        class="rounded-lg p-6"
-                    >
-                        <h4 class="text-xl font-semibold text-accent">
-                            Clean & Maintainable
-                        </h4>
-                        <p class="mt-2 text-text">
+                    <div class="philosophy-card">
+                        <h4 class="philosophy-title">Clean & Maintainable</h4>
+                        <p class="philosophy-text">
                             I write code that is not only effective but also
                             easy for others—and my future self—to understand,
                             debug, and build upon.
                         </p>
                     </div>
-                    <div
-                        class="rounded-lg p-6"
-                    >
-                        <h4 class="text-xl font-semibold text-accent">
-                            User-Centric Design
-                        </h4>
-                        <p class="mt-2 text-text">
+                    <div class="philosophy-card">
+                        <h4 class="philosophy-title">User-Centric Design</h4>
+                        <p class="philosophy-text">
                             Technology should serve people. I focus on creating
                             intuitive and accessible interfaces that solve real
                             problems for the end-user.
@@ -193,31 +139,25 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
     </section>
 
     <!-- Certificates Section -->
-    <section class="mx-auto">
-        <div class="w-full p-8 py-32">
-            <div class="container mx-auto">
-                <div class="text-center">
-                    <h2
-                        class="text-2xl font-bold text-text md:text-5xl"
-                    >
+    <section class="skills-education">
+        <div class="skills-section">
+            <div class="container">
+                <div class="section-header-center">
+                    <h2 class="education-title md:text-5xl">
                         Education & Certifications
                     </h2>
                     <div class="underline-title"></div>
-                    <p class="text-lg text-text">
+                    <p class="education-text">
                         My formal education and commitment to continuous
                         learning.
                     </p>
                 </div>
 
                 <!-- Tier 1: Degree -->
-                <div
-                    class="my-24 rounded-2xl p-8"
-                >
-                    <div
-                        class="flex flex-col items-center gap-6 text-center md:flex-row md:text-left"
-                    >
+                <div class="degree-card">
+                    <div class="degree-card-inner md:flex-row md:text-left">
                         <svg
-                            class="h-16 w-16 flex-shrink-0 text-text"
+                            class="degree-icon"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
@@ -229,10 +169,10 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
                             ></path></svg
                         >
                         <div>
-                            <h3 class="text-3xl text-text">
+                            <h3 class="degree-title">
                                 Bachelor of Science in Information Technology
                             </h3>
-                            <p class="text-lg text-text">
+                            <p class="education-text">
                                 University of Massuchussets Lowell - Graduated
                                 2024
                             </p>
@@ -247,208 +187,164 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
                 </div>
 
                 <!-- Tier 2: Featured Certificates Carousel -->
-                <div class="">
-                    <h3 class="mb-10 text-center text-3xl text-text">
-                        Udemy Certificates
-                    </h3>
-                    <div class="relative mx-auto max-w-6xl">
+                <div>
+                    <h3 class="cert-section-title">Udemy Certificates</h3>
+                    <div class="cert-carousel">
                         <!-- Carousel Wrapper -->
                         <div
                             id="carousel-container"
-                            class="no-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth py-4"
+                            class="no-scrollbar cert-track"
                         >
-                            <div
-                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
-                            >
-                                <div
-                                    class="featured-cert flex h-full flex-col rounded-xl p-6"
-                                >
+                            <div class="cert-slide md:w-1/2 lg:w-1/3">
+                                <div class="featured-cert">
                                     <Image
                                         src={unity2Dcert}
                                         alt="Complete Unity 2D Certificate"
-                                        class="mb-4 h-48 w-full rounded-lg object-cover"
+                                        class="cert-image"
                                     />
-                                    <div class="flex-grow">
-                                        <h4
-                                            class="text-xl text-text"
-                                        >
+                                    <div class="cert-body">
+                                        <h4 class="cert-title">
                                             C# Unity Developer
                                         </h4>
-                                        <p class="text-text">Udemy</p>
+                                        <p class="cert-issuer">Udemy</p>
                                     </div>
                                     <a
                                         href="/assets/certs/pdf/completeUnity2D.pdf"
                                         target="_blank"
-                                        class="mt-4 block w-full rounded-lg px-4 py-2 text-center text-text transition-colors"
+                                        class="cert-link"
                                         data-metric-id="view-completeUnity2D"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
-                            <div
-                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
-                            >
-                                <div
-                                    class="featured-cert flex h-full flex-col rounded-xl p-6"
-                                >
+                            <div class="cert-slide md:w-1/2 lg:w-1/3">
+                                <div class="featured-cert">
                                     <Image
                                         src={unrealblueprintscert}
                                         alt="Unreal Engine Blueprints Certificate"
-                                        class="mb-4 h-48 w-full rounded-lg object-cover"
+                                        class="cert-image"
                                     />
-                                    <div class="flex-grow">
-                                        <h4
-                                            class="text-xl text-text"
-                                        >
+                                    <div class="cert-body">
+                                        <h4 class="cert-title">
                                             Unreal Engine 5 Blueprints FPS
                                         </h4>
-                                        <p class="text-text">Udemy</p>
+                                        <p class="cert-issuer">Udemy</p>
                                     </div>
                                     <a
                                         href="/assets/certs/pdf/unrealBlueprints.pdf"
                                         target="_blank"
-                                        class="mt-4 block w-full rounded-lg px-4 py-2 text-center text-text transition-colors"
+                                        class="cert-link"
                                         data-metric-id="view-unrealBlueprints"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
-                            <div
-                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
-                            >
-                                <div
-                                    class="featured-cert flex h-full flex-col rounded-xl p-6"
-                                >
+                            <div class="cert-slide md:w-1/2 lg:w-1/3">
+                                <div class="featured-cert">
                                     <Image
                                         src={csharpcert}
                                         alt="Intermediate C# Certificate"
-                                        class="mb-4 h-48 w-full rounded-lg object-cover"
+                                        class="cert-image"
                                     />
-                                    <div class="flex-grow">
-                                        <h4
-                                            class="text-xl text-text"
-                                        >
+                                    <div class="cert-body">
+                                        <h4 class="cert-title">
                                             Intermediate C#
                                         </h4>
-                                        <p class="text-text">Udemy</p>
+                                        <p class="cert-issuer">Udemy</p>
                                     </div>
                                     <a
                                         href="/assets/certs/pdf/intermediatecsharp.pdf"
                                         target="_blank"
-                                        class="mt-4 block w-full rounded-lg px-4 py-2 text-center text-text transition-colors"
+                                        class="cert-link"
                                         data-metric-id="view-intermediatecsharp"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
-                            <div
-                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
-                            >
-                                <div
-                                    class="featured-cert flex h-full flex-col rounded-xl p-6"
-                                >
+                            <div class="cert-slide md:w-1/2 lg:w-1/3">
+                                <div class="featured-cert">
                                     <Image
                                         src={photoshopcert}
                                         alt="Photoshop Certificate"
-                                        class="mb-4 h-48 w-full rounded-lg object-cover"
+                                        class="cert-image"
                                     />
-                                    <div class="flex-grow">
-                                        <h4
-                                            class="text-xl text-text"
-                                        >
+                                    <div class="cert-body">
+                                        <h4 class="cert-title">
                                             Adobe Photoshop
                                         </h4>
-                                        <p class="text-text">Udemy</p>
+                                        <p class="cert-issuer">Udemy</p>
                                     </div>
                                     <a
                                         href="/assets/certs/pdf/photoshop.pdf"
                                         target="_blank"
-                                        class="mt-4 block w-full rounded-lg px-4 py-2 text-center text-text transition-colors"
+                                        class="cert-link"
                                         data-metric-id="view-photoshop"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
-                            <div
-                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
-                            >
-                                <div
-                                    class="featured-cert flex h-full flex-col rounded-xl p-6"
-                                >
+                            <div class="cert-slide md:w-1/2 lg:w-1/3">
+                                <div class="featured-cert">
                                     <Image
                                         src={gitUnrealcert}
                                         alt="Git with Unreal Engine Certificate"
-                                        class="mb-4 h-48 w-full rounded-lg object-cover"
+                                        class="cert-image"
                                     />
-                                    <div class="flex-grow">
-                                        <h4
-                                            class="text-xl text-text"
-                                        >
+                                    <div class="cert-body">
+                                        <h4 class="cert-title">
                                             Git with Applications for Unreal
                                             Engine
                                         </h4>
-                                        <p class="text-text">Udemy</p>
+                                        <p class="cert-issuer">Udemy</p>
                                     </div>
                                     <a
                                         href="/assets/certs/pdf/gitUnreal.pdf"
                                         target="_blank"
-                                        class="mt-4 block w-full rounded-lg px-4 py-2 text-center text-text transition-colors"
+                                        class="cert-link"
                                         data-metric-id="view-gitUnreal"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
-                            <div
-                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
-                            >
-                                <div
-                                    class="featured-cert flex h-full flex-col rounded-xl p-6"
-                                >
+                            <div class="cert-slide md:w-1/2 lg:w-1/3">
+                                <div class="featured-cert">
                                     <Image
                                         src={wordpresscert}
                                         alt="Wordpress Certificate"
-                                        class="mb-4 h-48 w-full rounded-lg object-cover"
+                                        class="cert-image"
                                     />
-                                    <div class="flex-grow">
-                                        <h4
-                                            class="text-xl text-text"
-                                        >
+                                    <div class="cert-body">
+                                        <h4 class="cert-title">
                                             Wordpress Development
                                         </h4>
-                                        <p class="text-text">Udemy</p>
+                                        <p class="cert-issuer">Udemy</p>
                                     </div>
                                     <a
                                         href="/assets/certs/pdf/wordpress.pdf"
                                         target="_blank"
-                                        class="mt-4 block w-full rounded-lg px-4 py-2 text-center text-text transition-colors"
+                                        class="cert-link"
                                         data-metric-id="view-wordpress"
                                         >View Certificate</a
                                     >
                                 </div>
                             </div>
-                            <div
-                                class="w-full flex-shrink-0 snap-center px-4 md:w-1/2 lg:w-1/3"
-                            >
-                                <div
-                                    class="featured-cert flex h-full flex-col rounded-xl p-6"
-                                >
+                            <div class="cert-slide md:w-1/2 lg:w-1/3">
+                                <div class="featured-cert">
                                     <Image
                                         src={unitymobilecert}
                                         alt="Unity Mobile Certificate"
-                                        class="mb-4 h-48 w-full rounded-lg object-cover"
+                                        class="cert-image"
                                     />
-                                    <div class="flex-grow">
-                                        <h4
-                                            class="text-xl text-text"
-                                        >
+                                    <div class="cert-body">
+                                        <h4 class="cert-title">
                                             C# Unity Mobile
                                         </h4>
-                                        <p class="text-text">Udemy</p>
+                                        <p class="cert-issuer">Udemy</p>
                                     </div>
                                     <a
                                         href="/assets/certs/pdf/unityMobile.pdf"
                                         target="_blank"
-                                        class="mt-4 block w-full rounded-lg px-4 py-2 text-center text-text transition-colors"
+                                        class="cert-link"
                                         data-metric-id="view-unityMobile"
                                         >View Certificate</a
                                     >
@@ -458,10 +354,10 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
                         <!-- Carousel Buttons -->
                         <button
                             id="prev-btn"
-                            class="group absolute left-[-2rem] top-1/2 -translate-y-1/2 rounded-full bg-gray-800/50 p-2 transition-colors hover:bg-gray-800"
+                            class="carousel-arrow carousel-arrow-prev"
                         >
                             <svg
-                                class="h-6 w-6"
+                                class="icon-sm"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -476,10 +372,10 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
                         </button>
                         <button
                             id="next-btn"
-                            class="group absolute right-[-2rem] top-1/2 -translate-y-1/2 rounded-full bg-gray-800/50 p-2 text-white transition-colors hover:bg-gray-800"
+                            class="carousel-arrow carousel-arrow-next"
                         >
                             <svg
-                                class="h-6 w-6"
+                                class="icon-sm"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -496,36 +392,30 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
                 </div>
 
                 <!-- Tier 3: Other Certificates -->
-                <div class="mt-16">
-                    <div
-                        class="mx-auto max-w-4xl rounded-lg p-6"
-                    >
-                        <h3
-                            class="mb-10 text-center text-3xl text-white"
-                        >
+                <div class="courses">
+                    <div class="courses-panel">
+                        <h3 class="courses-title">
                             Additional and Ongoing Courses
                         </h3>
 
-                        <div
-                            class="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2"
-                        >
-                            <p class="text-text">
+                        <div class="courses-grid sm:grid-cols-2">
+                            <p class="course-item">
                                 Unreal Engine 5: Intermediate
                             </p>
-                            <p class="text-text">
+                            <p class="course-item">
                                 Unreal Engine 5: Dedicated Servers with AWS
                             </p>
-                            <p class="text-text">
+                            <p class="course-item">
                                 Complete Full-Stack Web Developer
                             </p>
-                            <p class="text-text">
+                            <p class="course-item">
                                 Unreal Engine 5: Gameplay Ability System
                             </p>
-                            <p class="text-text">Modern React</p>
-                            <p class="text-text">
+                            <p class="course-item">Modern React</p>
+                            <p class="course-item">
                                 JavaScript Algorithms and Data Structures
                             </p>
-                            <p class="text-text">
+                            <p class="course-item">
                                 Creating 3D Environments in Blender
                             </p>
                         </div>
@@ -533,19 +423,12 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
                 </div>
             </div>
             <!-- Call to Action Section -->
-            <div class="pt-24 text-center">
-                <h3 class="text-3xl font-bold text-text">
-                    See My Skills in Action
-                </h3>
-                <p class="mt-2 text-lg text-text">
+            <div class="skills-cta">
+                <h3 class="skills-cta-title">See My Skills in Action</h3>
+                <p class="skills-cta-text">
                     Check out my portfolio of projects.
                 </p>
-                <a
-                    href="/myWork/"
-                    class="cta-button inline-block"
-                >
-                    View My Work
-                </a>
+                <a href="/myWork/" class="cta-button"> View My Work </a>
             </div>
         </div>
     </section>
@@ -558,7 +441,7 @@ import wordpresscert from '../assets/certs/png/wordpress-1.png'
 
             if (carousel && nextBtn && prevBtn) {
                 let scrollAmount = 0
-                const firstCard = carousel.querySelector('.flex-shrink-0')
+                const firstCard = carousel.querySelector('.cert-slide')
 
                 if (firstCard) {
                     scrollAmount = firstCard.getBoundingClientRect().width

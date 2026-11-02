@@ -7,7 +7,7 @@ const { title } = Astro.props
 
 import '../styles/global.css' // Import global styles
 import Header from '../components/Header.astro'
-import CommandMenu from '../components/react/command/commandmenu.tsx';
+import CommandMenu from '../components/react/command/commandmenu.tsx'
 ---
 
 <!doctype html>
@@ -37,12 +37,11 @@ import CommandMenu from '../components/react/command/commandmenu.tsx';
         <slot />
         {/* This is where the content of each page will go */}
 
-
         <!-- Command Menu -->
         <CommandMenu client:idle />
         <!-- Footer -->
-        <footer class="bg-bg px-6 py-8 text-center text-text">
-            <div class="container mx-auto">
+        <footer class="site-footer">
+            <div class="container">
                 <p>
                     &copy; {new Date().getFullYear()} Stephen Sterling. All rights
                     reserved.
@@ -51,32 +50,19 @@ import CommandMenu from '../components/react/command/commandmenu.tsx';
         </footer>
 
         <!-- CONTACT MODAL -->
-        <div
-            id="contact-modal"
-            class="modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4"
-        >
+        <div id="contact-modal" class="modal-hidden contact-modal">
             <!-- Modal Overlay -->
-            <div
-                id="modal-overlay"
-                class="absolute inset-0 bg-black/70 backdrop-blur-sm"
-            >
-            </div>
+            <div id="modal-overlay" class="modal-overlay"></div>
 
             <!-- Modal Content -->
-            <div
-                class="relative z-10 w-full max-w-md overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 p-8 text-center shadow-2xl"
-            >
+            <div class="modal-panel">
                 <!-- A subtle accent border -->
-                <div class="absolute left-0 right-0 top-0 h-1 bg-accent">
-                </div>
+                <div class="modal-accent-bar"></div>
 
                 <!-- Close Button -->
-                <button
-                    id="close-contact-modal"
-                    class="absolute right-4 top-4 text-gray-500 transition-colors hover:text-white"
-                >
+                <button id="close-contact-modal" class="modal-close">
                     <svg
-                        class="h-6 w-6"
+                        class="icon-sm"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -89,26 +75,24 @@ import CommandMenu from '../components/react/command/commandmenu.tsx';
                 </button>
 
                 <!-- Modal Title -->
-                <h2 class="font-fira text-4xl font-bold">
-                    Connect With Me
-                </h2>
-                <p class="mt-2 text-gray-400">
+                <h2 class="modal-title">Connect With Me</h2>
+                <p class="modal-subtitle">
                     Find me on these platforms or download my resume.
                 </p>
 
-                <div class="mt-8">
+                <div class="modal-body">
                     <!-- Social Icons Grid -->
-                    <div class="flex items-center justify-center space-x-6">
+                    <div class="social-links">
                         <!-- GitHub -->
                         <a
                             href="https://github.com/ssterling9928"
                             target="_blank"
-                            class="text-gray-400 transition-transform duration-200 hover:scale-110 hover:text-accent"
+                            class="social-link"
                             aria-label="GitHub"
                             data-metric-id="open-github"
                         >
                             <svg
-                                class="h-10 w-10"
+                                class="icon-lg"
                                 fill="currentColor"
                                 viewBox="0 0 24 24"
                                 ><path
@@ -121,12 +105,12 @@ import CommandMenu from '../components/react/command/commandmenu.tsx';
                         <a
                             href="https://linkedin.com/in/stephen-sterling-9514a41a2/"
                             target="_blank"
-                            class="text-gray-400 transition-transform duration-200 hover:scale-110 hover:text-accent"
+                            class="social-link"
                             aria-label="LinkedIn"
                             data-metric-id="open-linkedin"
                         >
                             <svg
-                                class="h-10 w-10"
+                                class="icon-lg"
                                 fill="currentColor"
                                 viewBox="0 0 24 24"
                                 ><path
@@ -137,12 +121,12 @@ import CommandMenu from '../components/react/command/commandmenu.tsx';
                         <!-- Email -->
                         <a
                             href="mailto:stephen@sterling-dev.com"
-                            class="text-gray-400 transition-transform duration-200 hover:scale-110 hover:text-accent"
+                            class="social-link"
                             aria-label="Email"
                             data-metric-id="open-email"
                         >
                             <svg
-                                class="h-10 w-10"
+                                class="icon-lg"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 ><path
@@ -155,13 +139,13 @@ import CommandMenu from '../components/react/command/commandmenu.tsx';
                     </div>
 
                     <!-- Divider -->
-                    <div class="my-6 border-t border-gray-700"></div>
+                    <div class="modal-divider"></div>
 
                     <!-- Download Resume Button -->
                     <a
                         href="/assets/resume/Sterling-Resume.pdf"
                         download="Stephen_Sterling_Resume.pdf"
-                        class="block w-full rounded-lg bg-gray-700 px-6 py-3 text-center text-lg font-bold text-white transition-transform duration-200 hover:scale-105 hover:bg-gray-600"
+                        class="resume-button"
                         data-metric-id="resume-download"
                     >
                         Download My Resume

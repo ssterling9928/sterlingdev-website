@@ -2,23 +2,27 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* --- Design tokens ---------------------------------------------------------
+   Change the palette here; Tailwind maps these in tailwind.config.mjs
+   (bg-bg, text-text, text-accent, bg-surface, ...). */
 :root {
-    --bg: #0F172A;
-    --surface: #1E293B;
-    --surface-2: #0B1120;
-    --text: #F8FAFC;
-    --text-muted: #94A3B8;
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-2: #0b1120;
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
     --border: #334155;
     --border-muted: #273449;
-    --accent: #22D3EE;
-    --accent-hover: #06B6D4;
-    --accent-active: #0891B2;
-    --accent-soft: #67E8F9;
-    --focus: #A5F3FC;
-    --success: #22C55E;
-    --error: #F87171;
+    --accent: #22d3ee;
+    --accent-hover: #06b6d4;
+    --accent-active: #0891b2;
+    --accent-soft: #67e8f9;
+    --focus: #a5f3fc;
+    --success: #22c55e;
+    --error: #f87171;
 }
 
+/* --- Base ------------------------------------------------------------------ */
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg);
@@ -28,157 +32,701 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Overrides Tailwind's container: fixed max width, always centered. */
 .container {
     max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.modal-hidden {
-    display: none;
-}
+/* ==========================================================================
+   Component classes
+   Everything visual lives here. Markup keeps only responsive utilities
+   (sm:/md:/lg:/xl:). These are in @layer components so Tailwind emits them
+   before its utilities, letting inline responsive classes override them.
+   ========================================================================== */
 
-.underline-title {
-    width: 40px;
-    height: 4px;
-    background-color: var(--accent-soft);
-    margin: 0 auto;
-    margin-top: 8px;
-    margin-bottom: 16px;
-    border-radius: 2px;
-}
-
-.nav-link {
-    @apply text-sm font-bold md:text-lg;
-    color: var(--accent)
-}
-
-.nav-link:hover {
-    color: var(--accent-hover);
-}
-
-.nav-link.active {
-    color: var(--accent-active);
-}
-
-.cta-button {
-    color: var(--text);
-    padding: 15px 30px;
-    font-weight: bolder;
-    font-size: larger;
-    border-radius: 100px;
-    background-color: var(--accent);
-}
-
-/* Compact variant (header). Smaller on phones so the nav fits. */
-.cta-button-sm {
-    padding: 8px 16px;
-    font-size: 1rem;
-    white-space: nowrap;
-}
-
-@media (min-width: 768px) {
+@layer components {
+    /* --- Buttons & links --------------------------------------------------- */
+    /* Primary call-to-action pill */
+    .cta-button {
+        display: inline-block;
+        color: var(--text);
+        padding: 15px 30px;
+        font-weight: bolder;
+        font-size: larger;
+        border-radius: 100px;
+        background-color: var(--accent);
+    }
+    .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 25px var(--accent);
+        transition: all 0.3s ease-in-out;
+        background-color: var(--accent-hover);
+    }
+    /* Compact variant (header). Smaller on phones so the nav fits. */
     .cta-button-sm {
-        padding: 10px 24px;
-        font-size: 1.125rem;
+        padding: 8px 16px;
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+    @media (min-width: 768px) {
+        .cta-button-sm {
+            padding: 10px 24px;
+            font-size: 1.125rem;
+        }
+    }
+    /* Secondary outlined button (project links, degree "View") */
+    .button {
+        width: 100%;
+        text-align: center;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background-color: transparent;
+        font-weight: bold;
+        color: var(--text);
+        padding: 12px 20px;
+    }
+    .button:hover {
+        box-shadow: 0 5px 25px var(--accent);
+        border-color: var(--border);
+    }
+    .nav-link {
+        @apply text-sm font-bold md:text-lg;
+        color: var(--accent);
+    }
+    .nav-link:hover {
+        color: var(--accent-hover);
+    }
+    .nav-link.active {
+        color: var(--accent-active);
+    }
+
+    /* --- Typography helpers ------------------------------------------------ */
+    /* Short accent bar under section titles */
+    .underline-title {
+        width: 40px;
+        height: 4px;
+        background-color: var(--accent-soft);
+        margin: 0 auto;
+        margin-top: 8px;
+        margin-bottom: 16px;
+        border-radius: 2px;
+    }
+    .drop-cap::first-letter {
+        color: var(--accent);
+        font-size: 3em;
+        font-weight: bold;
+        float: left;
+        line-height: 0.8;
+        margin-right: 0.1em;
+        padding-top: 0.1em;
+    }
+    .skill-heading {
+        color: var(--accent);
+        font-family: 'Source Code Pro', sans-serif;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+    .tech-tag {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        font-weight: 600;
+    }
+    /* Hide scrollbars (cert carousel) while keeping it scrollable */
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* --- Header ------------------------------------------------------------ */
+    .site-header {
+        @apply top-0 z-50 rounded-b-xl font-fira backdrop-blur-md;
+    }
+    .header-inner {
+        @apply flex flex-wrap items-center justify-around gap-y-6 py-4;
+    }
+    .header-brand {
+        @apply flex w-full items-center justify-around;
+    }
+    .header-nav {
+        @apply flex w-full items-center justify-around space-x-5;
+    }
+    .logo-link {
+        @apply mr-4 flex-shrink-0;
+    }
+    .logo-img {
+        @apply object-contain;
+    }
+    .site-logo {
+        @apply max-w-16 overflow-hidden rounded-full outline;
+    }
+    .site-title {
+        @apply text-xl text-white;
+    }
+
+    /* --- Footer ------------------------------------------------------------ */
+    .site-footer {
+        @apply bg-bg px-6 py-8 text-center text-text;
+    }
+
+    /* --- Icons ------------------------------------------------------------- */
+    .icon-sm {
+        @apply h-6 w-6;
+    }
+    .icon-lg {
+        @apply h-10 w-10;
+    }
+
+    /* --- Contact modal ----------------------------------------------------- */
+    .contact-modal {
+        @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+    }
+    .modal-overlay {
+        @apply absolute inset-0 bg-black/70 backdrop-blur-sm;
+    }
+    .modal-panel {
+        @apply relative z-10 w-full max-w-md overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 p-8 text-center shadow-2xl;
+    }
+    .modal-accent-bar {
+        @apply absolute left-0 right-0 top-0 h-1 bg-accent;
+    }
+    .modal-close {
+        @apply absolute right-4 top-4 text-gray-500 transition-colors hover:text-white;
+    }
+    .modal-title {
+        @apply font-fira text-4xl font-bold;
+    }
+    .modal-subtitle {
+        @apply mt-2 text-gray-400;
+    }
+    .modal-body {
+        @apply mt-8;
+    }
+    .modal-divider {
+        @apply my-6 border-t border-gray-700;
+    }
+    .social-links {
+        @apply flex items-center justify-center space-x-6;
+    }
+    .social-link {
+        @apply text-gray-400 transition-transform duration-200 hover:scale-110 hover:text-accent;
+    }
+    .resume-button {
+        @apply block w-full rounded-lg bg-gray-700 px-6 py-3 text-center text-lg font-bold text-white transition-transform duration-200 hover:scale-105 hover:bg-gray-600;
+    }
+
+    /* --- Shared page pieces ------------------------------------------------ */
+    .container-padded {
+        @apply px-6;
+    }
+    .card-grid {
+        @apply grid grid-cols-1 gap-8;
+    }
+    .skill-text {
+        @apply leading-relaxed text-text;
+    }
+
+    /* --- Home page (index.astro) ------------------------------------------- */
+    .home-hero {
+        @apply relative flex items-center justify-center overflow-hidden bg-bg text-center;
+    }
+    .home-hero-inner {
+        @apply relative z-10 flex flex-col items-center justify-center gap-16;
+    }
+    .home-hero-text {
+        @apply max-w-2xl text-center;
+    }
+    .home-hero-greeting {
+        @apply mb-3 text-xl font-medium text-accent;
+    }
+    .home-hero-name {
+        @apply mb-6 text-5xl font-extrabold leading-tight text-white;
+    }
+    .home-hero-tagline {
+        @apply mb-8 text-2xl font-light text-text;
+    }
+    .home-hero-role {
+        @apply font-semibold text-text;
+    }
+    .home-portrait {
+        @apply relative flex-shrink-0;
+    }
+    .home-portrait-glow {
+        @apply absolute inset-0 rounded-full bg-gradient-to-br from-orange-400/30 to-purple-500/30 opacity-75 blur-xl;
+    }
+    .home-portrait-img {
+        @apply relative size-64 rotate-6 transform rounded-full border-4 border-orange-500 object-cover shadow-2xl transition-transform duration-500 ease-in-out hover:rotate-0;
+    }
+    .home-toolkit {
+        @apply px-6 text-center;
+    }
+    .home-section-title {
+        @apply mb-4 text-4xl font-bold text-text;
+    }
+    .home-section-subtitle {
+        @apply mx-auto mb-16 max-w-2xl text-lg text-gray-400;
+    }
+    .home-toolkit-cta {
+        @apply mt-16;
+    }
+    .home-contact {
+        @apply w-full py-24;
+    }
+    .home-contact-card {
+        @apply mx-auto max-w-3xl p-8 text-center;
+    }
+    .home-contact-title {
+        @apply mt-6 text-4xl font-bold leading-tight text-text;
+    }
+    .home-contact-text {
+        @apply mx-auto mt-8 max-w-xl text-lg leading-relaxed text-text;
+    }
+    .home-contact-actions {
+        @apply mt-10;
+    }
+
+    /* --- Page heroes (about / skills / myWork) ----------------------------- */
+    .page-hero-title {
+        @apply text-6xl font-bold leading-tight text-text;
+    }
+    .hero-dot {
+        @apply text-accent;
+    }
+    .section-subtitle {
+        @apply mt-4 text-lg text-text;
+    }
+
+    /* --- About page (about.astro) ------------------------------------------ */
+    .about-hero {
+        @apply flex w-full flex-col items-center justify-center text-center;
+    }
+    .about-hero-content {
+        @apply max-w-4xl;
+    }
+    .about-hero-subtitle {
+        @apply mx-auto mt-6 max-w-2xl px-1 text-xl text-text;
+    }
+    .scroll-hint {
+        @apply absolute bottom-24;
+    }
+    .scroll-hint-icon {
+        @apply h-8 w-8 text-gray-300;
+    }
+    .about-goals {
+        @apply flex w-full items-center justify-center px-4 py-24;
+    }
+    .about-section-header {
+        @apply mb-24 text-center;
+    }
+    .about-section-title {
+        @apply text-3xl font-bold text-text;
+    }
+    .about-goals-grid {
+        @apply relative mx-auto flex max-w-5xl flex-col items-center justify-center gap-8;
+    }
+    .goal-card {
+        @apply w-full rounded-2xl p-8 shadow-2xl;
+    }
+    .goal-title {
+        @apply text-2xl text-accent;
+    }
+    .goal-divider {
+        @apply mb-4 mt-3 h-1 w-16 rounded bg-bg;
+    }
+    .goal-text {
+        @apply mt-2 text-text;
+    }
+    .about-story {
+        @apply flex min-h-screen w-full items-center justify-center bg-bg p-8;
+    }
+    .about-story-inner {
+        @apply pb-32;
+    }
+    .about-story-title {
+        @apply my-8 pb-4 text-left text-3xl font-bold text-text;
+    }
+    .about-story-grid {
+        @apply mt-12 grid grid-cols-1 gap-8;
+    }
+    .about-story-text {
+        @apply space-y-6 leading-relaxed text-text;
+    }
+    .story-timeline {
+        @apply hidden h-full flex-col items-end justify-center pt-12;
+    }
+    .story-timeline-line {
+        @apply relative h-full w-px bg-gray-700;
+    }
+    .timeline-dot {
+        @apply absolute left-1/2 -translate-x-1/2 rounded-full bg-gray-800 p-3;
+    }
+    .timeline-dot-top {
+        @apply top-1/4;
+    }
+    .timeline-dot-middle {
+        @apply top-1/2 -translate-y-1/2;
+    }
+    .timeline-dot-bottom {
+        @apply top-3/4;
+    }
+    .timeline-icon {
+        @apply h-6 w-6 text-orange-400;
+    }
+    .about-cta {
+        @apply py-20;
+    }
+    .about-cta-inner {
+        @apply px-6 text-center;
+    }
+    .about-cta-title {
+        @apply mx-auto max-w-2xl text-3xl font-bold text-text;
+    }
+    .about-cta-button {
+        @apply mt-8;
+    }
+
+    /* --- Skills page (skills.astro) ---------------------------------------- */
+    .skills-hero {
+        @apply flex w-full items-center justify-center overflow-hidden py-48 text-center;
+    }
+    .skills-hero-content {
+        @apply z-10;
+    }
+    .skills-hero-subtitle {
+        @apply mx-auto mt-6 max-w-3xl text-xl text-text;
+    }
+    .skills-section {
+        @apply w-full p-8 py-32;
+    }
+    .skills-section-inner {
+        @apply z-10;
+    }
+    .skills-heading-group {
+        @apply mx-auto max-w-5xl text-center;
+    }
+    .section-header-center {
+        @apply text-center;
+    }
+    .skills-section-title {
+        @apply text-5xl font-bold text-text;
+    }
+    .skills-section-subtitle {
+        @apply mt-4 pb-8 text-center text-lg text-text;
+    }
+    .strength-list {
+        @apply mb-32 flex flex-wrap justify-center gap-4;
+    }
+    .strength-pill {
+        @apply rounded-full bg-surface px-5 py-2 text-lg font-medium text-text;
+    }
+    .tech-panel {
+        @apply mx-auto mb-32 max-w-5xl p-8;
+    }
+    .tech-grid {
+        @apply grid grid-cols-1 gap-12;
+    }
+    .tech-column {
+        @apply space-y-4;
+    }
+    .tech-column-title {
+        @apply border-b-2 pb-2 text-2xl text-accent;
+    }
+    .tech-list {
+        @apply grid grid-cols-2 pt-2 text-sm;
+    }
+    .philosophy-grid {
+        @apply grid grid-cols-1 gap-8 text-left;
+    }
+    .philosophy-card {
+        @apply rounded-lg p-6;
+    }
+    .philosophy-title {
+        @apply text-xl font-semibold text-accent;
+    }
+    .philosophy-text {
+        @apply mt-2 text-text;
+    }
+    .skills-education {
+        @apply mx-auto;
+    }
+    .education-title {
+        @apply text-2xl font-bold text-text;
+    }
+    .education-text {
+        @apply text-lg text-text;
+    }
+    .degree-card {
+        @apply my-24 rounded-2xl p-8;
+    }
+    .degree-card-inner {
+        @apply flex flex-col items-center gap-6 text-center;
+    }
+    .degree-icon {
+        @apply h-16 w-16 flex-shrink-0 text-text;
+    }
+    .degree-title {
+        @apply text-3xl text-text;
+    }
+    .cert-section-title {
+        @apply mb-10 text-center text-3xl text-text;
+    }
+    .cert-carousel {
+        @apply relative mx-auto max-w-6xl;
+    }
+    .cert-track {
+        @apply flex snap-x snap-mandatory overflow-x-auto scroll-smooth py-4;
+    }
+    .cert-slide {
+        @apply w-full flex-shrink-0 snap-center px-4;
+    }
+    .featured-cert {
+        @apply flex h-full flex-col rounded-xl p-6;
+        transition: all 0.3s ease-in-out;
+        border: 1px solid #374151;
+    }
+    .featured-cert:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    }
+    .cert-image {
+        @apply mb-4 h-48 w-full rounded-lg object-cover;
+    }
+    .cert-body {
+        @apply flex-grow;
+    }
+    .cert-title {
+        @apply text-xl text-text;
+    }
+    .cert-issuer {
+        @apply text-text;
+    }
+    .cert-link {
+        @apply mt-4 block w-full rounded-lg px-4 py-2 text-center text-text transition-colors;
+    }
+    .carousel-arrow {
+        @apply absolute top-1/2 -translate-y-1/2 rounded-full bg-gray-800/50 p-2 transition-colors hover:bg-gray-800;
+    }
+    .carousel-arrow-prev {
+        @apply left-[-2rem];
+    }
+    .carousel-arrow-next {
+        @apply right-[-2rem] text-white;
+    }
+    .courses {
+        @apply mt-16;
+    }
+    .courses-panel {
+        @apply mx-auto max-w-4xl rounded-lg p-6;
+    }
+    .courses-title {
+        @apply mb-10 text-center text-3xl text-white;
+    }
+    .courses-grid {
+        @apply grid grid-cols-1 gap-x-8 gap-y-4;
+    }
+    .course-item {
+        @apply text-text;
+    }
+    .skills-cta {
+        @apply pt-24 text-center;
+    }
+    .skills-cta-title {
+        @apply text-3xl font-bold text-text;
+    }
+    .skills-cta-text {
+        @apply mt-2 text-lg text-text;
+    }
+
+    /* --- My Work page (myWork.astro) --------------------------------------- */
+    .work-hero {
+        @apply py-48 text-center;
+    }
+    .work-hero-inner {
+        @apply relative z-10 px-6;
+    }
+    .work-hero-subtitle {
+        @apply mx-auto mt-4 max-w-2xl text-lg text-text;
+    }
+    .work-section {
+        @apply py-16;
+    }
+    .project-card {
+        @apply flex flex-col overflow-hidden rounded-2xl;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        transition: all 0.3s ease-in-out;
+    }
+    .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px var(--accent-hover);
+        transition: all 0.4s ease-in-out;
+    }
+    .project-media {
+        @apply relative;
+    }
+    .project-media-img {
+        @apply h-56 w-full object-cover opacity-5;
+    }
+    .project-overlay-title {
+        @apply absolute top-0 w-full p-6 pt-16 text-4xl font-bold;
+    }
+    .project-overlay-accent {
+        @apply text-accent;
+    }
+    .project-body {
+        @apply flex flex-grow flex-col p-6;
+    }
+    .project-body-flush-top {
+        @apply pt-0;
+    }
+    .project-title {
+        @apply text-2xl text-text;
+    }
+    .project-title-padded {
+        @apply pb-2;
+    }
+    .project-desc {
+        @apply mt-2 flex-grow text-text;
+    }
+    .project-desc-padded {
+        @apply pb-2;
+    }
+    .tech-tags {
+        @apply mt-4 flex flex-wrap gap-2;
+    }
+    .project-actions {
+        @apply mt-6 flex items-center space-x-4;
+    }
+    .work-tech-header {
+        @apply mb-16 text-center;
+    }
+    .work-tech-title {
+        @apply text-5xl font-bold text-text;
+    }
+    .heading-accent {
+        @apply text-accent;
+    }
+    .tech-logos {
+        @apply flex flex-wrap items-center justify-center gap-8;
+    }
+    .tech-logo {
+        @apply rounded-full p-4;
+    }
+    .tech-logo-img {
+        @apply h-16 w-16;
+    }
+
+    /* --- Robot Takeover (robotGame.astro) ---------------------------------- */
+    /* Hero: --optimizedBackgroundImage is set inline by the page (it's the
+       Astro-optimized image URL, so it can't live in this file). */
+    .robot-hero {
+        @apply relative flex flex-wrap items-center justify-center overflow-hidden bg-gray-900 text-center text-white;
+        z-index: 1;
+        min-height: 400px;
+        padding: 4rem 1rem;
+    }
+    .robot-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: var(--optimizedBackgroundImage);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: blur(1px);
+        opacity: 0.3;
+        z-index: -1;
+    }
+    .robot-hero-title {
+        @apply text-4xl font-bold leading-tight text-white;
+    }
+    .robot-hero-text {
+        @apply my-12 justify-self-center text-center;
+    }
+    .game-section {
+        @apply my-24 flex items-center justify-center;
+    }
+    /* Terminal panel with animated scanlines and amber glow */
+    .game-panel {
+        @apply relative h-full w-full rounded-lg border-4 border-orange-500/60 bg-black/50 p-6;
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.3) 50%,
+            transparent 50%
+        );
+        background-size: 100% 4px;
+        animation: game-scan 2s linear infinite;
+        text-shadow:
+            0 0 5px rgba(245, 158, 11, 0.5),
+            0 0 10px rgba(245, 158, 11, 0.3);
+    }
+    .game-title {
+        @apply mb-6 text-center text-xl font-bold text-amber-400;
+    }
+    .game-inventory {
+        @apply mb-4 h-6 text-center text-amber-600;
+    }
+    .game-text {
+        @apply min-h-[150px] whitespace-pre-wrap text-lg leading-relaxed;
+    }
+    .game-options {
+        @apply mt-8 flex flex-col gap-2 border-t-2 border-amber-500/30 pt-6;
+    }
+    /* Option buttons are created by the game script */
+    .game-option {
+        @apply mb-2 cursor-pointer transition-colors duration-200 hover:text-amber-300;
+    }
+    .option-key {
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        padding: 2px 6px;
+        border-radius: 4px;
+        background-color: rgba(245, 158, 11, 0.1);
+    }
+    .typing-cursor {
+        @apply inline-block;
+        width: 10px;
+        background-color: #f59e0b;
+        animation: game-blink 1s step-end infinite;
+    }
+    .game-prompt {
+        @apply mt-6 flex items-center gap-x-3;
+    }
+    .game-prompt-caret {
+        @apply font-bold text-amber-400;
+    }
+    .game-prompt-text {
+        @apply text-gray-500;
     }
 }
 
-.cta-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 25px var(--accent);
-    transition: all 0.3s ease-in-out;
-    background-color: var(--accent-hover);
+@keyframes game-scan {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 100px;
+    }
 }
 
-.button {
-    width: 100%;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background-color: transparent;
-    font-weight: bold;
-    color: var(--text);
-    padding: 12px 20px;
+@keyframes game-blink {
+    from,
+    to {
+        background-color: transparent;
+    }
+    50% {
+        background-color: #f59e0b;
+    }
 }
 
-.button:hover {
-    box-shadow: 0 5px 25px var(--accent);
-    border-color: var(--border);
-}
-
-.skill-card:hover {
-    transform: scale(1.05);
-    border-color: var(--border-muted);
-    transition: all 0.3s ease-in-out;
-}
-
-.project-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    transition: all 0.3s ease-in-out;
-}
-
-.project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px var(--accent-hover);
-    transition: all 0.4s ease-in-out;
-}
-
-.drop-cap::first-letter {
-    color: var(--accent);
-    font-size: 3em;
-    font-weight: bold;
-    float: left;
-    line-height: 0.8;
-    margin-right: 0.1em;
-    padding-top: 0.1em;
-}
-
-.skill-heading {
-    color: var(--accent);
-    font-family: 'Source Code Pro', sans-serif;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    font-size: 1.5rem;
-    line-height: 2rem;
-}
-
-
-
-/* My skills page  Carousel id and classes*/
-
-#carousel-container {
-    scroll-behavior: smooth;
-}
-
-.featured-cert {
-    transition: all 0.3s ease-in-out;
-    border: 1px solid #374151;
-}
-
-.featured-cert:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent);
-    /* orange-500 */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-}
-
-/* Hides the scrollbar for the carousel */
-.no-scrollbar::-webkit-scrollbar {
+/* --- State helpers (unlayered so they beat component display rules) ------- */
+.modal-hidden {
     display: none;
-}
-
-.no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-
-/* My Work Page */
-
-.tech-tag {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    font-weight: 600;
 }

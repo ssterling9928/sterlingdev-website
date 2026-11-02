@@ -10,16 +10,14 @@ const optimizedBackgroundImage = await getImage({ src: backgroundImage })
 <Layout title="Robot Takeover Web Game">
     <!-- Hero Section -->
     <section
-        class="robot-game-hero bg-image-container flex flex-wrap items-center justify-center bg-gray-900 text-white"
+        class="robot-hero"
         style={`--optimizedBackgroundImage: url(${optimizedBackgroundImage.src})`}
     >
         <div class="container">
-            <h1
-                class="font-inter fade-in-up text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
-            >
-                Robot Takeover<span class="gradient-text-orange">.</span>
+            <h1 class="robot-hero-title md:text-5xl lg:text-6xl">
+                Robot Takeover.
             </h1>
-            <p class="px-auto my-12 justify-self-center text-center">
+            <p class="robot-hero-text">
                 Welcome to the Robot Takeover text adventure game! This is a fun
                 and interactive game where you must find a way to defeat the
                 robots and save humanity. This game was originally created in
@@ -32,36 +30,24 @@ const optimizedBackgroundImage = await getImage({ src: backgroundImage })
     <!-- Game Section -->
     <section>
         <!-- Section Background and Container Positioning-->
-        <div class="my-24 flex items-center justify-center">
+        <div class="game-section">
             <!-- Game Container -->
-            <div
-                class="text-glow game-container w-[100%] rounded-lg border-4 border-orange-500/60 bg-black/50 p-6 sm:w-[95%] md:w-[85%] md:p-8 lg:w-[50%]"
-            >
-                <h1
-                    class="mb-6 text-center text-xl font-bold text-amber-400 md:text-2xl lg:text-3xl"
-                >
+            <div class="game-panel sm:w-[95%] md:w-[85%] md:p-8 lg:w-[50%]">
+                <h1 class="game-title md:text-2xl lg:text-3xl">
                     R O B O T _ T A K E O V E R
                 </h1>
 
-                <div
-                    id="inventory-display"
-                    class="mb-4 h-6 text-center text-amber-600"
-                >
-                </div>
+                <div id="inventory-display" class="game-inventory"></div>
 
                 <div
                     id="game-text"
-                    class="min-h-[150px] whitespace-pre-wrap text-lg leading-relaxed md:min-h-[200px] md:text-xl"
+                    class="game-text md:min-h-[200px] md:text-xl"
                 >
                 </div>
-                <div
-                    id="options-container"
-                    class="mt-8 border-t-2 border-amber-500/30 pt-6"
-                >
-                </div>
-                <div class="mt-6 flex items-center gap-x-3">
-                    <span class="font-bold text-amber-400">></span>
-                    <div id="input-prompt" class="text-gray-500">
+                <div id="options-container" class="game-options"></div>
+                <div class="game-prompt">
+                    <span class="game-prompt-caret">></span>
+                    <div id="input-prompt" class="game-prompt-text">
                         Awaiting input...
                     </div>
                 </div>
@@ -564,8 +550,7 @@ const optimizedBackgroundImage = await getImage({ src: backgroundImage })
                         availableOptions.forEach((option, index) => {
                             const button = document.createElement('button')
                             button.type = 'button'
-                            button.className =
-                                'cursor-pointer hover:text-amber-300 transition-colors duration-200 mb-2'
+                            button.className = 'game-option'
                             button.innerHTML = `<span class="option-key">${index + 1}.</span> ${option.text}`
                             button.addEventListener('click', () =>
                                 selectOption(option)
@@ -647,86 +632,3 @@ const optimizedBackgroundImage = await getImage({ src: backgroundImage })
         </script>
     </section>
 </Layout>
-
-<style>
-    #options-container {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    .bg-image-container {
-        position: relative;
-        z-index: 1;
-        min-height: 420px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4rem 1rem;
-        text-align: center;
-        color: #fff;
-        overflow: hidden;
-    }
-    .bg-image-container::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image: var(--optimizedBackgroundImage);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        filter: blur(1px);
-        opacity: 0.3;
-        z-index: -1;
-    }
-    .robot-game-hero {
-        background-repeat: no-repeat;
-        background-position: top;
-        width: auto;
-        min-height: 400px;
-    }
-    .text-glow {
-        text-shadow:
-            0 0 5px rgba(245, 158, 11, 0.5),
-            0 0 10px rgba(245, 158, 11, 0.3);
-    }
-
-    .game-container {
-        position: relative;
-        height: 100%;
-        background-image: linear-gradient(
-            rgba(0, 0, 0, 0.3) 50%,
-            transparent 50%
-        );
-        background-size: 100% 4px;
-        animation: scan 2s linear infinite;
-    }
-    @keyframes scan {
-        from {
-            background-position: 0 0;
-        }
-        to {
-            background-position: 0 100px;
-        }
-    }
-    .typing-cursor {
-        background-color: #f59e0b;
-        width: 10px;
-        display: inline-block;
-        animation: blink 1s step-end infinite;
-    }
-    @keyframes blink {
-        from,
-        to {
-            background-color: transparent;
-        }
-        50% {
-            background-color: #f59e0b;
-        }
-    }
-    .option-key {
-        border: 1px solid rgba(245, 158, 11, 0.4);
-        padding: 2px 6px;
-        border-radius: 4px;
-        background-color: rgba(245, 158, 11, 0.1);
-    }
-</style>

@@ -21,30 +21,21 @@ const { siteTitle, logoAlt } = Astro.props
 ---
 
 <!-- Header/Navigation Section -->
-<header
-    id="header"
-    class="header-glow top-0 z-50 rounded-b-xl bg-opacity-70 font-fira backdrop-blur-md sm:sticky"
->
+<header id="header" class="site-header sm:sticky">
     <!-- Navigation Content Wrapper: -->
-    <div
-        class="container mx-auto flex flex-wrap items-center justify-around gap-y-6 py-4 lg:flex-nowrap lg:justify-between"
-    >
+    <div class="header-inner container lg:flex-nowrap lg:justify-between">
         <!-- Logo and Site Title: -->
-        <div
-            class="flex w-full items-center justify-around lg:ml-16 lg:w-auto lg:justify-self-start"
-        >
+        <div class="header-brand lg:ml-16 lg:w-auto lg:justify-self-start">
             <!-- Logo Image: -->
             <LogoImg
                 src={siteLogo.src}
                 alt={logoAlt}
-                className="max-w-16 overflow-hidden rounded-full outline lg:mr-24"
+                className="site-logo lg:mr-24"
             />
         </div>
 
         <!-- Navigation Links: -->
-        <nav
-            class="flex w-full items-center justify-around space-x-5 lg:mr-4 lg:w-auto lg:justify-end"
-        >
+        <nav class="header-nav lg:mr-4 lg:w-auto lg:justify-end">
             <a
                 href="/about/"
                 class:list={[
@@ -75,7 +66,7 @@ const { siteTitle, logoAlt } = Astro.props
         </nav>
         <div>
             <!-- Site Title: -->
-            <h1 class="text-xl text-white md:text-3xl">
+            <h1 class="site-title md:text-3xl">
                 {siteTitle}
             </h1>
         </div>

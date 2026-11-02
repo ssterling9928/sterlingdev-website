@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function CommandMenu() {
     const [open, setOpen] = useState(false);

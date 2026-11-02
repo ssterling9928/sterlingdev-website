@@ -12,57 +12,38 @@ import PortraitImage from '../assets/images/portrait.jpg' // Import my portrait 
   ======================================================================
   This section is designed as a first introduction to me on the homepage.
 -->
-    <section
-        id="hero-section"
-        class="relative flex items-center justify-center overflow-hidden bg-bg text-center"
-    >
-        <div class="absolute inset-0 opacity-10"></div>
-        <div class="absolute inset-0"></div>
-
-        <div
-            class="container relative z-10 mx-auto flex flex-col items-center justify-center gap-16 md:flex-row"
-        >
+    <section id="hero-section" class="home-hero">
+        <div class="home-hero-inner container md:flex-row">
             <!-- Text Content -->
-            <div class="max-w-2xl text-center md:text-left">
-                <p class="mb-3 text-xl font-medium text-accent md:text-2xl">
-                    Hello, I'm
-                </p>
-                <h1
-                    class="mb-6 text-5xl font-extrabold leading-tight text-white md:text-6xl lg:text-7xl"
-                >
-                    <span class="">Stephen Sterling</span>
+            <div class="home-hero-text md:text-left">
+                <p class="home-hero-greeting md:text-2xl">Hello, I'm</p>
+                <h1 class="home-hero-name md:text-6xl lg:text-7xl">
+                    <span>Stephen Sterling</span>
                 </h1>
-                <p class="mb-8 text-2xl font-light text-text md:text-3xl">
-                    A <span class="font-semibold text-text"
-                        >Full-Stack Developer</span
-                    > Creating a diversified array of software and web applications.
+                <p class="home-hero-tagline md:text-3xl">
+                    A <span class="home-hero-role">Full-Stack Developer</span> Creating
+                    a diversified array of software and web applications.
                 </p>
 
                 <!-- Call to Action Button -->
-                <a href="/myWork/" class="cta-button inline-block">
-                    View My Work
-                </a>
+                <a href="/myWork/" class="cta-button"> View My Work </a>
             </div>
 
             <!-- Picture -->
-            <div class="relative flex-shrink-0">
-                <div
-                    class="animate-pulse-fast absolute inset-0 rounded-full bg-gradient-to-br from-orange-400/30 to-purple-500/30 opacity-75 blur-xl"
-                >
-                </div>
+            <div class="home-portrait">
+                <div class="home-portrait-glow"></div>
                 <Image
                     src={PortraitImage}
                     alt={"Stephen Sterling's Portrait"}
                     width="1920"
                     height="1080"
-                    class="relative size-64 rotate-6 transform rounded-full border-4 border-orange-500 object-cover shadow-2xl transition-transform duration-500 ease-in-out hover:rotate-0 md:size-80 lg:size-96"
+                    class="home-portrait-img md:size-80 lg:size-96"
                 />
             </div>
         </div>
     </section>
 
-
-<!-- 
+    <!-- 
   ======================================================================
   SKILLS SECTION
   ======================================================================
@@ -72,28 +53,20 @@ import PortraitImage from '../assets/images/portrait.jpg' // Import my portrait 
     <!-- Main Content Container:
     - `container mx-auto` centers it and applies a max-width.
     -->
-    <section class="container mx-auto px-6 text-center">
+    <section class="home-toolkit container">
         <!-- Section Header -->
-        <h2 class="font-heading mb-4 text-4xl font-bold text-text md:text-5xl">
-            My Creative Toolkit
-        </h2>
-        <p class="mx-auto mb-16 max-w-2xl text-lg text-gray-400">
+        <h2 class="home-section-title md:text-5xl">My Creative Toolkit</h2>
+        <p class="home-section-subtitle">
             A blend of technical expertise and creative problem-solving to build
             robust and beautiful applications.
         </p>
 
         <!-- Grid for the glass panes -->
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div class="card-grid md:grid-cols-2 lg:grid-cols-3">
             <!-- Card 1: Game & 3D Worlds -->
-            <div
-                class=""
-            >
-                <h3
-                    class="skill-heading"
-                >
-                    Games & 3D Worlds
-                </h3>
-                <p class="leading-relaxed text-text">
+            <div>
+                <h3 class="skill-heading">Games & 3D Worlds</h3>
+                <p class="skill-text">
                     Building immersive experiences from the ground up using
                     industry-standard tools like Unreal Engine, Unity, C++, and
                     C#.
@@ -101,30 +74,18 @@ import PortraitImage from '../assets/images/portrait.jpg' // Import my portrait 
             </div>
 
             <!-- Card 2: Web & App Ecosystems -->
-            <div
-                class=""
-            >
-                <h3
-                    class="skill-heading"
-                >
-                    Web & App Ecosystems
-                </h3>
-                <p class="leading-relaxed text-text">
+            <div>
+                <h3 class="skill-heading">Web & App Ecosystems</h3>
+                <p class="skill-text">
                     Crafting high-performance websites and native applications
                     with modern frameworks like Astro, Swift, and .NET.
                 </p>
             </div>
 
             <!-- Card 3: Foundational Strengths (Added) -->
-            <div
-                class=""
-            >
-                <h3
-                    class="skill-heading"
-                >
-                    Foundational Strengths
-                </h3>
-                <p class="leading-relaxed text-text">
+            <div>
+                <h3 class="skill-heading">Foundational Strengths</h3>
+                <p class="skill-text">
                     Driven by a passion for rapid and self learning, grounded in
                     advanced mathematics, and streamlined with tools like Git.
                 </p>
@@ -132,13 +93,8 @@ import PortraitImage from '../assets/images/portrait.jpg' // Import my portrait 
         </div>
 
         <!-- Call to Action Button -->
-        <div class="mt-16">
-            <a
-                href="/skills/"
-                class="cta-button inline-block"
-            >
-                Explore All Skills
-            </a>
+        <div class="home-toolkit-cta">
+            <a href="/skills/" class="cta-button"> Explore All Skills </a>
         </div>
     </section>
 
@@ -148,29 +104,23 @@ import PortraitImage from '../assets/images/portrait.jpg' // Import my portrait 
   ======================================================================
   This section is designed as a final call-to-action on the homepage.
 -->
-    <section id="contact" class="w-full py-24 md:py-32">
-        <div class="container mx-auto px-6">
+    <section id="contact" class="home-contact md:py-32">
+        <div class="container-padded container">
             <!-- Main Invitation-Style Card -->
-            <div
-                class="mx-auto max-w-3xl p-8 text-center md:p-12"
-            >
-                <h2
-                    class="font-heading mt-6 text-4xl font-bold leading-tight text-text md:text-5xl"
-                >
+            <div class="home-contact-card md:p-12">
+                <h2 class="home-contact-title md:text-5xl">
                     Have a project in mind? <br />
-                    <span class="">Let's build it.</span>
+                    <span>Let's build it.</span>
                 </h2>
 
-                <p
-                    class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-text"
-                >
+                <p class="home-contact-text">
                     I'm currently available for freelance and career
                     opportunities. If you're looking for a developer who is
                     passionate about bringing new ideas to life, I'm ready to
                     connect.
                 </p>
 
-                <div class="mt-10">
+                <div class="home-contact-actions">
                     <button
                         data-metric-id="open-contact-modal"
                         class="open-contact-modal cta-button"
