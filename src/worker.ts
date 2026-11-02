@@ -25,77 +25,93 @@ const isNoisePath = (p: string) => {
     )
 }
 
+// --- Metrics validation ------------------------------------------------------
+const MAX_BODY_BYTES = 2048
+const EVENT_TYPES = ['pv', 'click'] as const
+
+type MetricEvent = {
+    t: (typeof EVENT_TYPES)[number]
+    path: string
+    ref: string
+    id: string
+    text: string
+}
+
+const str = (v: unknown, max: number) =>
+    typeof v === 'string' ? v.slice(0, max) : ''
+
+// Returns a sanitized event, or null if the payload isn't one we record.
+const parseMetricEvent = (body: any): MetricEvent | null => {
+    if (!body || typeof body !== 'object') return null
+    if (!EVENT_TYPES.includes(body.t)) return null
+    const path = str(body.path, 512)
+    if (!path.startsWith('/')) return null
+    const event: MetricEvent = {
+        t: body.t,
+        path,
+        ref: str(body.ref, 512),
+        id: str(body.meta?.id, 80),
+        text: str(body.meta?.text, 80),
+    }
+    if (event.t === 'click' && !event.id) return null
+    return event
+}
+
 export default {
     async fetch(request: Request, env: Env): Promise<Response> {
         const url = new URL(request.url)
         const path = url.pathname
 
-        // Basic CORS / preflight support for the collector
-        if (request.method === 'OPTIONS') {
-            return new Response(null, {
-                headers: {
-                    'Access-Control-Allow-Origin': url.origin,
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                    'Access-Control-Allow-Headers': 'content-type',
-                    'Access-Control-Max-Age': '86400',
-                },
-            })
-        }
-
         // --- Metrics collector ---------------------------------------------------
-        if (path === '/__collect' && request.method === 'POST') {
-            // Skip obvious bots
-            const ua = request.headers.get('user-agent')
-            if (isBotUA(ua)) {
-                console.log('Metrics skipped for bot UA:', ua)
+        // Same-origin only (metrics.js is served from this site), so no CORS needed.
+        if (path === '/__collect') {
+            if (request.method !== 'POST') {
                 return new Response(null, {
-                    status: 204,
-                    headers: { 'Access-Control-Allow-Origin': url.origin },
+                    status: 405,
+                    headers: { Allow: 'POST' },
                 })
             }
 
-            // Parse payload
-            let body: any
-            try {
-                body = await request.json()
-            } catch (err) {
-                console.error('Error parsing JSON:', err)
-                return new Response('bad request', {
-                    status: 400,
-                    headers: { 'Access-Control-Allow-Origin': url.origin },
-                })
+            // Skip obvious bots
+            if (isBotUA(request.headers.get('user-agent'))) {
+                return new Response(null, { status: 204 })
             }
 
-            // Write one datapoint; guard if binding missing
+            // Parse and validate payload
+            let event: MetricEvent | null = null
             try {
-                env.SITE_METRICS?.writeDataPoint?.({
-                    indexes: [body?.t ?? 'unknown'],
+                const raw = await request.text()
+                if (raw.length <= MAX_BODY_BYTES) {
+                    event = parseMetricEvent(JSON.parse(raw))
+                }
+            } catch {
+                // fall through to 400
+            }
+            if (!event) {
+                return new Response('bad request', { status: 400 })
+            }
+
+            try {
+                env.SITE_METRICS?.writeDataPoint({
+                    indexes: [event.t],
                     doubles: [1],
                     blobs: [
-                        body?.t ?? '',
-                        body?.path ?? '',
-                        body?.ref ?? '',
-                        body?.meta?.id ?? '',
-                        body?.meta?.text ?? '',
+                        event.t,
+                        event.path,
+                        event.ref,
+                        event.id,
+                        event.text,
                     ],
                 })
-                console.log('Metric recorded:', body)
             } catch (err) {
                 console.error('Error writing metric:', err)
             }
 
-            return new Response(null, {
-                status: 204,
-                headers: {
-                    'Access-Control-Allow-Origin': url.origin,
-                    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                },
-            })
+            return new Response(null, { status: 204 })
         }
 
         // --- Bot/noise short-circuit ---------------------------------------------
         if (isNoisePath(path)) {
-            console.log('Blocked bot/noise path:', path)
             return new Response('Not found', { status: 404 })
         }
 
