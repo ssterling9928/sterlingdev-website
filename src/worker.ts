@@ -6,7 +6,7 @@ export interface Env {
 // Simple bot UA check (optional)
 const isBotUA = (ua: string | null) =>
     !!ua &&
-    /bot|spider|crawl|preview|facebookexternalhit|discordbot|whatsapp|curl|wget/i.test(
+    /bot|spider|crawl|preview|headless|facebookexternalhit|discordbot|whatsapp|curl|wget/i.test(
         ua
     )
 

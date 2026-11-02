@@ -68,6 +68,20 @@ body {
     background-color: var(--accent);
 }
 
+/* Compact variant (header). Smaller on phones so the nav fits. */
+.cta-button-sm {
+    padding: 8px 16px;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    .cta-button-sm {
+        padding: 10px 24px;
+        font-size: 1.125rem;
+    }
+}
+
 .cta-button:hover {
     transform: scale(1.05);
     box-shadow: 0 5px 25px var(--accent);
@@ -123,7 +137,7 @@ body {
     color: var(--accent);
     font-family: 'Source Code Pro', sans-serif;
     font-weight: 600;
-    margin-bottom: -1rem;
+    margin-bottom: 0.75rem;
     font-size: 1.5rem;
     line-height: 2rem;
 }

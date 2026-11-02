@@ -177,10 +177,8 @@ import CommandMenu from '../components/react/command/commandmenu.tsx';
                 const heroSection = document.getElementById('hero-section')
 
                 function calculateHeroHeight() {
-                    if (!header || !heroSection) {
-                        console.error('Header or Hero Section not found.')
-                        return
-                    }
+                    // Not every page has a hero section (e.g. robotGame)
+                    if (!header || !heroSection) return
 
                     const headerHeight = header.offsetHeight
                     heroSection.style.minHeight = `calc(100vh - ${headerHeight}px)`
