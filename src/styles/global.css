@@ -615,17 +615,6 @@ body::before {
         height: 100%;
         object-fit: cover;
     }
-    /* Square app icon: centred on its own background colour */
-    .feature-card-thumb-icon {
-        display: grid;
-        place-items: center;
-        background-color: #8a4746;
-    }
-    .feature-card-thumb-icon img {
-        width: 40%;
-        height: auto;
-        border-radius: 22%;
-    }
     /* Wide screenshot: keep the left edge (logo + name) in view */
     .feature-card-thumb-left img {
         object-position: left top;
@@ -1158,21 +1147,6 @@ body::before {
             border-right: 0;
             border-left: 1px solid var(--border-muted);
         }
-    }
-    /* Square app icon centred on its own colour */
-    .case-media-icon {
-        display: grid;
-        place-items: center;
-        background-color: #8a4746;
-    }
-    .case-media-icon img,
-    .case-media-icon img[class] {
-        position: static;
-        width: 40%;
-        max-width: 13rem;
-        height: auto;
-        aspect-ratio: 1;
-        border-radius: 22%;
     }
     /* Wide screenshot: keep the left edge in view */
     .case-media-left img {
