@@ -123,21 +123,6 @@ body::before {
         font-size: 0.875rem;
         white-space: nowrap;
     }
-    /* Secondary outlined button (project links, degree "View") */
-    .button {
-        width: 100%;
-        text-align: center;
-        border-radius: 10px;
-        border: 1px solid var(--border);
-        background-color: transparent;
-        font-weight: bold;
-        color: var(--text);
-        padding: 12px 20px;
-    }
-    .button:hover {
-        box-shadow: 0 5px 25px var(--accent);
-        border-color: var(--border);
-    }
     .nav-link {
         font-family: var(--font-mono);
         font-size: 0.9rem;
@@ -160,23 +145,9 @@ body::before {
         font-size: 1.5rem;
         line-height: 2rem;
     }
-    .tech-tag {
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
-        font-size: 0.75rem;
-        line-height: 1rem;
-        font-weight: 600;
-    }
-    /* Hide scrollbars (cert carousel) while keeping it scrollable */
+    /* Keep a word and the cursor after it on one line */
     .nowrap {
         white-space: nowrap;
-    }
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
     }
 
     /* --- Header ------------------------------------------------------------ */
@@ -267,12 +238,6 @@ body::before {
     }
 
     /* --- Shared page pieces ------------------------------------------------ */
-    .container-padded {
-        @apply px-6;
-    }
-    .card-grid {
-        @apply grid grid-cols-1 gap-8;
-    }
     .skill-text {
         @apply leading-relaxed text-text;
     }
@@ -402,9 +367,6 @@ body::before {
         flex-shrink: 0;
         white-space: pre;
         color: var(--accent);
-    }
-    .shell-gap {
-        margin-top: 0.75rem;
     }
     .shell-prompt {
         color: var(--success);
@@ -631,17 +593,6 @@ body::before {
         margin: 1.25rem 0 2rem;
         font-size: 1.05rem;
         color: var(--text-muted);
-    }
-
-    /* --- Page heroes (about / skills / myWork) ----------------------------- */
-    .page-hero-title {
-        @apply text-6xl font-bold leading-tight text-text;
-    }
-    .hero-dot {
-        @apply text-accent;
-    }
-    .section-subtitle {
-        @apply mt-4 text-lg text-text;
     }
 
     /* --- About page (about.astro) ------------------------------------------ */
@@ -1065,84 +1016,222 @@ body::before {
     }
 
     /* --- My Work page (myWork.astro) --------------------------------------- */
-    .work-hero {
-        @apply py-48 text-center;
-    }
     .work-hero-inner {
-        @apply relative z-10 px-6;
+        padding: 3.5rem 1.5rem 2.5rem;
     }
-    .work-hero-subtitle {
-        @apply mx-auto mt-4 max-w-2xl text-lg text-text;
+    .work-title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1.05;
+        color: var(--text);
+        margin-bottom: 1rem;
     }
-    .work-section {
-        @apply py-16;
+    .work-title-accent {
+        color: var(--accent);
     }
-    .project-card {
-        @apply flex flex-col overflow-hidden rounded-2xl;
-        background: var(--surface);
+    .work-subtitle {
+        max-width: 56ch;
+        font-size: 1.1rem;
+        color: var(--text-muted);
+    }
+    /* Case files: image + write-up, side alternates on wider screens */
+    .case-list {
+        display: grid;
+        gap: 1.75rem;
+    }
+    .case {
+        display: grid;
+        grid-template-columns: 1fr;
+        background-color: var(--surface-2);
+        border: 1px solid var(--border-muted);
+        border-radius: 14px;
+        overflow: hidden;
+    }
+    .case-media {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background-color: var(--surface);
+        border-bottom: 1px solid var(--border-muted);
+    }
+    .case-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    @media (min-width: 768px) {
+        .case-media {
+            aspect-ratio: auto;
+            min-height: 22rem;
+            border-bottom: 0;
+            border-right: 1px solid var(--border-muted);
+        }
+        .case-media img {
+            position: absolute;
+            inset: 0;
+        }
+        .case-flip .case-media {
+            border-right: 0;
+            border-left: 1px solid var(--border-muted);
+        }
+    }
+    /* Square app icon centred on its own colour */
+    .case-media-icon {
+        display: grid;
+        place-items: center;
+        background-color: #8a4746;
+    }
+    .case-media-icon img,
+    .case-media-icon img[class] {
+        position: static;
+        width: 40%;
+        max-width: 13rem;
+        height: auto;
+        aspect-ratio: 1;
+        border-radius: 22%;
+    }
+    /* Wide screenshot: keep the left edge in view */
+    .case-media-left img {
+        object-position: left top;
+    }
+    /* Terminal panel shown instead of a screenshot */
+    .case-media-term {
+        aspect-ratio: auto;
+        display: flex;
+        align-items: center;
+        background:
+            radial-gradient(
+                ellipse 70% 60% at 30% 20%,
+                rgba(34, 211, 238, 0.08),
+                transparent 70%
+            ),
+            #0d1426;
+    }
+    .case-term {
+        width: 100%;
+        padding: 3.25rem 1.25rem 1.5rem;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        line-height: 1.75;
+        color: #cbd5e1;
+    }
+    .case-term-line + .case-term-line {
+        margin-top: 0.1rem;
+    }
+    .case-term-line:not(:first-child):has(.term-dollar) {
+        margin-top: 0.75rem;
+    }
+    .case-term-row {
+        display: grid;
+        grid-template-columns: 4.75rem 1fr;
+        gap: 0.6rem;
+    }
+    .case-term-key {
+        color: var(--accent);
+    }
+    .case-term-ok::before {
+        content: '✓ ';
+        color: var(--success);
+    }
+    @media (min-width: 768px) {
+        .case-term {
+            padding: 3.25rem 2rem 2rem;
+            font-size: 0.85rem;
+        }
+        .case-term-row {
+            grid-template-columns: 6rem 1fr;
+            gap: 0.75rem;
+        }
+    }
+    .case-badge {
+        position: absolute;
+        left: 0.9rem;
+        top: 0.9rem;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--text);
+        background-color: rgba(11, 17, 32, 0.85);
         border: 1px solid var(--border);
-        transition: all 0.3s ease-in-out;
+        border-radius: 6px;
+        padding: 3px 10px;
+        backdrop-filter: blur(4px);
     }
-    .project-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px var(--accent-hover);
-        transition: all 0.4s ease-in-out;
+    .case-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        padding: 1.5rem 1.25rem;
     }
-    .project-media {
-        @apply relative;
+    .case-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem 1rem;
     }
-    .project-media-img {
-        @apply h-56 w-full object-cover opacity-5;
+    .case-file {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--text-muted);
     }
-    .project-overlay-title {
-        @apply absolute top-0 w-full p-6 pt-16 text-4xl font-bold;
+    .case-num {
+        color: var(--accent);
     }
-    .project-overlay-accent {
-        @apply text-accent;
+    .status-dot {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--text-muted);
     }
-    .project-body {
-        @apply flex flex-grow flex-col p-6;
+    .status-dot::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: var(--success);
+        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18);
     }
-    .project-body-flush-top {
-        @apply pt-0;
+    .case-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--text);
     }
-    .project-title {
-        @apply text-2xl text-text;
+    .case-text {
+        line-height: 1.7;
+        color: #cbd5e1;
     }
-    .project-title-padded {
-        @apply pb-2;
+    .case-facts {
+        display: grid;
+        gap: 0.5rem;
+        padding-top: 0.9rem;
+        border-top: 1px solid var(--border-muted);
+        font-size: 0.9rem;
     }
-    .project-desc {
-        @apply mt-2 flex-grow text-text;
+    .case-fact {
+        display: grid;
+        grid-template-columns: 5.5rem 1fr;
+        align-items: baseline;
+        gap: 1rem;
     }
-    .project-desc-padded {
-        @apply pb-2;
+    .case-fact dt {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--text-muted);
     }
-    .tech-tags {
-        @apply mt-4 flex flex-wrap gap-2;
+    .case-fact dd {
+        color: #cbd5e1;
     }
-    .project-actions {
-        @apply mt-6 flex items-center space-x-4;
+    .case-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: auto;
+        padding-top: 0.25rem;
     }
-    .work-tech-header {
-        @apply mb-16 text-center;
-    }
-    .work-tech-title {
-        @apply text-5xl font-bold text-text;
-    }
-    .heading-accent {
-        @apply text-accent;
-    }
-    .tech-logos {
-        @apply flex flex-wrap items-center justify-center gap-8;
-    }
-    .tech-logo {
-        @apply rounded-full p-4;
-    }
-    .tech-logo-img {
-        @apply h-16 w-16;
-    }
-
     /* --- Robot Takeover (robotGame.astro) ---------------------------------- */
     /* Hero: --optimizedBackgroundImage is set inline by the page (it's the
        Astro-optimized image URL, so it can't live in this file). */

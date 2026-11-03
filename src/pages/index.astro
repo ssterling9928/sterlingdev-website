@@ -1,10 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import { Image } from 'astro:assets' // Import Astro's image component for optimized image handling
+import type { ImageMetadata } from 'astro'
 
 import PortraitImage from '../assets/images/portrait.jpg'
 import InteractiveTerminal from '../components/InteractiveTerminal.astro'
 import { projects } from '../data/projects'
+
+// Only featured projects appear on the home page; /myWork/ shows them all.
+const featured = projects.filter(
+    (project): project is typeof project & { image: ImageMetadata } =>
+        project.featured && project.image !== undefined
+)
 ---
 
 <Layout title="Stephen Sterling - Portfolio">
@@ -71,7 +78,7 @@ import { projects } from '../data/projects'
 
         <div class="feature-grid md:grid-cols-3">
             {
-                projects.map((project) => (
+                featured.map((project) => (
                     <a
                         href={project.href}
                         class="feature-card"
@@ -88,7 +95,7 @@ import { projects } from '../data/projects'
                         >
                             <Image
                                 src={project.image}
-                                alt={project.imageAlt}
+                                alt={project.imageAlt ?? ''}
                                 width={640}
                             />
                         </div>
