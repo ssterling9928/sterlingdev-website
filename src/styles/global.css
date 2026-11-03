@@ -191,50 +191,133 @@ body::before {
         @apply bg-bg px-6 py-8 text-center text-text;
     }
 
-    /* --- Icons ------------------------------------------------------------- */
-    .icon-sm {
-        @apply h-6 w-6;
-    }
-    .icon-lg {
-        @apply h-10 w-10;
-    }
-
-    /* --- Contact modal ----------------------------------------------------- */
+    /* --- Contact modal (Layout.astro): a small terminal window ------------ */
     .contact-modal {
-        @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
     }
     .modal-overlay {
-        @apply absolute inset-0 bg-black/70 backdrop-blur-sm;
+        position: absolute;
+        inset: 0;
+        background-color: rgba(2, 6, 23, 0.75);
+        backdrop-filter: blur(4px);
     }
     .modal-panel {
-        @apply relative z-10 w-full max-w-md overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 p-8 text-center shadow-2xl;
-    }
-    .modal-accent-bar {
-        @apply absolute left-0 right-0 top-0 h-1 bg-accent;
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 30rem;
+        box-shadow:
+            0 30px 60px -20px rgba(0, 0, 0, 0.8),
+            0 0 0 1px rgba(34, 211, 238, 0.08);
     }
     .modal-close {
-        @apply absolute right-4 top-4 text-gray-500 transition-colors hover:text-white;
+        margin-left: auto;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        border-radius: 4px;
+        padding: 0 4px;
+        transition: color 0.15s;
     }
-    .modal-title {
-        @apply font-fira text-4xl font-bold;
-    }
-    .modal-subtitle {
-        @apply mt-2 text-gray-400;
+    .modal-close:hover {
+        color: var(--accent);
     }
     .modal-body {
-        @apply mt-8;
+        padding: 1.5rem 1.5rem 1.75rem;
     }
-    .modal-divider {
-        @apply my-6 border-t border-gray-700;
+    .modal-title {
+        margin-top: 0.4rem;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        color: var(--text);
     }
-    .social-links {
-        @apply flex items-center justify-center space-x-6;
+    .modal-title-accent {
+        color: var(--accent);
     }
-    .social-link {
-        @apply text-gray-400 transition-transform duration-200 hover:scale-110 hover:text-accent;
+    .modal-subtitle {
+        margin-top: 0.5rem;
+        color: var(--text-muted);
     }
-    .resume-button {
-        @apply block w-full rounded-lg bg-gray-700 px-6 py-3 text-center text-lg font-bold text-white transition-transform duration-200 hover:scale-105 hover:bg-gray-600;
+    .modal-links {
+        display: grid;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+    }
+    /* Phones: the value sits under the name so the full email shows */
+    .modal-link {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 0.15rem 0.75rem;
+        padding: 0.7rem 0.9rem;
+        font-family: var(--font-mono);
+        font-size: 0.875rem;
+        border: 1px solid var(--border-muted);
+        border-radius: 8px;
+        background-color: rgba(15, 23, 42, 0.6);
+        transition:
+            border-color 0.15s,
+            background-color 0.15s;
+    }
+    .modal-link:hover,
+    .modal-link:focus-visible {
+        border-color: var(--accent);
+        background-color: rgba(34, 211, 238, 0.06);
+    }
+    .modal-link-icon {
+        grid-row: span 2;
+        width: 1.15rem;
+        height: 1.15rem;
+        color: var(--accent);
+    }
+    .modal-link-name {
+        color: var(--text);
+    }
+    .modal-link-value {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: var(--text-muted);
+    }
+    .modal-link-value {
+        grid-column: 2;
+    }
+    .modal-link-arrow {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+        color: var(--text-muted);
+        transition:
+            color 0.15s,
+            transform 0.15s;
+    }
+    .modal-link:hover .modal-link-arrow {
+        color: var(--accent);
+        transform: translateX(2px);
+    }
+    @media (min-width: 640px) {
+        .modal-link {
+            grid-template-columns: auto 4.5rem 1fr auto;
+        }
+        .modal-link-icon,
+        .modal-link-value,
+        .modal-link-arrow {
+            grid-column: auto;
+            grid-row: auto;
+        }
+    }
+    .modal-resume {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1.25rem;
     }
 
     /* --- Shared page pieces ------------------------------------------------ */
@@ -1157,6 +1240,11 @@ body::before {
         padding: 3px 10px;
         backdrop-filter: blur(4px);
     }
+    /* Screenshots keep their titles top-left, so the label sits bottom-left */
+    .case-media .case-badge {
+        top: auto;
+        bottom: 0.9rem;
+    }
     .case-body {
         display: flex;
         flex-direction: column;
@@ -1233,93 +1321,164 @@ body::before {
         padding-top: 0.25rem;
     }
     /* --- Robot Takeover (robotGame.astro) ---------------------------------- */
-    /* Hero: --optimizedBackgroundImage is set inline by the page (it's the
-       Astro-optimized image URL, so it can't live in this file). */
     .robot-hero {
-        @apply relative flex flex-wrap items-center justify-center overflow-hidden bg-gray-900 text-center text-white;
-        z-index: 1;
-        min-height: 400px;
-        padding: 4rem 1rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        gap: 2.5rem;
+        padding: 3.5rem 1.5rem 2.5rem;
     }
-    .robot-hero::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image: var(--optimizedBackgroundImage);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        filter: blur(1px);
-        opacity: 0.3;
-        z-index: -1;
+    .robot-title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1.05;
+        color: var(--text);
+        margin-bottom: 1rem;
     }
-    .robot-hero-title {
-        @apply text-4xl font-bold leading-tight text-white;
+    .robot-title-accent {
+        color: var(--accent);
     }
-    .robot-hero-text {
-        @apply my-12 justify-self-center text-center;
+    .robot-subtitle {
+        max-width: 50ch;
+        font-size: 1.1rem;
+        color: var(--text-muted);
     }
-    .game-section {
-        @apply my-24 flex items-center justify-center;
+    .robot-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        margin-top: 1.4rem;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--text-muted);
     }
-    /* Terminal panel with animated scanlines and amber glow */
-    .game-panel {
-        @apply relative h-full w-full rounded-lg border-4 border-orange-500/60 bg-black/50 p-6;
-        background-image: linear-gradient(
-            rgba(0, 0, 0, 0.3) 50%,
-            transparent 50%
-        );
-        background-size: 100% 4px;
-        animation: game-scan 2s linear infinite;
-        text-shadow:
-            0 0 5px rgba(245, 158, 11, 0.5),
-            0 0 10px rgba(245, 158, 11, 0.3);
+    .robot-stats b {
+        font-weight: 600;
+        color: var(--text);
     }
-    .game-title {
-        @apply mb-6 text-center text-xl font-bold text-amber-400;
+    .robot-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.75rem;
+    }
+    .robot-cover {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+    }
+    .robot-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 20%;
+    }
+    /* The game window: the inventory drops under the title on phones */
+    .game-bar {
+        flex-wrap: wrap;
+        row-gap: 4px;
+    }
+    .game-bar .term-window-title {
+        white-space: nowrap;
     }
     .game-inventory {
-        @apply mb-4 h-6 text-center text-amber-600;
+        margin-left: auto;
+        white-space: nowrap;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--accent-soft);
+    }
+    .game-body {
+        display: grid;
+        gap: 1.4rem;
+        padding: 1.5rem 1.25rem;
     }
     .game-text {
-        @apply min-h-[150px] whitespace-pre-wrap text-lg leading-relaxed;
+        min-height: 9.5em;
+        white-space: pre-line;
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #cbd5e1;
+        cursor: default;
+    }
+    .game-text.is-typing::after {
+        content: '';
+        display: inline-block;
+        width: 0.5em;
+        height: 1em;
+        margin-left: 2px;
+        vertical-align: -0.12em;
+        background-color: currentColor;
+        animation: term-blink 0.8s steps(1) infinite;
     }
     .game-options {
-        @apply mt-8 flex flex-col gap-2 border-t-2 border-amber-500/30 pt-6;
+        display: grid;
+        gap: 0.5rem;
     }
-    /* Option buttons are created by the game script */
+    /* Choice buttons are created by the game script */
     .game-option {
-        @apply mb-2 cursor-pointer transition-colors duration-200 hover:text-amber-300;
+        display: flex;
+        align-items: baseline;
+        gap: 0.75rem;
+        width: 100%;
+        text-align: left;
+        font-family: var(--font-mono);
+        font-size: 0.95rem;
+        color: var(--text);
+        padding: 0.65rem 0.9rem;
+        border: 1px solid var(--border-muted);
+        border-radius: 8px;
+        background-color: rgba(15, 23, 42, 0.6);
+        transition:
+            border-color 0.15s,
+            background-color 0.15s;
     }
-    .option-key {
-        border: 1px solid rgba(245, 158, 11, 0.4);
-        padding: 2px 6px;
-        border-radius: 4px;
-        background-color: rgba(245, 158, 11, 0.1);
+    .game-option:hover,
+    .game-option:focus-visible {
+        border-color: var(--accent);
+        background-color: rgba(34, 211, 238, 0.06);
     }
-    .typing-cursor {
-        @apply inline-block;
-        width: 10px;
-        background-color: #f59e0b;
-        animation: game-blink 1s step-end infinite;
+    .game-option kbd {
+        font: inherit;
+        font-weight: 600;
+        color: var(--accent);
     }
     .game-prompt {
-        @apply mt-6 flex items-center gap-x-3;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.25rem 1rem;
+        padding-top: 0.9rem;
+        border-top: 1px dashed var(--border-muted);
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--text-muted);
     }
-    .game-prompt-caret {
-        @apply font-bold text-amber-400;
+    /* "How it works" cards */
+    .robot-how {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
-    .game-prompt-text {
-        @apply text-gray-500;
+    .robot-how-card {
+        background-color: var(--surface-2);
+        border: 1px solid var(--border-muted);
+        border-radius: 12px;
+        padding: 1.25rem 1.4rem;
     }
-}
-
-@keyframes game-scan {
-    from {
-        background-position: 0 0;
+    .robot-how-title {
+        font-family: var(--font-mono);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
     }
-    to {
-        background-position: 0 100px;
+    .robot-how-text {
+        font-size: 0.95rem;
+        color: var(--text-muted);
     }
 }
 
@@ -1329,18 +1488,9 @@ body::before {
     }
 }
 @media (prefers-reduced-motion: reduce) {
-    .term-cursor {
+    .term-cursor,
+    .game-text.is-typing::after {
         animation: none;
-    }
-}
-
-@keyframes game-blink {
-    from,
-    to {
-        background-color: transparent;
-    }
-    50% {
-        background-color: #f59e0b;
     }
 }
 

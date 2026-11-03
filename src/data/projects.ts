@@ -6,8 +6,10 @@
 //                   an image or a `terminal` panel shown in its place.
 import type { ImageMetadata } from 'astro'
 import robotThumbnail from '../assets/images/robot.png'
-import quizThumbnail from '../assets/images/hp.png'
+import quizThumbnail from '../assets/images/wizards-quiz-app-store.png'
 import websiteThumbnail from '../assets/images/website-screenshot.png'
+import dashboardThumbnail from '../assets/images/homelab-dashboard.png'
+import gitopsThumbnail from '../assets/images/homelab-gitops.png'
 
 export type TerminalLine =
     | { type: 'cmd'; text: string }
@@ -86,8 +88,9 @@ export const projects: Project[] = [
             'A native iOS trivia app built in Swift and UIKit, published on the App Store.',
         tags: ['Swift', 'UIKit', 'App Store'],
         image: quizThumbnail,
-        imageAlt: "Wizard's Quiz app icon",
-        imageClass: 'feature-card-thumb-icon',
+        imageAlt:
+            "Wizard's Quiz on the App Store, with screenshots of its quiz screens",
+        imageClass: 'feature-card-thumb-left',
         href: 'https://apps.apple.com/us/app/wizards-quiz/id1502868673',
         action: 'open in App Store',
         external: true,
@@ -157,30 +160,10 @@ export const projects: Project[] = [
         description:
             'A React dashboard for the containers, metrics, logs and hardware health of my homelab.',
         tags: ['React', 'TypeScript', 'Express'],
-        terminal: {
-            title: 'homelab-dashboard',
-            lines: [
-                { type: 'cmd', text: 'dashboard --hosts' },
-                {
-                    type: 'row',
-                    key: 'vault',
-                    text: 'Synology DS423+ · SNMP, DSM Web API',
-                },
-                {
-                    type: 'row',
-                    key: 'titan',
-                    text: 'Ubuntu VM on Proxmox · helper agent, Loki',
-                },
-                { type: 'cmd', text: 'dashboard --features' },
-                {
-                    type: 'ok',
-                    text: 'containers: start, stop, restart, inspect',
-                },
-                { type: 'ok', text: 'CPU, memory, storage and network charts' },
-                { type: 'ok', text: 'alerts: hosts, containers, disks, RAID' },
-                { type: 'ok', text: 'logs, Synology packages, dark mode' },
-            ],
-        },
+        image: dashboardThumbnail,
+        imageAlt:
+            'The Homelab Dashboard: CPU, memory, storage and network for two hosts, a CPU chart and system status',
+        imageClass: 'feature-card-thumb-left',
         href: 'https://github.com/ssterling9928/dashboard',
         action: 'view source',
         external: true,
@@ -217,35 +200,10 @@ export const projects: Project[] = [
         description:
             'A self-hosted platform where every service is defined in Git, built by my own CI and kept current by a bot.',
         tags: ['Docker', 'k3s', 'GitOps'],
-        terminal: {
-            title: 'homelab',
-            lines: [
-                { type: 'cmd', text: 'git push' },
-                {
-                    type: 'row',
-                    key: 'forgejo',
-                    text: 'source of truth, self-hosted',
-                },
-                {
-                    type: 'row',
-                    key: 'github',
-                    text: 'push mirror, off-site backup',
-                },
-                {
-                    type: 'row',
-                    key: 'actions',
-                    text: 'build + push custom images',
-                },
-                { type: 'row', key: 'renovate', text: 'update pull requests' },
-                {
-                    type: 'row',
-                    key: 'portainer',
-                    text: 'deploy stacks from Git',
-                },
-                { type: 'ok', text: 'Docker host · k3s cluster' },
-                { type: 'ok', text: 'Grafana · Loki · Prometheus' },
-            ],
-        },
+        image: gitopsThumbnail,
+        imageAlt:
+            'The homelab-gitops README: Docker, k3s, Portainer and Grafana badges above a diagram of the GitOps pipeline',
+        imageClass: '',
         href: 'https://github.com/ssterling9928/homelab-showcase',
         action: 'read the design',
         external: true,
