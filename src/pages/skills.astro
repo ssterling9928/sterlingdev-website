@@ -1,463 +1,282 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Image from 'astro/components/Image.astro'
+import { Image } from 'astro:assets'
 
-import unity2Dcert from '../assets/certs/png/completeUnity2D-1.png'
-import gitUnrealcert from '../assets/certs/png/gitUnreal-1.png'
-import csharpcert from '../assets/certs/png/intermediatecsharp-1.png'
-import photoshopcert from '../assets/certs/png/photoshop-1.png'
-import unitymobilecert from '../assets/certs/png/unityMobile-1.png'
-import unrealblueprintscert from '../assets/certs/png/unrealBlueprints-1.png'
-import wordpresscert from '../assets/certs/png/wordpress-1.png'
+import { certs, degree } from '../data/certs'
+
+// --- Certificate totals (shown in the ls -l listing) -----------------------
+const totalHours = certs.reduce((sum, cert) => sum + cert.hours, 0)
+
+// "2021-03" -> "Mar 2021"
+const formatDate = (date: string) =>
+    new Date(`${date}-01T00:00:00Z`).toLocaleDateString('en-US', {
+        month: 'short',
+        year: 'numeric',
+        timeZone: 'UTC',
+    })
+
+// --- Technical skills ------------------------------------------------------
+const stack = [
+    {
+        folder: 'games/',
+        skills: ['Unreal Engine', 'Unity', 'C++', 'C#'],
+    },
+    {
+        folder: 'web_and_apps/',
+        skills: [
+            'React',
+            'Astro',
+            'HTML & CSS',
+            'JavaScript',
+            'Tailwind CSS',
+            'Swift (iOS)',
+            '.NET',
+        ],
+    },
+    {
+        folder: 'devops_and_tools/',
+        skills: [
+            'Docker',
+            'Kubernetes',
+            'Servers',
+            'Git & GitHub',
+            'Visual Studio',
+            'Xcode',
+            'Cloud Services',
+            'Google Workspace',
+            'Microsoft Office',
+        ],
+    },
+]
+
+const strengths = [
+    'Team Collaboration',
+    'Problem-Solving',
+    'Adaptability',
+    'Communication',
+    'Rapid Learning',
+]
+
+const philosophy = [
+    {
+        title: 'Performance First',
+        text: 'I build applications to be as fast and efficient as possible, because speed is a critical feature for a great user experience.',
+    },
+    {
+        title: 'Clean & Maintainable',
+        text: 'I write code that is not only effective but also easy for others—and my future self—to understand, debug, and build upon.',
+    },
+    {
+        title: 'User-Centric Design',
+        text: 'Technology should serve people. I focus on creating intuitive and accessible interfaces that solve real problems for the end-user.',
+    },
+]
 ---
 
 <Layout title="Stephen Sterling - My Skills">
-    <!-- Skills Hero Section -->
-    <section id="hero-section" class="skills-hero md:py-72">
-        <!-- Content -->
-        <div class="skills-hero-content">
-            <h1 class="page-hero-title md:text-8xl lg:text-9xl">
-                The Toolkit<span class="hero-dot">.</span>
-            </h1>
-            <p class="skills-hero-subtitle md:text-2xl">
-                Here you'll find the skills, credentials, and technologies I use
-                to bring ideas to life.
-            </p>
-        </div>
-    </section>
-
-    <section>
-        <div class="skills-section">
-            <!-- Soft Skills Section -->
-            <div class="skills-section-inner container">
-                <div class="skills-heading-group">
-                    <h3 class="skills-section-title">Core Strengths</h3>
-                    <div class="underline-title"></div>
-                </div>
-                <p class="skills-section-subtitle">
-                    My skillset beyond just coding.
+    <!--
+  ======================================================================
+  HEADER: "Always learning." + stats
+  ======================================================================
+-->
+    <section class="skills-hero">
+        <div class="skills-hero-inner container md:px-12 md:py-20">
+            <div>
+                <p class="term-prompt">
+                    <span class="term-dollar">$</span> history | grep learn
                 </p>
-
-                <div class="strength-list">
-                    <span class="strength-pill">Team Collaboration</span>
-                    <span class="strength-pill">Problem-Solving</span>
-                    <span class="strength-pill">Adaptability</span>
-                    <span class="strength-pill">Communication</span>
-                    <span class="strength-pill">Rapid Learning</span>
-                </div>
-            </div>
-
-            <!-- Technical Skills Section -->
-            <div class="section-header-center">
-                <h2 class="skills-section-title">Technical Skills</h2>
-                <div class="underline-title"></div>
-                <p class="skills-section-subtitle">
-                    A comprehensive list of the technologies I've worked with.
+                <h1 class="skills-title md:text-6xl lg:text-7xl">
+                    Always <span class="nowrap"
+                        ><span class="skills-title-accent">learning.</span><span
+                            class="term-cursor"
+                            aria-hidden="true"></span></span
+                    >
+                </h1>
+                <p class="skills-subtitle md:text-xl">
+                    The skills, credentials, and technologies I use to bring
+                    ideas to life.
                 </p>
-            </div>
-
-            <div class="tech-panel md:p-12">
-                <div class="tech-grid md:grid-cols-2 lg:grid-cols-3">
-                    <!-- Column 1: Game Development -->
-                    <div class="tech-column">
-                        <h3 class="tech-column-title">Game Development</h3>
-                        <ul
-                            class="tech-list md:grid-cols-none md:space-y-2 md:text-lg"
-                        >
-                            <li>Unreal Engine</li>
-                            <li>Unity Engine</li>
-                            <li>C++</li>
-                            <li>C#</li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 2: Web & Application -->
-                    <div class="tech-column">
-                        <h3 class="tech-column-title">Web & Application</h3>
-                        <ul
-                            class="tech-list md:grid-cols-none md:space-y-2 md:text-lg"
-                        >
-                            <li>Astro</li>
-                            <li>HTML & CSS</li>
-                            <li>JavaScript</li>
-                            <li>Tailwind CSS</li>
-                            <li>Swift (for iOS)</li>
-                            <li>.NET Framework</li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 3: Tools & Platforms -->
-                    <div class="tech-column">
-                        <h3 class="tech-column-title">Tools & Platforms</h3>
-                        <ul
-                            class="tech-list md:grid-cols-none md:space-y-2 md:text-lg"
-                        >
-                            <li>Git & GitHub</li>
-                            <li>Visual Studio</li>
-                            <li>Xcode</li>
-                            <li>Cloud Services</li>
-                            <li>Google Workspace</li>
-                            <li>Microsoft Office</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="skills-heading-group">
-                <h3 class="skills-section-title">Development Philosophy</h3>
-                <div class="underline-title"></div>
-                <p class="skills-section-subtitle">
-                    The principles that guide my work.
-                </p>
-                <div class="philosophy-grid md:grid-cols-3">
-                    <div class="philosophy-card">
-                        <h4 class="philosophy-title">Performance First</h4>
-                        <p class="philosophy-text">
-                            I build applications to be as fast and efficient as
-                            possible, because speed is a critical feature for a
-                            great user experience.
-                        </p>
-                    </div>
-                    <div class="philosophy-card">
-                        <h4 class="philosophy-title">Clean & Maintainable</h4>
-                        <p class="philosophy-text">
-                            I write code that is not only effective but also
-                            easy for others—and my future self—to understand,
-                            debug, and build upon.
-                        </p>
-                    </div>
-                    <div class="philosophy-card">
-                        <h4 class="philosophy-title">User-Centric Design</h4>
-                        <p class="philosophy-text">
-                            Technology should serve people. I focus on creating
-                            intuitive and accessible interfaces that solve real
-                            problems for the end-user.
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Certificates Section -->
-    <section class="skills-education">
-        <div class="skills-section">
-            <div class="container">
-                <div class="section-header-center">
-                    <h2 class="education-title md:text-5xl">
-                        Education & Certifications
-                    </h2>
-                    <div class="underline-title"></div>
-                    <p class="education-text">
-                        My formal education and commitment to continuous
-                        learning.
-                    </p>
-                </div>
-
-                <!-- Tier 1: Degree -->
-                <div class="degree-card">
-                    <div class="degree-card-inner md:flex-row md:text-left">
-                        <svg
-                            class="degree-icon"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            ><path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0l-2.072-1.036A48.426 48.426 0 0112 4.5c5.052 0 9.842 1.353 13.5 3.675l-2.072 1.036m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                            ></path></svg
-                        >
-                        <div>
-                            <h3 class="degree-title">
-                                Bachelor of Science in Information Technology
-                            </h3>
-                            <p class="education-text">
-                                University of Massuchussets Lowell - Graduated
-                                2024
-                            </p>
-                        </div>
-                        <a
-                            href="/assets/certs/pdf/sterling-bachelors.pdf"
-                            target="_blank"
-                            class="button"
-                            data-metric-id="view-degree">View</a
-                        >
-                    </div>
-                </div>
-
-                <!-- Tier 2: Featured Certificates Carousel -->
-                <div>
-                    <h3 class="cert-section-title">Udemy Certificates</h3>
-                    <div class="cert-carousel">
-                        <!-- Carousel Wrapper -->
-                        <div
-                            id="carousel-container"
-                            class="no-scrollbar cert-track"
-                        >
-                            <div class="cert-slide md:w-1/2 lg:w-1/3">
-                                <div class="featured-cert">
-                                    <Image
-                                        src={unity2Dcert}
-                                        alt="Complete Unity 2D Certificate"
-                                        class="cert-image"
-                                    />
-                                    <div class="cert-body">
-                                        <h4 class="cert-title">
-                                            C# Unity Developer
-                                        </h4>
-                                        <p class="cert-issuer">Udemy</p>
-                                    </div>
-                                    <a
-                                        href="/assets/certs/pdf/completeUnity2D.pdf"
-                                        target="_blank"
-                                        class="cert-link"
-                                        data-metric-id="view-completeUnity2D"
-                                        >View Certificate</a
-                                    >
-                                </div>
-                            </div>
-                            <div class="cert-slide md:w-1/2 lg:w-1/3">
-                                <div class="featured-cert">
-                                    <Image
-                                        src={unrealblueprintscert}
-                                        alt="Unreal Engine Blueprints Certificate"
-                                        class="cert-image"
-                                    />
-                                    <div class="cert-body">
-                                        <h4 class="cert-title">
-                                            Unreal Engine 5 Blueprints FPS
-                                        </h4>
-                                        <p class="cert-issuer">Udemy</p>
-                                    </div>
-                                    <a
-                                        href="/assets/certs/pdf/unrealBlueprints.pdf"
-                                        target="_blank"
-                                        class="cert-link"
-                                        data-metric-id="view-unrealBlueprints"
-                                        >View Certificate</a
-                                    >
-                                </div>
-                            </div>
-                            <div class="cert-slide md:w-1/2 lg:w-1/3">
-                                <div class="featured-cert">
-                                    <Image
-                                        src={csharpcert}
-                                        alt="Intermediate C# Certificate"
-                                        class="cert-image"
-                                    />
-                                    <div class="cert-body">
-                                        <h4 class="cert-title">
-                                            Intermediate C#
-                                        </h4>
-                                        <p class="cert-issuer">Udemy</p>
-                                    </div>
-                                    <a
-                                        href="/assets/certs/pdf/intermediatecsharp.pdf"
-                                        target="_blank"
-                                        class="cert-link"
-                                        data-metric-id="view-intermediatecsharp"
-                                        >View Certificate</a
-                                    >
-                                </div>
-                            </div>
-                            <div class="cert-slide md:w-1/2 lg:w-1/3">
-                                <div class="featured-cert">
-                                    <Image
-                                        src={photoshopcert}
-                                        alt="Photoshop Certificate"
-                                        class="cert-image"
-                                    />
-                                    <div class="cert-body">
-                                        <h4 class="cert-title">
-                                            Adobe Photoshop
-                                        </h4>
-                                        <p class="cert-issuer">Udemy</p>
-                                    </div>
-                                    <a
-                                        href="/assets/certs/pdf/photoshop.pdf"
-                                        target="_blank"
-                                        class="cert-link"
-                                        data-metric-id="view-photoshop"
-                                        >View Certificate</a
-                                    >
-                                </div>
-                            </div>
-                            <div class="cert-slide md:w-1/2 lg:w-1/3">
-                                <div class="featured-cert">
-                                    <Image
-                                        src={gitUnrealcert}
-                                        alt="Git with Unreal Engine Certificate"
-                                        class="cert-image"
-                                    />
-                                    <div class="cert-body">
-                                        <h4 class="cert-title">
-                                            Git with Applications for Unreal
-                                            Engine
-                                        </h4>
-                                        <p class="cert-issuer">Udemy</p>
-                                    </div>
-                                    <a
-                                        href="/assets/certs/pdf/gitUnreal.pdf"
-                                        target="_blank"
-                                        class="cert-link"
-                                        data-metric-id="view-gitUnreal"
-                                        >View Certificate</a
-                                    >
-                                </div>
-                            </div>
-                            <div class="cert-slide md:w-1/2 lg:w-1/3">
-                                <div class="featured-cert">
-                                    <Image
-                                        src={wordpresscert}
-                                        alt="Wordpress Certificate"
-                                        class="cert-image"
-                                    />
-                                    <div class="cert-body">
-                                        <h4 class="cert-title">
-                                            Wordpress Development
-                                        </h4>
-                                        <p class="cert-issuer">Udemy</p>
-                                    </div>
-                                    <a
-                                        href="/assets/certs/pdf/wordpress.pdf"
-                                        target="_blank"
-                                        class="cert-link"
-                                        data-metric-id="view-wordpress"
-                                        >View Certificate</a
-                                    >
-                                </div>
-                            </div>
-                            <div class="cert-slide md:w-1/2 lg:w-1/3">
-                                <div class="featured-cert">
-                                    <Image
-                                        src={unitymobilecert}
-                                        alt="Unity Mobile Certificate"
-                                        class="cert-image"
-                                    />
-                                    <div class="cert-body">
-                                        <h4 class="cert-title">
-                                            C# Unity Mobile
-                                        </h4>
-                                        <p class="cert-issuer">Udemy</p>
-                                    </div>
-                                    <a
-                                        href="/assets/certs/pdf/unityMobile.pdf"
-                                        target="_blank"
-                                        class="cert-link"
-                                        data-metric-id="view-unityMobile"
-                                        >View Certificate</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Carousel Buttons -->
-                        <button
-                            id="prev-btn"
-                            class="carousel-arrow carousel-arrow-prev"
-                        >
-                            <svg
-                                class="icon-sm"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                        </button>
-                        <button
-                            id="next-btn"
-                            class="carousel-arrow carousel-arrow-next"
-                        >
-                            <svg
-                                class="icon-sm"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Tier 3: Other Certificates -->
-                <div class="courses">
-                    <div class="courses-panel">
-                        <h3 class="courses-title">
-                            Additional and Ongoing Courses
+    <!--
+  ======================================================================
+  STACK
+  ======================================================================
+-->
+    <section class="home-section container md:px-12">
+        <div class="section-label-row">
+            <h2 class="section-label"><span>//</span> stack</h2>
+        </div>
+        <div class="stack-grid md:grid-cols-3">
+            {
+                stack.map((group) => (
+                    <div class="stack-card">
+                        <h3 class="stack-card-title">
+                            {group.folder}
+                            <span class="stack-count">
+                                {group.skills.length}
+                            </span>
                         </h3>
-
-                        <div class="courses-grid sm:grid-cols-2">
-                            <p class="course-item">
-                                Unreal Engine 5: Intermediate
-                            </p>
-                            <p class="course-item">
-                                Unreal Engine 5: Dedicated Servers with AWS
-                            </p>
-                            <p class="course-item">
-                                Complete Full-Stack Web Developer
-                            </p>
-                            <p class="course-item">
-                                Unreal Engine 5: Gameplay Ability System
-                            </p>
-                            <p class="course-item">Modern React</p>
-                            <p class="course-item">
-                                JavaScript Algorithms and Data Structures
-                            </p>
-                            <p class="course-item">
-                                Creating 3D Environments in Blender
-                            </p>
-                        </div>
+                        <ul class="tag-list">
+                            {group.skills.map((skill) => (
+                                <li class="term-tag">{skill}</li>
+                            ))}
+                        </ul>
                     </div>
-                </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <!--
+  ======================================================================
+  CORE STRENGTHS
+  ======================================================================
+-->
+    <section class="home-section container md:px-12">
+        <div class="section-label-row">
+            <h2 class="section-label"><span>//</span> core_strengths</h2>
+        </div>
+        <ul class="strength-list">
+            {
+                strengths.map((strength) => (
+                    <li class="strength-pill">{strength}</li>
+                ))
+            }
+        </ul>
+    </section>
+
+    <!--
+  ======================================================================
+  PHILOSOPHY
+  ======================================================================
+-->
+    <section class="home-section container md:px-12">
+        <div class="section-label-row">
+            <h2 class="section-label"><span>//</span> philosophy</h2>
+        </div>
+        <div class="philosophy-grid md:grid-cols-3">
+            {
+                philosophy.map((item) => (
+                    <div class="philosophy-card">
+                        <h3 class="philosophy-title">{item.title}</h3>
+                        <p class="philosophy-text">{item.text}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <!--
+  ======================================================================
+  EDUCATION & CERTIFICATES
+  ======================================================================
+-->
+    <section class="home-section container md:px-12">
+        <div class="section-label-row">
+            <h2 class="section-label"><span>//</span> education</h2>
+        </div>
+
+        <div class="degree-card md:grid-cols-[auto_1fr_auto]">
+            <span class="degree-icon" aria-hidden="true">B.S.</span>
+            <div>
+                <h3 class="degree-title">{degree.title}</h3>
+                <p class="degree-school">{degree.school} · {degree.year}</p>
             </div>
-            <!-- Call to Action Section -->
-            <div class="skills-cta">
-                <h3 class="skills-cta-title">See My Skills in Action</h3>
-                <p class="skills-cta-text">
-                    Check out my portfolio of projects.
+            <a
+                href={degree.pdf}
+                target="_blank"
+                rel="noopener"
+                class="cta-button cta-button-ghost cta-button-sm"
+                data-metric-id="view-degree"
+            >
+                ./view-diploma
+            </a>
+        </div>
+    </section>
+
+    <!--
+  ======================================================================
+  SELF-LEARNING (Udemy certificates)
+  ======================================================================
+-->
+    <section class="home-section container md:px-12">
+        <div class="section-label-row">
+            <h2 class="section-label"><span>//</span> self_learning</h2>
+            <span class="section-hint"
+                >{certs.length} certificates · {totalHours} hours</span
+            >
+        </div>
+        <p class="section-intro">
+            Udemy courses I've completed on my own time, going deeper into game
+            engines, languages, and tools outside the classroom.
+        </p>
+        <div class="term-window">
+            <div class="term-window-bar">
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-title">~/skills/certs</span>
+            </div>
+            <div class="ls-body">
+                <p class="term-prompt">
+                    <span class="term-dollar">$</span> ls -l certs/
                 </p>
-                <a href="/myWork/" class="cta-button"> View My Work </a>
+                <p class="ls-total">total {totalHours}h</p>
+                <ul class="ls-list">
+                    {
+                        certs.map((cert) => (
+                            <li>
+                                <a
+                                    href={cert.pdf}
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="ls-row md:grid-cols-[6rem_4rem_1fr_auto]"
+                                >
+                                    <span class="ls-date">
+                                        {formatDate(cert.date)}
+                                    </span>
+                                    <span class="ls-hours">{cert.hours}h</span>
+                                    <span class="ls-name">{cert.title}</span>
+                                    <span class="ls-open">open .pdf →</span>
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
             </div>
         </div>
     </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const carousel = document.getElementById('carousel-container')
-            const prevBtn = document.getElementById('prev-btn')
-            const nextBtn = document.getElementById('next-btn')
-
-            if (carousel && nextBtn && prevBtn) {
-                let scrollAmount = 0
-                const firstCard = carousel.querySelector('.cert-slide')
-
-                if (firstCard) {
-                    scrollAmount = firstCard.getBoundingClientRect().width
-                }
-
-                nextBtn.addEventListener('click', () => {
-                    window.requestAnimationFrame(() => {
-                        carousel.scrollLeft += scrollAmount
-                    })
-                })
-                prevBtn.addEventListener('click', () => {
-                    window.requestAnimationFrame(() => {
-                        carousel.scrollLeft -= scrollAmount
-                    })
-                })
-            }
-        })
-    </script>
+    <!--
+  ======================================================================
+  CALL TO ACTION
+  ======================================================================
+-->
+    <section class="home-section container md:px-12 md:pb-32">
+        <div class="term-window">
+            <div class="term-window-bar">
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-title">next.sh</span>
+            </div>
+            <div
+                class="term-window-body skills-cta md:flex-row md:items-center md:p-12"
+            >
+                <div>
+                    <p class="term-prompt">
+                        <span class="term-dollar">$</span> ./see-it-in-action
+                    </p>
+                    <h2 class="home-contact-title md:text-5xl">
+                        Skills are better
+                        <span>in action.</span>
+                    </h2>
+                </div>
+                <a href="/myWork/" class="cta-button">./view-work</a>
+            </div>
+        </div>
+    </section>
 </Layout>

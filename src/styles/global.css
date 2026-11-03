@@ -152,16 +152,6 @@ body::before {
     }
 
     /* --- Typography helpers ------------------------------------------------ */
-    /* Short accent bar under section titles */
-    .underline-title {
-        width: 40px;
-        height: 4px;
-        background-color: var(--accent-soft);
-        margin: 0 auto;
-        margin-top: 8px;
-        margin-bottom: 16px;
-        border-radius: 2px;
-    }
     .skill-heading {
         color: var(--accent);
         font-family: 'Source Code Pro', sans-serif;
@@ -466,6 +456,12 @@ body::before {
     .section-hint {
         font-family: var(--font-mono);
         font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+    /* One-line description under a "// section" label */
+    .section-intro {
+        max-width: 60ch;
+        margin: -0.75rem 0 1.25rem;
         color: var(--text-muted);
     }
     .section-hint code {
@@ -879,156 +875,193 @@ body::before {
     }
 
     /* --- Skills page (skills.astro) ---------------------------------------- */
-    .skills-hero {
-        @apply flex w-full items-center justify-center overflow-hidden py-48 text-center;
+    /* Header: title + subtitle on the left, stat tiles on the right */
+    .skills-hero-inner {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        gap: 2.5rem;
+        padding: 3.5rem 1.5rem 3rem;
     }
-    .skills-hero-content {
-        @apply z-10;
+    .skills-title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1.05;
+        color: var(--text);
+        margin-bottom: 1rem;
     }
-    .skills-hero-subtitle {
-        @apply mx-auto mt-6 max-w-3xl text-xl text-text;
+    .skills-title-accent {
+        color: var(--accent);
     }
-    .skills-section {
-        @apply w-full p-8 py-32;
+    .skills-subtitle {
+        max-width: 50ch;
+        font-size: 1.1rem;
+        color: var(--text-muted);
     }
-    .skills-section-inner {
-        @apply z-10;
+    /* Stack: one card per folder, skills as tags */
+    .stack-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
-    .skills-heading-group {
-        @apply mx-auto max-w-5xl text-center;
+    .stack-card {
+        background-color: var(--surface-2);
+        border: 1px solid var(--border-muted);
+        border-radius: 12px;
+        padding: 1.25rem 1.4rem;
     }
-    .section-header-center {
-        @apply text-center;
+    .stack-card-title {
+        font-family: var(--font-mono);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 0.9rem;
     }
-    .skills-section-title {
-        @apply text-5xl font-bold text-text;
+    .stack-count {
+        margin-left: 0.4rem;
+        font-weight: 400;
+        color: var(--text-muted);
     }
-    .skills-section-subtitle {
-        @apply mt-4 pb-8 text-center text-lg text-text;
-    }
+    /* Core strengths */
     .strength-list {
-        @apply mb-32 flex flex-wrap justify-center gap-4;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
     }
     .strength-pill {
-        @apply rounded-full bg-surface px-5 py-2 text-lg font-medium text-text;
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+        color: #cbd5e1;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 0.45rem 1rem;
     }
-    .tech-panel {
-        @apply mx-auto mb-32 max-w-5xl p-8;
+    .strength-pill::before {
+        content: '✓ ';
+        color: var(--success);
     }
-    .tech-grid {
-        @apply grid grid-cols-1 gap-12;
-    }
-    .tech-column {
-        @apply space-y-4;
-    }
-    .tech-column-title {
-        @apply border-b-2 pb-2 text-2xl text-accent;
-    }
-    .tech-list {
-        @apply grid grid-cols-2 pt-2 text-sm;
-    }
+    /* Philosophy */
     .philosophy-grid {
-        @apply grid grid-cols-1 gap-8 text-left;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
     .philosophy-card {
-        @apply rounded-lg p-6;
+        background-color: var(--surface-2);
+        border: 1px solid var(--border-muted);
+        border-radius: 12px;
+        padding: 1.25rem 1.4rem;
     }
     .philosophy-title {
-        @apply text-xl font-semibold text-accent;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 0.4rem;
+    }
+    .philosophy-title::before {
+        content: '// ';
+        font-family: var(--font-mono);
+        font-weight: 500;
+        color: var(--accent);
     }
     .philosophy-text {
-        @apply mt-2 text-text;
+        font-size: 0.95rem;
+        color: var(--text-muted);
     }
-    .skills-education {
-        @apply mx-auto;
-    }
-    .education-title {
-        @apply text-2xl font-bold text-text;
-    }
-    .education-text {
-        @apply text-lg text-text;
-    }
+    /* Degree */
     .degree-card {
-        @apply my-24 rounded-2xl p-8;
-    }
-    .degree-card-inner {
-        @apply flex flex-col items-center gap-6 text-center;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        gap: 1rem 1.5rem;
+        background-color: var(--surface-2);
+        border: 1px solid var(--border-muted);
+        border-left: 2px solid var(--accent);
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
     }
     .degree-icon {
-        @apply h-16 w-16 flex-shrink-0 text-text;
+        display: grid;
+        place-items: center;
+        width: 3.25rem;
+        height: 3.25rem;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background-color: var(--bg);
+        font-family: var(--font-mono);
+        font-weight: 700;
+        color: var(--accent);
     }
     .degree-title {
-        @apply text-3xl text-text;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text);
     }
-    .cert-section-title {
-        @apply mb-10 text-center text-3xl text-text;
+    .degree-school {
+        margin-top: 0.15rem;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--text-muted);
     }
-    .cert-carousel {
-        @apply relative mx-auto max-w-6xl;
+    .degree-card .cta-button {
+        justify-self: start;
     }
-    .cert-track {
-        @apply flex snap-x snap-mandatory overflow-x-auto scroll-smooth py-4;
+    /* Certificates as an `ls -l` listing */
+    .ls-body {
+        padding: 1.25rem 1.25rem 1rem;
+        font-family: var(--font-mono);
+        font-size: 0.875rem;
     }
-    .cert-slide {
-        @apply w-full flex-shrink-0 snap-center px-4;
+    .ls-total {
+        margin: 0.25rem 0 0.5rem;
+        color: var(--text-muted);
     }
-    .featured-cert {
-        @apply flex h-full flex-col rounded-xl p-6;
-        transition: all 0.3s ease-in-out;
-        border: 1px solid #374151;
+    .ls-row {
+        display: grid;
+        grid-template-columns: 5.5rem 3.5rem 1fr;
+        gap: 0.25rem 1rem;
+        padding: 0.55rem 0.5rem;
+        margin: 0 -0.5rem;
+        border-radius: 6px;
+        color: #cbd5e1;
+        transition: background-color 0.15s;
     }
-    .featured-cert:hover {
-        transform: translateY(-5px);
-        border-color: var(--accent);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    .ls-row:hover,
+    .ls-row:focus-visible {
+        background-color: rgba(34, 211, 238, 0.07);
     }
-    .cert-image {
-        @apply mb-4 h-48 w-full rounded-lg object-cover;
+    .ls-date {
+        color: var(--text-muted);
     }
-    .cert-body {
-        @apply flex-grow;
+    .ls-hours {
+        color: #facc15;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
     }
-    .cert-title {
-        @apply text-xl text-text;
+    .ls-name {
+        color: var(--text);
     }
-    .cert-issuer {
-        @apply text-text;
+    .ls-open {
+        display: none;
+        color: var(--accent);
+        white-space: nowrap;
     }
-    .cert-link {
-        @apply mt-4 block w-full rounded-lg px-4 py-2 text-center text-text transition-colors;
+    .ls-row:hover .ls-name {
+        color: var(--accent);
     }
-    .carousel-arrow {
-        @apply absolute top-1/2 -translate-y-1/2 rounded-full bg-gray-800/50 p-2 transition-colors hover:bg-gray-800;
+    @media (min-width: 768px) {
+        .ls-open {
+            display: inline;
+        }
     }
-    .carousel-arrow-prev {
-        @apply left-[-2rem];
-    }
-    .carousel-arrow-next {
-        @apply right-[-2rem] text-white;
-    }
-    .courses {
-        @apply mt-16;
-    }
-    .courses-panel {
-        @apply mx-auto max-w-4xl rounded-lg p-6;
-    }
-    .courses-title {
-        @apply mb-10 text-center text-3xl text-white;
-    }
-    .courses-grid {
-        @apply grid grid-cols-1 gap-x-8 gap-y-4;
-    }
-    .course-item {
-        @apply text-text;
-    }
+    /* Call to action */
     .skills-cta {
-        @apply pt-24 text-center;
-    }
-    .skills-cta-title {
-        @apply text-3xl font-bold text-text;
-    }
-    .skills-cta-text {
-        @apply mt-2 text-lg text-text;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1.5rem;
     }
 
     /* --- My Work page (myWork.astro) --------------------------------------- */
