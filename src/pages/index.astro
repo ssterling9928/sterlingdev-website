@@ -1,216 +1,176 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import { Image } from 'astro:assets' // Import Astro's image component for optimized image handling
+import type { ImageMetadata } from 'astro'
 
-import PortraitImage from '../assets/images/portrait.jpg' // Import my portrait image
+import PortraitImage from '../assets/images/portrait.jpg'
+import InteractiveTerminal from '../components/InteractiveTerminal.astro'
+import { projects } from '../data/projects'
+
+// Only featured projects appear on the home page; /myWork/ shows them all.
+const featured = projects.filter(
+    (project): project is typeof project & { image: ImageMetadata } =>
+        project.featured && project.image !== undefined
+)
 ---
 
 <Layout title="Stephen Sterling - Portfolio">
-    <!-- 
+    <!--
   ======================================================================
   HERO SECTION
   ======================================================================
-  This section is designed as a first introduction to me on the homepage.
+  A shell-style introduction: `$ whoami` followed by who I am.
 -->
-    <section
-        id="hero-section"
-        class="relative flex items-center justify-center overflow-hidden bg-[#08090C] text-center"
-    >
-        <div class="hero-pattern absolute inset-0 opacity-10"></div>
+    <section class="home-hero">
         <div
-            class="absolute inset-0 bg-gradient-to-br from-gray-900/0 to-orange-900/10"
+            class="home-hero-inner container md:grid-cols-[1.4fr_1fr] md:px-12 md:py-24"
         >
-        </div>
-        <!-- Subtle overlay gradient -->
-
-        <div
-            class="container relative z-10 mx-auto flex flex-col items-center justify-center gap-16 md:flex-row"
-        >
-            <!-- Text Content -->
-            <div class="max-w-2xl text-center md:text-left">
-                <p class="mb-3 text-xl font-medium text-orange-400 md:text-2xl">
-                    Hello, I'm
+            <div class="home-hero-text">
+                <p class="term-prompt">
+                    <span class="term-dollar">$</span> whoami
                 </p>
-                <h1
-                    class="mb-6 text-5xl font-extrabold leading-tight text-white md:text-6xl lg:text-7xl"
-                >
-                    <span class="gradient-text-orange">Stephen Sterling</span>
+                <h1 class="home-hero-name sm:text-5xl md:text-6xl lg:text-7xl">
+                    Stephen <span class="nowrap"
+                        >Sterling<span class="term-cursor" aria-hidden="true"
+                        ></span></span
+                    >
                 </h1>
-                <p class="mb-8 text-2xl font-light text-gray-300 md:text-3xl">
-                    A <span class="font-semibold text-orange-300"
-                        >Full-Stack Developer</span
-                    > Creating a diversified array[ ] of &#123;software solutions&#125;.
-                </p>
-                <!-- Call to Action Button -->
-                <a href="/myWork/" class="cta-button inline-block">
-                    View My Work &rarr;
-                </a>
-            </div>
-            <!-- Developer Avatar/Illustration (Placeholder) -->
-            <div class="relative flex-shrink-0">
-                <!-- Outer glow/pulse effect - can be animated with custom CSS later -->
-                <div
-                    class="animate-pulse-fast absolute inset-0 rounded-full bg-gradient-to-br from-orange-400/30 to-purple-500/30 opacity-75 blur-xl"
-                >
+                <ul class="term-lines md:text-lg">
+                    <li>full-stack developer + devops</li>
+                    <li>games · web · iOS · infrastructure</li>
+                    <li>Unreal, Unity, Swift, Astro, .NET</li>
+                    <li>Docker, Kubernetes, Linux, CI/CD</li>
+                </ul>
+                <div class="home-hero-actions">
+                    <a href="/myWork/" class="cta-button">./view-work</a>
+                    <button
+                        data-metric-id="open-contact-modal"
+                        class="open-contact-modal cta-button cta-button-ghost"
+                    >
+                        ./contact
+                    </button>
                 </div>
+            </div>
+
+            <div class="home-portrait md:justify-self-center">
                 <Image
                     src={PortraitImage}
-                    alt={"Stephen Sterling's Portrait"}
-                    width="1920"
-                    height="1080"
-                    class="relative size-64 rotate-6 transform rounded-full border-4 border-orange-500 object-cover shadow-2xl transition-transform duration-500 ease-in-out hover:rotate-0 md:size-80 lg:size-96"
+                    alt="Stephen Sterling"
+                    width={600}
+                    class="home-portrait-img md:size-72 lg:size-80"
+                    loading="eager"
                 />
+                <p class="status-badge md:-left-6">available for work</p>
             </div>
         </div>
     </section>
 
-    <!-- 
+    <!--
   ======================================================================
-  SKILLS SECTION
+  FEATURED PROJECTS
   ======================================================================
-  This section is designed as a quick look at my skills on the homepage.
+  Work comes first: three projects, each linking to where you can try it.
 -->
-    <section
-        id="skills"
-        class="relative z-10 w-full overflow-hidden bg-transparent py-24 md:py-32"
-    >
-        <!-- 
-            -------------------------------
-            Background Blobs Container:
-            - These are purely decorative.
-            - They are positioned absolutely behind the main content.
-            - The `animate-pulse` class gives them a slow, subtle breathing effect.
-            - filter and blur create the soft, gradient look.
-        -->
-
-        <div class="absolute inset-0 h-full w-full">
-            <div
-                class="absolute left-0 top-0 h-72 w-72 animate-pulse rounded-full bg-gradient-to-br from-orange-500 to-red-600 opacity-30 blur-3xl filter md:h-96 md:w-96"
-            >
-            </div>
-            <div
-                class="absolute bottom-0 right-0 h-72 w-72 animate-pulse rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 opacity-30 blur-3xl filter [animation-delay:-2s] md:h-96 md:w-96"
-            >
-            </div>
+    <section class="home-section container md:px-12">
+        <div class="section-label-row">
+            <h2 class="section-label"><span>//</span> featured_projects</h2>
+            <a href="/myWork/" class="section-link">ls ~/work →</a>
         </div>
-        <!-- ------------------------------ -->
 
-        <!-- 
-            Main Content Container:
-            - Positioned relatively to sit on top of the background blobs.
-            - `container mx-auto` centers it and applies a max-width.
-            -->
-        <div class="container relative z-10 mx-auto px-6 text-center">
-            <!-- Section Header -->
-            <h2
-                class="font-heading mb-4 text-4xl font-bold text-white md:text-5xl"
-            >
-                My Creative Toolkit
-            </h2>
-            <p class="mx-auto mb-16 max-w-2xl text-lg text-gray-400">
-                A blend of technical expertise and creative problem-solving to
-                build robust and beautiful applications.
-            </p>
-
-            <!-- Grid for the glass panes -->
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Card 1: Game & 3D Worlds -->
-                <div
-                    class="glass-pane transform rounded-2xl p-8 text-left transition-transform duration-300 hover:-translate-y-2"
-                >
-                    <h3
-                        class="font-heading mb-4 text-2xl font-semibold text-orange-400"
+        <div class="feature-grid md:grid-cols-3">
+            {
+                featured.map((project) => (
+                    <a
+                        href={project.href}
+                        class="feature-card"
+                        data-metric-id={project.metricId}
+                        {...(project.external
+                            ? { target: '_blank', rel: 'noopener' }
+                            : {})}
                     >
-                        Games & 3D Worlds
-                    </h3>
-                    <p class="leading-relaxed text-gray-300">
-                        Building immersive experiences from the ground up using
-                        industry-standard tools like Unreal Engine, Unity, C++,
-                        and C#.
-                    </p>
-                </div>
-
-                <!-- Card 2: Web & App Ecosystems -->
-                <div
-                    class="glass-pane transform rounded-2xl p-8 text-left transition-transform duration-300 hover:-translate-y-2"
-                >
-                    <h3
-                        class="font-heading mb-4 text-2xl font-semibold text-orange-400"
-                    >
-                        Web & App Ecosystems
-                    </h3>
-                    <p class="leading-relaxed text-gray-300">
-                        Crafting high-performance websites and native
-                        applications with modern frameworks like Astro, Swift,
-                        and .NET.
-                    </p>
-                </div>
-
-                <!-- Card 3: Foundational Strengths (Added) -->
-                <div
-                    class="glass-pane transform rounded-2xl p-8 text-left transition-transform duration-300 hover:-translate-y-2 md:col-span-2 lg:col-span-1"
-                >
-                    <h3
-                        class="font-heading mb-4 text-2xl font-semibold text-orange-400"
-                    >
-                        Foundational Strengths
-                    </h3>
-                    <p class="leading-relaxed text-gray-300">
-                        Driven by a passion for rapid and self learning,
-                        grounded in advanced mathematics, and streamlined with
-                        tools like Git.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Call to Action Button -->
-            <div class="mt-16">
-                <a
-                    href="/skills/"
-                    class="cta-button inline-block rounded-full bg-orange-600 px-8 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:bg-orange-700"
-                >
-                    Explore All Skills
-                </a>
-            </div>
+                        <div
+                            class:list={[
+                                'feature-card-thumb',
+                                project.imageClass,
+                            ]}
+                        >
+                            <Image
+                                src={project.image}
+                                alt={project.imageAlt ?? ''}
+                                width={640}
+                            />
+                        </div>
+                        <div class="feature-card-body">
+                            <span class="feature-card-file">
+                                {project.file}
+                            </span>
+                            <h3 class="feature-card-title">{project.title}</h3>
+                            <p class="feature-card-text">
+                                {project.description}
+                            </p>
+                            <div class="tag-list">
+                                {project.tags.map((tag) => (
+                                    <span class="term-tag">{tag}</span>
+                                ))}
+                            </div>
+                            <span class="feature-card-action">
+                                → {project.action}
+                            </span>
+                        </div>
+                    </a>
+                ))
+            }
         </div>
     </section>
 
-    <!-- 
+    <!--
+  ======================================================================
+  INTERACTIVE TERMINAL
+  ======================================================================
+  A small shell visitors can type commands into.
+-->
+    <section class="home-section container md:px-12">
+        <div class="section-label-row">
+            <h2 class="section-label"><span>//</span> terminal</h2>
+            <span class="section-hint">type <code>help</code> to explore</span>
+        </div>
+        <InteractiveTerminal />
+    </section>
+
+    <!--
   ======================================================================
   CONTACT SECTION
   ======================================================================
-  This section is designed as a final call-to-action on the homepage.
+  A final call-to-action, drawn as a terminal window.
 -->
-    <section id="contact" class="w-full py-24 md:py-32">
-        <div class="container mx-auto px-6">
-            <!-- Main Invitation-Style Card -->
-            <div
-                class="mx-auto max-w-3xl rounded-2xl border border-gray-800 bg-gray-900/50 p-8 text-center shadow-2xl md:p-12"
-            >
-                <h2
-                    class="font-heading mt-6 text-4xl font-bold leading-tight text-white md:text-5xl"
-                >
-                    Have a project in mind? <br />
-                    <span class="gradient-text-orange">Let's build it.</span>
+    <section id="contact" class="home-section container md:px-12 md:pb-32">
+        <div class="term-window">
+            <div class="term-window-bar">
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-title">contact.sh</span>
+            </div>
+            <div class="term-window-body md:p-12">
+                <p class="term-prompt">
+                    <span class="term-dollar">$</span> ./contact --new-project
+                </p>
+                <h2 class="home-contact-title md:text-5xl">
+                    Have a project in mind?
+                    <span>Let's build it.</span>
                 </h2>
-
-                <p
-                    class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-gray-300"
-                >
+                <p class="home-contact-text">
                     I'm currently available for freelance and career
                     opportunities. If you're looking for a developer who is
                     passionate about bringing new ideas to life, I'm ready to
                     connect.
                 </p>
-
-                <div class="mt-10">
-                    <button
-                        data-metric-id="open-contact-modal"
-                        class="open-contact-modal cta-button"
-                    >
-                        Let's Connect
-                    </button>
-                </div>
+                <button
+                    data-metric-id="open-contact-modal"
+                    class="open-contact-modal cta-button"
+                >
+                    ./connect
+                </button>
             </div>
         </div>
     </section>

@@ -1,0 +1,336 @@
+---
+// A small fake shell visitors can type into.
+// It opens with a short welcome so it reads well before anyone types.
+// Commands are handled in the script below.
+import { projects } from '../data/projects'
+
+// Plain strings only: the script reads this from a data attribute.
+const config = {
+    projects: projects.map(({ title, file, href, external }) => ({
+        title,
+        file,
+        href,
+        external,
+    })),
+}
+---
+
+<div class="term-window shell" data-shell-config={JSON.stringify(config)}>
+    <div class="term-window-bar">
+        <span class="term-window-dot"></span>
+        <span class="term-window-dot"></span>
+        <span class="term-window-dot"></span>
+        <span class="term-window-title">guest@sterling-dev: ~</span>
+    </div>
+
+    <div class="shell-body md:p-8" data-shell-body>
+        <div class="shell-output" data-shell-output aria-live="polite">
+            <p class="shell-line">Welcome to sterling-dev.com.</p>
+            <p class="shell-line shell-muted">
+                Type <span class="shell-accent">help</span> to look around, or try
+                <span class="shell-accent">projects</span> or
+                <span class="shell-accent">play</span>.
+            </p>
+        </div>
+
+        <form class="shell-input-row" data-shell-form>
+            <label for="shell-input" class="shell-prompt"
+                >guest@sterling-dev:~$</label
+            >
+            <input
+                id="shell-input"
+                class="shell-input"
+                type="text"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                enterkeyhint="go"
+                aria-label="Terminal command"
+                placeholder="help"
+                data-shell-input
+            />
+        </form>
+    </div>
+</div>
+
+<script>
+    type Project = {
+        title: string
+        file: string
+        href: string
+        external: boolean
+    }
+    type Config = {
+        projects: Project[]
+    }
+
+    // A piece of output: plain text, a styled span, or a link.
+    type Part =
+        | string
+        | {
+              text: string
+              className?: string
+              href?: string
+              external?: boolean
+          }
+
+    const PROMPT = 'guest@sterling-dev:~$'
+
+    const PAGES: Record<string, string> = {
+        '~': '/',
+        home: '/',
+        about: '/about/',
+        skills: '/skills/',
+        work: '/myWork/',
+        robot: '/robotGame/',
+        'robot-takeover': '/robotGame/',
+    }
+
+    const SKILLS: [string, string][] = [
+        ['games', 'Unreal Engine, Unity, C++, C#'],
+        ['devops', 'Docker, Kubernetes, Linux, Proxmox, CI/CD, Python'],
+        ['web_apps', 'React, Astro, TypeScript, Node.js, Swift, .NET'],
+        ['tools', 'Git & GitHub, Visual Studio, Xcode, cloud services'],
+    ]
+
+    function initShell(root: HTMLElement) {
+        const config: Config = JSON.parse(root.dataset.shellConfig ?? '{}')
+        const body = root.querySelector<HTMLElement>('[data-shell-body]')!
+        const output = root.querySelector<HTMLElement>('[data-shell-output]')!
+        const form = root.querySelector<HTMLFormElement>('[data-shell-form]')!
+        const input =
+            root.querySelector<HTMLInputElement>('[data-shell-input]')!
+
+        const history: string[] = []
+        let historyIndex = 0
+
+        // ---- Output helpers ------------------------------------------------
+        function print(parts: Part[] | string, className = '') {
+            const line = document.createElement('p')
+            line.className = `shell-line ${className}`.trim()
+            for (const part of typeof parts === 'string' ? [parts] : parts) {
+                if (typeof part === 'string') {
+                    line.append(part)
+                } else if (part.href) {
+                    const a = document.createElement('a')
+                    a.href = part.href
+                    a.textContent = part.text
+                    a.className = `shell-link ${part.className ?? ''}`.trim()
+                    if (part.external) {
+                        a.target = '_blank'
+                        a.rel = 'noopener'
+                    }
+                    line.appendChild(a)
+                } else {
+                    const span = document.createElement('span')
+                    span.textContent = part.text
+                    if (part.className) span.className = part.className
+                    line.appendChild(span)
+                }
+            }
+            output.appendChild(line)
+        }
+        const accent = (text: string): Part => ({
+            text,
+            className: 'shell-accent',
+        })
+        const key = (text: string, width: number): Part => ({
+            text: text.padEnd(width, ' '),
+            className: 'shell-key',
+        })
+        const link = (text: string, href: string, external = false): Part => ({
+            text,
+            href,
+            external,
+        })
+        function rows(pairs: [string, string][]) {
+            const width = Math.max(...pairs.map(([k]) => k.length)) + 2
+            for (const [k, v] of pairs) print([key(k, width), v], 'shell-row')
+        }
+
+        function go(href: string, label: string) {
+            print([`opening ${label}…`], 'shell-muted')
+            setTimeout(() => (window.location.href = href), 350)
+        }
+
+        // ---- Commands ------------------------------------------------------
+        const commands: Record<
+            string,
+            { help?: string; run: (args: string[]) => void }
+        > = {
+            help: {
+                help: 'show this list',
+                run: () => {
+                    const visible = Object.entries(commands).filter(
+                        ([, c]) => c.help
+                    )
+                    rows(visible.map(([name, c]) => [name, c.help!]))
+                    print(
+                        'Tip: ↑ and ↓ scroll through past commands, Tab completes.',
+                        'shell-muted'
+                    )
+                },
+            },
+            whoami: {
+                help: 'who I am',
+                run: () => {
+                    print([
+                        accent('Stephen Sterling'),
+                        ', full-stack developer with a DevOps side.',
+                    ])
+                    print(
+                        'I build games, iOS apps and fast websites, run my own homelab, and like taking an idea all the way to something people can use.'
+                    )
+                    print(['More: ', link('cd about', '/about/')])
+                },
+            },
+            projects: {
+                help: 'list my projects',
+                run: () => {
+                    const width =
+                        Math.max(...config.projects.map((p) => p.file.length)) +
+                        2
+                    for (const p of config.projects) {
+                        print(
+                            [
+                                key(p.file, width),
+                                link(p.title, p.href, p.external),
+                            ],
+                            'shell-row'
+                        )
+                    }
+                    print(['Everything else: ', link('cd work', '/myWork/')])
+                },
+            },
+            skills: {
+                help: 'the tools I use',
+                run: () => {
+                    rows(SKILLS)
+                    print(['Full list: ', link('cd skills', '/skills/')])
+                },
+            },
+            contact: {
+                help: 'open my contact links',
+                run: () => {
+                    const modal = document.getElementById('contact-modal')
+                    if (modal) {
+                        print('opening contact links…', 'shell-muted')
+                        modal.classList.remove('modal-hidden')
+                    } else {
+                        print(['Email: stephen@sterling-dev.com'])
+                    }
+                },
+            },
+            resume: {
+                help: 'download my résumé',
+                run: () => {
+                    print([
+                        link(
+                            'Stephen_Sterling_Resume.pdf',
+                            '/assets/resume/Sterling-Resume.pdf',
+                            true
+                        ),
+                    ])
+                },
+            },
+            play: {
+                help: 'play Robot Takeover',
+                run: () => go('/robotGame/', 'Robot Takeover'),
+            },
+            cd: {
+                help: 'go to a page: about, skills, work, robot',
+                run: ([dest]) => {
+                    const page = PAGES[(dest ?? '~').replace(/\/$/, '')]
+                    if (page) go(page, dest ?? 'home')
+                    else
+                        print(
+                            `cd: no such page: ${dest}. Try about, skills, work or robot.`,
+                            'shell-error'
+                        )
+                },
+            },
+            clear: {
+                help: 'clear the screen',
+                run: () => output.replaceChildren(),
+            },
+            // Hidden extras (not listed in help)
+            ls: { run: () => commands.projects.run([]) },
+            about: { run: () => commands.whoami.run([]) },
+            echo: { run: (args) => print(args.join(' ')) },
+            date: { run: () => print(new Date().toString()) },
+            history: {
+                run: () => history.forEach((h, i) => print(`${i + 1}  ${h}`)),
+            },
+            sudo: {
+                run: () =>
+                    print(
+                        'guest is not in the sudoers file. This incident will be reported. 🙂',
+                        'shell-error'
+                    ),
+            },
+            exit: {
+                run: () => print("There's no escape. Try cd work instead."),
+            },
+        }
+
+        function run(raw: string) {
+            const line = raw.trim()
+            print([{ text: PROMPT, className: 'shell-prompt' }, ' ', line])
+            if (!line) return
+
+            history.push(line)
+            historyIndex = history.length
+
+            const [name, ...args] = line.split(/\s+/)
+            const command = commands[name.toLowerCase()]
+            if (command) command.run(args)
+            else
+                print(
+                    [`command not found: ${name}. Type `, accent('help'), '.'],
+                    'shell-error'
+                )
+        }
+
+        // ---- Events --------------------------------------------------------
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            run(input.value)
+            input.value = ''
+            body.scrollTop = body.scrollHeight
+        })
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp' && history.length) {
+                e.preventDefault()
+                historyIndex = Math.max(0, historyIndex - 1)
+                input.value = history[historyIndex]
+            } else if (e.key === 'ArrowDown' && history.length) {
+                e.preventDefault()
+                historyIndex = Math.min(history.length, historyIndex + 1)
+                input.value = history[historyIndex] ?? ''
+            } else if (e.key === 'Tab' && input.value.trim()) {
+                const typed = input.value.trim().toLowerCase()
+                const match = Object.keys(commands).find((c) =>
+                    c.startsWith(typed)
+                )
+                if (match) {
+                    e.preventDefault()
+                    input.value = match + ' '
+                }
+            }
+        })
+
+        // Clicking anywhere in the terminal focuses the prompt,
+        // unless the visitor is clicking a link or selecting text.
+        body.addEventListener('click', (e) => {
+            const target = e.target as HTMLElement
+            if (target.closest('a')) return
+            if (window.getSelection()?.toString()) return
+            input.focus({ preventScroll: true })
+        })
+    }
+
+    document
+        .querySelectorAll<HTMLElement>('[data-shell-config]')
+        .forEach(initShell)
+</script>

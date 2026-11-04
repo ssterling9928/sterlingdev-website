@@ -1,0 +1,422 @@
+// Robot Takeover: every scene of the text adventure, used by robotGame.astro.
+// Each scene has its text and the choices that lead to other scenes. A choice
+// can give the player an item (addItem) or only appear if they carry one
+// (requires).
+
+export type Choice = {
+    text: string
+    nextState: string
+    addItem?: string
+    requires?: string
+}
+
+export type Scene = {
+    key: string
+    text: string
+    options?: Choice[]
+}
+
+export const START_SCENE = 'GameMenu'
+
+export const scenes: Scene[] = [
+    {
+        key: 'GameMenu',
+        text: 'Welcome to Robot Takeover. In this text-based adventure, you must fight for survival to reclaim the world from the machines. The fate of humanity rests on your shoulders. Can you survive?',
+        options: [
+            { text: 'Begin', nextState: 'Intro' },
+            { text: 'Quit', nextState: 'Q1' },
+        ],
+    },
+    {
+        key: 'Intro',
+        text: 'The year is 3095. A sentient network of machines has seized control of global infrastructure. Humanity is scattered, living in the ruins of the old world. You are one of the few who remain, and every day is a struggle for survival.',
+        options: [{ text: 'Continue', nextState: 'A1' }],
+    },
+    {
+        key: 'A1',
+        text: "You are startled from a fitful sleep by a harsh, metallic grinding just outside the thin metal door of your shelter. The sound is unmistakable—a bot, and it's dangerously close.\n\nWhat is your move?",
+        options: [
+            {
+                text: 'Open the door and investigate.',
+                nextState: 'A2',
+            },
+            {
+                text: 'Slip out the back and avoid it.',
+                nextState: 'A3',
+            },
+        ],
+    },
+    {
+        key: 'A2',
+        text: "You cautiously crack open the door. A small, spider-like bot, unlike any you've encountered, whirs and clicks as its single red optic scans the hallway. It hasn't seen you yet.\n\nWhat do you do?",
+        options: [
+            {
+                text: 'Lunge at it with a nearby pipe.',
+                nextState: 'A4',
+            },
+            { text: 'Attempt communication.', nextState: 'B1' },
+        ],
+    },
+    {
+        key: 'A3',
+        text: 'Deciding against a direct confrontation, you slip out a back window into the cold, desolate world. The path forward is uncertain, but a cracked asphalt road stretches into the distance.',
+        options: [
+            { text: 'Follow the road east.', nextState: 'A5' },
+            { text: 'Follow the road west.', nextState: 'A6' },
+        ],
+    },
+    {
+        key: 'A4',
+        text: 'With a guttural yell, you bring the heavy pipe down on the bot. It emits a piercing electronic shriek and collapses in a shower of sparks. Amidst the twitching wreckage, you find a small WRENCH clutched in one of its appendages. A useful tool. You take it and head out onto the main road.',
+        options: [
+            {
+                text: 'Follow the road east.',
+                nextState: 'A5',
+                addItem: 'Wrench',
+            },
+            {
+                text: 'Follow the road west.',
+                nextState: 'A6',
+                addItem: 'Wrench',
+            },
+        ],
+    },
+    {
+        key: 'A5',
+        text: 'You follow the road heading east, the ruins of the city silhouetted against the gray sky.',
+        options: [{ text: 'Continue', nextState: 'A7' }],
+    },
+    {
+        key: 'A6',
+        text: 'You follow the road heading west, towards the decaying suburbs.',
+        options: [{ text: 'Continue', nextState: 'A7' }],
+    },
+    {
+        key: 'A7',
+        text: 'Ahead, you spot a dilapidated house that appears to have been recently occupied. It could offer shelter, or it could be a trap.\n\nWhat is your next move?',
+        options: [
+            {
+                text: 'Enter through the front door.',
+                nextState: 'A8',
+            },
+            {
+                text: 'Circle around to the back entrance.',
+                nextState: 'A9',
+            },
+            {
+                text: 'Avoid the house and keep moving.',
+                nextState: 'A10', //  Game Over
+            },
+        ],
+    },
+    {
+        key: 'A8',
+        text: "You push open the front door and step inside. In the dim light, you see an old woman sitting motionless on a couch. She doesn't acknowledge your presence.",
+        options: [{ text: 'Continue', nextState: 'A11' }],
+    },
+    {
+        key: 'A9',
+        text: 'You circle to the back and slip through a rusted service door into a kitchen. Against the far wall, a large, imposing bot stands silent and motionless. Next to it is a locked maintenance panel.\n\nWhat should you do?',
+        options: [
+            { text: 'Attack the bot.', nextState: 'A12' },
+            {
+                text: 'Use the Wrench on the panel.',
+                nextState: 'A9_Wrench',
+                requires: 'Wrench',
+            },
+            {
+                text: 'Attempt to communicate with the bot.',
+                nextState: 'A13',
+            },
+            {
+                text: 'Try to sneak past the bot.',
+                nextState: 'A14',
+            },
+        ],
+    },
+    {
+        key: 'A9_Wrench',
+        text: 'You use the wrench to pry open the maintenance panel. The lock gives way with a groan. Inside, you find a pristine KEYCARD. The bot remains still, deactivated.',
+        options: [
+            {
+                text: 'Continue through the house.',
+                nextState: 'A16',
+                addItem: 'Keycard',
+            },
+        ],
+    },
+    {
+        key: 'A10',
+        text: "You decide the house isn't worth the risk. As you continue down the road, you hear the sudden sound of heavy, rhythmic footsteps behind you. You turn, but it's too late.",
+        options: [{ text: 'Continue', nextState: 'X1' }],
+    },
+    {
+        key: 'A11',
+        text: "You call out to the woman, but she remains silent, her gaze fixed on something you can't see. Her silence is unsettling.\n\nWhat do you do?",
+        options: [
+            {
+                text: 'Speak to her again, louder.',
+                nextState: 'A17',
+            },
+            {
+                text: 'Ignore her and leave the house.',
+                nextState: 'A18',
+            },
+        ],
+    },
+    {
+        key: 'A12',
+        text: "You attack the bot with all your strength. It doesn't even register the blow. It emits a deafening, high-frequency screech, and a blinding red light erupts from its weapon arm. You don't stand a chance.",
+        options: [{ text: 'Continue', nextState: 'X1' }],
+    },
+    {
+        key: 'A13',
+        text: 'You cautiously speak to the bot. It turns its head with a sharp mechanical snap, its optical sensor focusing on you. It takes a heavy step closer.\n\nWhat do you do?',
+        options: [
+            { text: 'Attack it now.', nextState: 'A12' }, // Game Over
+            { text: 'Hold your ground.', nextState: 'A15' },
+        ],
+    },
+    {
+        key: 'A14',
+        text: 'Knowing the danger, you decide not to engage. You quietly sneak through the adjoining room, leaving the dormant machine behind.',
+        options: [{ text: 'Continue', nextState: 'A16' }],
+    },
+    {
+        key: 'A15',
+        text: "You stand your ground as the bot approaches. It stops just inches from you, scans you for a few tense seconds, and then, inexplicably, turns and returns to its corner. You let out a breath you didn't realize you were holding.\n\nWhat now?",
+        options: [
+            {
+                text: 'Continue through the house.',
+                nextState: 'A16',
+            },
+            {
+                text: 'Leave the house immediately.',
+                nextState: 'A18',
+            },
+        ],
+    },
+    {
+        key: 'A16',
+        text: 'You move through the back room and into the main living area. An old woman is sitting on the couch, completely silent, as if in a trance.',
+        options: [{ text: 'Continue', nextState: 'A11' }],
+    },
+    {
+        key: 'A17',
+        text: 'You speak again, louder this time. The woman\'s head slowly turns. She begins to mumble, her voice raspy. "I... I know how to stop them." You lean in, intrigued.',
+        options: [{ text: 'Ask her to explain.', nextState: 'A19' }],
+    },
+    {
+        key: 'A18',
+        text: 'This place is too strange. You decide to leave.',
+        options: [{ text: 'Continue', nextState: 'A25' }],
+    },
+    {
+        key: 'A19',
+        text: 'The woman reveals she was a lead engineer on the network. She knows its central weakness and how to exploit it to shut down the bots for good. You look at her with a mix of hope and disbelief.\n\nWhat do you do?',
+        options: [
+            {
+                text: 'Urge her to explain further.',
+                nextState: 'A20',
+            },
+            {
+                text: 'Dismiss her as a madwoman and leave.',
+                nextState: 'A23',
+            },
+        ],
+    },
+    {
+        key: 'A20',
+        text: '"Their strength is their weakness," she whispers. "Every bot is connected, all communications routed through a single command tower not far from here. Destroy the tower, and you sever the connection."',
+        options: [{ text: 'Continue to listen.', nextState: 'A21' }],
+    },
+    {
+        key: 'A21',
+        text: 'She explains that the tower is heavily guarded, but there is a maintenance access panel with nine doors. She looks you dead in the eye. "You must choose door number four. Any other choice leads to certain death."',
+        options: [{ text: 'Continue.', nextState: 'A22' }],
+    },
+    {
+        key: 'A22',
+        text: "She asks if you will undertake this mission to save what's left of humanity.\n\nWhat do you do?",
+        options: [
+            {
+                text: 'Agree to destroy the tower.',
+                nextState: 'A24',
+            },
+            {
+                text: "Tell her you can't trust her insane plan.",
+                nextState: 'A23',
+            },
+        ],
+    },
+    {
+        key: 'A23',
+        text: "The moment you voice your doubt, the woman's expression turns hostile. A hidden bot emerges from the kitchen, its weapon glowing. Her calm demeanor was a facade.",
+        options: [{ text: 'Continue', nextState: 'X1' }],
+    },
+    {
+        key: 'A24',
+        text: "A flicker of hope appears in the woman's eyes. She seems relieved. You thank her for the information and leave the house, now with a clear mission.",
+        options: [{ text: 'Continue', nextState: 'A25' }],
+    },
+    {
+        key: 'A25',
+        text: 'You find yourself back on the main road, which soon splits into a three-way fork.\n\nWhich path will you take?',
+        options: [
+            { text: 'Take the left path.', nextState: 'A26' },
+            { text: 'Take the right path.', nextState: 'A27' },
+            { text: 'Take the middle path.', nextState: 'A28' },
+        ],
+    },
+    {
+        key: 'A26',
+        text: 'You take the left path. Ahead, you find a tree with strange, glowing fruit. Starving, you eat some. A wave of energy washes over you. You feel refreshed and stronger.',
+        options: [{ text: 'Continue', nextState: 'A29' }],
+    },
+    {
+        key: 'A27',
+        text: 'You take the right path and find the same type of glowing fruit. You eat it and feel your strength return.',
+        options: [{ text: 'Continue', nextState: 'A29' }],
+    },
+    {
+        key: 'A28',
+        text: "The middle path leads to a wide chasm. Believing you can make the jump, you take a running leap. You don't even come close.",
+        options: [{ text: 'Continue', nextState: 'X1' }],
+    },
+    {
+        key: 'A29',
+        text: 'After walking for what feels like hours, you see it in the distance: a massive, dark tower, humming with power. A single, powerful bot stands guard at its base.\n\nWhat is your plan?',
+        options: [
+            { text: 'Approach the tower.', nextState: 'A31' },
+            {
+                text: "Decide it's too risky and turn back.",
+                nextState: 'A30',
+            },
+        ],
+    },
+    {
+        key: 'A30',
+        text: "The sight of the tower and its guard fills you with dread. You decide it's a suicide mission and turn back. The road stretches on endlessly. Eventually, you collapse from exhaustion, unable to continue.",
+        options: [{ text: 'Continue', nextState: 'X1' }],
+    },
+    {
+        key: 'A31',
+        text: 'You approach the tower. The guard bot stands before a panel of nine identical doors. It speaks in a monotone voice: "Choose your entry point."\n\nWhich door do you choose?',
+        options: [
+            { text: 'Door 1', nextState: 'A32' },
+            { text: 'Door 2', nextState: 'A32' },
+            { text: 'Door 3', nextState: 'A32' },
+            { text: 'Door 4', nextState: 'W1' },
+            { text: 'Door 5', nextState: 'A32' },
+            { text: 'Door 6', nextState: 'A32' },
+            { text: 'Door 7', nextState: 'A32' },
+            { text: 'Door 8', nextState: 'A32' },
+            { text: 'Door 9', nextState: 'A32' },
+        ],
+    },
+    {
+        key: 'A32',
+        text: 'You step through the door and the floor immediately gives way beneath you. It was a trap. You fall into darkness.',
+        options: [{ text: 'Continue', nextState: 'X1' }],
+    },
+    {
+        key: 'B1',
+        text: "You try to communicate with the bot, but it doesn't seem to understand. It begins to beep erratically, shaking violently. Before you can react, it self-destructs in a powerful explosion, throwing you back against the wall.",
+        options: [{ text: 'Yell for help!', nextState: 'B2' }],
+    },
+    {
+        key: 'B2',
+        text: 'You cry out for help. Footsteps echo down the hall, and another human appears in the doorway, looking concerned.\n\nWhat do you do?',
+        options: [
+            { text: 'Ask the man for help.', nextState: 'B3' },
+            { text: 'Tell him to go away.', nextState: 'B4' },
+        ],
+    },
+    {
+        key: 'B3',
+        text: "The man rushes to your aid, helping you to your feet. He introduces himself as Patrick and says you're the first survivor he's seen in months. He asks if you want to travel together.",
+        options: [
+            { text: 'Travel with Patrick.', nextState: 'B5' },
+            { text: 'Go your own way.', nextState: 'B6' },
+        ],
+    },
+    {
+        key: 'B4',
+        text: "You yell at the man to leave you alone. He hesitates, then retreats down the hall. You soon realize your legs are badly injured from the blast. You can't get up. You are stranded and alone.",
+        options: [{ text: 'Continue', nextState: 'X1' }],
+    },
+    {
+        key: 'B5',
+        text: 'You and Patrick set off. He tells you a rumor about an old engineer who knows how to defeat the bots. He thinks you should seek her out.\n\nWhat do you think?',
+        options: [
+            {
+                text: 'Agree to find the old lady.',
+                nextState: 'B8',
+            },
+            {
+                text: "Tell Patrick it's a waste of time.",
+                nextState: 'B9',
+            },
+        ],
+    },
+    {
+        key: 'B6',
+        text: 'You tell Patrick you work alone and head outside to the main road.\n\nWhat now?',
+        options: [
+            { text: 'Travel east.', nextState: 'A5' },
+            { text: 'Travel west.', nextState: 'A6' },
+            { text: 'Go back and find Patrick.', nextState: 'B7' },
+        ],
+    },
+    {
+        key: 'B7',
+        text: "You have a change of heart and go back to find Patrick. He's still there, contemplating his next move. You apologize and ask to join him. He agrees.",
+        options: [{ text: 'Continue', nextState: 'B5' }],
+    },
+    {
+        key: 'B8',
+        text: 'You agree that finding the old lady is your best shot. You and Patrick set off together.',
+        options: [{ text: 'Continue', nextState: 'A7' }],
+    },
+    {
+        key: 'B9',
+        text: "You tell Patrick that an old folktale won't save you. He seems convinced and agrees to abandon the idea. You decide to follow a nearby road, which soon comes to a fork.",
+        options: [
+            { text: 'Take the left path.', nextState: 'B10' },
+            { text: 'Take the right path.', nextState: 'B10' },
+        ],
+    },
+    {
+        key: 'B10',
+        text: 'You follow the path until you reach a rickety bridge. As you cross, the structure groans and collapses beneath you. You both fall to your doom.',
+        options: [{ text: 'Continue', nextState: 'X1' }],
+    },
+    {
+        key: 'Q1',
+        text: 'You have chosen to end your journey. The last spark of human resistance has been extinguished.',
+        options: [],
+    },
+    {
+        key: 'X1',
+        text: 'GAME OVER.\nYour journey has ended in failure. The bots will rule the world forever.',
+        options: [
+            { text: 'Main Menu', nextState: 'GameMenu' },
+            { text: 'Quit', nextState: 'Q1' },
+        ],
+    },
+    {
+        key: 'W1',
+        text: 'You step through Door 4. Inside, you find a large, humming tower—the central communications hub. You know what you have to do.',
+        options: [{ text: 'Destroy the tower.', nextState: 'W2' }],
+    },
+    {
+        key: 'W2',
+        text: 'The tower collapses in a shower of sparks. The humming stops. The world falls silent. You step back outside to see the guard bot is now deactivated. An old woman is standing there, smiling. "Congratulations," she says. "You have saved us all."',
+        options: [{ text: 'Continue', nextState: 'W3' }],
+    },
+    {
+        key: 'W3',
+        text: "CONGRATULATIONS!\nYou have completed your journey and destroyed the bots' network. Humanity can now rebuild.\n\nThanks for playing!",
+        options: [{ text: 'Return to Main Menu', nextState: 'GameMenu' }],
+    },
+]

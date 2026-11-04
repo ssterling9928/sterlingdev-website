@@ -1,275 +1,191 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { Image } from 'astro:assets' // Import Astro's image component for optimized image handling
+import { Image } from 'astro:assets'
 
-import websiteThumbnail from '../assets/images/website-screenshot.png' // Import thumbnail image for astro website project
-import iosAppThumbnail from '../assets/images/hp.png' // Import thumbnail image for iOS app project
-import robotThumbnail from '../assets/images/robot.png' // Import thumbnail image for Unreal Engine project
+import { projects } from '../data/projects'
 ---
 
 <Layout title="Stephen Sterling - My Work">
-    <!-- Work-Hero Section -->
-    <section
-        id="hero-section"
-        class="aurora-bg aurora-purple py-48 text-center md:py-72"
-    >
-        <!-- Content Container -->
-        <div class="container relative z-10 mx-auto px-6">
-            <!-- Page Title -->
-            <h1
-                class="font-inter fade-in-up text-6xl font-bold leading-tight text-white md:text-8xl lg:text-9xl"
-            >
-                My Work<span class="gradient-text-orange">.</span>
+    <!--
+  ======================================================================
+  HEADER
+  ======================================================================
+-->
+    <section class="work-hero">
+        <div class="work-hero-inner container md:px-12 md:py-20">
+            <p class="term-prompt">
+                <span class="term-dollar">$</span> ls ~/work
+            </p>
+            <h1 class="work-title md:text-6xl lg:text-7xl">
+                My <span class="nowrap"
+                    ><span class="work-title-accent">work.</span><span
+                        class="term-cursor"
+                        aria-hidden="true"></span></span
+                >
             </h1>
-            <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-400 md:text-xl">
+            <p class="work-subtitle md:text-xl">
                 A selection of projects I've built, from game prototypes to
                 modern web applications.
             </p>
         </div>
     </section>
 
-    <!-- Main Projects Grid Section -->
-    <section class="grid-pattern-bg py-16 md:py-24">
-        <!-- Content Container -->
-        <div class="container mx-auto px-6">
-            <!-- Project Cards -->
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Project Card 1 -->
-                <div
-                    class="project-card flex flex-col overflow-hidden rounded-2xl"
-                >
-                    <div class="relative">
-                        <Image
-                            src={websiteThumbnail}
-                            alt="Astro Website Thumbnail"
-                            class="h-56 w-full object-cover opacity-5"
-                            loading="lazy"
-                        />
-                        <h2
-                            class="absolute top-0 w-full bg-transparent p-6 pt-16 text-4xl font-bold text-orange-500"
+    <!--
+  ======================================================================
+  CASE FILES: one large row per project (image side alternates)
+  ======================================================================
+-->
+    <section class="home-section container md:px-12">
+        <div class="case-list">
+            {
+                projects.map((project, i) => (
+                    <article
+                        class:list={[
+                            'case',
+                            i % 2 === 1
+                                ? 'case-flip md:grid-cols-[1fr_1.15fr]'
+                                : 'md:grid-cols-[1.15fr_1fr]',
+                        ]}
+                    >
+                        <div
+                            class:list={[
+                                'case-media',
+                                { 'md:order-2': i % 2 === 1 },
+                                { 'case-media-term': !project.image },
+                                {
+                                    'case-media-left':
+                                        project.imageClass ===
+                                        'feature-card-thumb-left',
+                                },
+                            ]}
                         >
-                            Astro Website
-                        </h2>
-                    </div>
-
-                    <div class="flex flex-grow flex-col px-6 pb-6">
-                        <h3 class="font-poppins pb-2 text-2xl text-white">
-                            Portfolio Website
-                        </h3>
-                        <p class="mt-2 flex-grow pb-2 text-gray-400">
-                            A showcase of modern web development in action. This
-                            portfolio was built from the ground up with Astro
-                            for maximum performance and a seamless user
-                            experience, styled with Tailwind CSS. It features a
-                            fully automated CI/CD pipeline, deploying directly
-                            from GitHub to Cloudflare's edge network.
-                        </p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span
-                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >Astro</span
-                            ><span
-                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >HTML</span
-                            ><span
-                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >Tailwind CSS</span
-                            ><span
-                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >Javascript</span
-                            >
+                            {project.image ? (
+                                <Image
+                                    src={project.image}
+                                    alt={project.imageAlt ?? ''}
+                                    width={960}
+                                />
+                            ) : (
+                                project.terminal && (
+                                    <div class="case-term" aria-hidden="true">
+                                        {project.terminal.lines.map((line) =>
+                                            line.type === 'cmd' ? (
+                                                <p class="case-term-line">
+                                                    <span class="term-dollar">
+                                                        $
+                                                    </span>{' '}
+                                                    {line.text}
+                                                </p>
+                                            ) : line.type === 'row' ? (
+                                                <p class="case-term-line case-term-row">
+                                                    <span class="case-term-key">
+                                                        {line.key}
+                                                    </span>
+                                                    <span>{line.text}</span>
+                                                </p>
+                                            ) : (
+                                                <p class="case-term-line case-term-ok">
+                                                    {line.text}
+                                                </p>
+                                            )
+                                        )}
+                                    </div>
+                                )
+                            )}
+                            <span class="case-badge">{project.kind}</span>
                         </div>
-                        <div class="mt-6 flex items-center space-x-4">
-                            <a
-                                href="https://github.com/ssterling9928/sterlingdev-website"
-                                class="button hover:border-gray-400"
-                                target="_blank"
-                                data-metric-id="view-website-source-code"
-                            >
-                                Source Code
-                            </a>
+                        <div class="case-body md:p-8">
+                            <div class="case-top">
+                                <span class="case-file">
+                                    <span class="case-num">
+                                        {String(i + 1).padStart(2, '0')}
+                                    </span>{' '}
+                                    · {project.file}
+                                </span>
+                                <span class="status-dot">{project.status}</span>
+                            </div>
+                            <h2 class="case-title md:text-3xl">
+                                {project.title}
+                            </h2>
+                            <p class="case-text">{project.writeup}</p>
+                            <dl class="case-facts">
+                                {project.facts.map((fact) => (
+                                    <div class="case-fact">
+                                        <dt>{fact.label}</dt>
+                                        <dd>{fact.value}</dd>
+                                    </div>
+                                ))}
+                                <div class="case-fact">
+                                    <dt>stack</dt>
+                                    <dd class="tag-list">
+                                        {project.stack.map((tech) => (
+                                            <span class="term-tag">{tech}</span>
+                                        ))}
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="case-actions">
+                                {project.links.map((link) => (
+                                    <a
+                                        href={link.href}
+                                        class:list={[
+                                            'cta-button',
+                                            {
+                                                'cta-button-ghost':
+                                                    !link.primary,
+                                            },
+                                        ]}
+                                        data-metric-id={link.metricId}
+                                        {...(link.external
+                                            ? {
+                                                  target: '_blank',
+                                                  rel: 'noopener',
+                                              }
+                                            : {})}
+                                    >
+                                        {link.label}
+                                    </a>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!-- Project Card 2 -->
-                <div
-                    class="project-card flex flex-col overflow-hidden rounded-2xl"
-                >
-                    <div class="relative">
-                        <Image
-                            src={iosAppThumbnail}
-                            alt="iOS App Thumbnail"
-                            class="h-56 w-full object-cover opacity-5"
-                            loading="lazy"
-                        />
-                        <h2
-                            class="absolute top-0 w-full bg-transparent p-6 pt-16 text-4xl font-bold text-orange-500"
-                        >
-                            iOS App
-                        </h2>
-                    </div>
-                    <div class="flex flex-grow flex-col p-6">
-                        <h3 class="font-poppins text-2xl text-white">
-                            Wizard's Quiz
-                        </h3>
-                        <p class="mt-2 flex-grow text-gray-400">
-                            A native iOS trivia application built entirely in
-                            Swift using Xcode and the UIKit framework, which is
-                            currently published on the App Store. This project
-                            demonstrates core iOS development principles,
-                            including programmatic UI and state management.
-                        </p>
-
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span
-                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >Swift</span
-                            ><span
-                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >Xcode</span
-                            ><span
-                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >UIKit</span
-                            >
-                        </div>
-                        <div class="mt-6 flex items-center space-x-4">
-                            <a
-                                href="https://apps.apple.com/us/app/wizards-quiz/id1502868673"
-                                target="_blank"
-                                class="w-full rounded-lg bg-orange-600 px-5 py-2 text-center font-semibold text-white hover:bg-orange-700"
-                                data-metric-id="view-ios-appstore">App Store</a
-                            ><a
-                                href="https://github.com/ssterling9928/HarryPotterTriviaQuiz"
-                                target="_blank"
-                                class="w-full rounded-lg border border-gray-600 px-5 py-2 text-center font-semibold text-gray-300 hover:border-gray-400"
-                                data-metric-id="view-ios-source-code"
-                                >Source Code</a
-                            >
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 3 -->
-                <div
-                    class="project-card flex flex-col overflow-hidden rounded-2xl"
-                >
-                    <div class="relative">
-                        <Image
-                            src={robotThumbnail}
-                            alt="Robot Takeover Thumbnail"
-                            class="h-56 w-full object-cover opacity-5"
-                            loading="lazy"
-                        />
-                        <h2
-                            class="absolute top-0 w-full bg-transparent p-6 pt-16 text-4xl font-bold text-orange-500"
-                        >
-                            Web Game
-                        </h2>
-                    </div>
-                    <div class="flex flex-grow flex-col p-6">
-                        <h3 class="font-poppins text-2xl text-white">
-                            Robot Takeover
-                        </h3>
-                        <p class="mt-2 flex-grow text-gray-400">
-                            This project is a complete JavaScript rewrite of an
-                            original text-based adventure game I built in Unity.
-                            The goal was to modernize the gameplay experience by
-                            creating a fast, responsive, and immersive web
-                            application with a stylized terminal interface,
-                            bringing a classic game format to the browser.
-                        </p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span
-                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >Unity</span
-                            ><span
-                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >C#</span
-                            ><span
-                                class="tech-tag rounded-full px-3 py-1 text-xs font-semibold"
-                                >Javascript</span
-                            >
-                        </div>
-                        <div class="mt-6 flex items-center space-x-4">
-                            <a
-                                href="/robotGame/"
-                                class="w-full rounded-lg bg-orange-600 px-5 py-2 text-center font-semibold text-white hover:bg-orange-700"
-                                data-metric-id="view-robot-game">Live Demo</a
-                            >
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </article>
+                ))
+            }
         </div>
     </section>
 
-    <!-- Technologies Section -->
-    <section class="py-16 md:py-24" style="background-color: #0D1117;">
-        <div class="container mx-auto px-6">
-            <div class="mb-16 text-center">
-                <!-- THE CHANGE: Revamped title -->
-                <h2 class="font-poppins text-5xl font-bold text-white">
-                    <span class="gradient-text-orange"
-                        >Primary Technologies</span
-                    >
-                </h2>
-                <p class="mt-4 text-lg text-gray-500">
-                    The core technologies I enjoy working with most.
-                </p>
+    <!--
+  ======================================================================
+  CONTACT
+  ======================================================================
+-->
+    <section class="home-section container md:px-12 md:pb-32">
+        <div class="term-window">
+            <div class="term-window-bar">
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-dot"></span>
+                <span class="term-window-title">contact.sh</span>
             </div>
-            <!-- THE CHANGE: Revamped logo cards -->
             <div
-                class="flex flex-wrap items-center justify-center gap-8 md:gap-12"
+                class="term-window-body skills-cta md:flex-row md:items-center md:p-12"
             >
-                <div class="tech-logo-card rounded-full p-4">
-                    <img
-                        src="https://placehold.co/80x80/ffffff/000000?text=UE5"
-                        alt="Unreal Engine 5"
-                        class="h-16 w-16 md:h-20 md:w-20"
-                    />
+                <div>
+                    <p class="term-prompt">
+                        <span class="term-dollar">$</span> ./new-project
+                    </p>
+                    <h2 class="home-contact-title md:text-5xl">
+                        Have something in mind?
+                        <span>Let's build it.</span>
+                    </h2>
                 </div>
-                <div class="tech-logo-card rounded-full p-4">
-                    <img
-                        src="https://placehold.co/80x80/ffffff/000000?text=C%2B%2B"
-                        alt="C++"
-                        class="h-16 w-16 md:h-20 md:w-20"
-                    />
-                </div>
-                <div class="tech-logo-card rounded-full p-4">
-                    <img
-                        src="https://placehold.co/80x80/ffffff/000000?text=C%23"
-                        alt="C#"
-                        class="h-16 w-16 md:h-20 md:w-20"
-                    />
-                </div>
-                <div class="tech-logo-card rounded-full p-4">
-                    <img
-                        src="https://placehold.co/80x80/ffffff/000000?text=Git"
-                        alt="Git"
-                        class="h-16 w-16 md:h-20 md:w-20"
-                    />
-                </div>
-                <div class="tech-logo-card rounded-full p-4">
-                    <img
-                        src="https://placehold.co/80x80/ffffff/000000?text=Unity"
-                        alt="Unity"
-                        class="h-16 w-16 md:h-20 md:w-20"
-                    />
-                </div>
+                <button
+                    data-metric-id="open-contact-modal"
+                    class="open-contact-modal cta-button"
+                >
+                    ./contact
+                </button>
             </div>
         </div>
     </section>
 </Layout>
-<style>
-    .grid-pattern-bg {
-        background-color: #111827;
-        background-image:
-            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-            linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0.05) 1px,
-                transparent 1px
-            );
-        background-size: 4rem 4rem;
-    }
-</style>

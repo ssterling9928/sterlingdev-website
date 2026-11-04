@@ -21,7 +21,6 @@
   // OPTIONAL: comment out during local `astro dev` if you don’t want 404s
   if (!/^(www\.)?sterling-dev\.com$/i.test(location.hostname)) return;
 
-  console.log("[metrics] script loaded");
 
   // page view
   send({
@@ -37,7 +36,6 @@
     if (!el) return;
     const id = el.dataset.metricId || "";
     const text = (el.textContent || "").trim().slice(0, 80);
-    console.log("[metrics] click:", id, text);
     send({ t: "click", path: location.pathname + location.search, ts: Date.now(), meta: { id, text } });
   });
 })();
