@@ -158,8 +158,9 @@ const toolkit = [
                 <h2 class="md-h2">My Mission &amp; Goals</h2>
                 <ul class="checklist">
                     <li class="checklist-item">
-                        <span class="checklist-box" aria-hidden="true">[ ]</span
-                        >
+                        <span class="checklist-box" aria-hidden="true">
+                            [ ]
+                        </span>
                         <div>
                             <h3 class="checklist-title">
                                 Be a Part of Something Bigger
@@ -177,8 +178,9 @@ const toolkit = [
                         </div>
                     </li>
                     <li class="checklist-item">
-                        <span class="checklist-box" aria-hidden="true">[~]</span
-                        >
+                        <span class="checklist-box" aria-hidden="true">
+                            [~]
+                        </span>
                         <div>
                             <h3 class="checklist-title">Never Stop Growing</h3>
                             <p>
@@ -197,18 +199,16 @@ const toolkit = [
 
                 <h2 class="md-h2">Toolkit</h2>
                 <div class="toolkit-list">
-                    {
-                        toolkit.map((item) => (
-                            <div class="toolkit-item">
-                                <h3 class="skill-heading">{item.title}</h3>
-                                <p class="skill-text">{item.text}</p>
-                            </div>
-                        ))
-                    }
+                    {toolkit.map((item) => (
+                        <div class="toolkit-item">
+                            <h3 class="skill-heading">{item.title}</h3>
+                            <p class="skill-text">{item.text}</p>
+                        </div>
+                    ))}
                 </div>
-                <a href="/skills/" class="section-link toolkit-more"
-                    >cat skills →</a
-                >
+                <a href="/skills/" class="section-link toolkit-more">
+                    cat skills →
+                </a>
             </div>
         </article>
     </section>

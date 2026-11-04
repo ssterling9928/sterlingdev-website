@@ -1,10 +1,36 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss';
+
+/* --- Tailwind theme --------------------------------------------------------
+   Maps the design tokens below to Tailwind utilities
+   (bg-bg, text-text, text-accent, bg-surface, font-mono, ...). */
+@theme {
+    --color-bg: var(--bg);
+    --color-surface: var(--surface);
+    --color-surface-2: var(--surface-2);
+    --color-text: var(--text);
+    --color-muted: var(--text-muted);
+    --color-border: var(--border);
+    --color-accent: var(--accent);
+    --color-accent-hover: var(--accent-hover);
+    --color-focus: var(--focus);
+
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-fira: 'Fira Sans Condensed', ui-sans-serif, system-ui, sans-serif;
+    --font-mono:
+        'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Tailwind v4 gives buttons the default arrow cursor; keep the v3 pointer. */
+@layer base {
+    button:not(:disabled),
+    [role='button']:not(:disabled) {
+        cursor: pointer;
+    }
+}
 
 /* --- Design tokens ---------------------------------------------------------
-   Change the palette here; Tailwind maps these in tailwind.config.mjs
-   (bg-bg, text-text, text-accent, bg-surface, ...). */
+   Change the palette here; the @theme block above maps them to Tailwind. */
 :root {
     --bg: #0f172a;
     --surface: #1e293b;
@@ -188,7 +214,7 @@ body::before {
 
     /* --- Footer ------------------------------------------------------------ */
     .site-footer {
-        @apply bg-bg px-6 py-8 text-center text-text;
+        @apply bg-bg text-text px-6 py-8 text-center;
     }
 
     /* --- Contact modal (Layout.astro): a small terminal window ------------ */
@@ -322,7 +348,7 @@ body::before {
 
     /* --- Shared page pieces ------------------------------------------------ */
     .skill-text {
-        @apply leading-relaxed text-text;
+        @apply text-text leading-relaxed;
     }
 
     /* --- Terminal pieces (shared) ------------------------------------------ */

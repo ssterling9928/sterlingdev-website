@@ -34,19 +34,17 @@ const links = [
 
         <!-- Navigation Links -->
         <nav class="header-nav md:w-auto md:gap-8">
-            {
-                links.map((link) => (
-                    <a
-                        href={link.href}
-                        class:list={[
-                            'nav-link',
-                            { [activeClass]: pathname === link.href },
-                        ]}
-                    >
-                        {link.label}
-                    </a>
-                ))
-            }
+            {links.map((link) => (
+                <a
+                    href={link.href}
+                    class:list={[
+                        'nav-link',
+                        { [activeClass]: pathname === link.href },
+                    ]}
+                >
+                    {link.label}
+                </a>
+            ))}
             <button
                 data-metric-id="open-contact-modal"
                 class="open-contact-modal cta-button cta-button-sm"

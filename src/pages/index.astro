@@ -22,18 +22,17 @@ const featured = projects.filter(
   A shell-style introduction: `$ whoami` followed by who I am.
 -->
     <section class="home-hero">
-        <div
-            class="home-hero-inner container md:grid-cols-[1.4fr_1fr] md:px-12 md:py-24"
-        >
+        <div class="home-hero-inner container md:grid-cols-[1.4fr_1fr] md:px-12 md:py-24">
             <div class="home-hero-text">
                 <p class="term-prompt">
                     <span class="term-dollar">$</span> whoami
                 </p>
                 <h1 class="home-hero-name sm:text-5xl md:text-6xl lg:text-7xl">
-                    Stephen <span class="nowrap"
-                        >Sterling<span class="term-cursor" aria-hidden="true"
-                        ></span></span
-                    >
+                    Stephen{' '}
+                    <span class="nowrap">
+                        Sterling
+                        <span class="term-cursor" aria-hidden="true"></span>
+                    </span>
                 </h1>
                 <ul class="term-lines md:text-lg">
                     <li>full-stack developer + devops</li>
@@ -42,7 +41,9 @@ const featured = projects.filter(
                     <li>Docker, Kubernetes, Linux, CI/CD</li>
                 </ul>
                 <div class="home-hero-actions">
-                    <a href="/myWork/" class="cta-button">./view-work</a>
+                    <a href="/myWork/" class="cta-button">
+                        ./view-work
+                    </a>
                     <button
                         data-metric-id="open-contact-modal"
                         class="open-contact-modal cta-button cta-button-ghost"
@@ -73,53 +74,48 @@ const featured = projects.filter(
 -->
     <section class="home-section container md:px-12">
         <div class="section-label-row">
-            <h2 class="section-label"><span>//</span> featured_projects</h2>
-            <a href="/myWork/" class="section-link">ls ~/work →</a>
+            <h2 class="section-label">
+                <span>//</span> featured_projects
+            </h2>
+            <a href="/myWork/" class="section-link">
+                ls ~/work →
+            </a>
         </div>
 
         <div class="feature-grid md:grid-cols-3">
-            {
-                featured.map((project) => (
-                    <a
-                        href={project.href}
-                        class="feature-card"
-                        data-metric-id={project.metricId}
-                        {...(project.external
-                            ? { target: '_blank', rel: 'noopener' }
-                            : {})}
+            {featured.map((project) => (
+                <a
+                    href={project.href}
+                    class="feature-card"
+                    data-metric-id={project.metricId}
+                    {...(project.external
+                        ? { target: '_blank', rel: 'noopener' }
+                        : {})}
+                >
+                    <div
+                        class:list={['feature-card-thumb', project.imageClass]}
                     >
-                        <div
-                            class:list={[
-                                'feature-card-thumb',
-                                project.imageClass,
-                            ]}
-                        >
-                            <Image
-                                src={project.image}
-                                alt={project.imageAlt ?? ''}
-                                width={640}
-                            />
+                        <Image
+                            src={project.image}
+                            alt={project.imageAlt ?? ''}
+                            width={640}
+                        />
+                    </div>
+                    <div class="feature-card-body">
+                        <span class="feature-card-file">{project.file}</span>
+                        <h3 class="feature-card-title">{project.title}</h3>
+                        <p class="feature-card-text">{project.description}</p>
+                        <div class="tag-list">
+                            {project.tags.map((tag) => (
+                                <span class="term-tag">{tag}</span>
+                            ))}
                         </div>
-                        <div class="feature-card-body">
-                            <span class="feature-card-file">
-                                {project.file}
-                            </span>
-                            <h3 class="feature-card-title">{project.title}</h3>
-                            <p class="feature-card-text">
-                                {project.description}
-                            </p>
-                            <div class="tag-list">
-                                {project.tags.map((tag) => (
-                                    <span class="term-tag">{tag}</span>
-                                ))}
-                            </div>
-                            <span class="feature-card-action">
-                                → {project.action}
-                            </span>
-                        </div>
-                    </a>
-                ))
-            }
+                        <span class="feature-card-action">
+                            → {project.action}
+                        </span>
+                    </div>
+                </a>
+            ))}
         </div>
     </section>
 
@@ -131,8 +127,12 @@ const featured = projects.filter(
 -->
     <section class="home-section container md:px-12">
         <div class="section-label-row">
-            <h2 class="section-label"><span>//</span> terminal</h2>
-            <span class="section-hint">type <code>help</code> to explore</span>
+            <h2 class="section-label">
+                <span>//</span> terminal
+            </h2>
+            <span class="section-hint">
+                type <code>help</code> to explore
+            </span>
         </div>
         <InteractiveTerminal />
     </section>
