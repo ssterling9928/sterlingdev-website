@@ -214,7 +214,7 @@ body::before {
 
     /* --- Footer ------------------------------------------------------------ */
     .site-footer {
-        @apply bg-bg px-6 py-8 text-center text-text;
+        @apply bg-bg text-text px-6 py-8 text-center;
     }
 
     /* --- Contact modal (Layout.astro): a small terminal window ------------ */
@@ -348,7 +348,7 @@ body::before {
 
     /* --- Shared page pieces ------------------------------------------------ */
     .skill-text {
-        @apply leading-relaxed text-text;
+        @apply text-text leading-relaxed;
     }
 
     /* --- Terminal pieces (shared) ------------------------------------------ */

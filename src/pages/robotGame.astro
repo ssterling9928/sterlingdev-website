@@ -55,19 +55,17 @@ const howItWorks = [
   HEADER: title, counts and cover art
   ======================================================================
 -->
-    <section
-        class="robot-hero container md:grid-cols-[1.15fr_1fr] md:px-12 md:py-20"
-    >
+    <section class="robot-hero container md:grid-cols-[1.15fr_1fr] md:px-12 md:py-20">
         <div>
             <p class="term-prompt">
                 <span class="term-dollar">$</span> ./robot-takeover
             </p>
             <h1 class="robot-title md:text-6xl lg:text-7xl">
-                Robot <span class="nowrap"
-                    ><span class="robot-title-accent">Takeover.</span><span
-                        class="term-cursor"
-                        aria-hidden="true"></span></span
-                >
+                Robot{' '}
+                <span class="nowrap">
+                    <span class="robot-title-accent">Takeover.</span>
+                    <span class="term-cursor" aria-hidden="true"></span>
+                </span>
             </h1>
             <p class="robot-subtitle md:text-xl">
                 A text adventure I first built in Unity, rewritten in JavaScript
@@ -75,21 +73,19 @@ const howItWorks = [
                 shut them down.
             </p>
             <ul class="robot-stats">
-                {
-                    stats.map((stat) => (
-                        <li>
-                            <b>{stat.value}</b> {stat.label}
-                        </li>
-                    ))
-                }
+                {stats.map((stat) => (
+                    <li>
+                        <b>{stat.value}</b> {stat.label}
+                    </li>
+                ))}
             </ul>
             <div class="robot-actions">
-                <a href="#play" class="cta-button" data-metric-id="robot-play"
-                    >./play</a
-                >
-                <a href="/myWork/" class="cta-button cta-button-ghost"
-                    >./all-projects</a
-                >
+                <a href="#play" class="cta-button" data-metric-id="robot-play">
+                    ./play
+                </a>
+                <a href="/myWork/" class="cta-button cta-button-ghost">
+                    ./all-projects
+                </a>
             </div>
         </div>
         <div class="robot-cover">
@@ -112,7 +108,9 @@ const howItWorks = [
 -->
     <section id="play" class="home-section container md:px-12">
         <div class="section-label-row">
-            <h2 class="section-label"><span>//</span> play</h2>
+            <h2 class="section-label">
+                <span>//</span> play
+            </h2>
             <span class="section-hint">keys 1–9 or click · Enter skips</span>
         </div>
         <div class="term-window">
@@ -121,23 +119,22 @@ const howItWorks = [
                 <span class="term-window-dot"></span>
                 <span class="term-window-dot"></span>
                 <span class="term-window-title">robot-takeover.sh</span>
-                <span class="game-inventory" data-game-inventory
-                    >inventory: [ ]</span
-                >
+                <span class="game-inventory" data-game-inventory>
+                    inventory: [ ]
+                </span>
             </div>
             <div class="game-body md:px-8 md:py-7">
                 <p
                     class="game-text md:text-lg"
                     data-game-text
                     aria-live="polite"
-                >
-                </p>
+                ></p>
                 <div class="game-options" data-game-options></div>
                 <p class="game-prompt">
-                    <span
-                        ><span class="term-dollar">$</span>
-                        <span data-game-prompt>...</span></span
-                    >
+                    <span>
+                        <span class="term-dollar">$</span>
+                        <span data-game-prompt>...</span>
+                    </span>
                     <span data-game-scene></span>
                 </p>
                 <noscript>
@@ -156,17 +153,17 @@ const howItWorks = [
 -->
     <section class="home-section container md:px-12 md:pb-32">
         <div class="section-label-row">
-            <h2 class="section-label"><span>//</span> how_it_works</h2>
+            <h2 class="section-label">
+                <span>//</span> how_it_works
+            </h2>
         </div>
         <div class="robot-how md:grid-cols-3">
-            {
-                howItWorks.map((item) => (
-                    <div class="robot-how-card">
-                        <h3 class="robot-how-title">{item.title}</h3>
-                        <p class="robot-how-text">{item.text}</p>
-                    </div>
-                ))
-            }
+            {howItWorks.map((item) => (
+                <div class="robot-how-card">
+                    <h3 class="robot-how-title">{item.title}</h3>
+                    <p class="robot-how-text">{item.text}</p>
+                </div>
+            ))}
         </div>
     </section>
 </Layout>

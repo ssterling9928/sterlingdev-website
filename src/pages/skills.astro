@@ -106,11 +106,11 @@ const philosophy = [
                     <span class="term-dollar">$</span> history | grep learn
                 </p>
                 <h1 class="skills-title md:text-6xl lg:text-7xl">
-                    Always <span class="nowrap"
-                        ><span class="skills-title-accent">learning.</span><span
-                            class="term-cursor"
-                            aria-hidden="true"></span></span
-                    >
+                    Always{' '}
+                    <span class="nowrap">
+                        <span class="skills-title-accent">learning.</span>
+                        <span class="term-cursor" aria-hidden="true"></span>
+                    </span>
                 </h1>
                 <p class="skills-subtitle md:text-xl">
                     The skills, credentials, and technologies I use to bring
@@ -127,26 +127,24 @@ const philosophy = [
 -->
     <section class="home-section container md:px-12">
         <div class="section-label-row">
-            <h2 class="section-label"><span>//</span> stack</h2>
+            <h2 class="section-label">
+                <span>//</span> stack
+            </h2>
         </div>
         <div class="stack-grid md:grid-cols-3">
-            {
-                stack.map((group) => (
-                    <div class="stack-card">
-                        <h3 class="stack-card-title">
-                            {group.folder}
-                            <span class="stack-count">
-                                {group.skills.length}
-                            </span>
-                        </h3>
-                        <ul class="tag-list">
-                            {group.skills.map((skill) => (
-                                <li class="term-tag">{skill}</li>
-                            ))}
-                        </ul>
-                    </div>
-                ))
-            }
+            {stack.map((group) => (
+                <div class="stack-card">
+                    <h3 class="stack-card-title">
+                        {group.folder}
+                        <span class="stack-count">{group.skills.length}</span>
+                    </h3>
+                    <ul class="tag-list">
+                        {group.skills.map((skill) => (
+                            <li class="term-tag">{skill}</li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
         </div>
     </section>
 
@@ -157,14 +155,14 @@ const philosophy = [
 -->
     <section class="home-section container md:px-12">
         <div class="section-label-row">
-            <h2 class="section-label"><span>//</span> core_strengths</h2>
+            <h2 class="section-label">
+                <span>//</span> core_strengths
+            </h2>
         </div>
         <ul class="strength-list">
-            {
-                strengths.map((strength) => (
-                    <li class="strength-pill">{strength}</li>
-                ))
-            }
+            {strengths.map((strength) => (
+                <li class="strength-pill">{strength}</li>
+            ))}
         </ul>
     </section>
 
@@ -175,17 +173,17 @@ const philosophy = [
 -->
     <section class="home-section container md:px-12">
         <div class="section-label-row">
-            <h2 class="section-label"><span>//</span> philosophy</h2>
+            <h2 class="section-label">
+                <span>//</span> philosophy
+            </h2>
         </div>
         <div class="philosophy-grid md:grid-cols-3">
-            {
-                philosophy.map((item) => (
-                    <div class="philosophy-card">
-                        <h3 class="philosophy-title">{item.title}</h3>
-                        <p class="philosophy-text">{item.text}</p>
-                    </div>
-                ))
-            }
+            {philosophy.map((item) => (
+                <div class="philosophy-card">
+                    <h3 class="philosophy-title">{item.title}</h3>
+                    <p class="philosophy-text">{item.text}</p>
+                </div>
+            ))}
         </div>
     </section>
 
@@ -196,14 +194,20 @@ const philosophy = [
 -->
     <section class="home-section container md:px-12">
         <div class="section-label-row">
-            <h2 class="section-label"><span>//</span> education</h2>
+            <h2 class="section-label">
+                <span>//</span> education
+            </h2>
         </div>
 
         <div class="degree-card md:grid-cols-[auto_1fr_auto]">
-            <span class="degree-icon" aria-hidden="true">B.S.</span>
+            <span class="degree-icon" aria-hidden="true">
+                B.S.
+            </span>
             <div>
                 <h3 class="degree-title">{degree.title}</h3>
-                <p class="degree-school">{degree.school} · {degree.year}</p>
+                <p class="degree-school">
+                    {degree.school} · {degree.year}
+                </p>
             </div>
             <a
                 href={degree.pdf}
@@ -224,10 +228,12 @@ const philosophy = [
 -->
     <section class="home-section container md:px-12">
         <div class="section-label-row">
-            <h2 class="section-label"><span>//</span> self_learning</h2>
-            <span class="section-hint"
-                >{certs.length} certificates · {totalHours} hours</span
-            >
+            <h2 class="section-label">
+                <span>//</span> self_learning
+            </h2>
+            <span class="section-hint">
+                {certs.length} certificates · {totalHours} hours
+            </span>
         </div>
         <p class="section-intro">
             Udemy courses I've completed on my own time, going deeper into game
@@ -246,25 +252,23 @@ const philosophy = [
                 </p>
                 <p class="ls-total">total {totalHours}h</p>
                 <ul class="ls-list">
-                    {
-                        certs.map((cert) => (
-                            <li>
-                                <a
-                                    href={cert.pdf}
-                                    target="_blank"
-                                    rel="noopener"
-                                    class="ls-row md:grid-cols-[6rem_4rem_1fr_auto]"
-                                >
-                                    <span class="ls-date">
-                                        {formatDate(cert.date)}
-                                    </span>
-                                    <span class="ls-hours">{cert.hours}h</span>
-                                    <span class="ls-name">{cert.title}</span>
-                                    <span class="ls-open">open .pdf →</span>
-                                </a>
-                            </li>
-                        ))
-                    }
+                    {certs.map((cert) => (
+                        <li>
+                            <a
+                                href={cert.pdf}
+                                target="_blank"
+                                rel="noopener"
+                                class="ls-row md:grid-cols-[6rem_4rem_1fr_auto]"
+                            >
+                                <span class="ls-date">
+                                    {formatDate(cert.date)}
+                                </span>
+                                <span class="ls-hours">{cert.hours}h</span>
+                                <span class="ls-name">{cert.title}</span>
+                                <span class="ls-open">open .pdf →</span>
+                            </a>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </div>
@@ -283,9 +287,7 @@ const philosophy = [
                 <span class="term-window-dot"></span>
                 <span class="term-window-title">next.sh</span>
             </div>
-            <div
-                class="term-window-body skills-cta md:flex-row md:items-center md:p-12"
-            >
+            <div class="term-window-body skills-cta md:flex-row md:items-center md:p-12">
                 <div>
                     <p class="term-prompt">
                         <span class="term-dollar">$</span> ./see-it-in-action
@@ -295,7 +297,9 @@ const philosophy = [
                         <span>in action.</span>
                     </h2>
                 </div>
-                <a href="/myWork/" class="cta-button">./view-work</a>
+                <a href="/myWork/" class="cta-button">
+                    ./view-work
+                </a>
             </div>
         </div>
     </section>

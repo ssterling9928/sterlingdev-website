@@ -17,11 +17,11 @@ import { projects } from '../data/projects'
                 <span class="term-dollar">$</span> ls ~/work
             </p>
             <h1 class="work-title md:text-6xl lg:text-7xl">
-                My <span class="nowrap"
-                    ><span class="work-title-accent">work.</span><span
-                        class="term-cursor"
-                        aria-hidden="true"></span></span
-                >
+                My{' '}
+                <span class="nowrap">
+                    <span class="work-title-accent">work.</span>
+                    <span class="term-cursor" aria-hidden="true"></span>
+                </span>
             </h1>
             <p class="work-subtitle md:text-xl">
                 A selection of projects I've built, from game prototypes to
@@ -37,120 +37,115 @@ import { projects } from '../data/projects'
 -->
     <section class="home-section container md:px-12">
         <div class="case-list">
-            {
-                projects.map((project, i) => (
-                    <article
+            {projects.map((project, i) => (
+                <article
+                    class:list={[
+                        'case',
+                        i % 2 === 1
+                            ? 'case-flip md:grid-cols-[1fr_1.15fr]'
+                            : 'md:grid-cols-[1.15fr_1fr]',
+                    ]}
+                >
+                    <div
                         class:list={[
-                            'case',
-                            i % 2 === 1
-                                ? 'case-flip md:grid-cols-[1fr_1.15fr]'
-                                : 'md:grid-cols-[1.15fr_1fr]',
+                            'case-media',
+                            { 'md:order-2': i % 2 === 1 },
+                            { 'case-media-term': !project.image },
+                            {
+                                'case-media-left':
+                                    project.imageClass ===
+                                    'feature-card-thumb-left',
+                            },
                         ]}
                     >
-                        <div
-                            class:list={[
-                                'case-media',
-                                { 'md:order-2': i % 2 === 1 },
-                                { 'case-media-term': !project.image },
-                                {
-                                    'case-media-left':
-                                        project.imageClass ===
-                                        'feature-card-thumb-left',
-                                },
-                            ]}
-                        >
-                            {project.image ? (
-                                <Image
-                                    src={project.image}
-                                    alt={project.imageAlt ?? ''}
-                                    width={960}
-                                />
-                            ) : (
-                                project.terminal && (
-                                    <div class="case-term" aria-hidden="true">
-                                        {project.terminal.lines.map((line) =>
-                                            line.type === 'cmd' ? (
-                                                <p class="case-term-line">
-                                                    <span class="term-dollar">
-                                                        $
-                                                    </span>{' '}
-                                                    {line.text}
-                                                </p>
-                                            ) : line.type === 'row' ? (
-                                                <p class="case-term-line case-term-row">
-                                                    <span class="case-term-key">
-                                                        {line.key}
-                                                    </span>
-                                                    <span>{line.text}</span>
-                                                </p>
-                                            ) : (
-                                                <p class="case-term-line case-term-ok">
-                                                    {line.text}
-                                                </p>
-                                            )
-                                        )}
-                                    </div>
-                                )
-                            )}
-                            <span class="case-badge">{project.kind}</span>
-                        </div>
-                        <div class="case-body md:p-8">
-                            <div class="case-top">
-                                <span class="case-file">
-                                    <span class="case-num">
-                                        {String(i + 1).padStart(2, '0')}
-                                    </span>{' '}
-                                    · {project.file}
-                                </span>
-                                <span class="status-dot">{project.status}</span>
-                            </div>
-                            <h2 class="case-title md:text-3xl">
-                                {project.title}
-                            </h2>
-                            <p class="case-text">{project.writeup}</p>
-                            <dl class="case-facts">
-                                {project.facts.map((fact) => (
-                                    <div class="case-fact">
-                                        <dt>{fact.label}</dt>
-                                        <dd>{fact.value}</dd>
-                                    </div>
-                                ))}
-                                <div class="case-fact">
-                                    <dt>stack</dt>
-                                    <dd class="tag-list">
-                                        {project.stack.map((tech) => (
-                                            <span class="term-tag">{tech}</span>
-                                        ))}
-                                    </dd>
+                        {project.image ? (
+                            <Image
+                                src={project.image}
+                                alt={project.imageAlt ?? ''}
+                                width={960}
+                            />
+                        ) : (
+                            project.terminal && (
+                                <div class="case-term" aria-hidden="true">
+                                    {project.terminal.lines.map((line) =>
+                                        line.type === 'cmd' ? (
+                                            <p class="case-term-line">
+                                                <span class="term-dollar">
+                                                    $
+                                                </span>{' '}
+                                                {line.text}
+                                            </p>
+                                        ) : line.type === 'row' ? (
+                                            <p class="case-term-line case-term-row">
+                                                <span class="case-term-key">
+                                                    {line.key}
+                                                </span>
+                                                <span>{line.text}</span>
+                                            </p>
+                                        ) : (
+                                            <p class="case-term-line case-term-ok">
+                                                {line.text}
+                                            </p>
+                                        )
+                                    )}
                                 </div>
-                            </dl>
-                            <div class="case-actions">
-                                {project.links.map((link) => (
-                                    <a
-                                        href={link.href}
-                                        class:list={[
-                                            'cta-button',
-                                            {
-                                                'cta-button-ghost':
-                                                    !link.primary,
-                                            },
-                                        ]}
-                                        data-metric-id={link.metricId}
-                                        {...(link.external
-                                            ? {
-                                                  target: '_blank',
-                                                  rel: 'noopener',
-                                              }
-                                            : {})}
-                                    >
-                                        {link.label}
-                                    </a>
-                                ))}
-                            </div>
+                            )
+                        )}
+                        <span class="case-badge">{project.kind}</span>
+                    </div>
+                    <div class="case-body md:p-8">
+                        <div class="case-top">
+                            <span class="case-file">
+                                <span class="case-num">
+                                    {String(i + 1).padStart(2, '0')}
+                                </span>{' '}
+                                · {project.file}
+                            </span>
+                            <span class="status-dot">{project.status}</span>
                         </div>
-                    </article>
-                ))
-            }
+                        <h2 class="case-title md:text-3xl">{project.title}</h2>
+                        <p class="case-text">{project.writeup}</p>
+                        <dl class="case-facts">
+                            {project.facts.map((fact) => (
+                                <div class="case-fact">
+                                    <dt>{fact.label}</dt>
+                                    <dd>{fact.value}</dd>
+                                </div>
+                            ))}
+                            <div class="case-fact">
+                                <dt>stack</dt>
+                                <dd class="tag-list">
+                                    {project.stack.map((tech) => (
+                                        <span class="term-tag">{tech}</span>
+                                    ))}
+                                </dd>
+                            </div>
+                        </dl>
+                        <div class="case-actions">
+                            {project.links.map((link) => (
+                                <a
+                                    href={link.href}
+                                    class:list={[
+                                        'cta-button',
+                                        {
+                                            'cta-button-ghost': !link.primary,
+                                        },
+                                    ]}
+                                    data-metric-id={link.metricId}
+                                    {...(link.external
+                                        ? {
+                                              target: '_blank',
+                                              rel: 'noopener',
+                                          }
+                                        : {})}
+                                >
+                                    {link.label}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </article>
+            ))}
         </div>
     </section>
 
@@ -167,9 +162,7 @@ import { projects } from '../data/projects'
                 <span class="term-window-dot"></span>
                 <span class="term-window-title">contact.sh</span>
             </div>
-            <div
-                class="term-window-body skills-cta md:flex-row md:items-center md:p-12"
-            >
+            <div class="term-window-body skills-cta md:flex-row md:items-center md:p-12">
                 <div>
                     <p class="term-prompt">
                         <span class="term-dollar">$</span> ./new-project
